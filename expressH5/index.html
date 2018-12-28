@@ -77,6 +77,8 @@
 						else {
 							currIndex = 4;
 						}
+						
+						
 						// 匹配对应tab窗口	
 						if(currIndex > 0) {
 							targetPage = plus.webview.getWebviewById(subpages[currIndex - 1]);
@@ -88,17 +90,16 @@
 							return;
 						}
 
-						if(currIndex !== 4) { 
-							//底部选项卡切换
+						//底部选项卡切换
 							util.toggleNview(currIndex);
 							// 子页面切换
 							util.changeSubpage(targetPage, activePage, aniShow);
 							//更新当前活跃的页面
 							activePage = targetPage;
-						} else {
-							//第四个tab 打开新窗口
-							plus.webview.open('html/new-webview.html', 'new', {}, 'slide-in-right', 200);
-						}
+
+						//plus.webview.open('html/new-webview.html', 'new', {}, 'slide-in-right', 200);
+						
+						
 					});
 				});
 			})();
