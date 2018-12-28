@@ -63,6 +63,7 @@
 						if (contentWebview == null) {
 							contentWebview = self.children()[0];
 						}
+						alert(JSON.stringify(contentWebview));
 						var str = contentWebview.getURL();
 						var index = str.indexOf('www/');
 						str = str.substring(index + 4);

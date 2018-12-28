@@ -225,8 +225,9 @@
 				} else if(false){//或则一些其他父子模版页面的特殊处理
 					
 				} else if(~options.detail.id.indexOf('.html')) {
+					
 					if (!~options.detail.id.indexOf('needtem.html')) {//普通不使用父子模版页面的
-					alert(2344);
+						
 						mui.openWindow({
 							url:options.detail.href,
 							id:options.detail.id,
@@ -241,6 +242,7 @@
 							}
 						});
 					} else{
+						
 						createsubWebview(headerWebView_First,subWebView_First,options);
 					}
 				}

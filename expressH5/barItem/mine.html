@@ -181,7 +181,7 @@
 						barsIcon = 'mui-icon iconfont icon-tianjia';
 					}
 					
-					 mui.openWindow({
+					 /* mui.openWindow({
 					url: href,
 					id: id,
 					styles: {
@@ -193,7 +193,18 @@
 					waiting:{
 					autoShow:true
 					}
-					}); 
+					}); */
+					
+					pushWebView({
+						webType: 'newWebview_First',
+						id: id,
+						href: href,
+						aniShow: aniShow,
+						title: title,
+						isBars: isBars,
+						barsIcon: barsIcon,
+						extendOptions: {}
+					})
 					
 					
 					
