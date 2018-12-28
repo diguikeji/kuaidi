@@ -1,58 +1,26 @@
-灰狐E3 HTML5 App
+## tab选项卡示例教程-nativeObj原生模式tab（含底部凸起大图标）
+## 概述
 
-#### 简介
+这是一个利用原生view控件绘制底部选项卡的示例，有以下几个特点：
+1.首页显示第一个tab项内容，其余tab项内容为首页的子窗口，相比创建四个子窗口，显示速度更快，占用内存更少，消耗性能更小。
+2.操作简单：选项卡常用于App首页，为加快渲染，首页的原生底部选项卡是在manifest.json中通过plus -> launchwebview -> subNViews 节点配置的；
+3.绘制内容支持字体，图片，矩形区域
+4.开发者自定义选项卡点击事件
+5.同样支持页内绘制原生 view 控件，也就是说在非首页也可以使用此方法，参考示例：底部选项卡中央凸起悬浮大图标的绘制
 
-一款基于HTML5，HTML5+的移动电商App 
+#### 说明：中央凸起悬浮大图标，因涉及屏幕分辨率动态计算和为给出开发者页内手动绘制的示例的原因，放在首页plusReady事件中实现绘制的。该悬浮大图标支持点击事件，开发者可定制实现对应的点击逻辑。
 
-灰狐E3 http://e3.huihoo.com
+## 应用截图
 
-#### 版本
-* 单机版(E3-demo)：用于评估和测试 (2016.06-)
-* 服务器版(E3-server)：用于生产部署 (2016.07-)
-注：目前版本，因为缺少后端服务器支持，暂无法正常演示，仅供参考。
+![截图](http://img-cdn-qiniu.dcloud.net.cn/uploads/article/20170623/04c03ba9ad4afa7d11735e52c771cf94.png)
 
-#### 编译运行
-* [下载安装HBuilder](http://www.dcloud.io) 
-* git clone https://github.com/huihoo/e3-h5
-* 将clone的包内容拖到HBuilder中，可运行调试
-* 打包.apk或.ipa直接部署到真机，只有几M大小 
-* 现在就下载安装[Android App](http://download.huihoo.com/huihoo/e3/e3-html5.apk)或[iOS App](http://download.huihoo.com/huihoo/e3/e3-html5.ipa)
+## 快速体验
 
-![发行App](http://wiki.huihoo.com/images/a/a7/Hbuilder-distribution-app.png)
+[流应用app下载](http://liuyingyong.cn/) --> 扫描下方二维码快速体验
 
-#### 技术特色
-* 预加载的使用，让页面的切换变的流畅，解决浏览器的天生白屏。
-* 父子模版解决页面拖动回弹的效果。
-* 多处配合一般webview页面的使用，可以在ios和android上平滑运行，体验度在接受范围内。
+![二维码](images/ma.png)
 
-#### [为什么选择h5＋？ 为什么选择mui？](https://github.com/dcloudio/mui)
-* 跨平台，一套代码两个平台，也是在现在跨平台方法中开发过程中出问题最少的一种方式。
-* 由[html中国产业开发者联盟](http://www.html5plus.org/doc/h5p.html)h5+规范提供了很好的原生调用的api。
-* mui解决了h5在移动开发中存在的性能和体验的硬伤。
 
-#### 功能
-* 用户注册、登录、忘记密码
-* 商品分类、搜索、心愿单
-* 商品详情
-* 商品评价、供货商、商品推荐
-* 购物车、商品会按卖家分组显示
-* 用户中心
+## 使用教程
 
-#### HBuilder
-![hbuilder](http://wiki.huihoo.com/images/7/70/HBuilder-Huihoo-E3-HTML5-04.png)
-
-#### App Screen
-
-iPhone
-
-![e3](http://wiki.huihoo.com/images/d/d3/E3-html5-ios-01.png)
-
-![e3](http://wiki.huihoo.com/images/d/d6/E3-html5-ios-03.png)
-
-Android手机
-
-![e3](http://wiki.huihoo.com/images/b/bc/E3-html5-android-05.jpg)
-
-![e3](http://wiki.huihoo.com/images/b/b0/E3-html5-android-07.jpg)
-
-许可协议：BSD License.
+[教程参考](http://ask.dcloud.net.cn/article/12602)
