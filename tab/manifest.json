@@ -4,8 +4,8 @@
 		"iPhone",
 		"iPad"
 	],
-	"id": "H555E88B1",/*应用的标识，创建应用时自动生成，勿手动修改*/
-	"name": "expressH5",/*应用名称，程序桌面图标名称*/
+	"id": "H578EB752",/*应用的标识，创建应用时自动生成，勿手动修改*/
+	"name": "tab",/*应用名称，程序桌面图标名称*/
 	"version": {
 		"name": "1.0",/*应用版本名称*/
 		"code": ""
@@ -121,8 +121,7 @@
 						"width": "100%",
 						"backgroundColor": "#fff"
 					},
-					"tags": 
-					[
+					"tags": [
 						{
 							"tag": "font",
 							"id": "indexIcon",
@@ -130,7 +129,7 @@
 							"position": {
 								"top": "4px",
 								"left": "0",
-								"width": "20%",
+								"width": "25%",
 								"height": "24px"
 							},
 							"textStyles": {
@@ -138,15 +137,14 @@
 								"align": "center",
 								"size": "24px"
 							}
-						},
-						 {
+						}, {
 							"tag": "font",
 							"id": "indexText",
 							"text": "首页",
 							"position": {
 								"top": "23px",
 								"left": "0",
-								"width": "20%",
+								"width": "25%",
 								"height": "24px"
 							},
 							"textStyles": {
@@ -160,7 +158,7 @@
 							"position": {
 								"top": "4px",
 								"left": "20%",
-								"width": "20%",
+								"width": "25%",
 								"height": "24px"
 							},
 							"textStyles": {
@@ -171,61 +169,25 @@
 						}, {
 							"tag": "font",
 							"id": "newsText",
-							"text": "服务",
+							"text": "消息",
 							"position": {
 								"top": "23px",
 								"left": "20%",
-								"width": "20%",
+								"width": "25%",
 								"height": "24px"
 							},
 							"textStyles": {
 								"align": "center",
 								"size": "10px"
 							}
-						},
-						
-						
-						
-						{
-							"tag": "font",
-							"id": "fuliIcon",
-							"text": "\ue100",
-							"position": {
-								"top": "4px",
-								"left": "40%",
-								"width": "20%",
-								"height": "24px"
-							},
-							"textStyles": {
-								"fontSrc": "_www/fonts/mui.ttf",
-								"align": "center",
-								"size": "24px"
-							}
-						}, {
-							"tag": "font",
-							"id": "fuliText",
-							"text": "生活",
-							"position": {
-								"top": "24px",
-								"left": "40%",
-								"width": "20%",
-								"height": "24px"
-							},
-							"textStyles": {
-								"align": "center",
-								"size": "10px"
-							}
-						},
-						
-						
-						{
+						},{
 							"tag": "font",
 							"id": "contactIcon",
 							"text": "\ue100",
 							"position": {
 								"top": "4px",
-								"left": "60%",
-								"width": "20%",
+								"left": "55%",
+								"width": "25%",
 								"height": "24px"
 							},
 							"textStyles": {
@@ -236,27 +198,25 @@
 						}, {
 							"tag": "font",
 							"id": "contactText",
-							"text": "福利",
+							"text": "通讯录",
 							"position": {
 								"top": "24px",
-								"left": "60%",
-								"width": "20%",
+								"left": "55%",
+								"width": "25%",
 								"height": "24px"
 							},
 							"textStyles": {
 								"align": "center",
 								"size": "10px"
 							}
-						},
-						
-						{
+						},{
 							"tag": "font",
 							"id": "newwindowIcon",
 							"text": "\ue6c9",
 							"position": {
 								"top": "4px",
-								"left": "80%",
-								"width": "20%",
+								"left": "75%",
+								"width": "25%",
 								"height": "24px"
 							},
 							"textStyles": {
@@ -267,16 +227,29 @@
 						}, {
 							"tag": "font",
 							"id": "newwindowText",
-							"text": "会员",
+							"text": "新窗口",
 							"position": {
 								"top": "24px",
-								"left": "80%",
-								"width": "20%",
+								"left": "75%",
+								"width": "25%",
 								"height": "24px"
 							},
 							"textStyles": {
 								"align": "center",
 								"size": "10px"
+							}
+						},
+						{
+							"tag": "rect",
+							"id": "tabBorder",
+							"position": {
+								"top": "0",
+								"left": "0",
+								"width": "100%",
+								"height": "1px"
+							},
+							"rectStyles": {
+								"color": "#ccc"
 							}
 						}
 					]
