@@ -18,7 +18,7 @@
 	<script src="js/own.js" charset="UTF-8"></script>
 	<script type="text/javascript" charset="UTF-8">		
 		mui.init({
-			swipeBack:false
+			swipeBack:true
 		});
 		
 		//通用父子模版页面第一级父子模版页面
@@ -59,7 +59,8 @@
 				url:'template-main-first.html',
 				styles:{
 					top:'0px',
-					bottom:'0px'
+					bottom:'0px',
+					popGesture:"close"
 				},
 				extras:{
 					mtype:'main_first'
@@ -72,6 +73,7 @@
 					top: '44px',
 					bottom: '0px',
 					bounce: 'vertical',
+					popGesture:"close",
 					bounceBackground:'#f8f8f8'
 				},
 				extras:{
@@ -224,6 +226,7 @@
 					
 				} else if(~options.detail.id.indexOf('.html')) {
 					if (!~options.detail.id.indexOf('needtem.html')) {//普通不使用父子模版页面的
+					alert(2344);
 						mui.openWindow({
 							url:options.detail.href,
 							id:options.detail.id,

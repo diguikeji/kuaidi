@@ -41,6 +41,7 @@
 				rightBar = document.getElementById('rightBar');
 				title = document.querySelector('.mui-title');
 				window.addEventListener('templateFire', function(options) {
+					
 					title.innerText = options.detail.title;
 					var id = options.detail.id;
 					var aniShow = options.detail.aniShow;

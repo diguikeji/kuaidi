@@ -180,16 +180,23 @@
 						isBars = true;
 						barsIcon = 'mui-icon iconfont icon-tianjia';
 					}
-					pushWebView({
-						webType: 'newWebview_First',
-						id: id,
-						href: href,
-						aniShow: aniShow,
-						title: title,
-						isBars: isBars,
-						barsIcon: barsIcon,
-						extendOptions: {}
-					})
+					
+					 mui.openWindow({
+					url: href,
+					id: id,
+					styles: {
+					popGesture:"close"
+					},
+					show:{
+					aniShow:'pop-in'
+					},
+					waiting:{
+					autoShow:true
+					}
+					}); 
+					
+					
+					
 				});
 			}
 		</script>
