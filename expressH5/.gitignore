@@ -1,11 +1,11 @@
-.idea
+*.idea
 .wepycache
+unpackage
+manifest.json
 node_modules
 dist
 .DS_Store
 logs
 *.log
-*.json
 *npm-debug*
-unpackage
 web/*

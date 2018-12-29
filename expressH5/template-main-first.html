@@ -64,12 +64,8 @@
 							contentWebview = self.children()[0];
 						}
 						// alert(JSON.stringify(contentWebview))
-						// var str = contentWebview.getURL();
 						var str = contentWebview.getURL();
-						if(!str){
-							contentWebview.loadURL(href);
-							// contentWebview.show();
-						}
+						var str = contentWebview.get();
 						var index = str.indexOf('www/');
 						str = str.substring(index + 4);
 						if (!~id.indexOf('new') && (contentWebview.getURL() == href || str == href)) {
