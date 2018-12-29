@@ -9,13 +9,17 @@
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/page.css">
 		<link rel="stylesheet" href="css/firstPage.css">
+		<link rel="stylesheet" href="css/swiper.min.css">
 		<style>
-		 body{background-color: #fff;}
-		 .fenlei-list{background: #fff;padding:18px 15px 0 15px;position: relative;top:-10px;border-radius: 10px 10px 0 0;z-index:10000;height:100px;box-sizing: border-box;}
+		 body{background-color: #fff!important;}
+		 .fenlei-list{background: #fff;padding:18px 15px 0 15px;position: relative;top:-10px;border-radius: 10px 10px 0 0;z-index:10000;height:115px;box-sizing: border-box;}
 		.fenlei-list .fenlei-child{width:20%;float:left;text-align: center;position: relative;height:76px;}
-		 .fenlei-list .fenlei-child p{position: absolute;width:100%;text-align: center;bottom:0;color:##333333;font-size:12px;}
-		.fenlei-list .fenlei-child img{width:49px;}
-		.fenlei-list-col{border-bottom:1px solid #E3E3E3;height:82px;}
+		 .fenlei-list .fenlei-child p{position: absolute;width:100%;text-align: center;bottom:0;color:#333333;font-size:12px;}
+	    #slider2  .fenlei-list .fenlei-child img{width:49px;display: inline-block;}
+		.fenlei-list-col{border-bottom:1px solid #E3E3E3;height:98px;}
+
+		 #slider2  .mui-slider-indicator{bottom:17px;}
+
 
 		</style>
 	</head>
@@ -24,7 +28,9 @@
 
 	<div class="mui-content">
 
-	<div id="topCol">
+		<div class="home-top" id="homeTop">
+
+		<div id="topCol">
 		<span class="left-text">上海歌斐中心 <img src="images/firstPageLive/live_06.png"/></span>
 		<span class="input-col"><input type="text" placeholder="搜索关键字">
 			<img src="images/firstPageLive/icon2.png" />
@@ -34,7 +40,7 @@
 
 	</div>
 
-	<div id="slider" class="mui-slider" >
+		<div id="slider" class="mui-slider" >
 		<div class="mui-slider-group mui-slider-loop">
 			<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
 			<div class="mui-slider-item mui-slider-item-duplicate">
@@ -68,40 +74,149 @@
 	</div>
 
 
+		<div id="slider2" class="mui-slider" >
+				<div class="mui-slider-group mui-slider-loop">
+					<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<div class="fenlei-list clearfix">
+							<div class="fenlei-list-col">
+								<div class="fenlei-child">
+									<img src="images/firstPageLive/home_05.jpg"/>
+									<p>快递服务</p>
+								</div>
 
-		<div class="fenlei-list clearfix">
-			<div class="fenlei-list-col">
-			<div class="fenlei-child">
-				<img src="images/firstPageLive/home_05.jpg"/>
-				<p>快递服务</p>
+								<div class="fenlei-child">
+									<img style="width:50px;" src="images/firstPageLive/home_07.jpg"/>
+									<p>外卖管理</p>
+								</div>
+
+								<div class="fenlei-child">
+									<img style="width:51px;margin-top:2px;" src="images/firstPageLive/home_09.jpg"/>
+									<p>楼宇福利</p>
+								</div>
+
+								<div class="fenlei-child">
+									<img style="margin-top:1px;" src="images/firstPageLive/home_11.jpg"/>
+									<p>智慧楼宇</p>
+								</div>
+
+								<div class="fenlei-child">
+									<img src="images/firstPageLive/home_13.jpg"/>
+									<p>企业服务</p>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<!-- 第一张 -->
+					<div class="mui-slider-item">
+						<div class="fenlei-list clearfix">
+							<div class="fenlei-list-col">
+								<div class="fenlei-child">
+									<img src="images/firstPageLive/home_05.jpg"/>
+									<p>快递服务</p>
+								</div>
+
+								<div class="fenlei-child">
+									<img style="width:50px;" src="images/firstPageLive/home_07.jpg"/>
+									<p>外卖管理</p>
+								</div>
+
+								<div class="fenlei-child">
+									<img style="width:51px;margin-top:2px;" src="images/firstPageLive/home_09.jpg"/>
+									<p>楼宇福利</p>
+								</div>
+
+								<div class="fenlei-child">
+									<img style="margin-top:1px;" src="images/firstPageLive/home_11.jpg"/>
+									<p>智慧楼宇</p>
+								</div>
+
+								<div class="fenlei-child">
+									<img src="images/firstPageLive/home_13.jpg"/>
+									<p>企业服务</p>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<!-- 第二张 -->
+					<div class="mui-slider-item">
+						<div class="fenlei-list clearfix">
+							<div class="fenlei-list-col">
+								<div class="fenlei-child">
+									<img src="images/firstPageLive/home_05.jpg"/>
+									<p>快递服务</p>
+								</div>
+
+								<div class="fenlei-child">
+									<img style="width:50px;" src="images/firstPageLive/home_07.jpg"/>
+									<p>外卖管理</p>
+								</div>
+
+								<div class="fenlei-child">
+									<img style="width:51px;margin-top:2px;" src="images/firstPageLive/home_09.jpg"/>
+									<p>楼宇福利</p>
+								</div>
+
+								<div class="fenlei-child">
+									<img style="margin-top:1px;" src="images/firstPageLive/home_11.jpg"/>
+									<p>智慧楼宇</p>
+								</div>
+
+								<div class="fenlei-child">
+									<img src="images/firstPageLive/home_13.jpg"/>
+									<p>企业服务</p>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+
+					<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<div class="fenlei-list clearfix">
+							<div class="fenlei-list-col">
+								<div class="fenlei-child">
+									<img src="images/firstPageLive/home_05.jpg"/>
+									<p>快递服务</p>
+								</div>
+
+								<div class="fenlei-child">
+									<img style="width:50px;" src="images/firstPageLive/home_07.jpg"/>
+									<p>外卖管理</p>
+								</div>
+
+								<div class="fenlei-child">
+									<img style="width:51px;margin-top:2px;" src="images/firstPageLive/home_09.jpg"/>
+									<p>楼宇福利</p>
+								</div>
+
+								<div class="fenlei-child">
+									<img style="margin-top:1px;" src="images/firstPageLive/home_11.jpg"/>
+									<p>智慧楼宇</p>
+								</div>
+
+								<div class="fenlei-child">
+									<img src="images/firstPageLive/home_13.jpg"/>
+									<p>企业服务</p>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mui-slider-indicator">
+					<div class="mui-indicator mui-active"></div>
+					<div class="mui-indicator"></div>
+				</div>
 			</div>
 
-			<div class="fenlei-child">
-				<img style="width:50px;" src="images/firstPageLive/home_07.jpg"/>
-				<p>外卖管理</p>
-			</div>
 
-			<div class="fenlei-child">
-				<img style="width:51px;margin-top:2px;" src="images/firstPageLive/home_09.jpg"/>
-				<p>楼宇福利</p>
-			</div>
-
-			<div class="fenlei-child">
-				<img style="margin-top:1px;" src="images/firstPageLive/home_11.jpg"/>
-				<p>智慧楼宇</p>
-			</div>
-
-			<div class="fenlei-child">
-				<img src="images/firstPageLive/home_13.jpg"/>
-				<p>企业服务</p>
-			</div>
-
-			</div>
-
-
-		</div>
 
 		<div class="main-col">
+
 		<div class="top-text clearfix">
 
 			<span class="fl">
@@ -113,14 +228,255 @@
 
 		</div>
 
+		</div>
+
+
+		<div class="shiyong-list">
+
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+
+					<div class="swiper-slide">
+						<div>
+							<img src="images/firstPageLive/home_28.jpg"/>
+						</div>
+						<p>个人快递</p>
+					</div>
+
+					<div class="swiper-slide">
+						<div>
+							<img src="images/firstPageLive/home_30.jpg"/>
+						</div>
+						<p>国际快递</p>
+					</div>
+
+					<div class="swiper-slide">
+						<div>
+							<img src="images/firstPageLive/home_32.jpg"/>
+						</div>
+						<p>顺丰入口</p>
+					</div>
+
+					<div class="swiper-slide">
+						<div>
+							<img src="images/firstPageLive/home_30.jpg"/>
+						</div>
+						<p>国际快递</p>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+		<div class="main-col">
+				<div class="ad-col">
+					<img src="images/firstPageLive/home_38.jpg"/>
+				</div>
+
+				<div class="zhankai">
+
+					<span id="openMore">
+						<img src="images/firstPageLive/xiala.jpg"/>
+					</span>
+
+				</div>
+
+		</div>
+
+		</div>
+
+		<div id="moreCol" class="main-col hide">
+
+		<div class="top-text clearfix">
+
+			<span class="fl">
+				<div class="biaoti">健康餐饮</div>
+				<p class="xiao-biaoti">健康生活从这里开始</p>
+			</span>
+
+			<span class="fr">更多<img style="width:20px;position: relative;top:4px;" src="images/firstPageLive/home_24.jpg"/></span>
+
+		</div>
+
+		<ul class="pro-list">
+
+			<li>
+				<div class="pro-col clearfix">
+					<img class="left" src="images/firstPageLive/homeBottom_03.jpg">
+					<div class="right">
+					<div class="biaoti">香甜美味猪排面</div>
+					<p class="wenzi">一煮一拌，精美蔬菜搭配猪排的香味飘 香四溢，既健康又美味...</p>
+					<div class="tag-list">
+						<span>#健康</span>
+						<span>#健康</span>
+						<span>#健康</span>
+					</div>
+					</div>
+				</div>
+			</li>
+
+			<li>
+				<div class="pro-col clearfix">
+					<img class="left" src="images/firstPageLive/homeBottom_03.jpg">
+					<div class="right">
+						<div class="biaoti">香甜美味猪排面</div>
+						<p class="wenzi">一煮一拌，精美蔬菜搭配猪排的香味飘 香四溢，既健康又美味...</p>
+						<div class="tag-list">
+							<span>#健康</span>
+							<span>#健康</span>
+							<span>#健康</span>
+						</div>
+					</div>
+				</div>
+			</li>
+
+			<li>
+				<div class="pro-col clearfix">
+					<img class="left" src="images/firstPageLive/homeBottom_03.jpg">
+					<div class="right">
+						<div class="biaoti">香甜美味猪排面</div>
+						<p class="wenzi">一煮一拌，精美蔬菜搭配猪排的香味飘 香四溢，既健康又美味...</p>
+						<div class="tag-list">
+							<span>#健康</span>
+							<span>#健康</span>
+							<span>#健康</span>
+						</div>
+					</div>
+				</div>
+			</li>
+
+			<li>
+				<div class="pro-col clearfix">
+					<img class="left" src="images/firstPageLive/homeBottom_03.jpg">
+					<div class="right">
+						<div class="biaoti">香甜美味猪排面</div>
+						<p class="wenzi">一煮一拌，精美蔬菜搭配猪排的香味飘 香四溢，既健康又美味...</p>
+						<div class="tag-list">
+							<span>#健康</span>
+							<span>#健康</span>
+							<span>#健康</span>
+						</div>
+					</div>
+				</div>
+			</li>
+
+			<li>
+				<div class="pro-col clearfix">
+					<img class="left" src="images/firstPageLive/homeBottom_03.jpg">
+					<div class="right">
+						<div class="biaoti">香甜美味猪排面</div>
+						<p class="wenzi">一煮一拌，精美蔬菜搭配猪排的香味飘 香四溢，既健康又美味...</p>
+						<div class="tag-list">
+							<span>#健康</span>
+							<span>#健康</span>
+							<span>#健康</span>
+						</div>
+					</div>
+				</div>
+			</li>
+
+
+		</ul>
+
+
+			<div class="top-text clearfix">
+
+			<span class="fl">
+				<div class="biaoti">推荐商品</div>
+				<p class="xiao-biaoti">这里有你想不到的优惠</p>
+			</span>
+
+				<span class="fr">更多<img style="width:20px;position: relative;top:4px;" src="images/firstPageLive/home_24.jpg"/></span>
+
+			</div>
+
+
+			<div class="tuijian-col clearfix">
+				<img class="left" src="images/firstPageLive/homeBottom_07.jpg">
+				<div class="right">
+					<div class="clearfix">
+					<div class="left-col">
+					<div>吃吃吃火锅</div>
+					<p>精选食材</p>
+					<p>精选食材</p>
+					</div>
+					<img class="right-col" src="images/firstPageLive/homeBottom_09.jpg"/>
+					</div>
+					<div class="clearfix">
+						<div class="left-col">
+							<div>吃吃吃火锅</div>
+							<p>精选食材</p>
+							<p>精选食材</p>
+						</div>
+						<img class="right-col" src="images/firstPageLive/homeBottom_09.jpg"/>
+					</div>
+				</div>
+			</div>
+
+
+			<ul class="three-list clearfix">
+				<li>
+					<div>
+						<img src="images/firstPageLive/homeBottom_14.jpg">
+						<p>澳大利亚进口绚 丽葡萄酒</p>
+						<div>¥3000.0</div>
+					</div>
+				</li>
+				<li>
+					<div>
+						<img src="images/firstPageLive/homeBottom_14.jpg">
+						<p>澳大利亚进口绚 丽葡萄酒</p>
+						<div>¥3000.0</div>
+					</div>
+				</li>
+				<li>
+					<div>
+						<img src="images/firstPageLive/homeBottom_14.jpg">
+						<p>澳大利亚进口绚 丽葡萄酒</p>
+						<div>¥3000.0</div>
+					</div>
+				</li>
+			</ul>
 
 		</div>
 
 
 	</div>
 		<script src="js/util.js"></script>
+		<script src="js/jquery-2.1.1.min.js"></script>
+	   <script src="lib/swiper.min.js"></script>
+
 		<script type="text/javascript">
-			
+
+
+			$("#openMore").click(function()
+			{
+				if($(this).hasClass("active"))
+				{
+					$(this).removeClass("active");
+					$("#moreCol").slideUp();
+				}
+				else
+				{
+					$(this).addClass("active");
+					$("#moreCol").slideDown();
+				}
+
+				$("#homeTop").toggleClass("active");
+
+			});
+
+			var swiper = new Swiper('.swiper-container', {
+				slidesPerView: 3.5,
+				spaceBetween: 15,
+				pagination: {
+					el: '.swiper-pagination',
+					type: 'fraction',
+				}
+			});
+
+
 			(function() {
 				mui.init({
 					swipeBack: true //启用右滑关闭功能
@@ -138,7 +494,11 @@
 						subpages = util.options.subpages,
 						pageW = window.innerWidth,
 						currIndex = 0;
-					
+
+					$("#slider2").click(function()
+					{
+						plus.webview.open('html/customize.html', 'customize', {}, 'slide-in-right', 200);
+					});
 						
 					/**
 					 * 根据判断view控件点击位置判断切换的tab
