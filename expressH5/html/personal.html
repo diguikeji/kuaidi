@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>个人信息</title>
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/app.css">
+		<style type="text/css">
+			body{
+				background-color: #E3E3E3;
+			}
+			
+			.content_wrap{
+				font-size: 14px;
+				color: #333333;
+				background-color: #E3E3E3;
+			}
+			
+			.head_wrap{
+				height: 80px;
+				margin-top: 8px;
+				background-color: #FFFFFF;
+				padding: 0px 16px;
+			}
+			
+			.head_wrap span:nth-child(1){
+				color: #333333;
+				font-size: 14px;
+			}
+			
+			.head_wrap img{
+				width: 44px;
+				height: 44px;
+				border-radius: 50%;
+			}
+			
+			.arraw{
+				width: 10px;
+				height: 10px;
+				border-top: 2px solid #999999;
+				border-right: 2px solid #999999;
+				transform: rotate(45deg);
+				margin-left: 2px;
+			  }
+			  
+			  .item_wrap{
+				  height: 50px;
+				  background-color: #FFFFFF;
+				  padding: 0px 16px;
+			  }
+			  
+			  .item{
+				  height: 50px;
+				  border-top: 1px solid #E3E3E3;
+			  }
+			  
+			  
+			  .item_name{
+				  color: #666666;
+			  }
+			  
+			  .item img{
+				  width: 18px;
+				  height: 15px;
+				  margin-right: 8px;
+			  }
+			  
+			  .un_active{
+				color: #cccccc;
+			  }
+			  
+			  .button{
+			  	border-radius: 3px;
+			  	width: 100%;
+			  	margin: 30px 5% 0px;
+			  	box-sizing: border-box;
+			  	font-size: 16px;
+			  	width: 90%;
+			  	height: 40px;
+				padding: 0px;
+			  }
+			
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav" >
+		    <!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
+			<img src="../images/back.png" class="mui-action-back">
+			
+		    <h1 class="mui-title">关于我们</h1>
+		</header>
+		
+		<div class="mui-content content_wrap">
+			<div class="col head_wrap">
+				<div class="row_between">
+					<span>头像</span>
+					<div class="row">
+						<img src="../images/login/logo.png" >
+						<span class="arraw" style="margin-left: 19px"></span>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="col item_wrap">
+				<div class="row_between item">
+					<span>昵称</span>
+					<div class="row">
+						<span class="item_name">王大吃</span>
+						<span class="arraw"></span>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="col item_wrap">
+				<div class="row_between item">
+					<span>手机号</span>
+					<div class="row">
+						<span class="item_name">1380013000</span>
+						<span class="arraw"></span>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="col item_wrap" style="margin-top: 8px;">
+				<div class="row_between item" style="border-top: 0px solid transparent;">
+					<div class="row">
+						<img src="../images/personal/weixin.png" >
+						<span>微信</span>
+					</div>
+					
+					<div class="row">
+						<span class="item_name un_active">未绑定</span>
+						<span class="arraw"></span>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="col item_wrap" >
+				<div class="row_between item">
+					<div class="row">
+						<img src="../images/personal/wb_active.png" >
+						<span>微博</span>
+					</div>
+					
+					<div class="row">
+						<span class="item_name">绑定</span>
+						<span class="arraw"></span>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col item_wrap" >
+				<div class="row_between item">
+					<div class="row">
+						<img src="../images/personal/qq.png" style="width: 16px; height: 17px; margin-right: 10px;"> 
+						<span>QQ</span>
+					</div>
+					
+					<div class="row">
+						<span class="item_name un_active">未绑定</span>
+						<span class="arraw"></span>
+					</div>
+				</div>
+			</div>
+			
+			<button class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined button">退出</button>
+			
+		</div>
+		
+	</body>
+	<script type="text/javascript" src="../js/mui.min.js"></script>
+	<script src="../js/jquery-2.1.1.min.js"></script>
+	<script src="../js/app.js"></script>
+	<script type="text/javascript">
+		$("input").focus(function(){
+			console.log(this)
+		  $(this).parent().css("border-bottom","1px solid #107EFF");
+		});
+		
+		$("input").blur(function(){
+			console.log(this)
+		  $(this).parent().css("border-bottom","1px solid #E3E3E3");
+		});
+		
+		function getCode(){
+			var text = $(".get_code_txt").text();
+			if(text == '重新获取' || text == '获取验证码'){
+				countDown();
+			}
+			
+		}
+		
+		
+		var intervalObj, time=60;
+		function countDown() {
+		    intervalObj = setInterval(function() {
+		        time--;
+		        if (time <= 0) {
+		            time = 60;
+		            clearInterval(intervalObj);
+		            $(".get_code_txt").text("重新获取");
+		        } else {
+		            $(".get_code_txt").text("重新获取("+time+"s)");
+		        }
+		
+		    }, 1000);
+		}
+		
+		
+	</script>
+</html>
