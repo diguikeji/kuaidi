@@ -128,10 +128,10 @@ var Global = {};
                     xhr.setRequestHeader("appType", appType);
                     xhr.setRequestHeader("appName", appName);
                     xhr.setRequestHeader("Content-Type", "application/json");
-                    var token = myStorage.getItem("userToken");
-                    if (token) {
-                        xhr.setRequestHeader("Authorization", "Bearer " + token);
-                    };
+                    // var token = myStorage.getItem("userToken");
+//                     if (token) {
+//                         xhr.setRequestHeader("Authorization", "Bearer " + token);
+//                     };
 
                     if (params.url.indexOf("isShowPic=true") != -1) {
                         console.log("显示图片");
@@ -145,13 +145,13 @@ var Global = {};
                     //console.log(JSON.stringify(data));
                     if (data.code.indexOf("token") != -1 || params.url.indexOf("logout") != -1) {
                         //token 过期
-                        if (myStorage) {
-                            myStorage.removeItem("userToken");
-                            myStorage.removeItem("user");
-                            myStorage.removeItem("userInfo");
-                            myStorage.removeItem("wallet");
-                            myStorage.removeItem("headPic");
-                        }
+//                         if (myStorage) {
+//                             myStorage.removeItem("userToken");
+//                             myStorage.removeItem("user");
+//                             myStorage.removeItem("userInfo");
+//                             myStorage.removeItem("wallet");
+//                             myStorage.removeItem("headPic");
+//                         }
                         var curr = plus.webview.currentWebview();
                         var wvs = plus.webview.all();
                         console.log(data.code);

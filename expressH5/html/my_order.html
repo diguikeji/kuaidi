@@ -1,197 +1,174 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
+
 	<head>
-		<meta charset="utf-8">
+		<meta charset="UTF-8">
+		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<title>我的订单</title>
-		<link rel="stylesheet" href="../css/mui.min.css">
-		<link rel="stylesheet" href="../css/app.css">
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
 		<style type="text/css">
-			body{
-				background-color: #FFFFFF;
-			}
-			.mui-control-content {
-				background-color: white;
-				min-height: 215px;
-			}
-			.mui-control-content .mui-loading {
-				margin-top: 50px;
+			body, html{
+				width: 100%;
+				height: 90%;
+				background: #F2F2F2;
 			}
 			
+			.select_type{
+				height: 45px;
+				align-items: center;
+				justify-content: space-around;
+				background: #ffffff;
+				color: #666666;
+				font-size: 16px;
+				position: fixed;
+				width: 100%;
+				box-sizing: border-box;
+			}
+			
+			.active{
+				color: #333333;
+				font-weight: bold;
+			}
+			
+			.mui-progressbar{
+				height: 16px;
+				border-radius: 10px;
+				background: #FFD9D6;
+			}
+			.mui-progressbar span{
+				background: #Ff5445;
+				border-radius: 10px;
+			}
+			
+			.empty_text{
+				width: 100%; 
+				height: 400px; 
+				line-height: 400px; 
+				text-align: center;
+				background: #f4f4f4; 
+				border: none; 
+				z-index: 10;
+				background: #f2f2f2;
+			}
+			
+			.active_line{
+				height: 4px;
+				width: 20px;
+				background-color: #107EFF;
+				border-radius: 4px;
+			}
+			
+			.item{
+				height: 47px;
+			}
+
 		</style>
 	</head>
+
 	<body>
 		<header class="mui-bar mui-bar-nav" >
-		    <!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
-			<img src="../images/back.png" class="mui-action-back">
-			
+		    <img src="../images/back.png" class="mui-action-back">
 		    <h1 class="mui-title">我的订单</h1>
 		</header>
 		
-		<div class="mui-content">
-			<div id="slider" class="mui-slider">
-				<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<a class="mui-control-item" href="#item1mobile">全部</a>
-					<a class="mui-control-item" href="#item2mobile">待付款</a>
-					<a class="mui-control-item" href="#item3mobile">待发货</a>
-					<a class="mui-control-item" href="#item4mobile">待收货</a>
+		<div class="mui-content" style="text-align: center; background: #F2F2F2;">
+			<div class="row select_type">
+				<div class="col_between item" onclick="changeType(0)">
+					<span ></span>
+					<span class="titleType active" >全部</span>
+					<span class="active_line"></span>
 				</div>
-				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-3" 
-					></div>
-				<div class="mui-slider-group" style="height: 100%;">
-					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
-						<div id="scroll1" class="mui-scroll-wrapper">
-							<div class="mui-scroll">
-								<ul class="mui-table-view">
-									<li class="mui-table-view-cell">
-										第一个选项卡子项-1
-									</li>
-									<li class="mui-table-view-cell">
-										第一个选项卡子项-2
-									</li>
-									<li class="mui-table-view-cell">
-										第一个选项卡子项-3
-									</li>
-									<li class="mui-table-view-cell">
-										第一个选项卡子项-4
-									</li>
-									<li class="mui-table-view-cell">
-										第一个选项卡子项-5
-									</li>
-									<li class="mui-table-view-cell">
-										第一个选项卡子项-6
-									</li>
-									<li class="mui-table-view-cell">
-										第一个选项卡子项-7
-									</li>
-									<li class="mui-table-view-cell">
-										第一个选项卡子项-8
-									</li>
-									<li class="mui-table-view-cell">
-										第一个选项卡子项-9
-									</li>
-									<li class="mui-table-view-cell">
-										第一个选项卡子项-10
-									</li>
-									<li class="mui-table-view-cell">
-										第一个选项卡子项-11
-									</li>
-									<li class="mui-table-view-cell">
-										第一个选项卡子项-12
-									</li>
-									<li class="mui-table-view-cell">
-										第一个选项卡子项-13
-									</li>
-									<li class="mui-table-view-cell">
-										第一个选项卡子项-14
-									</li>
-									<li class="mui-table-view-cell">
-										第一个选项卡子项-15
-									</li>
-									<li class="mui-table-view-cell">
-										第一个选项卡子项-16
-									</li>
-									<li class="mui-table-view-cell">
-										第一个选项卡子项-17
-									</li>
-									<li class="mui-table-view-cell">
-										第一个选项卡子项-18
-									</li>
-									<li class="mui-table-view-cell">
-										第一个选项卡子项-19
-									</li>
-									<li class="mui-table-view-cell">
-										第一个选项卡子项-20
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div id="item2mobile" class="mui-slider-item mui-control-content">
-						<div id="scroll2" class="mui-scroll-wrapper">
-							<div class="mui-scroll">
-								<div class="mui-loading">
-									<div class="mui-spinner">
-									</div>
-								</div>
-							</div>
-						</div>
-		
-					</div>
-					<div id="item3mobile" class="mui-slider-item mui-control-content">
-						<div id="scroll3" class="mui-scroll-wrapper">
-							<div class="mui-scroll">
-								<div class="mui-loading">
-									<div class="mui-spinner">
-									</div>
-								</div>
-							</div>
-						</div>
-		
-					</div>
-					<div id="item4mobile" class="mui-slider-item mui-control-content">
-						<div id="scroll4" class="mui-scroll-wrapper">
-							<div class="mui-scroll">
-								<div class="mui-loading">
-									<div class="mui-spinner">
-									</div>
-								</div>
-							</div>
-						</div>
-							
-					</div>
+				
+				<div class="col_between item" onclick="changeType(1)">
+					<span ></span>
+					<span class="titleType" >待付款</span>
+					<span class="active_line"></span>
 				</div>
+				
+				<div class="col_between item" onclick="changeType(2)">
+					<span ></span>
+					<span class="titleType" >待发货</span>
+					<span class="active_line"></span>
+				</div>
+				
+				<div class="col_between item" onclick="changeType(3)">
+					<span ></span>
+					<span class="titleType" >待收货</span>
+					<span class="active_line"></span>
+				</div>
+				
 			</div>
-		
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/jquery-2.1.1.min.js"></script>
+		<!-- <script src="../js/app.js"></script> -->
+		<script type="text/javascript">
+			mui.init({
+				subpages:[{
+					url:'my_order_sub.html',
+					id:'my_order_sub.html',
+					styles:{
+						top: '90px',
+						bottom: '0px'
+					}
+				}]
+			});
 			
+			function changeType(index){
+				for(var i=0; i<4; i++){
+					$(this).children[i].style.color = '#666666';
+				}
+				// $(this).children[2].css('color', '#333333');
+			}
+			
+			var currentType = "DEGREE"; 
+			$('.highType').click(function(){
+					$('.highType').css('color', '#ff5445');
+					$('.timeType').css('color', '#333333');
+					$('.preType').css('color', '#333333');
+					currentType = "DEGREE";
+					isDesc = false;
+					sendClickType();
+					$(".sortImg").attr('src', "../images/change_type_icon.png");
+			})
+				
+				$('.timeType').click(function(){
+					$('.highType').css('color', '#333333');
+					$('.timeType').css('color', '#ff5445');
+					$('.preType').css('color', '#333333');
+					if (currentType == 'TIME') {
+				        //当前期限
+				        isDesc = !isDesc;
+				   }else{
+				   		isDesc = false;
+				   }
+				   if(isDesc){
+			        		$(".sortImg").attr('src', "../images/sort_front.png");
+			        }else{
+			        		$(".sortImg").attr('src', "../images/sort_back.png");
+			        }
+					currentType = "TIME";
+					sendClickType();
+				})
+				
+				$('.preType').click(function(){
+					$('.highType').css('color', '#333333');
+					$('.timeType').css('color', '#333333');
+					$('.preType').css('color', '#ff5445');
+					currentType = "HISTORY";
+					isDesc = false;
+					sendClickType();
+					$(".sortImg").attr('src', "../images/change_type_icon.png");
+				})
+				
+				function sendClickType(){
+					console.log("发送事件");
+					var h = plus.webview.getWebviewById("recommand_sub.html");
+					mui.fire(h,'updatePreType',{currentType: currentType, isDesc: isDesc});
+				}
+			
+		</script>
 	</body>
-	<script type="text/javascript" src="../js/mui.min.js"></script>
-	<script src="../js/jquery-2.1.1.min.js"></script>
-	<script src="../js/app.js"></script>
-	<script type="text/javascript">
-		
-		(function($) {
-			$('.mui-scroll-wrapper').scroll({
-				indicators: true //是否显示滚动条
-			});
-			var html2 = '<ul class="mui-table-view"><li class="mui-table-view-cell">第二个选项卡子项-1</li><li class="mui-table-view-cell">第二个选项卡子项-2</li><li class="mui-table-view-cell">第二个选项卡子项-3</li><li class="mui-table-view-cell">第二个选项卡子项-4</li><li class="mui-table-view-cell">第二个选项卡子项-5</li></ul>';
-			var html3 = '<ul class="mui-table-view"><li class="mui-table-view-cell">第三个选项卡子项-1</li><li class="mui-table-view-cell">第三个选项卡子项-2</li><li class="mui-table-view-cell">第三个选项卡子项-3</li><li class="mui-table-view-cell">第三个选项卡子项-4</li><li class="mui-table-view-cell">第三个选项卡子项-5</li></ul>';
-			var html4 = '<ul class="mui-table-view"><li class="mui-table-view-cell">第三个选项卡子项-1</li><li class="mui-table-view-cell">第三个选项卡子项-2</li><li class="mui-table-view-cell">第三个选项卡子项-3</li><li class="mui-table-view-cell">第三个选项卡子项-4</li><li class="mui-table-view-cell">第三个选项卡子项-5</li></ul>';
-			var item2 = document.getElementById('item2mobile');
-			var item3 = document.getElementById('item3mobile');
-			var item4 = document.getElementById('item4mobile');
-			document.getElementById('slider').addEventListener('slide', function(e) {
-				if (e.detail.slideNumber === 1) {
-					if (item2.querySelector('.mui-loading')) {
-						setTimeout(function() {
-							item2.querySelector('.mui-scroll').innerHTML = html2;
-						}, 500);
-					}
-				} else if (e.detail.slideNumber === 2) {
-					if (item3.querySelector('.mui-loading')) {
-						setTimeout(function() {
-							item3.querySelector('.mui-scroll').innerHTML = html3;
-						}, 500);
-					}
-				} else if (e.detail.slideNumber === 3) {
-					if (item4.querySelector('.mui-loading')) {
-						setTimeout(function() {
-							item4.querySelector('.mui-scroll').innerHTML = html4;
-						}, 500);
-					}
-				}
-			});
-			var sliderSegmentedControl = document.getElementById('sliderSegmentedControl');
-			$('.mui-input-group').on('change', 'input', function() {
-				if (this.checked) {
-					console.log(this.value);
-					sliderSegmentedControl.className = 'mui-slider-indicator mui-segmented-control mui-segmented-control-inverted mui-segmented-control-' + this.value;
-					//force repaint
-					sliderProgressBar.setAttribute('style', sliderProgressBar.getAttribute('style'));
-				}
-			});
-		})(mui);
-		
-		
-	</script>
+
 </html>

@@ -1,0 +1,635 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="../css/mui.min.css" rel="stylesheet" />
+    <link href="../css/app.css" rel="stylesheet" />
+    <style type="text/css">
+        body,
+        html {
+            width: 100%;
+            height: 90%;
+            background: #F2F2F2;
+        }
+        
+        .top_img {
+            width: 261px;
+            height: 37px;
+            margin: auto;
+        }
+        
+        .select_type {
+            height: 40px;
+            align-items: center;
+            justify-content: space-around;
+            background: #ffffff;
+            color: #333333;
+            font-size: 14px;
+            font-weight: bold;
+            position: fixed;
+            width: 100%;
+        }
+        
+        .center_wrap {
+            align-items: center;
+        }
+        
+        .center_wrap img {
+            width: 9px;
+            height: 11px;
+            margin-left: 10px;
+        }
+        
+        .active {
+            color: #ff5445;
+        }
+        
+        .list_wrap {
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        
+        .item_wrap {
+            background-image: url(../images/card_bg.png);
+            background-size: 100% 100%;
+            background-position: 0 0;
+            background-repeat: no-repeat;
+            height: 130px;
+            width: 100%;
+            padding: 10px 20px;
+        }
+        
+        .item_tile_wrap {
+            align-items: center;
+            font-size: 12px;
+            color: #333333;
+            font-weight: bold;
+            padding: 5px 0px 8px;
+            border-bottom: 1px solid #dddddd;
+            height: 60px;
+            line-height: 60px;
+        }
+        
+        .high_rate {
+            width: 49px;
+            height: 15px;
+            margin-right: 5px;
+        }
+        
+        .recommand_icon {
+            width: 32px;
+            height: 15px;
+        }
+        
+        .item_title_num {
+            margin-left: 5px;
+        }
+        
+        .item_center_wrap {
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 0px;
+            height: 160px;
+            align-items: center;
+            justify-content: space-around;
+        }
+        
+        .item_center_day {
+            font-size: 12px;
+        }
+        
+        .mui-progressbar {
+            height: 16px;
+            border-radius: 10px;
+            background: #FFD9D6;
+        }
+        
+        .mui-progressbar span {
+            background: #Ff5445;
+            border-radius: 10px;
+        }
+        
+        .progress_wrap {
+            position: relative;
+        }
+        
+        .success_rate {
+            position: absolute;
+            top: -2px;
+            left: 0px;
+            color: #ffffff;
+            font-size: 12px;
+            padding-left: 10px;
+        }
+        
+        .empty_text {
+            width: 100%;
+            height: 400px;
+            line-height: 400px;
+            text-align: center;
+            background: #f4f4f4;
+            border: none;
+            z-index: 10;
+            background: #f2f2f2;
+        }
+        
+        .text_info {
+            font-size: 12px;
+            color: #A9A9A9;
+        }
+        
+        .center_text_value {
+            font-size: 20px;
+            color: #ffffff;
+        }
+        
+        .text_info_new {
+            display: inline-block;
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 10px;
+            background: #F99534;
+            height: 20px;
+            line-height: 20px;
+            padding: 2px 5px 0px;
+        }
+        
+        .clicked {
+            opacity: 0.4;
+        }
+        
+        section {
+            width: 60px;
+            height: 60px;
+            position: relative;
+        }
+        
+        .wrap,
+        .circle,
+        .percent {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+        
+        .wrap {
+            top: 0;
+            left: 0;
+            background-color: #ccc;
+        }
+        
+        .circle {
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -o-box-sizing: border-box;
+            border: 1px solid #ccc;
+            clip: rect(0, 4rem, 4rem, 2rem);
+        }
+        
+        .clip-auto {
+            clip: rect(auto, auto, auto, auto);
+        }
+        
+        .percent {
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -o-box-sizing: border-box;
+            top: -1px;
+            left: -1px;
+        }
+        
+        .left {
+            border: 0.2rem solid #ff6300;
+            clip: rect(0, 2rem, 4rem, 0);
+        }
+        
+        .right {
+            border: 0.2rem solid #FF6300;
+            clip: rect(0, 4rem, 4rem, 2rem);
+        }
+        
+        .wth0 {
+            width: 0;
+        }
+        
+        .num {
+            position: absolute;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -o-box-sizing: border-box;
+            width: 56px;
+            height: 56px;
+            line-height: 16px;
+            text-align: center;
+            left: 2px;
+            top: 2px;
+            border-radius: 50%;
+            color: #FF6300;
+            background: white;
+            z-index: 1;
+        }
+        
+        .success_rate {
+            position: absolute;
+            top: 10px;
+            line-height: 20px;
+            left: 12px;
+            font-size: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+        <div class="mui-scroll">
+            <!--数据列表-->
+            <ul class="mui-table-view mui-table-view-condensed mui-table-view-striped list_wrap">
+            </ul>
+        </div>
+
+    </div>
+    <div class="empty_text">
+        数据为空
+    </div>
+
+    <script src="../js/mui.min.js"></script>
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <!-- <script src="../js/app.js"></script> -->
+    <script type="text/javascript">
+        mui.init({
+            pullRefresh: {
+                container: '#pullrefresh',
+                down: {
+                    callback: pulldownRefresh
+                },
+                up: {
+                    contentrefresh: '正在加载...',
+                    callback: pullupRefresh
+                }
+            }
+        });
+
+        mui.plusReady(function() {
+            pulldownRefresh();
+
+            //点击上次浏览
+            window.addEventListener('updatePreType', function(event) {
+                console.log("收到事件" + event.detail.currentType);
+                updateClick(event.detail);
+            }, false);
+
+        });
+
+
+        //pulldownRefresh();
+
+        function updateClick(msg) {
+            console.log("99999")
+            currentType = msg.currentType;
+            isDesc = msg.isDesc;
+            findList = [];
+            pulldownRefresh();
+        }
+
+        /**
+         * 下拉刷新具体业务实现
+         */
+        function pulldownRefresh() {
+            current = 1;
+            findList = [];
+
+            getMsglist(0);
+        }
+
+        /**
+         * 上拉加载具体业务实现
+         */
+        function pullupRefresh() {
+            current++;
+            getMsglist(1);
+        }
+
+        //查询类型：HISTORY（查询历史浏览记录） TIME （根据期间） DEGREE: 高成功率 
+        var currentType = "DEGREE";
+        //当前查询  页数
+        var current = 1;
+        //根据期限查询是，是否倒序
+        var isDesc = false;
+
+        function getMsglist(refreshType) {
+            var params = {
+                current: current,
+                size: 20,
+                isDesc: isDesc,
+                queryType: currentType
+            };
+
+            $(".empty_text").hide();
+            $("#pullrefresh").show();
+            console.log("-----" + currentType);
+			//mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+			
+			
+			setTimeout(function(){
+				getListData(0, [1,2,3], false);
+			}, 1000);
+			return;
+            Global.commonAjax({
+                    url: "goods/payed/goodslist",
+                    method: "POST",
+                    data: params
+                },
+                function(data) {
+                    if (data.current >= data.pages) {
+                        if ((data.current == 1) && (data.records.length == 0)) {
+                            //空数据
+                            $(".empty_text").show();
+                            $("#pullrefresh").hide();
+                            mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+                        } else {
+                            //没有更多数据了
+                            getListData(refreshType, data.records, true);
+                        }
+                    } else {
+                        getListData(refreshType, data.records, false);
+                    }
+                },
+                function(err) {
+                    mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+                }
+            )
+        }
+
+        var findList = [];
+
+        function getListData(refreshType, cells, isAll) {
+            findList = findList.concat(cells);
+            mui('#pullrefresh').pullRefresh().refresh(true);
+            //当前点击的 数据下标
+            var index = 0;
+            var table = document.body.querySelector('.mui-table-view-condensed');
+
+            if (refreshType == 0) {
+                //下拉刷新
+                table.innerHTML = "";
+                $(".mui-table-view-condensed").html = "";
+
+                if (mui.os.android) {
+                    $('html, body').animate({
+                        scrollTop: -$(".mui-table-view-condensed").offset().top
+                    }, 20);
+                } else {
+                    mui('#pullrefresh').scroll().scrollTo(0, 0);
+                }
+
+
+            } else {
+                //加载更多
+                mui('#pullrefresh').pullRefresh().endPullupToRefresh(isAll); //参数为true代表没有更多数据了。
+                var preList = document.body.querySelectorAll('.mui-table-view-cell-item');
+                index = preList == null ? 0 : preList.length;
+            }
+
+            for (var i = 0, len = cells.length; i < len; i++) {
+                var li = document.createElement('li');
+                var item = cells[i];
+                if (item.clicked && (currentType != "HISTORY")) {
+                    li.className = 'mui-table-view-cell mui-table-view-cell-item item_wrap col clicked';
+                } else {
+                    li.className = 'mui-table-view-cell mui-table-view-cell-item item_wrap col';
+                }
+
+                //li.className = 'mui-table-view-cell mui-table-view-cell-item item_wrap col';
+                li.setAttribute("data-index", index);
+                console.log(item.goodsSeq + "--" + item.recommendDegree + "-" + parseInt(item.recommendDegree * 3.6));
+                if (item.recommendDegree > 50) {
+                    li.innerHTML = '<div class="mui-slider-cell row item_tile_wrap">' +
+
+                        '<div class="text_info_new" >' +
+                        '<span>推荐产品</span>' +
+                        '<span class="item_title_num">' + item.goodsSeq + '号</span>' +
+                        '</div>' +
+                        '<div class="row hideClass">' +
+                        '<img src="../images/high_rate.png" class="high_rate"/>' +
+                        '<img src="../images/recommend_icon.png" class="recommand_icon"/>' +
+                        '</div>' +
+
+                        '</div>' +
+                        '<div class="row item_center_wrap">' +
+                        '<div>' +
+                        '<span >' + item.loanAmount + '</span><br>' +
+                        '<span class="text_info">借款金额</span>' +
+                        '</div>' +
+                        '<div>' +
+                        '<span >' + item.loanDay + '</span><br>' +
+                        '<span class="text_info">借款期限</span>' +
+                        '</div>' +
+
+                        '<section>' +
+                        '<div class="wrap">' +
+                        '<div class="clip-auto circle">' +
+                        '<div class="percent left" style="-webkit-transform:rotate(' +
+                        parseInt(item.recommendDegree * 3.6) + 'deg);"></div>' +
+                        '<div class="percent right"></div>' +
+                        '</div>' +
+                        '<div class="num row" style="align-items: center; justify-content: center;">' +
+                        '<div >' +
+                        '<span style="font-size: 12px;">' + item.recommendDegree + '</span>%<br>' +
+                        '<span style="font-size: 10px;">成功率</span>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</section>' +
+                        '</div>';
+
+
+                } else {
+                    li.innerHTML = '<div class="mui-slider-cell row item_tile_wrap">' +
+                        '<div class="text_info_new" >' +
+                        '<span>推荐产品</span>' +
+                        '<span class="item_title_num">' + item.goodsSeq + '号</span>' +
+                        '</div>' +
+                        '<div class="row hideClass">' +
+                        '<img src="../images/high_rate.png" class="high_rate"/>' +
+                        '<img src="../images/recommend_icon.png" class="recommand_icon"/>' +
+                        '</div>' +
+
+                        '</div>' +
+                        '<div class="row item_center_wrap">' +
+                        '<div>' +
+                        '<span >' + item.loanAmount + '</span><br>' +
+                        '<span class="text_info">借款金额</span>' +
+                        '</div>' +
+                        '<div>' +
+                        '<span >' + item.loanDay + '</span><br>' +
+                        '<span class="text_info">借款期限</span>' +
+                        '</div>' +
+
+                        '<section>' +
+                        '<div class="wrap">' +
+                        '<div class=" circle">' +
+                        '<div class="percent left" style="-webkit-transform:rotate(' +
+                        parseInt(item.recommendDegree * 3.6) + 'deg);"></div>' +
+                        '<div class="percent right wth0"></div>' +
+                        '</div>' +
+                        '<div class="num row" style="align-items: center; justify-content: center;">' +
+                        '<div >' +
+                        '<span style="font-size: 12px;">' + item.recommendDegree + '</span>%<br>' +
+                        '<span style="font-size: 10px;">成功率</span>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</section>' +
+                        '</div>';
+
+                }
+
+
+                table.appendChild(li);
+
+                index += 1;
+
+            }
+
+            if (refreshType == 0) {
+                //下拉刷新
+                mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+            } else {
+                //上拉加载
+                if (cells.length < 20) {
+                    mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+                }
+            }
+        }
+
+
+
+        // $('body').on('click', '.mui-table-view-condensed li', function() {
+        mui(".mui-table-view-condensed").on('tap', 'li ', function() {
+
+            var index = $(this).data("index");
+            $(this).addClass("clicked");
+            var item = findList[index];
+            if (!(item && item.goodsUrl)) {
+                return;
+            }
+            var clickType = {
+                source: myStorage.getItem("user").sourceCode,
+                goodsCode: item.goodsCode,
+                page: "payed"
+            }
+            plus.statistic.eventTrig("loansgoods", JSON.stringify(clickType))
+			
+			if (mui.os.android) {
+				clickFindItem(item);
+				return;
+			        checkPermissionPhoto(function() {
+			            clickFindItem(item);
+			        }, function() {
+			            var btnArray = ['去设置','取消'];
+			            var mainAct = plus.android.runtimeMainActivity();
+	                    mui.confirm("请在设置里面允许权限", '提示', btnArray, function(e) {
+	                        if (e.index == 0) {
+	                            //去设置
+	                            plus.android.invoke("org.qldc.xianghq.Tools", "goToSetting", mainAct);
+	                        }
+	                    })
+			        });
+			    } else {
+
+                plus.plugintest.PluginXcqxFunction("Html5", "Plus", "AsyncFunction", "MultiArgument!", function(result) {
+                    //alert( result[0].toString());
+
+                    if(result[0]=="1")
+                    {
+                        clickFindItem(item);
+
+
+                    }
+                    else
+                    {
+
+
+                        var btnArray = ['取消', '设置'];
+                        mui.confirm('在设备的"设置-隐私-相机"中允许访问相机', '提示', btnArray, function(e) {
+                            if (e.index == 1) {
+
+                                var UIApplication = plus.ios.import("UIApplication");
+                                var NSURL = plus.ios.import("NSURL");
+                                var setting = NSURL.URLWithString("app-settings:");
+                                var application = UIApplication.sharedApplication();
+                                application.openURL(setting);
+                                plus.ios.deleteObject(setting);
+                                plus.ios.deleteObject(application);
+
+                            } else {
+
+
+
+
+                            }
+                        })
+
+
+                    }
+
+
+                }, function(result) {
+                    //alert(result)
+                });
+			
+			
+			    }
+    
+    
+            
+        });
+        
+        
+        function clickFindItem(item){
+        		var params = {
+                goodsCode: item.goodsCode
+            }
+            Global.commonAjax({
+                    url: "goods/click",
+                    data: params,
+                    method: "POST"
+                },
+                function(data) {
+                		if(mui.os.android && (item.jumpType == "out")){
+		        			plus.runtime.openURL(item.goodsUrl);
+		        			return;
+		        		}
+                    mui.openWindow({
+                        url: 'webview.html',
+                        id: 'webview.html?url=' + item.goodsUrl,
+                        waiting: {
+                            autoShow: false
+                        },
+                        extras: {
+                            title: item.goodsTitle
+                        }
+                    })
+                },
+                function(err) {
+
+                }
+            )
+        }
+    </script>
+</body>
+
+</html>

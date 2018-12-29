@@ -35,6 +35,21 @@ body,html{
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	align-items: center;
+}
+
+.col_around{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.col_between{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
 }
 
 header{
