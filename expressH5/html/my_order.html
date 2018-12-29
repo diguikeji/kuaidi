@@ -113,12 +113,14 @@
 						bottom: '0px'
 					}
 				}]
-			});
+			}); 
 			
 			function changeType(index){
+				console.log($(".titleType")[index]);
 				for(var i=0; i<4; i++){
-					$(this).children[i].style.color = '#666666';
+					$(".titleType")[i].removeClass("active");
 				}
+				$(".titleType")[index].addClass("active");
 				// $(this).children[2].css('color', '#333333');
 			}
 			
