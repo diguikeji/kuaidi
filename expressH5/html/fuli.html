@@ -1,155 +1,248 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="utf-8">
-		<title>Hello MUI</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<head>
+	<meta charset="utf-8">
+	<title>福利</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="../css/page.css">
+	<link rel="stylesheet" href="../css/mui.min.css">
+	<link rel="stylesheet" href="../css/firstPage.css">
+	<style>
+		body{background: #fff;}
+		.fuli-list{padding-bottom:0.8rem;}
+		.fuli-list li{height:1.15rem;width:100%;background: url("../images/fuli/fuli_12.jpg");background-size:100% 100%;border:1px solid rgba(243, 243, 243, 1);
+			box-shadow:0px 2px 6px 0px rgba(126,125,125,0.14);position: relative;margin:0.1rem 0 0.1rem 0;padding-left:1.1rem;box-sizing: border-box;}
 
-		<link rel="stylesheet" href="../css/mui.min.css">
-		<style>
-			html,body {
-				background-color: #efeff4;
-			}
-			.title{
-				margin: 20px 15px 10px;
-				color: #6d6d72;
-				font-size: 15px;
-			}
-			 .oa-contact-cell.mui-table .mui-table-cell {
-				padding: 11px 0;
-				vertical-align: middle;
-			}
-			
-			.oa-contact-cell {
-				position: relative;
-				margin: -11px 0;
-			}
-	
-			.oa-contact-avatar {
-				width: 75px;
-			}
-			.oa-contact-avatar img {
-				border-radius: 50%;
-			}
-			.oa-contact-content {
-				width: 100%;
-			}
-			.oa-contact-name {
-				margin-right: 20px;
-			}
-			.oa-contact-name, oa-contact-position {
-				float: left;
-			}
-		</style>
-	</head>
+		.fuli-list li .img{width:0.9rem;height:0.9rem;position: absolute;left:0.12rem;top:0.13rem;}
+		.fuli-list li .weizhi{height:11px;
+			font-size:12px;
+			font-weight:400;
+			color:#666;
+			line-height:14px;}
+		.fuli-list li .biaoti{font-size:16px;padding-top:0.22rem;padding-bottom:0.06rem;
+			font-weight:bold;
+			color:rgba(51,51,51,1);
+			line-height:14px;}
+		.fuli-list li .weizhi img{width:0.12rem;position: relative;top:0.03rem;}
+		.fuli-list li .riqi{color:#999;font-size:11px;position: absolute;bottom:0.1rem;}
+		.fuli-list li .lingqu{position: absolute;right:0;top:0;font-size:0.15rem;color:#fff;text-align: center;width:0.66rem;height:1.15rem;box-sizing: border-box;padding-top:0.32rem;}
 
-	<body>
-		<div class="mui-content">
-			<div class="title">
-				这是subNView模式选项卡中的第2个子页面，该页面展示一个通讯录示例
+		.buzhou-list{height:0.5rem;box-shadow: 0 1px 3px #ccc;}
+		.buzhou-list li{width:20%;float:left;text-align: center;color:#26262D;position:relative;height:0.5rem;font-size:0.13rem;font-weight: bold;line-height: normal;padding-top:0.08rem;}
+		.buzhou-list li div{color:#333333;font-size:0.11rem;padding:0.02rem;}
+		.buzhou-list li.disabled div{color:#CCCCCC;}
+		.buzhou-list li.active{color:#fff;}
+		.buzhou-list li.active div{color:#fff;position: relative;z-index:10;}
+		.buzhou-list li.active span{position: relative;z-index:10;}
+		.buzhou-list li.active:after{content:" ";display:block;height:0.55rem;top:0;left:0;position:absolute;width:100%;background: url("../images/fuli/fuli_08.jpg");background-size:100% 100%;}
+
+		.fuli-top{position: relative;text-align: center;height:0.5rem;}
+		.fuli-top .left-col{position: absolute;left:15px;top:0;font-size:0.11rem;}
+		.fuli-top .left-col div{width:0.4rem;line-height: 0.18rem;padding-top:0.1rem;color:#666;}
+		.fuli-top .left-col img{width:0.16rem;position: absolute;right:-0.2rem;top:0.15rem;}
+		.fuli-top .right-col div{font-size:0.11rem;color:#7A7A7A;position: relative;top:-0.04rem;}
+		.fuli-top .right-col img{width:0.18rem;}
+		.fuli-top .right-col{position: absolute;right:0;top:0;padding:0.1rem 0.1rem;}
+
+		.fuli-top .middle-col{color:#333;font-size:0.16rem;color:#999999;line-height: 0.52rem;}
+		.fuli-top .middle-col span{display: inline-block;position: relative;padding:0 0.06rem;}
+		.fuli-top .middle-col span.active{color:#333;display: inline-block;}
+		.fuli-top .middle-col span.active:after{content: " ";width:0.25rem;margin-left:-0.125rem;height:4px;background: #107EFF;bottom:2px;border-radius:3px;position:absolute;left:50%;display: block;}
+
+	</style>
+
+
+
+</head>
+
+<body>
+
+<div class="fuli-top">
+
+	<div class="left-col">
+		<div>上海歌斐中心</div>
+		<img src="../images/fuli/fuli_03.jpg"/>
+	</div>
+
+	<span class="middle-col">
+		<span class="active">会员福利</span>
+		<span>线上特卖会</span>
+	</span>
+
+	<div class="right-col">
+		<img src="../images/firstPageLive/icon2.png"/>
+		<div>搜索</div>
+	</div>
+
+</div>
+
+<div id="slider" class="mui-slider" >
+	<div class="mui-slider-group mui-slider-loop">
+		<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+		<div class="mui-slider-item mui-slider-item-duplicate">
+			<img src="../images/fuli/fuli_06.jpg">
+		</div>
+		<!-- 第一张 -->
+		<div class="mui-slider-item">
+			<img src="../images/fuli/fuli_06.jpg">
+		</div>
+		<!-- 第二张 -->
+		<div class="mui-slider-item">
+			<img src="../images/fuli/fuli_06.jpg">
+		</div>
+		<!-- 第三张 -->
+		<div class="mui-slider-item">
+			<img src="../images/fuli/fuli_06.jpg">
+		</div>
+		<!-- 第四张 -->
+		<div class="mui-slider-item">
+			<img src="../images/fuli/fuli_06.jpg">
+		</div>
+		<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+		<div class="mui-slider-item mui-slider-item-duplicate">
+			<a href="#">
+				<img src="../images/fuli/fuli_06.jpg">
+			</a>
+		</div>
+	</div>
+	<div class="mui-slider-indicator">
+		<div class="mui-indicator mui-active"></div>
+		<div class="mui-indicator"></div>
+		<div class="mui-indicator"></div>
+		<div class="mui-indicator"></div>
+	</div>
+</div>
+
+<ul class="buzhou-list clearfix">
+	<li class="disabled">
+		<span>10:00</span>
+		<div>活动结束</div>
+	</li>
+	<li class="disabled">
+		<span>10:00</span>
+		<div>活动结束</div>
+	</li>
+	<li class="active">
+		<span>10:00</span>
+		<div>活动结束</div>
+	</li>
+	<li>
+		<span>10:00</span>
+		<div>即将开始</div>
+	</li>
+	<li>
+		<span>10:00</span>
+		<div>即将开始</div>
+	</li>
+</ul>
+
+<div class="pd">
+
+	<ul class="fuli-list">
+		<li>
+			<img class="img" src="../images/fuli/fuli_15.jpg">
+			<div>
+				<div class="biaoti">GUCCI 八折优惠券</div>
+				<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
+				<div class="riqi">2018-01-01 至 2018-12-31</div>
 			</div>
 
-			<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
-				<li class="mui-table-view-cell">
-					<div class="mui-slider-cell">
-						<div class="oa-contact-cell mui-table">
-							<div class="oa-contact-avatar mui-table-cell">
-								<img src="../images/60x60.gif" />
-							</div>
-							<div class="oa-contact-content mui-table-cell">
-								<div class="mui-clearfix">
-									<h4 class="oa-contact-name">叶文洁</h4>
-									<span class="oa-contact-position mui-h6">董事长</span>
-								</div>
-								<p class="oa-contact-email mui-h6">
-									yewenjie@sina.com
-								</p>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li class="mui-table-view-cell">
-					<div class="mui-slider-cell">
-						<div class="oa-contact-cell mui-table">
-							<div class="oa-contact-avatar mui-table-cell">
-								<img src="../images/60x60.gif" />
-							</div>
-							<div class="oa-contact-content mui-table-cell">
-								<div class="mui-clearfix">
-									<h4 class="oa-contact-name">艾AA</h4>
-									<span class="oa-contact-position mui-h6">总经理</span>
-								</div>
-								<p class="oa-contact-email mui-h6">
-									aaa@163.com
-								</p>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li class="mui-table-view-cell">
-					<div class="mui-slider-cell">
-						<div class="oa-contact-cell mui-table">
-							<div class="oa-contact-avatar mui-table-cell">
-								<img src="../images/60x60.gif" />
-							</div>
-							<div class="oa-contact-content mui-table-cell">
-								<div class="mui-clearfix">
-									<h4 class="oa-contact-name">罗辑</h4>
-									<span class="oa-contact-position mui-h6">员工</span>
-								</div>
-								<p class="oa-contact-email mui-h6">
-									luoji@126.com
-								</p>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li class="mui-table-view-cell">
-					<div class="mui-slider-cell">
-						<div class="oa-contact-cell mui-table">
-							<div class="oa-contact-avatar mui-table-cell">
-								<img src="../images/60x60.gif" />
-							</div>
-							<div class="oa-contact-content mui-table-cell">
-								<div class="mui-clearfix">
-									<h4 class="oa-contact-name">云天明</h4>
-									<span class="oa-contact-position mui-h6">员工</span>
-								</div>
-								<p class="oa-contact-email mui-h6">
-									ytm@163.com
-								</p>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li class="mui-table-view-cell">
-					<div class="mui-slider-cell">
-						<div class="oa-contact-cell mui-table">
-							<div class="oa-contact-avatar mui-table-cell">
-								<img src="../images/60x60.gif" />
-							</div>
-							<div class="oa-contact-content mui-table-cell">
-								<div class="mui-clearfix">
-									<h4 class="oa-contact-name">史强</h4>
-									<span class="oa-contact-position mui-h6">员工</span>
-								</div>
-								<p class="oa-contact-email mui-h6">
-									shiqiang@gmail.com
-								</p>
-							</div>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</body>
-	<script src="../js/mui.min.js"></script>
-	<script>
-		mui.init({
-			swipeBack:true //启用右滑关闭功能
-		});
-	</script>
+			<div class="lingqu">
+				<div>立即</div>
+				<div>领取</div>
+		    </div>
+
+		</li>
+
+		<li>
+			<img class="img" src="../images/fuli/fuli_15.jpg">
+			<div>
+				<div class="biaoti">GUCCI 八折优惠券</div>
+				<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
+				<div class="riqi">2018-01-01 至 2018-12-31</div>
+			</div>
+
+			<div class="lingqu">
+				<div>立即</div>
+				<div>领取</div>
+			</div>
+
+		</li>
+
+		<li>
+			<img class="img" src="../images/fuli/fuli_15.jpg">
+			<div>
+				<div class="biaoti">GUCCI 八折优惠券</div>
+				<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
+				<div class="riqi">2018-01-01 至 2018-12-31</div>
+			</div>
+
+			<div class="lingqu">
+				<div>立即</div>
+				<div>领取</div>
+			</div>
+
+		</li>
+
+		<li>
+			<img class="img" src="../images/fuli/fuli_15.jpg">
+			<div>
+				<div class="biaoti">GUCCI 八折优惠券</div>
+				<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
+				<div class="riqi">2018-01-01 至 2018-12-31</div>
+			</div>
+
+			<div class="lingqu">
+				<div>立即</div>
+				<div>领取</div>
+			</div>
+
+		</li>
+	</ul>
+
+</div>
+
+
+<script src="../js/mui.min.js"></script>
+<script src="../js/jquery-2.1.1.min.js"></script>
+<script src="../lib/masonry.pkgd.min.js"></script>
+<script>
+
+	$('.grid').masonry({
+
+		itemSelector: '.grid-item',
+		columnWidth: 179
+	});
+
+	mui.init({
+		swipeBack: false,
+		pullRefresh: {
+			container: '#pullrefresh',
+			down: {
+				style:'circle',
+				callback: pulldownRefresh
+			},
+			up: {
+				contentrefresh: '正在加载...',
+				callback: pullupRefresh
+			}
+		}
+	});
+
+	function pulldownRefresh()
+	{
+
+	}
+
+	function pullupRefresh()
+	{
+
+	}
+
+</script>
+</body>
+
 </html>

@@ -1,162 +1,171 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="utf-8">
-		<title>Hello MUI</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<link rel="stylesheet" href="../css/mui.min.css">
-		<style>
-			html,
-			body {
-				background-color: #efeff4;
-			}
-			
-			.title {
-				padding: 20px 15px 10px;
-				color: #6d6d72;
-				font-size: 15px;
-				background-color: #fff;
-			}
-		</style>
-	</head>
+<head>
+	<meta charset="utf-8">
+	<title>我的</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="../css/page.css">
+	<link rel="stylesheet" href="../css/firstPage.css">
+	<link rel="stylesheet" href="../css/mui.min.css">
+	<style>
+		body{background: #fff!important;}
+		.mui-content{background: #fff;}
+		.my-top{margin-top:0.2rem;margin-bottom:0.12rem;}
+		.my-top .touxiang{border-radius: 50%;width:0.37rem;height:0.37rem;display: inline-block;vertical-align: middle;}
+		.my-top .left span{vertical-align: middle;display: inline-block;font-size:0.13rem;}
+		.my-top .right{position: absolute;right:15px;top:0.2rem;}
+		.my-top .right img{width:0.26rem;}
+		.my-info{width:100%;background: url("../images/wode/wode_10.jpg");background-size:100% 100%;height:1.3rem;position: relative;}
 
-	<body>
-		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
-			<div class="mui-scroll">
-				<div class="title" onclick="goTologin();">
-					会员
-				</div>
-				<ul class="mui-table-view mui-table-view-chevron">
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 1</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 2</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 3</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 4</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 5</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 6</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 7</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 8</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 9</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 10</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 11</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 12</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 13</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 14</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 15</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 16</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 17</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 18</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 19</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 20</a>
-					</li>
-				</ul>
+		.my-info .btn{position: absolute;right:0.2rem;top:0.4rem;}
+		.my-info .btn img{width:1.01rem;}
+		.my-list li{float:left;width:25%;text-align: center;padding:0 0.05rem 0.15rem 0.05rem;}
+		.my-list li div{box-shadow: #ccc 0 2px 4px;position: relative;height:0.84rem;box-sizing: border-box;padding-top:0.08rem;}
+		.my-list li img{width:0.43rem;}
+		.my-list li p{position: absolute;width:100%;left:0;text-align: center;font-size:0.13rem;color:#333333;}
+
+		.my-dianji{padding-bottom:0.7rem;}
+		.my-dianji li{padding:0.15rem 0;border-bottom:1px solid #E3E3E3;position: relative;}
+		.my-dianji li img{width:0.35rem;display: inline-block;vertical-align: middle;}
+		.my-dianji li .text{display: inline-block;vertical-align: middle;}
+		.my-dianji li .right{position: absolute;right:0;top:0.2rem;}
+		.my-dianji li .right .mui-icon{color:#999;font-size:14px;}
+		.my-dianji li .right .right-text{font-size:0.16rem;color:#666666;}
+	</style>
+
+
+
+</head>
+
+<body>
+
+	<div class="pd">
+		<div class="my-top">
+			<div class="left">
+			<img class="touxiang" src="../images/wode/wode_03.jpg" />
+			<span>王大池</span>
 			</div>
+
+			<span class="right">
+				<img src="../images/wode/wode_06.jpg"/>
+			</span>
+
 		</div>
-		<script src="../js/mui.min.js"></script>
-		<script>
-			mui.init({
-				swipeBack: false,
-				pullRefresh: {
-					container: '#pullrefresh',
-					down: {
-						style:'circle',
-						callback: pulldownRefresh
-					},
-					up: {
-						contentrefresh: '正在加载...',
-						callback: pullupRefresh
-					}
-				}
-			});
-			
-			function goTologin(){
-				mui.openWindow({
-				    url: 'my_order.html',
-				    id: 'my_order.html',
-				    waiting: {
-				        autoShow: false
-				    },
-				    extras: {
-				    }
-				})
+
+		<div class="my-info">
+
+			<div class="money"><span>￥</span>2988.8</div>
+			<p>账户余额</p>
+
+			<div class="btn">
+				<img src="../images/wode/tixian-btn.png"/>
+			</div>
+
+
+		</div>
+
+		<ul class="my-list clearfix">
+			<li>
+				<div>
+				<img src="../images/wode/wode_22.jpg">
+				<p>快递</p>
+				</div>
+			</li>
+			<li>
+				<div>
+				<img src="../images/wode/wode_19.jpg">
+				<p>订单</p>
+				</div>
+			</li>
+			<li>
+				<div>
+				<img src="../images/wode/wode_16.jpg">
+				<p>活动</p>
+				</div>
+			</li>
+			<li>
+				<div>
+				<img src="../images/wode/wode_13.jpg">
+				<p>卡券</p>
+				</div>
+			</li>
+		</ul>
+
+
+		<ul class="my-dianji">
+			<li>
+				<span class="icon">
+				<img src="../images/wode/wode_29.jpg">
+				</span>
+				<span class="text">我的地址</span>
+				<span class="right">
+					<span class="right-text">2</span> <span class="mui-icon mui-icon-forward"></span>
+				</span>
+			</li>
+			<li>
+				<span class="icon">
+				<img src="../images/wode/wode_32.jpg">
+				</span>
+				<span class="text">联系客服</span>
+				<span class="right">
+					<span class="right-text">400-888-8808</span>
+					<span class="mui-icon mui-icon-forward"></span>
+				</span>
+			</li>
+			<li>
+				<span class="icon">
+				<img src="../images/wode/wode_34.jpg">
+				</span>
+				<span class="text">会员福利 </span>
+				<span class="right"><span class="mui-icon mui-icon-forward"></span></span>
+			</li>
+			<li>
+				<span class="icon">
+				<img src="../images/wode/wode_37.jpg">
+				</span>
+				<span class="text">投诉建议</span>
+				<span class="right"><span class="mui-icon mui-icon-forward"></span></span>
+			</li>
+		</ul>
+
+	</div>
+
+<script src="../js/mui.min.js"></script>
+<script src="../js/jquery-2.1.1.min.js"></script>
+
+<script>
+
+
+
+	mui.init({
+		swipeBack: false,
+		pullRefresh: {
+			container: '#pullrefresh',
+			down: {
+				style:'circle',
+				callback: pulldownRefresh
+			},
+			up: {
+				contentrefresh: '正在加载...',
+				callback: pullupRefresh
 			}
-			/**
-			 * 下拉刷新具体业务实现
-			 */
-			function pulldownRefresh() {
-				setTimeout(function() {
-					var table = document.body.querySelector('.mui-table-view');
-					var cells = document.body.querySelectorAll('.mui-table-view-cell');
-					for(var i = cells.length, len = i + 3; i < len; i++) {
-						var li = document.createElement('li');
-						li.className = 'mui-table-view-cell';
-						li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
-						//下拉刷新，新纪录插到最前面；
-						table.insertBefore(li, table.firstChild);
-					}
-					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
-					mui.toast('下拉刷新成功');
-				}, 1000);
-			}
-			var count = 0;
-			/**
-			 * 上拉加载具体业务实现
-			 */
-			function pullupRefresh() {
-				setTimeout(function() {
-					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
-					var table = document.body.querySelector('.mui-table-view');
-					var cells = document.body.querySelectorAll('.mui-table-view-cell');
-					for(var i = cells.length, len = i + 20; i < len; i++) {
-						var li = document.createElement('li');
-						li.className = 'mui-table-view-cell';
-						li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
-						table.appendChild(li);
-					}
-				}, 1000);
-			}
-		</script>
-	</body>
+		}
+	});
+
+	function pulldownRefresh()
+	{
+
+	}
+
+	function pullupRefresh()
+	{
+
+	}
+
+</script>
+</body>
 
 </html>

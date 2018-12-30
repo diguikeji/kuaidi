@@ -1,10 +1,8 @@
 var util = {
 	options: {
-		tab: ['images/tab/1.jpg','images/tab/2.jpg','images/tab/3.jpg','images/tab/4.jpg','images/tab/5.jpg'],
-		tabActive:['images/tab/1-1.jpg','images/tab/2-1.jpg','images/tab/3-1.jpg','images/tab/4-1.jpg','images/tab/5-1.jpg'],
 		ACTIVE_COLOR: "#007aff",
 		NORMAL_COLOR: "#000",
-		subpages: ["html/service.html", "html/live.html","html/fuli.html","html/my.html"]
+		subpages: ["html/tab-webview-subpage-chat.html", "html/tab-webview-subpage-contact.html"]
 	},
 	/**
 	 *  简单封装了绘制原生view控件的方法
@@ -77,37 +75,33 @@ var util = {
 	 * 点击重绘底部tab （view控件）
 	 */
 	toggleNview: function(currIndex) {
-		
-		console.log("currIndex:"+currIndex);
-		
+		currIndex = currIndex * 2;
 		// 重绘当前tag 包括icon和text，所以执行两个重绘操作
 		util.updateSubNView(currIndex, util.options.ACTIVE_COLOR);
-		
+		util.updateSubNView(currIndex + 1, util.options.ACTIVE_COLOR);
+		// 重绘兄弟tag 反之排除当前点击的icon和text
+		for(var i = 0; i < 8; i++) {
+			if(i !== currIndex && i !== currIndex + 1) {
+				util.updateSubNView(i, util.options.NORMAL_COLOR);
+			}
+		}
 	},
-	
-
+	/*
+	 * 改变颜色
+	 */
+	changeColor: function(obj, color) {
+		obj.color = color;
+		return obj;
+	},
 	/*
 	 * 利用 plus.nativeObj.View 提供的 drawText 方法更新 view 控件
 	 */
 	updateSubNView: function(currIndex, color) {
-		
 		var self = plus.webview.currentWebview(),
 			nviewEvent = plus.nativeObj.View.getViewById("tabBar"), // 获取nview控件对象
 			nviewObj = self.getStyle().subNViews[0], // 获取nview对象的属性
 			currTag = nviewObj.tags[currIndex]; // 获取当前需重绘的tag
 
-		var imgSrc=util.options.tabActive[currIndex];
-
-		
-		
-		for(var i=0;i<5;i++)
-		{
-			var imgUrl=util.options.tab[i];
-			tagObj= nviewObj.tags[i]; 
-			nviewEvent.drawBitmap(imgUrl,'',tagObj.position, tagObj.id);
-		}
-		
-		nviewEvent.drawBitmap(imgSrc,'',currTag.position, currTag.id);
-		
+		nviewEvent.drawText(currTag.text, currTag.position, util.changeColor(currTag.textStyles, color), currTag.id);
 	}
 };

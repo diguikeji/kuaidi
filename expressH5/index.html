@@ -488,7 +488,7 @@
 					var aniShow = {};
 					util.initSubpage(aniShow);
 					
-					var 	nview = plus.nativeObj.View.getViewById('tabBar'),
+					var nview = plus.nativeObj.View.getViewById('tabBar'),
 						activePage = plus.webview.currentWebview(),
 						targetPage,
 						subpages = util.options.subpages,
@@ -500,10 +500,13 @@
 						plus.webview.open('html/customize.html', 'customize', {}, 'slide-in-right', 200);
 					});
 						
+						
+						
 					/**
 					 * 根据判断view控件点击位置判断切换的tab
 					 */
 					nview.addEventListener('click', function(e) {
+						
 						
 						var clientX = e.clientX;
 						if(clientX > 0 && clientX <= parseInt(pageW * 0.2)) {

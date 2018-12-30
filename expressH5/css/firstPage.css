@@ -83,7 +83,15 @@
 .three-list li>div>div{color:#FF5269;padding:0 8px;font-size:16px;}
 #homeTop{position: relative;}
 #homeTop.active:after{width:100%;height:100%;position: absolute;background: rgba(255,255,255,0.5);content: " ";z-index:1000;top:0;left:0;}
-
+.my-info .money{color:#fff;font-size:22px;padding:0.3rem 0 0 0.24rem;}
+.my-info .money span{font-size:0.16rem;}
+.my-info p{color:#fff;font-size:13px;padding:0.06rem 0 0 0.28rem;}
+.pd{padding:0 15px;}
+.full-img{display: block;width:100%;}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder
+{
+    　　color: #999;
+}
 
 
 
