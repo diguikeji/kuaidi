@@ -5,73 +5,160 @@
     <meta charset="UTF-8">
     <title></title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <link href="../css/mui.min.css" rel="stylesheet" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link href="../css/mui.min.css" rel="stylesheet" />
     <link href="../css/app.css" rel="stylesheet" />
     <style type="text/css">
         body,
         html {
             width: 100%;
 			height: 100%;
-            background: #FFFFFF;
+            background: #EDECF2;
         }
         
         .list_wrap {
             padding: 0px;
             box-sizing: border-box;
-			background-color: #FFFFFF;
+			background-color: #EDECF2;
 			
         }
         
         .item_wrap {
-            height: 108px;
-            width: 100%;
-			padding-left: 10px;
+            height: 220px;
+            width: 92%;
+            margin: 15px 4%;
 			background-color: #FFFFFF;
+			border-radius: 4px;
+			/* box-shadow: 2px 2px 50px 20px #FDFDFD; */
         }
-		
-		.wrap{
-			padding-right: 15px;
+		.title_wrap{
+			padding: 15px;
+			font-size: 14px;
+			color: #666666;
+			height: 44rpx;
 			border-bottom: 1px solid #E3E3E3;
-			height: 108px;
+			width: 100%;
+			box-sizing: border-box;
 		}
 		
-		.wrap .sex{
-			width: 36px;
-			height: 36px;
-			text-align: center;
-			line-height: 36px;
-			background-color: #DCE8FF;
-			font-size: 16px;
-			color: #FFFFFF;
-			border-radius: 50%;
+		.title_wrap .item_status{
+			color: #FF5269;
+			font-size: 14px;
 		}
 		
-		.wrap img{
-			width: 20px;
-			height: 20px;
+		.title_wrap .item_status .dian{
+			font-weight: bold;
+			font-size: 25px;
+			position: relative;
+			top: -2px;
 		}
 		
 		.content_wrap{
-			flex: 1;
-			text-align: left;
+			width: 100%;
+			box-sizing: border-box;
+			padding: 15px 15px 0px;
+			
+		}
+		
+		.content_wrap .border{
+			height: 122px;
+			width: 100%;
+			border-bottom: 1px solid #E3E3E3;
+		}
+		
+		.content_up{
+			height: 122px;
+			width: 100%;
 			display: flex;
-			flex-direction: column;
-			padding:0px 30px 0px 10px;
+			flex-direction: row;
+			justify-content: space-between;
+		}
+        
+		.content_up img{
+			width: 70px;
+			height: 70px;
+			border-radius: 4px;
 		}
 		
-		.content_wrap .name{
-			color: #333333;
-			font-size: 16px;
+		.content_center{
+			width:168px;
+			max-height:57px;
+			position: relative;
+			line-height: 20px;
+			overflow: hidden;
+			font-size: 14px;
+			color: #666666;
+			flex: 1;
+			padding: 0px 16px;
 		}
 		
-		.content_wrap .tel{
+		.content_end{
 			color: #666666;
 			font-size: 14px;
+			display: flex;
+			flex-direction: column;
 		}
 		
-		.address{
-			color: #333333;
+		.content_end .number{
+			text-align: right;
+		}
+		
+		.content_down{
+			width: 100%;
+			text-align: right;
+			margin-bottom: 10px;
+		}
+		
+		.first_txt{
+			color: #999999;
 			font-size: 14px;
+		}
+		
+		.first_txt .num{
+			color: #333333;
+		}
+		
+		.sencod_txt{
+			font-size: 14px;
+			color: #333333;
+		}
+		
+		.sencod_txt .money{
+			font-size: 12px;
+		}
+		
+		.sencod_txt .money_num{
+			font-size: 18px;
+		}
+		
+		.sencod_txt .num_float{
+			font-size: 12px;
+		}
+		
+		.item_down{
+			height: 60px;
+			font-size: 12px;
+			justify-content: flex-end;
+			width: 100%;
+			padding-right: 15px;
+		}
+		
+		.item_down span{
+			border-radius: 12px;
+			padding: 0px 11px;
+			margin-left: 10px;
+		}
+		
+		.warn_tag{
+			color: #FFFFFF;
+			background-color: #107EFF;
+		}
+		
+		.normal_tag{
+			color: #666666;
+			background-color: #FFFFFF;
+			border: 1px solid #999999;
 		}
         
     </style>
@@ -81,49 +168,47 @@
 
 
     <div id="pullrefresh" class="mui-content mui-scroll-wrapper">
-        <div class="mui-scroll" style="background: #FFFFFF;">
+        <div class="mui-scroll">
             <!--数据列表-->
             <ul class="mui-table-view-condensed list_wrap">
 				<li class=" mui-table-view-cell-item item_wrap col_between">
-					<div class="row_between wrap">
-						<span class="sex">王</span>
-						<div class="content_wrap">
-							<span class="name">
-								王先生 &nbsp;&nbsp;<span class="tel">1380013000</span>
-							</span>
-							<span class="address">上海普陀区金沙江路1518弄近铁城市广场 100室</span>
+					<div class="row_between title_wrap">
+						<span>2017-06-24</span>
+						<div class="row_center item_status"> 
+							<span class="dian">·</span>  
+							<span>&nbsp;待发货</span>
 						</div>
-						<img src="../images/firstPageLive/homeBottom_03.jpg" >
 					</div>
-				</li>
-				
-				<li class=" mui-table-view-cell-item item_wrap col_between">
-					<div class="row_between wrap">
-						<span class="sex">王</span>
-						<div class="content_wrap">
-							<span class="name">
-								王先生 &nbsp;&nbsp;<span class="tel">1380013000</span>
-							</span>
-							<span class="address">上海普陀区金沙江路1518弄近铁城市广场 100室</span>
+					
+					<div class=" content_wrap">
+						<div class="col_between border">
+							<div class="content_up">
+								<img src="../images/firstPageLive/homeBottom_03.jpg" />
+								<span class="content_center">农夫山泉饮用水饮用天然水5L*4桶整箱装桶装水</span>
+								<div class="content_end">
+									<span>￥169.00</span>
+									<span class="number">x2</span>
+								</div>
+							</div>
+							<div class="content_down">
+								<span class="first_txt">共 <span class="num">8</span> 件</span>
+								<span class="sencod_txt">应付金额:
+									<span class="money">￥</span><span class="money_num">169</span>
+									<span class="num_float">.00</span>
+								</span>
+							</div>
 						</div>
-						<img src="../images/firstPageLive/homeBottom_03.jpg" >
+						
+						
 					</div>
-				</li>
-				
-				<li class=" mui-table-view-cell-item item_wrap col_between">
-					<div class="row_between wrap">
-						<span class="sex">王</span>
-						<div class="content_wrap">
-							<span class="name">
-								王先生 &nbsp;&nbsp;<span class="tel">1380013000</span>
-							</span>
-							<span class="address">上海普陀区金沙江路1518弄近铁城市广场 100室</span>
-						</div>
-						<img src="../images/firstPageLive/homeBottom_03.jpg" >
+					
+					<div class="row item_down">
+						<span class="warn_tag">提醒发货</span>
+						<span class="normal_tag">提醒发货</span>
+						<span class="normal_tag">提醒发货</span>
 					</div>
+					
 				</li>
-				
-				
             </ul>
         </div>
 
@@ -150,7 +235,7 @@
         });
 
         mui.plusReady(function() {
-            // pulldownRefresh();
+            pulldownRefresh();
 
             //点击上次浏览
             window.addEventListener('updatePreType', function(event) {
