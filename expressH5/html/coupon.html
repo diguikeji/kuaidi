@@ -5,18 +5,42 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
 		<style type="text/css">
 			body, html{
 				width: 100%;
 				height: 90%;
-				background: #FFFFFF;
+				background: #F2F2F2;
 			}
 			
-			::-webkit-input-placeholder{
-				color: #CCCCCC;
-				font-size: 12px;
+			.select_type{
+				height: 45px;
+				align-items: center;
+				justify-content: space-around;
+				background: #ffffff;
+				color: #666666;
+				font-size: 16px;
+				position: fixed;
+				width: 100%;
+				box-sizing: border-box;
+			}
+			
+			.active{
+				color: #333333;
+				font-weight: bold;
+			}
+			
+			.mui-progressbar{
+				height: 16px;
+				border-radius: 10px;
+				background: #FFD9D6;
+			}
+			.mui-progressbar span{
+				background: #Ff5445;
+				border-radius: 10px;
 			}
 			
 			.empty_text{
@@ -30,37 +54,17 @@
 				background: #f2f2f2;
 			}
 			
-			.input_wrap{
-				width: 90%;
-				margin: 14px 5% 0px;
-				height: 36px;
-				background-color: #FAFAFA;
-				box-sizing: border-box;
-				border-radius: 18px;
-				padding: 0px 15px;
-				border: 1px solid #E3E3E3;
-			}
-			
-			.input_wrap img{
-				width: 14px;
-				height: 14px;
-				margin-right: 10px;
-			}
-			
-			.input_wrap input{
-				border: none;
-				background-color: transparent;
-				margin: 0px;
-				padding: 0px;
-				text-align: left;
-			}
-			
-			.menu_add{
-				font-size: 14px;
-				color: #107EFF;
+			.active_line{
+				height: 4px;
+				width: 20px;
+				background-color: #107EFF;
+				border-radius: 4px;
 				position: absolute;
-				right: 20px;
-				top: 14px;
+				bottom: 0px;
+			}
+			
+			.item{
+				height: 47px;
 			}
 
 		</style>
@@ -69,14 +73,26 @@
 	<body>
 		<header class="mui-bar mui-bar-nav" >
 		    <img src="../images/back.png" class="mui-action-back">
-		    <h1 class="mui-title">我的地址</h1>
-			<a class="menu_add" onclick="goToAddAddr();">新增</a>
+		    <h1 class="mui-title">我的订单</h1>
 		</header>
 		
-		<div class="mui-content" style="background-color: #FFFFFF;">
-			<div class="row input_wrap">
-				<img src="../images/address/search.png">
-				<input type="search" placeholder="请输入地址">
+		<div class="mui-content" style="text-align: center; background: #F2F2F2;">
+			<div class="row select_type">
+				<div class="col item" onclick="changeType(0)">
+					<span class="titleType active" >未使用</span>
+					<span class="active_line"></span>
+				</div>
+				
+				<div class="col item" onclick="changeType(1)">
+					<span class="titleType" >已使用</span>
+					<span class=""></span>
+				</div>
+				
+				<div class="col item" onclick="changeType(2)">
+					<span class="titleType" >已过期</span>
+					<span class=""></span>
+				</div>
+				
 			</div>
 		</div>
 		<script src="../js/mui.min.js"></script>
@@ -85,10 +101,10 @@
 		<script type="text/javascript">
 			mui.init({
 				subpages:[{
-					url:'my_address_sub.html',
-					id:'my_address_sub.html',
+					url:'coupon_sub.html',
+					id:'coupon_sub.html',
 					styles:{
-						top: '94px',
+						top: '90px',
 						bottom: '0px'
 					}
 				}]
@@ -111,19 +127,6 @@
 					console.log("发送事件"+index);
 					var h = plus.webview.getWebviewById("recommand_sub.html");
 					mui.fire(h,'updatePreType',{currentType: currentType, isDesc: isDesc});
-				}
-				
-				function goToAddAddr(){
-					mui.openWindow({
-					    url: 'add_address.html',
-					    id: 'add_address.html',
-					    waiting: {
-					        autoShow: false
-					    },
-					    extras: {
-					        isStep: true
-					    }
-					})
 				}
 			
 		</script>

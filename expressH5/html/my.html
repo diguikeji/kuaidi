@@ -96,7 +96,7 @@
 
 
 		<ul class="my-dianji">
-			<li>
+			<li onclick="goToAddress();">
 				<span class="icon">
 				<img src="../images/wode/wode_29.jpg">
 				</span>
@@ -154,6 +154,19 @@
 			}
 		}
 	});
+	
+	function goToAddress(){
+		mui.openWindow({
+		    url: 'my_address.html',
+		    id: 'my_address.html',
+		    waiting: {
+		        autoShow: false
+		    },
+		    extras: {
+		        isStep: true
+		    }
+		})
+	}
 
 	function pulldownRefresh()
 	{
