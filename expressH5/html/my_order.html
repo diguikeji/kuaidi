@@ -57,6 +57,8 @@
 				width: 20px;
 				background-color: #107EFF;
 				border-radius: 4px;
+				position: absolute;
+				bottom: 0px;
 			}
 			
 			.item{
@@ -74,28 +76,24 @@
 		
 		<div class="mui-content" style="text-align: center; background: #F2F2F2;">
 			<div class="row select_type">
-				<div class="col_between item" onclick="changeType(0)">
-					<span ></span>
+				<div class="col item" onclick="changeType(0)">
 					<span class="titleType active" >全部</span>
 					<span class="active_line"></span>
 				</div>
 				
-				<div class="col_between item" onclick="changeType(1)">
-					<span ></span>
+				<div class="col item" onclick="changeType(1)">
 					<span class="titleType" >待付款</span>
-					<span class="active_line"></span>
+					<span class=""></span>
 				</div>
 				
-				<div class="col_between item" onclick="changeType(2)">
-					<span ></span>
+				<div class="col item" onclick="changeType(2)">
 					<span class="titleType" >待发货</span>
-					<span class="active_line"></span>
+					<span class=""></span>
 				</div>
 				
-				<div class="col_between item" onclick="changeType(3)">
-					<span ></span>
+				<div class="col item" onclick="changeType(3)">
 					<span class="titleType" >待收货</span>
-					<span class="active_line"></span>
+					<span class=""></span>
 				</div>
 				
 			</div>
@@ -116,56 +114,20 @@
 			}); 
 			
 			function changeType(index){
-				console.log($(".titleType")[index]);
-				for(var i=0; i<4; i++){
-					$(".titleType")[i].removeClass("active");
-				}
-				$(".titleType")[index].addClass("active");
-				// $(this).children[2].css('color', '#333333');
+				$(".titleType").each(function(ind){
+					$(this).removeClass("active");
+					$(this).next().removeClass("active_line");
+					
+					if(index == ind){
+						$(this).addClass("active");
+						$(this).next().addClass("active_line");
+						//sendClickType(index);
+					}
+				})
 			}
-			
-			var currentType = "DEGREE"; 
-			$('.highType').click(function(){
-					$('.highType').css('color', '#ff5445');
-					$('.timeType').css('color', '#333333');
-					$('.preType').css('color', '#333333');
-					currentType = "DEGREE";
-					isDesc = false;
-					sendClickType();
-					$(".sortImg").attr('src', "../images/change_type_icon.png");
-			})
 				
-				$('.timeType').click(function(){
-					$('.highType').css('color', '#333333');
-					$('.timeType').css('color', '#ff5445');
-					$('.preType').css('color', '#333333');
-					if (currentType == 'TIME') {
-				        //当前期限
-				        isDesc = !isDesc;
-				   }else{
-				   		isDesc = false;
-				   }
-				   if(isDesc){
-			        		$(".sortImg").attr('src', "../images/sort_front.png");
-			        }else{
-			        		$(".sortImg").attr('src', "../images/sort_back.png");
-			        }
-					currentType = "TIME";
-					sendClickType();
-				})
-				
-				$('.preType').click(function(){
-					$('.highType').css('color', '#333333');
-					$('.timeType').css('color', '#333333');
-					$('.preType').css('color', '#ff5445');
-					currentType = "HISTORY";
-					isDesc = false;
-					sendClickType();
-					$(".sortImg").attr('src', "../images/change_type_icon.png");
-				})
-				
-				function sendClickType(){
-					console.log("发送事件");
+				function sendClickType(index){
+					console.log("发送事件"+index);
 					var h = plus.webview.getWebviewById("recommand_sub.html");
 					mui.fire(h,'updatePreType',{currentType: currentType, isDesc: isDesc});
 				}

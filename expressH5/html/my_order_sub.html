@@ -11,242 +11,154 @@
         body,
         html {
             width: 100%;
-            height: 90%;
-            background: #F2F2F2;
-        }
-        
-        .top_img {
-            width: 261px;
-            height: 37px;
-            margin: auto;
-        }
-        
-        .select_type {
-            height: 40px;
-            align-items: center;
-            justify-content: space-around;
-            background: #ffffff;
-            color: #333333;
-            font-size: 14px;
-            font-weight: bold;
-            position: fixed;
-            width: 100%;
-        }
-        
-        .center_wrap {
-            align-items: center;
-        }
-        
-        .center_wrap img {
-            width: 9px;
-            height: 11px;
-            margin-left: 10px;
-        }
-        
-        .active {
-            color: #ff5445;
+			height: 100%;
+            background: #EDECF2;
         }
         
         .list_wrap {
             padding: 0px;
             box-sizing: border-box;
+			background-color: #EDECF2;
+			
         }
         
         .item_wrap {
-            background-image: url(../images/card_bg.png);
-            background-size: 100% 100%;
-            background-position: 0 0;
-            background-repeat: no-repeat;
-            height: 130px;
-            width: 100%;
-            padding: 10px 20px;
+            height: 220px;
+            width: 92%;
+            margin: 15px 4%;
+			background-color: #FFFFFF;
+			border-radius: 4px;
+			/* box-shadow: 2px 2px 50px 20px #FDFDFD; */
         }
+		.title_wrap{
+			padding: 15px;
+			font-size: 14px;
+			color: #666666;
+			height: 44rpx;
+			border-bottom: 1px solid #E3E3E3;
+			width: 100%;
+			box-sizing: border-box;
+		}
+		
+		.title_wrap .item_status{
+			color: #FF5269;
+			font-size: 14px;
+		}
+		
+		.title_wrap .item_status .dian{
+			font-weight: bold;
+			font-size: 25px;
+			position: relative;
+			top: -2px;
+		}
+		
+		.content_wrap{
+			width: 100%;
+			box-sizing: border-box;
+			padding: 15px 15px 0px;
+			
+		}
+		
+		.content_wrap .border{
+			height: 122px;
+			width: 100%;
+			border-bottom: 1px solid #E3E3E3;
+		}
+		
+		.content_up{
+			height: 122px;
+			width: 100%;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+		}
         
-        .item_tile_wrap {
-            align-items: center;
-            font-size: 12px;
-            color: #333333;
-            font-weight: bold;
-            padding: 5px 0px 8px;
-            border-bottom: 1px solid #dddddd;
-            height: 60px;
-            line-height: 60px;
-        }
+		.content_up img{
+			width: 70px;
+			height: 70px;
+			border-radius: 4px;
+		}
+		
+		.content_center{
+			width:168px;
+			max-height:57px;
+			position: relative;
+			line-height: 20px;
+			overflow: hidden;
+			font-size: 14px;
+			color: #666666;
+			flex: 1;
+			padding: 0px 16px;
+		}
+		
+		.content_end{
+			color: #666666;
+			font-size: 14px;
+			display: flex;
+			flex-direction: column;
+		}
+		
+		.content_end .number{
+			text-align: right;
+		}
+		
+		.content_down{
+			width: 100%;
+			text-align: right;
+			margin-bottom: 10px;
+		}
+		
+		.first_txt{
+			color: #999999;
+			font-size: 14px;
+		}
+		
+		.first_txt .num{
+			color: #333333;
+		}
+		
+		.sencod_txt{
+			font-size: 14px;
+			color: #333333;
+		}
+		
+		.sencod_txt .money{
+			font-size: 12px;
+		}
+		
+		.sencod_txt .money_num{
+			font-size: 18px;
+		}
+		
+		.sencod_txt .num_float{
+			font-size: 12px;
+		}
+		
+		.item_down{
+			height: 60px;
+			font-size: 12px;
+			justify-content: flex-end;
+			width: 100%;
+			padding-right: 15px;
+		}
+		
+		.item_down span{
+			border-radius: 12px;
+			padding: 0px 11px;
+			margin-left: 10px;
+		}
+		
+		.warn_tag{
+			color: #FFFFFF;
+			background-color: #107EFF;
+		}
+		
+		.normal_tag{
+			color: #666666;
+			background-color: #FFFFFF;
+			border: 1px solid #999999;
+		}
         
-        .high_rate {
-            width: 49px;
-            height: 15px;
-            margin-right: 5px;
-        }
-        
-        .recommand_icon {
-            width: 32px;
-            height: 15px;
-        }
-        
-        .item_title_num {
-            margin-left: 5px;
-        }
-        
-        .item_center_wrap {
-            text-align: center;
-            font-size: 16px;
-            font-weight: bold;
-            padding: 10px 0px;
-            height: 160px;
-            align-items: center;
-            justify-content: space-around;
-        }
-        
-        .item_center_day {
-            font-size: 12px;
-        }
-        
-        .mui-progressbar {
-            height: 16px;
-            border-radius: 10px;
-            background: #FFD9D6;
-        }
-        
-        .mui-progressbar span {
-            background: #Ff5445;
-            border-radius: 10px;
-        }
-        
-        .progress_wrap {
-            position: relative;
-        }
-        
-        .success_rate {
-            position: absolute;
-            top: -2px;
-            left: 0px;
-            color: #ffffff;
-            font-size: 12px;
-            padding-left: 10px;
-        }
-        
-        .empty_text {
-            width: 100%;
-            height: 400px;
-            line-height: 400px;
-            text-align: center;
-            background: #f4f4f4;
-            border: none;
-            z-index: 10;
-            background: #f2f2f2;
-        }
-        
-        .text_info {
-            font-size: 12px;
-            color: #A9A9A9;
-        }
-        
-        .center_text_value {
-            font-size: 20px;
-            color: #ffffff;
-        }
-        
-        .text_info_new {
-            display: inline-block;
-            border-radius: 10px;
-            color: #ffffff;
-            font-size: 10px;
-            background: #F99534;
-            height: 20px;
-            line-height: 20px;
-            padding: 2px 5px 0px;
-        }
-        
-        .clicked {
-            opacity: 0.4;
-        }
-        
-        section {
-            width: 60px;
-            height: 60px;
-            position: relative;
-        }
-        
-        .wrap,
-        .circle,
-        .percent {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-        }
-        
-        .wrap {
-            top: 0;
-            left: 0;
-            background-color: #ccc;
-        }
-        
-        .circle {
-            box-sizing: border-box;
-            -webkit-box-sizing: border-box;
-            -ms-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            -o-box-sizing: border-box;
-            border: 1px solid #ccc;
-            clip: rect(0, 4rem, 4rem, 2rem);
-        }
-        
-        .clip-auto {
-            clip: rect(auto, auto, auto, auto);
-        }
-        
-        .percent {
-            box-sizing: border-box;
-            -webkit-box-sizing: border-box;
-            -ms-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            -o-box-sizing: border-box;
-            top: -1px;
-            left: -1px;
-        }
-        
-        .left {
-            border: 0.2rem solid #ff6300;
-            clip: rect(0, 2rem, 4rem, 0);
-        }
-        
-        .right {
-            border: 0.2rem solid #FF6300;
-            clip: rect(0, 4rem, 4rem, 2rem);
-        }
-        
-        .wth0 {
-            width: 0;
-        }
-        
-        .num {
-            position: absolute;
-            box-sizing: border-box;
-            -webkit-box-sizing: border-box;
-            -ms-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            -o-box-sizing: border-box;
-            width: 56px;
-            height: 56px;
-            line-height: 16px;
-            text-align: center;
-            left: 2px;
-            top: 2px;
-            border-radius: 50%;
-            color: #FF6300;
-            background: white;
-            z-index: 1;
-        }
-        
-        .success_rate {
-            position: absolute;
-            top: 10px;
-            line-height: 20px;
-            left: 12px;
-            font-size: 10px;
-        }
     </style>
 </head>
 
@@ -256,7 +168,45 @@
     <div id="pullrefresh" class="mui-content mui-scroll-wrapper">
         <div class="mui-scroll">
             <!--数据列表-->
-            <ul class="mui-table-view mui-table-view-condensed mui-table-view-striped list_wrap">
+            <ul class="mui-table-view-condensed list_wrap">
+				<li class=" mui-table-view-cell-item item_wrap col_between">
+					<div class="row_between title_wrap">
+						<span>2017-06-24</span>
+						<div class="row_center item_status"> 
+							<span class="dian">·</span>  
+							<span>&nbsp;待发货</span>
+						</div>
+					</div>
+					
+					<div class=" content_wrap">
+						<div class="col_between border">
+							<div class="content_up">
+								<img src="../images/firstPageLive/homeBottom_03.jpg" />
+								<span class="content_center">农夫山泉饮用水饮用天然水5L*4桶整箱装桶装水</span>
+								<div class="content_end">
+									<span>￥169.00</span>
+									<span class="number">x2</span>
+								</div>
+							</div>
+							<div class="content_down">
+								<span class="first_txt">共 <span class="num">8</span> 件</span>
+								<span class="sencod_txt">应付金额:
+									<span class="money">￥</span><span class="money_num">169</span>
+									<span class="num_float">.00</span>
+								</span>
+							</div>
+						</div>
+						
+						
+					</div>
+					
+					<div class="row item_down">
+						<span class="warn_tag">提醒发货</span>
+						<span class="normal_tag">提醒发货</span>
+						<span class="normal_tag">提醒发货</span>
+					</div>
+					
+				</li>
             </ul>
         </div>
 
@@ -294,7 +244,7 @@
         });
 
 
-        //pulldownRefresh();
+        pulldownRefresh();
 
         function updateClick(msg) {
             console.log("99999")
@@ -406,96 +356,42 @@
             for (var i = 0, len = cells.length; i < len; i++) {
                 var li = document.createElement('li');
                 var item = cells[i];
-                if (item.clicked && (currentType != "HISTORY")) {
-                    li.className = 'mui-table-view-cell mui-table-view-cell-item item_wrap col clicked';
-                } else {
-                    li.className = 'mui-table-view-cell mui-table-view-cell-item item_wrap col';
-                }
 
-                //li.className = 'mui-table-view-cell mui-table-view-cell-item item_wrap col';
+                li.className = 'mui-table-view-cell-item item_wrap col_between';
                 li.setAttribute("data-index", index);
-                console.log(item.goodsSeq + "--" + item.recommendDegree + "-" + parseInt(item.recommendDegree * 3.6));
-                if (item.recommendDegree > 50) {
-                    li.innerHTML = '<div class="mui-slider-cell row item_tile_wrap">' +
+                
+				li.innerHTML = '<div class="row_between title_wrap">'+
+						'<span>2017-06-24</span>'+
+						'<div class="row_center item_status">'+ 
+							'<span class="dian">·</span>'+ 
+							'<span>&nbsp;待发货</span>'+
+						'</div>'+
+					'</div>'+
+					
+					'<div class=" content_wrap">'+
+						'<div class="col_between border">'+
+							'<div class="content_up">'+
+								'<img src="../images/firstPageLive/homeBottom_03.jpg" />'+
+								'<span class="content_center">农夫山泉饮用水饮用天然水5L*4桶整箱装桶装水</span>'+
+								'<div class="content_end">'+
+									'<span>￥169.00</span>'+
+									'<span class="number">x2</span>'+
+								'</div>'+
+							'</div>'+
+							'<div class="content_down">'+
+								'<span class="first_txt">共 <span class="num">8</span> 件</span>'+
+								'<span class="sencod_txt">应付金额:'+
+									'<span class="money">￥</span><span class="money_num">169</span>'+
+									'<span class="num_float">.00</span>'+
+								'</span></div></div></div>'+
+					
+					'<div class="row item_down">'+
+						'<span class="warn_tag">提醒发货</span>'+
+						'<span class="normal_tag">提醒发货</span>'+
+						'<span class="normal_tag">提醒发货</span>'+
+					'</div>';
 
-                        '<div class="text_info_new" >' +
-                        '<span>推荐产品</span>' +
-                        '<span class="item_title_num">' + item.goodsSeq + '号</span>' +
-                        '</div>' +
-                        '<div class="row hideClass">' +
-                        '<img src="../images/high_rate.png" class="high_rate"/>' +
-                        '<img src="../images/recommend_icon.png" class="recommand_icon"/>' +
-                        '</div>' +
-
-                        '</div>' +
-                        '<div class="row item_center_wrap">' +
-                        '<div>' +
-                        '<span >' + item.loanAmount + '</span><br>' +
-                        '<span class="text_info">借款金额</span>' +
-                        '</div>' +
-                        '<div>' +
-                        '<span >' + item.loanDay + '</span><br>' +
-                        '<span class="text_info">借款期限</span>' +
-                        '</div>' +
-
-                        '<section>' +
-                        '<div class="wrap">' +
-                        '<div class="clip-auto circle">' +
-                        '<div class="percent left" style="-webkit-transform:rotate(' +
-                        parseInt(item.recommendDegree * 3.6) + 'deg);"></div>' +
-                        '<div class="percent right"></div>' +
-                        '</div>' +
-                        '<div class="num row" style="align-items: center; justify-content: center;">' +
-                        '<div >' +
-                        '<span style="font-size: 12px;">' + item.recommendDegree + '</span>%<br>' +
-                        '<span style="font-size: 10px;">成功率</span>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
-                        '</section>' +
-                        '</div>';
-
-
-                } else {
-                    li.innerHTML = '<div class="mui-slider-cell row item_tile_wrap">' +
-                        '<div class="text_info_new" >' +
-                        '<span>推荐产品</span>' +
-                        '<span class="item_title_num">' + item.goodsSeq + '号</span>' +
-                        '</div>' +
-                        '<div class="row hideClass">' +
-                        '<img src="../images/high_rate.png" class="high_rate"/>' +
-                        '<img src="../images/recommend_icon.png" class="recommand_icon"/>' +
-                        '</div>' +
-
-                        '</div>' +
-                        '<div class="row item_center_wrap">' +
-                        '<div>' +
-                        '<span >' + item.loanAmount + '</span><br>' +
-                        '<span class="text_info">借款金额</span>' +
-                        '</div>' +
-                        '<div>' +
-                        '<span >' + item.loanDay + '</span><br>' +
-                        '<span class="text_info">借款期限</span>' +
-                        '</div>' +
-
-                        '<section>' +
-                        '<div class="wrap">' +
-                        '<div class=" circle">' +
-                        '<div class="percent left" style="-webkit-transform:rotate(' +
-                        parseInt(item.recommendDegree * 3.6) + 'deg);"></div>' +
-                        '<div class="percent right wth0"></div>' +
-                        '</div>' +
-                        '<div class="num row" style="align-items: center; justify-content: center;">' +
-                        '<div >' +
-                        '<span style="font-size: 12px;">' + item.recommendDegree + '</span>%<br>' +
-                        '<span style="font-size: 10px;">成功率</span>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
-                        '</section>' +
-                        '</div>';
-
-                }
+                
 
 
                 table.appendChild(li);
