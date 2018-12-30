@@ -118,160 +118,69 @@
                     },
                     "tags" : [
                         {
-                            "tag" : "font",
-                            "id" : "indexIcon",
-                            "text" : "",
+                            "tag" : "img",
+                            "id" : "indexIcon1",
+                            "src" : "_www/images/tab/1-1.jpg",
                             "position" : {
-                                "top" : "4px",
+                                "top" : "0",
                                 "left" : "0",
                                 "width" : "20%",
-                                "height" : "24px"
-                            },
-                            "textStyles" : {
-                                "fontSrc" : "_www/fonts/mui.ttf",
-                                "align" : "center",
-                                "size" : "24px"
+                                "height" : "51px"
                             }
+                           
                         },
+                       
                         {
-                            "tag" : "font",
-                            "id" : "indexText",
-                            "text" : "首页",
+                            "tag" : "img",
+                            "id" : "indexIcon2",
+                            "src" : "_www/images/tab/2.jpg",
                             "position" : {
-                                "top" : "23px",
-                                "left" : "0",
-                                "width" : "20%",
-                                "height" : "24px"
-                            },
-                            "textStyles" : {
-                                "align" : "center",
-                                "size" : "10px"
-                            }
-                        },
-                        {
-                            "tag" : "font",
-                            "id" : "newsIcon",
-                            "text" : "",
-                            "position" : {
-                                "top" : "4px",
+                                "top" : "0",
                                 "left" : "20%",
                                 "width" : "20%",
-                                "height" : "24px"
-                            },
-                            "textStyles" : {
-                                "fontSrc" : "_www/fonts/mui.ttf",
-                                "align" : "center",
-                                "size" : "24px"
+                                "height" : "51px"
                             }
+                           
                         },
                         {
-                            "tag" : "font",
-                            "id" : "newsText",
-                            "text" : "服务",
+                            "tag" : "img",
+                            "id" : "indexIcon3",
+                            "src" : "_www/images/tab/3.jpg",
                             "position" : {
-                                "top" : "23px",
-                                "left" : "20%",
-                                "width" : "20%",
-                                "height" : "24px"
-                            },
-                            "textStyles" : {
-                                "align" : "center",
-                                "size" : "10px"
-                            }
-                        },
-                        {
-                            "tag" : "font",
-                            "id" : "fuliIcon",
-                            "text" : "",
-                            "position" : {
-                                "top" : "4px",
+                                "top" : "0",
                                 "left" : "40%",
                                 "width" : "20%",
-                                "height" : "24px"
-                            },
-                            "textStyles" : {
-                                "fontSrc" : "_www/fonts/mui.ttf",
-                                "align" : "center",
-                                "size" : "24px"
+                                "height" : "51px"
                             }
+                           
                         },
                         {
-                            "tag" : "font",
-                            "id" : "fuliText",
-                            "text" : "生活",
+                            "tag" : "img",
+                            "id" : "indexIcon4",
+                            "src" : "_www/images/tab/4.jpg",
                             "position" : {
-                                "top" : "24px",
-                                "left" : "40%",
-                                "width" : "20%",
-                                "height" : "24px"
-                            },
-                            "textStyles" : {
-                                "align" : "center",
-                                "size" : "10px"
-                            }
-                        },
-                        {
-                            "tag" : "font",
-                            "id" : "contactIcon",
-                            "text" : "",
-                            "position" : {
-                                "top" : "4px",
+                                "top" : "0",
                                 "left" : "60%",
                                 "width" : "20%",
-                                "height" : "24px"
-                            },
-                            "textStyles" : {
-                                "fontSrc" : "_www/fonts/mui.ttf",
-                                "align" : "center",
-                                "size" : "24px"
+                                "height" : "51px"
                             }
+                           
                         },
                         {
-                            "tag" : "font",
-                            "id" : "contactText",
-                            "text" : "福利",
+                            "tag" : "img",
+                            "id" : "indexIcon5",
+                            "src" : "_www/images/tab/5.jpg",
                             "position" : {
-                                "top" : "24px",
-                                "left" : "60%",
-                                "width" : "20%",
-                                "height" : "24px"
-                            },
-                            "textStyles" : {
-                                "align" : "center",
-                                "size" : "10px"
-                            }
-                        },
-                        {
-                            "tag" : "font",
-                            "id" : "newwindowIcon",
-                            "text" : "",
-                            "position" : {
-                                "top" : "4px",
+                                "top" : "0",
                                 "left" : "80%",
                                 "width" : "20%",
-                                "height" : "24px"
-                            },
-                            "textStyles" : {
-                                "fontSrc" : "_www/fonts/iconfont.ttf",
-                                "align" : "center",
-                                "size" : "24px"
+                                "height" : "51px"
                             }
-                        },
-                        {
-                            "tag" : "font",
-                            "id" : "newwindowText",
-                            "text" : "会员",
-                            "position" : {
-                                "top" : "24px",
-                                "left" : "80%",
-                                "width" : "20%",
-                                "height" : "24px"
-                            },
-                            "textStyles" : {
-                                "align" : "center",
-                                "size" : "10px"
-                            }
+                           
                         }
+                       
+                       
+                     
                     ]
                 }
             ]
@@ -326,38 +235,38 @@
             "icons" : {
                 "ios" : {
                     "prerendered" : true, /*应用图标是否已经高亮处理，在iOS6及以下设备上有效*/
-                    "auto" : "", /*应用图标，分辨率：512x512，用于自动生成各种尺寸程序图标*/
+                     /*应用图标，分辨率：512x512，用于自动生成各种尺寸程序图标*/
                     "iphone" : {
                         "normal" : "", /*iPhone3/3GS程序图标，分辨率：57x57*/
                         "retina" : "", /*iPhone4程序图标，分辨率：114x114*/
-                        "retina7" : "", /*iPhone4S/5/6程序图标，分辨率：120x120*/
-                        "retina8" : "", /*iPhone6 Plus程序图标，分辨率：180x180*/
+                         /*iPhone4S/5/6程序图标，分辨率：120x120*/
+                         /*iPhone6 Plus程序图标，分辨率：180x180*/
                         "spotlight-normal" : "", /*iPhone3/3GS Spotlight搜索程序图标，分辨率：29x29*/
                         "spotlight-retina" : "", /*iPhone4 Spotlight搜索程序图标，分辨率：58x58*/
-                        "spotlight-retina7" : "", /*iPhone4S/5/6 Spotlight搜索程序图标，分辨率：80x80*/
+                         /*iPhone4S/5/6 Spotlight搜索程序图标，分辨率：80x80*/
                         "settings-normal" : "", /*iPhone4设置页面程序图标，分辨率：29x29*/
-                        "settings-retina" : "", /*iPhone4S/5/6设置页面程序图标，分辨率：58x58*/
-                        "settings-retina8" : ""
+                         /*iPhone4S/5/6设置页面程序图标，分辨率：58x58*/
+                        "app@2x":"unpackage/res/icons/120x120.png","app@3x":"unpackage/res/icons/180x180.png","settings@3x":"unpackage/res/icons/87x87.png","settings@2x":"unpackage/res/icons/58x58.png","spotlight@2x":"unpackage/res/icons/80x80.png","spotlight@3x":"unpackage/res/icons/120x120.png","notification@3x":"unpackage/res/icons/60x60.png","notification@2x":"unpackage/res/icons/40x40.png"
                     },
                     "ipad" : {
                         "normal" : "", /*iPad普通屏幕程序图标，分辨率：72x72*/
                         "retina" : "", /*iPad高分屏程序图标，分辨率：144x144*/
-                        "normal7" : "", /*iPad iOS7程序图标，分辨率：76x76*/
-                        "retina7" : "", /*iPad iOS7高分屏程序图标，分辨率：152x152*/
+                         /*iPad iOS7程序图标，分辨率：76x76*/
+                         /*iPad iOS7高分屏程序图标，分辨率：152x152*/
                         "spotlight-normal" : "", /*iPad Spotlight搜索程序图标，分辨率：50x50*/
                         "spotlight-retina" : "", /*iPad高分屏Spotlight搜索程序图标，分辨率：100x100*/
-                        "spotlight-normal7" : "", /*iPad iOS7 Spotlight搜索程序图标，分辨率：40x40*/
-                        "spotlight-retina7" : "", /*iPad iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
-                        "settings-normal" : "", /*iPad设置页面程序图标，分辨率：29x29*/
-                        "settings-retina" : ""
-                    }
+                         /*iPad iOS7 Spotlight搜索程序图标，分辨率：40x40*/
+                         /*iPad iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
+                         /*iPad设置页面程序图标，分辨率：29x29*/
+                        "app":"unpackage/res/icons/76x76.png","app@2x":"unpackage/res/icons/152x152.png","settings":"unpackage/res/icons/29x29.png","proapp@2x":"unpackage/res/icons/167x167.png","spotlight":"unpackage/res/icons/40x40.png","settings@2x":"unpackage/res/icons/58x58.png","spotlight@2x":"unpackage/res/icons/80x80.png","notification":"unpackage/res/icons/20x20.png","notification@2x":"unpackage/res/icons/40x40.png"
+                    },"appstore":"unpackage/res/icons/1024x1024.png"
                 },
                 "android" : {
-                    "mdpi" : "", /*普通屏程序图标，分辨率：48x48*/
-                    "ldpi" : "", /*大屏程序图标，分辨率：48x48*/
-                    "hdpi" : "", /*高分屏程序图标，分辨率：72x72*/
-                    "xhdpi" : "", /*720P高分屏程序图标，分辨率：96x96*/
-                    "xxhdpi" : ""
+                    "mdpi" : "unpackage/res/icons/48x48.png", /*普通屏程序图标，分辨率：48x48*/
+                    "ldpi" : "unpackage/res/icons/48x48.png", /*大屏程序图标，分辨率：48x48*/
+                    "hdpi" : "unpackage/res/icons/72x72.png", /*高分屏程序图标，分辨率：72x72*/
+                    "xhdpi" : "unpackage/res/icons/96x96.png", /*720P高分屏程序图标，分辨率：96x96*/
+                    "xxhdpi" : "unpackage/res/icons/144x144.png","xxxhdpi":"unpackage/res/icons/192x192.png"
                 }
             },
             "splashscreen" : {
@@ -394,7 +303,7 @@
                     "ifly" : {}
                 }
             }
-        }
+        },"adid":"125999110409"
     },
     "dependencies" : {
         "pages" : {
