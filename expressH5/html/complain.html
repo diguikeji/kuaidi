@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>投诉建议</title>
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/mui.picker.min.css" />
+		<link rel="stylesheet" href="../css/app.css">
+		<style type="text/css">
+			body{
+				background-color: #F8F8F8;
+			}
+			.head_wrap{
+				padding: 13px 0px;
+				width: 100%;
+				text-align: center;
+				color: #999999;
+				font-size: 12px;
+			}
+			
+			::-webkit-input-placeholder{
+				color: #999999;
+				font-size: 14px;
+			}
+			
+			.item_wrap{
+				width: 100%;
+				background-color: #FFFFFF;
+				padding-left: 14px;
+				
+			}
+			.item{
+				height: 50px;
+				width: 100%;
+				border-bottom: 1px solid #E3E3E3;
+				color: #333333;
+				font-size: 14px;
+				padding-right: 15px;
+			}
+			
+			.item .content{
+				flex: 1;
+				text-align: right;
+				font-size: 14px;
+				color: #666666;
+				height: 50px;
+				line-height: 50px;
+				
+			}
+			
+			.button{
+				border-radius: 6px;
+				width: 90%;
+				margin: 26px 5% 0px;
+				box-sizing: border-box;
+				background-color: #107EFF;
+				color: #FFFFFF;
+				font-size: 16px;
+				height: 44px;
+			}
+			
+			.arraw{
+				width: 10px;
+				height: 10px;
+				border-top: 2px solid #999999;
+				border-right: 2px solid #999999;
+				transform: rotate(45deg);
+				margin-left: 2px;
+			  }
+			  
+			.item input{
+				margin-bottom: 0px;
+				border: none;
+				background: transparent;
+				padding-left: 8px;
+				flex: 1;
+				text-align: right;
+				padding-right: 0px;
+			}
+			
+			.upload_wrap{
+				padding: 18px 15px;
+				background: #FFFFFF;
+				color: #333333;
+				font-size: 14px;
+			}
+			  
+			.img_wrap{
+				flex-flow: wrap;
+				margin-top: 18px;
+			}
+			
+			.img_wrap img{
+				width: 100px;
+				height: 75px;
+				margin-right: 10px;
+				margin-bottom: 10px;
+			}  
+			
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav" >
+		    <!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
+			<img src="../images/back.png" class="mui-action-back">
+			
+		    <h1 class="mui-title">投诉建议</h1>
+		</header>
+		
+		<div class="mui-content">
+			<div class="head_wrap">
+				<span>感谢您对我们提出宝贵的投诉建议</span>
+			</div>
+			
+			<div class="row item_wrap" onclick="showReason();">
+				<div class="row_between item">
+					<span>投诉原因</span>
+					<span class="content"></span>
+					<span class="arraw"></span>
+				</div>
+			</div>
+			
+			<div class="row item_wrap">
+				<div class="row_between item">
+					<span>手机号</span>
+					<input type="tel" maxlength="11" placeholder="请输入手机号码">
+				</div>
+			</div>
+			
+			<div class="upload_wrap">
+				<span>上传图片</span>
+				<div class="row img_wrap">
+					
+				</div>
+			</div>
+			
+			<button type="button" class="mui-btn mui-btn-primary button">提交</button>
+			
+		</div>
+		
+		
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/mui.picker.min.js"></script>
+	<script src="../js/jquery-2.1.1.min.js"></script>
+	<script src="../js/app.js"></script>
+	<script type="text/javascript">
+		var complainPicker = new mui.PopPicker();
+		complainPicker.setData([{
+			value: 'ywj',
+			text: '董事长 叶文洁'
+		}, {
+			value: 'aaa',
+			text: '总经理 艾AA'
+		}, {
+			value: 'gezh', 
+			text: '歌者'
+		}]);
+		
+		function showReason(){
+			complainPicker.show(function(item){
+				console.log(item)
+				mui('.content')[0].innerHTML = item[0].text;
+			})
+		}
+		
+		addImage();
+		function addImage(){
+			var html = '';
+			for(var i=0; i<10; i++){
+				html += '<img src="../images/firstPageLive/homeBottom_03.jpg" >';
+			}
+			
+			$(".img_wrap").append(html);
+		}
+		
+	</script>
+</html>
