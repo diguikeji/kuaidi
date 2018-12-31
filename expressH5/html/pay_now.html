@@ -8,46 +8,34 @@
 		<link rel="stylesheet" href="../css/mui.picker.min.css" />
 		<link rel="stylesheet" href="../css/app.css">
 		<style type="text/css">
-			body{
-				background-color: #F8F8F8;
+			.header{
+				background-color: #FFFFFF;
+				top: 0rem;
+			}
+			
+			.mui-content{
+				background-color: #FFFFFF;
 			}
 			.head_wrap{
-				padding: 0.26rem 0rem 0.18rem 0.16rem;
+				padding: 0.18rem 0rem 0.18rem 0.16rem;
 				width: 100%;
 				text-align: left;
 				color: #333333;
-				font-size: 0.22rem;
-				font-weight: bold;
-			}
-			
-			.item input::-webkit-input-placeholder{
-				color: #cccccc;
-				font-size: 14px;
+				font-size: 0.16rem;
 			}
 			
 			.item_wrap{
 				width: 100%;
 				background-color: #FFFFFF;
-				padding-left: 14px;
-				
-			}
-			.item{
-				height: 50px;
-				width: 100%;
+				height: 0.48rem;
 				border-bottom: 1px solid #E3E3E3;
 				color: #333333;
-				font-size: 14px;
-				padding-right: 15px;
+				font-size: 0.14rem;
 			}
 			
-			.item .content{
-				flex: 1;
-				text-align: right;
-				font-size: 14px;
+			.item_wrap .content{
 				color: #666666;
-				height: 50px;
-				line-height: 50px;
-				
+				font-size: 0.14rem;
 			}
 			
 			.button{
@@ -70,39 +58,95 @@
 				margin-left: 2px;
 			  }
 			  
-			.item input{
-				margin-bottom: 0px;
-				border: none;
-				background: transparent;
-				padding-left: 8px;
-				flex: 1;
-				text-align: right;
-				padding-right: 0px;
-			}
 			
-			.upload_wrap{
-				padding: 18px 15px;
-				background: #FFFFFF;
-				color: #333333;
-				font-size: 14px;
-			}
 			  
 			.img_wrap{
 				width: 92%;
 				text-align: center;
-				height: 169px;
-				padding-left: 4%;
+				height: 0.69rem;
+				margin-left: 4%;
+				box-shadow: 0px 0px 10px 0px #EAEAEA;
+				padding: 0rem 0.18rem;
 			}
 			
 			.img_wrap img{
-				width: 100%;
-				height: 100%;
+				width: 0.2rem;
+				height: 0.23rem;
+				margin-right: 0.18rem;
 			}  
+			
+			.img_wrap span{
+				font-size: 0.14rem;
+				color: #333333;
+				font-weight: bold;
+				text-align: left;
+			}
+			
+			.time_wrap{
+				padding: 0rem 0.16rem;
+				color: #999999;
+				font-size: 0.14rem;
+				margin: 0.13rem 0rem 0.23rem;
+			}
+			
+			.content_wrap{
+				box-shadow: 0px 0px 10px 0px #EAEAEA;
+				height: 1.96rem;
+				padding: 0rem 0.13rem;
+				width: 92%;
+				margin-left: 4%;
+				margin-bottom: 0.13rem;
+			}
+			
+			.content_wrap .info{
+				color: #333333;
+				font-size: 0.16rem;
+				height: 0.52rem;
+				line-height: 0.52rem;
+				font-weight: bold;
+				border-bottom: 1px solid #E3E3E3;
+			}
+			
+			.content_wrap .content{
+				width: 100%; text-align: left; color:#666666; font-size:0.14rem;
+				height: 0.67rem;
+				padding: 0.16rem 0.01rem 0rem;
+			}
+			
+			.bottom_wrap{
+				height: 0.72rem;
+				padding: 0rem 0.15rem;
+				position: fixed;
+				bottom: 0rem;
+				left: 0rem;
+				width: 100%;
+				box-sizing: border-box;
+				background-color: #FFFFFF;
+			}
+			
+			.bottom_wrap .btn{
+				width: 1.82rem;
+				height: 0.44rem;
+				line-height: 0.44rem;
+				color: #FFFFFF;
+				background-color: #107EFF;
+				border-radius: 0.03rem;
+				text-align: center;
+			}
+			
+			.money_info{
+				color: #333333;
+				font-size: 0.16rem;
+			}
+			
+			.money_num{
+				color: #FF5269; font-size: 0.24rem;
+			}
 			
 		</style>
 	</head>
 	<body>
-		<header class="mui-bar mui-bar-nav" >
+		<header class="mui-bar mui-bar-nav header" >
 		    <!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
 			<img src="../images/back.png" class="mui-action-back">
 			
@@ -111,42 +155,56 @@
 		
 		<div class="mui-content">
 			<div class="head_wrap">
-				<span>访客预约</span>
+				<div style="margin-bottom: 0.17rem; font-weight: bold;">成交内容</div>
+				<span>由楼服宝提供100桶桶装水，并且送水上门</span>
 			</div>
 			
-			<div class="img_wrap">
-				<img src="../images/firstPageLive/home_02.jpg" alt="">
+			<div class="row_around img_wrap">
+				<img src="../images/back.png" >
+				<span style="flex: 1;">合同查看</span>
+				<span class="arraw"></span>
 			</div>
 			
-			<div class="head_wrap" style="font-size: 0.14rem; padding: 0.17rem 0.15rem">
-				<span >预约信息</span>
+			<div class="row_between time_wrap">
+				<span>服务期限</span>
+				<span>2018.11 - 2019.01</span>
 			</div>
 			
-			<div class="row item_wrap">
-				<div class="row_between item">
+			<div class="content_wrap">
+				<div class="info">联系人信息</div>
+				<div class="row_between item_wrap">
 					<span>姓名</span>
-					<input type="tel" maxlength="11" placeholder="请输入姓名">
+					<span class="content">张三</span>
+				</div>
+				
+				<div class="row_between item_wrap">
+					<span>手机</span>
+					<span class="content">13800138000</span>
+				</div>
+				
+				<div class="row_between item_wrap">
+					<span>公司名称</span>
+					<span class="content">上海楼冠信息科技有限公司</span>
 				</div>
 			</div>
 			
-			<div class="row item_wrap">
-				<div class="row_between item">
-					<span>手机号</span>
-					<input type="tel" maxlength="11" placeholder="请填写手机号">
+			<div class="content_wrap" style="height: 1.18rem;">
+				<div class="info">需求明细</div>
+				
+				<div class="content">
+					我司本季度需要100桶桶装水我司本季度需要100桶 桶装水。
 				</div>
 			</div>
 			
-			<div class="row item_wrap" onclick="showReason();">
-				<div class="row_between item">
-					<span>您要去的楼层</span>
-					<span class="content">请选择楼层</span>
-					<span class="arraw"></span>
+			<div class="row_between bottom_wrap">
+				<div class="money_info">
+					<span>总价:</span>
+					<span class="money_num" style="font-size: 0.16rem;">¥</span>
+					<span class="money_num">1033.0</span>
 				</div>
+				
+				<span class="btn">立即付款</span>
 			</div>
-			
-			
-			
-			<button type="button" class="mui-btn mui-btn-primary button">确定</button>
 			
 		</div>
 		
