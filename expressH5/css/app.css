@@ -125,4 +125,12 @@ header h1{
 	font-weight: bold;
 }
 
+.hideClass{
+	display: none;
+}
+
+.showClass{
+	display: inline-block;
+}
+
 
