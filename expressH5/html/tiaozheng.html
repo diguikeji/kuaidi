@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>功能调整</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/app.css">
+		<link rel="stylesheet" href="../css/page.css">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/secondPage.css">
+		<style>
+			body,.mui-content{background: #f9f9f9;}
+
+
+
+		</style>
+		
+		
+		
+	</head>
+
+	<body>
+
+
+	<div class="header-bar">
+
+		<div class="header-title">功能调整</div>
+
+		<span class="header-right">
+			<img src="../images/secondPage/tiaozheng_13.jpg"/>
+		</span>
+	</div>
+
+	<div class="mui-content has-header tiaozheng-col">
+
+		<div class="pd tip-col">您可以重新安排首页展示的功能选项</div>
+
+		<div class="tiaozheng-list">
+
+			<div class="child-col">
+				<img class="first" src="../images/secondPage/tiaozheng_51.jpg">
+				<img class="second" src="../images/secondPage/tiaozheng_25.jpg">
+				<span class="text">附近餐饮</span>
+
+				<div class="right-col">
+
+					<span class="mui-switch mui-switch-mini mui-switch-blue mui-active ">
+						<div class="mui-switch-handle"></div>
+					</span>
+
+				</div>
+			</div>
+			<div class="child-col">
+				<img class="first" src="../images/secondPage/tiaozheng_51.jpg">
+				<img class="second" src="../images/secondPage/tiaozheng_39.jpg">
+				<span class="text">推荐商品</span>
+
+				<div class="right-col">
+
+					<span class="mui-switch mui-switch-mini mui-switch-blue mui-active ">
+						<div class="mui-switch-handle"></div>
+					</span>
+
+				</div>
+			</div>
+
+		</div>
+
+
+		<div class="pd tip-col">未启用</div>
+
+		<div class="tiaozheng-list">
+
+			<div class="child-col">
+				<img class="first" src="../images/secondPage/tiaozheng_51.jpg">
+				<img class="second" src="../images/secondPage/tiaozheng_53.jpg">
+				<span class="text">楼宇福利</span>
+
+				<div class="right-col">
+
+					<span class="mui-switch mui-switch-mini mui-switch-blue">
+						<div class="mui-switch-handle"></div>
+					</span>
+
+				</div>
+			</div>
+			<div class="child-col">
+				<img class="first" src="../images/secondPage/tiaozheng_51.jpg">
+				<img class="second" src="../images/secondPage/tiaozheng_67.jpg">
+				<span class="text">智慧楼宇</span>
+
+				<div class="right-col">
+
+					<span class="mui-switch mui-switch-mini mui-switch-blue ">
+						<div class="mui-switch-handle"></div>
+					</span>
+
+				</div>
+			</div>
+
+		</div>
+
+
+	</div>
+
+		<script src="../js/mui.min.js"></script>
+	    <script src="../js/jquery-2.1.1.min.js"></script>
+		<script src="../lib/jquery.waterfall.js"></script>
+		<script>
+
+
+			$("#grid").waterfall({
+				itemClass: ".grid-item",
+				minColCount: 2,
+				spacingWidth:0,
+				spacingHeight: 0,
+				resizeable: true,
+				ajaxCallback: function(success, end) {
+
+				}
+			});
+
+
+			mui.init({
+				swipeBack: false,
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						style:'circle',
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			
+			function pulldownRefresh()
+			{
+				
+			}
+
+			function pullupRefresh()
+			{
+
+			}
+
+		</script>
+	</body>
+
+</html>

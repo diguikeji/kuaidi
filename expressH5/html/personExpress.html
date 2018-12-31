@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>个人快递</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/app.css">
+		<link rel="stylesheet" href="../css/page.css">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/secondPage.css">
+		<style>
+			body,.mui-content{background: #fff!important;}
+
+
+
+		</style>
+		
+		
+		
+	</head>
+
+	<body>
+
+
+	<div class="header-bar">
+
+		<div class="header-left">
+			<img src="../images/back.png"/>
+		</div>
+
+		<div class="header-title color">个人快递</div>
+
+		<span class="header-right">
+			<img src="../images/secondPage/dianIcon.jpg"/>
+		</span>
+
+
+	</div>
+
+	<div class="mui-content has-header person-express-col">
+
+		<div class="pd">
+			<ul class="person-express-list">
+				<li>
+					<div class="person-express-detail">
+					<img src="../images/secondPage/personExpress_17.png">
+					<div class="text">
+					<div>国内快递</div>
+					<p>价格实惠、速度快，江浙沪次日达</p>
+					</div>
+					<span class="right-col">
+					<span class="mui-icon mui-icon-arrowright"></span>
+					</span>
+						</div>
+				</li>
+				<li>
+					<div class="person-express-detail">
+					<img src="../images/secondPage/personExpress_31.png">
+					<div class="text">
+						<div>国际快递</div>
+						<p>优秀的服务，更便捷的选择</p>
+					</div>
+					<span class="right-col">
+					<span class="mui-icon mui-icon-arrowright"></span>
+					</span>
+						</div>
+				</li>
+				<li>
+					<div class="person-express-detail">
+					<img src="../images/secondPage/personExpress_45.png">
+					<div class="text">
+						<div>同城快递</div>
+						<p>今天送，今天达哦～！</p>
+					</div>
+					<span class="right-col">
+					<span class="mui-icon mui-icon-arrowright"></span>
+					</span>
+						</div>
+				</li>
+				<li>
+					<div class="person-express-detail">
+					<img src="../images/secondPage/personExpress_59.png">
+					<div class="text">
+						<div>物流大件</div>
+						<p>哪怕重如泰山我们也能轻松抬走</p>
+					</div>
+					<span class="right-col">
+					<span class="mui-icon mui-icon-arrowright"></span>
+					</span>
+						</div>
+				</li>
+			</ul>
+
+
+
+		</div>
+
+		<div class="person-express-bottom clearfix">
+			<div class="person-express-col">
+				<div class="person-express-detail">
+					<img src="../images/secondPage/personExpress_72.png">
+					<div>运费计算</div>
+				</div>
+			</div>
+			<div class="person-express-col">
+				<div class="person-express-detail">
+					<img src="../images/secondPage/personExpress_75.png">
+					<div>违禁品信息</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+		<script src="../js/mui.min.js"></script>
+	    <script src="../js/jquery-2.1.1.min.js"></script>
+		<script src="../lib/jquery.waterfall.js"></script>
+		<script>
+
+
+
+
+			mui.init({
+				swipeBack: false,
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						style:'circle',
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			
+			function pulldownRefresh()
+			{
+				
+			}
+
+			function pullupRefresh()
+			{
+
+			}
+
+		</script>
+	</body>
+
+</html>

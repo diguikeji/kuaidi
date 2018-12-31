@@ -86,12 +86,12 @@
 .my-info .money{color:#fff;font-size:0.22rem;padding:0.3rem 0 0 0.24rem;}
 .my-info .money span{font-size:0.16rem;}
 .my-info p{color:#fff;font-size:0.13rem;padding:0.06rem 0 0 0.28rem;}
-.pd{padding:0 15px;}
 .full-img{display: block;width:100%;}
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder
 {
     　　color: #999;
 }
+
 
 
 
