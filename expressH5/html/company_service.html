@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>企业服务</title>
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/app.css">
+		<style type="text/css">
+			body,html{
+				height: 100%;
+				background-color: #FFFFFF;
+			}
+			.head_wrap{
+				background: url(../images/firstPageLive/banner1.png) no-repeat;
+				background-size: 100% 1.9rem;
+				height: 1.9rem;
+			}
+			.head_wrap{
+				padding: 0.16rem;
+				font-size: 0.18rem;
+				color: #333333;
+			}
+			
+			.head_wrap img{
+				width: 0.14rem;
+				height:0.14rem;
+			}
+			
+			.login_wrap{
+				border-radius: 0.04rem;
+				background-color: #FFFFFF;
+				width: 100%;
+				box-sizing: border-box;
+				padding: 0.08rem 0.1rem;
+			}
+			
+			.item_wrap{
+			  height: 0.9rem;
+			  background-color: #FFFFFF;
+			  padding: 0px 0.16rem;
+			  color: #333333;
+			  font-size: 0.16rem;
+			  flex: 1;
+			  box-shadow: 0px 0px 0.1rem 0px #EAEAEA;
+			  margin: 0.05rem;
+			  font-weight: bold;
+			}
+			
+			.item_wrap img{
+				width: 0.32rem;
+				height: 0.34rem;
+				margin-right: 0.1rem;
+			}
+			
+			.item_wrap .info{
+				color: #999999;
+				font-size: 0.11rem;
+			}
+			
+			.btn{
+				border-top: 1px solid #E3E3E3;
+				text-align: center;
+				padding-top: 0.1rem;
+			}
+			
+			.bottom-col{position: relative;}
+			.bottom-col .bottom-col-detail p{color:#666666;}
+			.bottom-col .bottom-col-detail{width:100%;top:20%;position: absolute;left:0;text-align: center;}
+			.bottom-col .bottom-col-detail button{border:1px solid #277EFF;color:#FFFFFF;border-radius: 20px;padding:0.06rem 0.2rem;background-color: #277EFF}
+			.full-img{display: block;width:100%;}
+			
+			
+			
+		</style>
+	</head>
+	<body>
+		<div class="row_between head_wrap">
+			<img src="../images/address/search.png" >
+		</div>
+		
+		<div class="login_wrap">
+			
+			<div class="row_between">
+				<div class="row_center item_wrap">
+					<img src="../images/personal/wx_active.png" >
+					<div class="col">
+						<span>饮水服务</span>
+						<span class="info">健康饮水从这开始</span>
+					</div>
+				</div>
+				
+				<div class="row_center item_wrap">
+					<img src="../images/personal/wx_active.png" >
+					<div class="col">
+						<span>保洁服务</span>
+						<span class="info">专业的清洁专家</span>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="row_between">
+				<div class="row_center item_wrap">
+					<img src="../images/personal/wx_active.png" >
+					<div class="col">
+						<span>绿植服务</span>
+						<span class="info">您身边的勤劳园丁</span>
+					</div>
+				</div>
+				
+				<div class="row_center item_wrap">
+					<img src="../images/personal/wx_active.png" >
+					<div class="col">
+						<span>商务场地</span>
+						<span class="info">快捷商务场地预定</span>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="bottom-col">
+				<img class="full-img" src="../images/service/bottom.jpg"/>
+				<div class="bottom-col-detail">
+			
+					<p>需要更多企业服务?</p>
+			
+					<button type="button">按需定制服务</button>
+			
+				</div>
+			
+			</div>
+			
+		</div>
+		
+	
+		
+	</body>
+	<script type="text/javascript" src="../js/mui.min.js"></script>
+	<script src="../js/jquery-2.1.1.min.js"></script>
+	<script src="../js/app.js"></script>
+	<script type="text/javascript">
+		$("input").focus(function(){
+			console.log(this)
+		  $(this).parent().css("border-bottom","1px solid #107EFF");
+		});
+		
+		$("input").blur(function(){
+			console.log(this)
+		  $(this).parent().css("border-bottom","1px solid #E3E3E3");
+		});
+		
+		function post(){
+			$(".modal-mask").removeClass("hideClass");
+		}
+		
+		function closeDialg(){
+			$(".modal-mask").addClass("hideClass");
+		}
+		
+		
+	</script>
+</html>

@@ -92,7 +92,6 @@ body,html{
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
 }
 
 .col_around{
