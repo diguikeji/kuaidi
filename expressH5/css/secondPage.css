@@ -188,13 +188,47 @@
     background:rgba(249,249,249,1);
     border-radius:4px;width:100%;left:0;bottom:0;position: absolute;padding:0.15rem 15px;z-index:100;
 }
+.beizhu-text .right-close{position: relative;top:-0.12rem;right:-0.1rem;}
+.beizhu-text .right-close span{color:#333333;font-size:0.32rem;}
 
 .beizhu-text .clearfix{padding-bottom:0.13rem;font-size:0.17rem;}
 .beizhu-text .clearfix .fr{color:#107EFF;font-size:0.13rem;display: inline-block;padding:0.02rem 0  0.02rem 0.05rem;}
 .beizhu-text textarea{font-size:0.13rem;}
 
+.beizhu-text .tag-list{margin-left:-0.05rem;margin-right:-0.05rem;}
+.beizhu-text .tag-list span{color:#666666;border:1px solid #999999;width:1rem;text-align:center;line-height: 0.34rem;display: inline-block;font-size:0.13rem;border:1px solid rgba(153,153,153,1);
+    border-radius:17px;padding:0 0;margin:0.05rem 0.05rem;}
+.beizhu-text .tag-list span.active{background: #107EFF;color:#fff;}
+
+.mall-detail .title{font-size:0.22rem;
+    color:rgba(51,51,51,1);
+    font-family:PingFangSC-Medium;
+    line-height:0.3rem;
+    padding:0.2rem 0 0.12rem 0;
+}
+
+.mall-detail-info{color:#999999;font-size:0.11rem;}
+.mall-detail-info .left{float:left;}
+.mall-detail-info .left img{width:0.12rem;position: relative;top:0.02rem;}
+.mall-detail-info .right{float:right;}
+.mall-detail .img-col{background:rgba(255,255,255,1);
+    border:1px solid rgba(227,227,227,1);}
+
+.mall-detail-info{padding:0 0 0.1rem 0;}
+.mall-detail-info .right .first{margin-right:0.05rem;}
 
 
+.mall-detail .goods-col{position: relative;padding-left:0.9rem;border:1px solid rgba(243, 243, 243, 1);
+    box-shadow:0px 2px 6px 0px rgba(126,125,125,0.14);
+    border-radius:4px;height:1.04rem;}
+.mall-detail .goods-col p{padding-top:0.15rem;margin-bottom:0.05rem;}
+.mall-detail .goods-col img{width:0.8rem;left:0;top:0.052rem;position: absolute;}
+.mall-detail .goods-col div{font-size:0.12rem;color:#666;}
+
+
+.mall-detail .bottom-col{height:0.49rem;line-height: 0.49rem;font-size:0.1rem;position: fixed;left:0;width:100%;z-index:1000;bottom:0;background: #fff;}
+.mall-detail .bottom-col div{width:50%;float:left;text-align: center;color:#666666;}
+.mall-detail .bottom-col img{width:0.245rem;position: relative;top:0.05rem;}
 
 
 
