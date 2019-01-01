@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>上海歌斐中心</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<style type="text/css">
+			body, html{
+				width: 100%;
+				background: #FFFFFF;
+			}
+			
+			.head_wrap{
+				width: 100%;
+				box-sizing: border-box;
+				padding: 0.26rem 0.15rem 0.18rem;
+				color: #333333;
+				font-size: 0.22rem;
+				font-weight: bold;
+			}
+			
+			.head_wrap .name{
+				color: #107EFF;
+			}
+			.head_wrap .img{
+				width: 0.12rem;
+				height: 0.12rem;
+				margin-right: 0.05rem;
+			}
+			
+			.head_wrap .search{
+				color: #666666;
+				font-size: 0.12rem;
+			}
+			
+			.mui-progressbar{
+				height: 16px;
+				border-radius: 10px;
+				background: #FFD9D6;
+			}
+			.mui-progressbar span{
+				background: #Ff5445;
+				border-radius: 10px;
+			}
+			
+			.empty_text{
+				width: 100%; 
+				height: 400px; 
+				line-height: 400px; 
+				text-align: center;
+				background: #f4f4f4; 
+				border: none; 
+				z-index: 10;
+				background: #f2f2f2;
+			}
+
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" >
+		    <img src="../images/back.png" class="mui-action-back">
+		    <h1 class="mui-title">上海歌斐中心</h1>
+		</header>
+		
+		<div class="mui-content" style="background: #FFFFFF;">
+			<div class="row_between head_wrap">
+				<div class="row">
+					<span class="name">外卖</span>
+					<span>管理</span>
+				</div>
+				<div class="row">
+					<img src="../images/firstPageLive/icon2.png" class="img">
+					<span class="search">单号搜索</span>
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/jquery-2.1.1.min.js"></script>
+		<!-- <script src="../js/app.js"></script> -->
+		<script type="text/javascript">
+			mui.init({
+				subpages:[{
+					url:'take_out_order_sub.html',
+					id:'take_out_order_sub.html',
+					styles:{
+						top: '0.9rem',
+						bottom: '0px'
+					}
+				}]
+			}); 
+			
+			function changeType(index){
+				$(".titleType").each(function(ind){
+					$(this).removeClass("active");
+					$(this).next().removeClass("active_line");
+					
+					if(index == ind){
+						$(this).addClass("active");
+						$(this).next().addClass("active_line");
+						//sendClickType(index);
+					}
+				})
+			}
+				
+				function sendClickType(index){
+					console.log("发送事件"+index);
+					var h = plus.webview.getWebviewById("recommand_sub.html");
+					mui.fire(h,'updatePreType',{currentType: currentType, isDesc: isDesc});
+				}
+			
+		</script>
+	</body>
+
+</html>
