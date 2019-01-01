@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>购物车</title>
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/mui.picker.min.css" />
+		<link rel="stylesheet" href="../css/app.css">
+		<style type="text/css">
+			.header{
+				background-color: #FFFFFF;
+				top: 0rem;
+			}
+			
+			.mui-content{
+				background-color: #FFFFFF;
+				height: 100%;
+			}
+			
+			.menu_add{
+				font-size: 0.14rem;
+				color: #FF5269;
+				position: absolute;
+				right: 0.2rem;
+				top: 0.14rem;
+			}
+			
+			.radio_item{
+				height: 1.07rem!important;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: space-between;
+				border-bottom: 1px solid #E3E3E3;
+				padding: 0.18rem 0.15rem;
+				color: #666666;
+				font-size: 0.14rem;
+			}
+			
+			.radio_item img{
+				width: 0.7rem;
+				height: 0.7rem;
+				margin-right: 0.13rem;
+			}
+			
+			.mui-checkbox input[type=checkbox], .mui-radio input[type=radio]{
+				top: auto!important;
+			}
+			
+			.mui-radio.mui-left label{
+				padding: 0rem 0rem 0rem 0.3rem;
+			}
+			
+			.money_wrap{
+				width: 100%;
+			}
+			
+			.action_span{
+				width: 0.24rem;
+				height: 0.24rem;
+				text-align: center;
+				line-height: 0.24rem;
+				color: #999999;
+				font-size: 0.2rem;
+				border: 1px solid #E3E3E3;
+				border-radius: 50%;
+			}
+			
+			.num{
+				font-size: 0.18rem;
+				color: #333333;
+				margin: 0rem 0.2rem;
+			}
+			
+			
+			.bottom_wrap{
+				height: 0.72rem;
+				padding: 0rem 0.15rem;
+				position: fixed;
+				bottom: 0rem;
+				left: 0rem;
+				width: 100%;
+				box-sizing: border-box;
+				background-color: #FFFFFF;
+			}
+			
+			.bottom_wrap .btn{
+				width: 1.4rem;
+				height: 0.44rem;
+				line-height: 0.44rem;
+				color: #FFFFFF;
+				background-color: #107EFF;
+				border-radius: 0.03rem;
+				text-align: center;
+			}
+			
+			.money_info{
+				color: #333333;
+				font-size: 0.16rem;
+			}
+			
+			.money_num{
+				color: #FF5269; font-size: 0.24rem;
+			}
+			
+			.all_info{
+				font-size: 0.14rem;
+				color: #333333;
+				width: 100%;
+				box-sizing: border-box;
+				padding: 0.17rem 0.15rem;
+				text-align: right;
+			}
+			
+			.mui-radio.mui-left input[type=radio]{
+				left: 0.1rem;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav header" >
+		    <!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
+			<img src="../images/back.png" class="mui-action-back">
+			
+		    <h1 class="mui-title">购物车</h1>
+			
+			<a class="menu_add" onclick="goToAddAddr();">删除</a>
+		</header>
+		
+		<div class="mui-content">
+			
+			<form class="mui-input-group">
+				<div class="mui-input-row mui-radio mui-left radio_item">
+					<label>
+						<div class="row ">
+							<img src="../images/firstPageLive/homeBottom_03.jpg" alt="">
+							<div class="col_between" style="height: 0.7rem;">
+								<span class="name">农夫山泉饮用水饮用天然水5L*4桶整箱装桶装水</span>
+								<div class="row_between money_wrap">
+									<span>￥169.00 </span>
+									<div class="row">
+										<span class="action_span">-</span>
+										<span class="num">2</span>
+										<span class="action_span">+</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</label>
+					<input name="radio1" type="radio">
+				</div>
+				<div class="mui-input-row mui-radio mui-left radio_item">
+					<label>
+						<div class="row ">
+							<img src="../images/firstPageLive/homeBottom_03.jpg" alt="">
+							<div class="col_between" style="height: 0.7rem;">
+								<span class="name">农夫山泉饮用水饮用天然水5L*4桶整箱装桶装水</span>
+								<div class="row_between money_wrap">
+									<span>￥169.00 </span>
+									<div class="row">
+										<span class="action_span">-</span>
+										<span class="num">2</span>
+										<span class="action_span">+</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</label>
+					<input name="radio1" type="radio" checked>
+				</div>
+			</form>
+			
+			<div class="all_info">
+				活动优惠: -￥0.00
+			</div>
+			
+			<div class="all_info" style="padding-top: 0rem;">
+				本仓总计(不含税): ￥507.00
+			</div>
+			
+			<div class="row_between bottom_wrap">
+				<div class="mui-input-row mui-radio mui-left radio_item" style="height: 0.4rem!important; padding: 0rem;">
+					<label >全选</label>
+					<input name="radio1" type="radio" style="left:0rem">
+				</div>
+				
+				<div class="money_info">
+					<span>总价:</span>
+					<span class="money_num" style="font-size: 0.16rem;">¥</span>
+					<span class="money_num">1033.0</span>
+				</div>
+				
+				<span class="btn">结算(1)</span>
+			</div>
+			
+		</div>
+		
+		
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/mui.picker.min.js"></script>
+	<script src="../js/jquery-2.1.1.min.js"></script>
+	<script src="../js/app.js"></script>
+	<script type="text/javascript">
+		var complainPicker = new mui.PopPicker();
+		complainPicker.setData([{
+			value: 'ywj',
+			text: '董事长 叶文洁'
+		}, {
+			value: 'aaa',
+			text: '总经理 艾AA'
+		}, {
+			value: 'gezh', 
+			text: '歌者'
+		}]);
+		
+		function showReason(){
+			complainPicker.show(function(item){
+				console.log(item)
+				mui('.content')[0].innerHTML = item[0].text;
+			})
+		}
+		
+		
+		
+	</script>
+</html>

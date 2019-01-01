@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>会员报名</title>
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/app.css">
+		<style type="text/css">
+			body{
+				background-color: #FFFFFF;
+			}
+			
+			.mui-content{
+				background-color: #FFFFFF;
+			}
+			
+			
+			.head_wrap{
+				height: 1.8rem;
+				width: 100%;
+				box-sizing: border-box;
+				background-color: #484847;
+				padding: 0.28rem 0.15rem 0rem;
+				position: relative;
+			}
+			
+			
+			.head_wrap img{
+				height: 1.42rem;
+				border-radius: 0.13rem 0.13rem 0rem 0rem;
+				position: absolute;
+				bottom: 0rem;
+				left: 0.15rem;
+				right: 0.15rem;
+			}
+			
+			.title_wrap{
+				text-align: center;
+				height: 0.53rem;
+				line-height: 0.53rem;
+				/* border-bottom: 1px solid #E3E3E3; */
+				color: #333333;
+				font-size: 0.18rem;
+				font-weight: bold;
+			}
+			
+			ul{
+				background-color: #FFFFFF!important;
+			}
+			
+			li img{
+				width: 0.34rem;
+				height: 0.34rem;
+			}
+			
+			li span{
+				color: #666666;
+				font-size: 0.12rem;
+			}
+			
+			.mui-grid-view li{
+				border: 0.5px solid #E3E3E3;
+			}
+			  
+			.button{
+				border-radius: 0.03rem;
+				box-sizing: border-box;
+				background-color: #107EFF;
+				color: #FFFFFF;
+				font-size: 0.16rem;
+				height: 0.44rem;
+				position: absolute;
+				left: 5%;
+				bottom: 0.2rem;
+				width: 90%;
+			}
+			
+			.modal-mask {
+			    width: 100%;
+			    height: 100%;
+			    position: fixed;
+			    top: 0;
+			    left: 0;
+			    background: rgba(0, 0, 0, 0.4);
+			    overflow: hidden;
+			    z-index: 10;
+			    color: #fff;
+			    justify-content: center;
+			    align-items: center;
+			}
+			
+			.modal-dialog {
+			    width: 100%;
+			    overflow: auto;
+			    position: relative;
+				bottom: 0rem;
+				background-color: #FFFFFF;
+				
+			}
+			
+			.close_style {
+			    width: 0.12rem;
+			    height: 0.12rem;
+			    z-index: 100000;
+			}
+			
+			.modal_title_wrap{
+				padding: 0.17rem 0.15rem;
+				font-size: 0.14rem;
+				color: #333333;
+				font-weight: bold;
+			}
+			
+			.modal-content {
+			    font-size: 0.12rem;
+			    position: relative;
+			    z-index: 10000;
+			    color: #333333;
+			    background: #ffffff;
+			    padding: 0px;
+			}
+			
+			.item_wrap{
+			  height: 0.5rem;
+			  background-color: #FFFFFF;
+			  padding: 0px 0.15rem;
+			}
+			
+			.item{
+			  height: 0.5rem;
+			  width: 100%;
+			  border-bottom: 1px solid #E3E3E3;
+			}
+			
+			.item span:nth-child(1){
+				color: #333333;
+				font-size: 0.14rem;
+				width: 0.8rem;
+			}
+			
+			.item input{
+				margin-bottom: 0px;
+				border: none;
+				background: transparent;
+				color: #666666;
+				font-size: 0.14rem;
+			}
+			
+			::-webkit-input-placeholder{
+				color: #cccccc;
+				font-size: 0.12rem;
+			}
+			
+			.btn{
+				border-radius: 0.03rem;
+				width: 90%;
+				margin: 0.05rem 5% 0px;
+				box-sizing: border-box;
+				background-color: #107EFF;
+				color: #FEFEFE;
+				font-size: 0.16rem;
+				height: 0.44rem;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: center;
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav" >
+		    <!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
+			<img src="../images/back.png" class="mui-action-back">
+			
+		    <h1 class="mui-title">会员报名</h1>
+		</header>
+		
+		<div class="mui-content">
+			
+			<div class="head_wrap">
+				<img src="../images/signup/bg.png" >
+			</div>
+			
+			<div class="title_wrap">
+				会员权益
+			</div>
+			
+			<ul class="mui-table-view mui-grid-view mui-grid-9">
+			    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<img src="../images/signup/1.png">
+					<div class="mui-media-body">专属客服</div>
+				</li>
+			    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+			    	<img src="../images/signup/2.png">
+			    	<div class="mui-media-body">专属免息</div>
+			    </li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<img src="../images/signup/3.png">
+					<div class="mui-media-body">快速审核</div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<img src="../images/signup/4.png">
+					<div class="mui-media-body">生日礼遇</div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<img src="../images/signup/5.png">
+					<div class="mui-media-body">额度提升</div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<img src="../images/signup/6.png">
+					<div class="mui-media-body">定制方案</div>
+				</li>
+			</ul> 
+			
+			<button class="mui-btn mui-btn-outlined button">注册会员</button>
+			
+		</div>
+		
+		
+		<!--注册会员弹窗-->
+		<div class="modal-mask col">
+			<div style="flex: 1;"></div>
+		    <div class="modal-dialog">
+				<div class="row_between modal_title_wrap">
+					<span>会员报名</span>
+					<img src="../images/login/login_close.png" class="close_style" onclick="closeDialg();" />
+				</div>
+				
+				<div class="col item_wrap">
+					<div class="row_between item" style="border-top: transparent;">
+						<span>姓名</span>
+						<input type="text" placeholder="收货人姓名 (请使用真实姓名)" />
+					</div>
+					
+				</div>
+				
+				<div class="col item_wrap">
+					<div class="row_between item" style="border-top: transparent;">
+						<span>手机号</span>
+						<input type="tel" placeholder="请填写收件人手机号" maxlength="11"/>
+					</div>
+				</div>
+				
+				<div class="col item_wrap">
+					<div class="row_between item" style="border-top: transparent;">
+						<span>地址</span>
+						<input type="text" placeholder="请填写地址" />
+					</div>
+				</div>
+				
+		        <button type="button" class="mui-btn mui-btn-primary btn"
+						style="margin: 0.2rem 5%">保存</button>
+		    </div>
+		</div>
+		
+	</body>
+	<script type="text/javascript" src="../js/mui.min.js"></script>
+	<script src="../js/jquery-2.1.1.min.js"></script>
+	<script src="../js/app.js"></script>
+	<script type="text/javascript">
+		$("input").focus(function(){
+			console.log(this)
+		  $(this).parent().css("border-bottom","1px solid #107EFF");
+		});
+		
+		$("input").blur(function(){
+			console.log(this)
+		  $(this).parent().css("border-bottom","1px solid #E3E3E3");
+		});
+		
+		function getCode(){
+			var text = $(".get_code_txt").text();
+			if(text == '重新获取' || text == '获取验证码'){
+				countDown();
+			}
+			
+		}
+		
+		
+		var intervalObj, time=60;
+		function countDown() {
+		    intervalObj = setInterval(function() {
+		        time--;
+		        if (time <= 0) {
+		            time = 60;
+		            clearInterval(intervalObj);
+		            $(".get_code_txt").text("重新获取");
+		        } else {
+		            $(".get_code_txt").text("重新获取("+time+"s)");
+		        }
+		
+		    }, 1000);
+		}
+		
+		
+	</script>
+</html>
