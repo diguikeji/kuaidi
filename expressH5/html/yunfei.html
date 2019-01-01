@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>运费计算</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/app.css">
+		<link rel="stylesheet" href="../css/swiper.min.css">
+		<link rel="stylesheet" href="../css/page.css">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/secondPage.css">
+		<style>
+			body,.mui-content{background: #f9f9f9!important;}
+
+
+
+		</style>
+		
+		
+		
+	</head>
+
+	<body>
+
+
+	<div class="header-bar">
+
+		<div class="header-left">
+			<img src="../images/back.png"/>
+		</div>
+
+		<div class="header-title">运费计算</div>
+
+	</div>
+
+	<div class="mui-content has-header yunfei-col">
+
+
+		<ul class="yunfei-list">
+			<li>
+				<div>
+				<span class="left">物品类型</span>
+				<span class="right">
+					<span>文件</span>
+					<span class="mui-icon mui-icon-arrowright"></span>
+				</span>
+				</div>
+			</li>
+			<li class="middle-col">
+				<div>
+					<span class="left">物品类型</span>
+
+					<span class="middle">
+						<img src="../images/yunfei/yunfei_09.png"/>
+						<span class="value">9</span>
+						<img src="../images/yunfei/yunfei_12.png"/>
+					</span>
+
+				<span class="right no-arrow">
+					<span class="text">千克</span>
+				</span>
+				</div>
+			</li>
+			<li>
+				<div>
+					<span class="left">物品类型</span>
+				<span class="right">
+					<span>国内</span>
+					<span class="mui-icon mui-icon-arrowright"></span>
+				</span>
+				</div>
+			</li>
+		</ul>
+
+		<div class="yunfei-img-title">请选择快递公司</div>
+
+		<div class="yunfei-img-list">
+
+			<div class="swiper-container">
+
+				<div class="swiper-wrapper">
+
+					<div class="swiper-slide active">
+						<div>
+							<img src="../images/yunfei/yunfei_16.png"/>
+						</div>
+						<p>邮政EMS</p>
+						<div class="bottom">
+							<span class="first">￥8.0</span>
+							<span class="second">¥10.0</span>
+						</div>
+					</div>
+
+					<div class="swiper-slide">
+						<div>
+							<img src="../images/yunfei/yunfei_18.png"/>
+						</div>
+						<p>邮政EMS</p>
+						<div class="bottom">
+							<span class="first">￥8.0</span>
+							<span class="second">¥10.0</span>
+						</div>
+					</div>
+
+					<div class="swiper-slide">
+						<div>
+							<img src="../images/yunfei/yunfei_20.png"/>
+						</div>
+						<p>邮政EMS</p>
+						<div class="bottom">
+							<span class="first">￥8.0</span>
+							<span class="second">¥10.0</span>
+						</div>
+					</div>
+
+					<div class="swiper-slide">
+						<div>
+							<img src="../images/yunfei/yunfei_16.png"/>
+						</div>
+						<p>邮政EMS</p>
+						<div class="bottom">
+							<span class="first">￥8.0</span>
+							<span class="second">¥10.0</span>
+						</div>
+					</div>
+
+			</div>
+
+			</div>
+	</div>
+
+		<div class="yunfei-bottom">
+
+			<span class="left">运费: <span>¥15.0</span></span>
+
+			<button type="button">运费试算</button>
+
+		</div>
+
+	</div>
+
+		<script src="../js/mui.min.js"></script>
+	    <script src="../js/jquery-2.1.1.min.js"></script>
+	<script src="../lib/swiper.min.js"></script>
+		<script>
+
+
+			var swiper = new Swiper('.swiper-container', {
+				slidesPerView: 3.6,
+				spaceBetween: 15,
+				pagination: {
+					el: '.swiper-pagination',
+					type: 'fraction',
+				}
+			});
+
+			$(".yunfei-img-list .swiper-slide").click(function()
+			{
+				$(".yunfei-img-list .swiper-slide").removeClass("active");
+				$(this).addClass("active");
+			});
+
+
+			mui.init({
+				swipeBack: false,
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						style:'circle',
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			
+			function pulldownRefresh()
+			{
+				
+			}
+
+			function pullupRefresh()
+			{
+
+			}
+
+		</script>
+	</body>
+
+</html>
