@@ -237,4 +237,73 @@
 .mall-temai-col .first>div>div{position: relative;top:-0.04rem;}
 .mall-temai-col .second{background: #F39800;color:#fff;}
 .mall-temai-col .third{background:#107EFF;color:#fff;}
+.mall-goods-pindan .third{line-height: normal;height:0.49rem;}
+.mall-goods-pindan .second{line-height: normal;height:0.49rem;}
+.mall-goods-pindan .second div,.mall-goods-pindan .third div{font-size:0.12rem;}
+.mall-goods-pindan .pindan-bottom>span{font-size:0.12rem;display: inline-block;padding-top:0.1rem;line-height: normal;}
+.mall-goods-pindan .pindan-bottom>span span{font-size:0.1rem;}
+
+
+.tuijian-list{border-bottom:6px solid #f9f9f9;}
+.tuijian-list .pindan-title{position: relative;padding:0.1rem 15px;}
+.tuijian-list .pindan-title .left{font-size:0.14rem;float:left;}
+.tuijian-list .pindan-title .right{font-size:0.12rem;float:right;color:#999999;}
+.tuijian-list .pindan-title .right span{font-size:0.14rem;}
+.tuijian-list .tuijian-list-col{padding:0 7px;}
+.tuijian-list .tuijian-list-col li{float:left;padding:0 7px;width:33%;}
+.tuijian-list .tuijian-list-col li img{width:1.03rem;}
+.tuijian-list .tuijian-list-col li div{font-size:0.13rem;line-height: 0.18rem;}
+.tuijian-list .tuijian-list-col li p{color:#FF5269;font-size:0.16rem;}
+.tuijian-list .tuijian-list-col li p span{font-size:0.12rem;}
+.tuijian-list .dianpu-col{padding:0 15px;border-top:6px solid #f9f9f9;}
+.tuijian-list .dianpu-col .clearfix{padding:0.16rem 0;border-bottom:1px solid #e3e3e3;}
+.tuijian-list .dianpu-col .left img{width:0.34rem;display: inline-block;vertical-align: middle;}
+.tuijian-list .dianpu-col .left{float:left;}
+.tuijian-list .dianpu-col  .left span{font-size:0.14rem;color:#333333;vertical-align: middle;}
+.tuijian-list .dianpu-col .right{background: #107EFF;color:#fff;float:right;width:0.69rem;line-height: 0.24rem;text-align: center;border-radius: 12px;
+font-size:0.12rem;display: inline-block;margin-top:0.05rem;}
+
+
+.pindan-text-col{border-top:6px solid #f9f9f9;padding:0.16rem 0;font-size:0.16rem;text-align: center;}
+
+.pindan-text-col .time-col{width:0.24rem;height:0.24rem;text-align: center;line-height: 0.24rem;color:#fff;display: inline-block;background: rgba(0,0,0,0.6);border-radius: 50%;}
+.pindan-text-col .text{font-size:0.15rem;color:#666;padding:0.05rem 0;}
+.pindan-text-col .text .renshu{color:#FF5269;font-size:0.16rem;}
+
+.pindan-text-col .img-list-col img{width:0.36rem;border-radius: 50%;height:0.36rem;margin:0 0.02rem;}
+.pindan-text-col .img-list{padding:0.1rem 0 0 0;}
+.pindan-text-col .img-list .add-col{width:0.36rem;}
+
+.submit-order-list{
+    border:1px solid rgba(243, 243, 243, 1);
+    box-shadow:0px 2px 6px 0px rgba(126,124,125,0.14);
+}
+
+
+.xieyi-col{position: absolute;padding-left:0.4rem;with:100%;top:-0.42rem;font-size:0.15rem;color:#666;}
+.xieyi-col .mui-checkbox{width:0.28rem;display: inline-block;position: absolute;left:0.3rem;top:-0.06rem;}
+
+.submit-order-col .yunfei-bottom .small{font-size:0.14rem;}
+
+.order-goods-list{border:1px solid rgba(243, 243, 243, 1);
+    box-shadow:0px 2px 6px 0px rgba(126,124,125,0.14);
+    border-radius:4px;margin-top:0.1rem;padding:0 0.17rem;font-size:0.11rem;color:#666666;}
+.order-goods-list li{padding:0.17rem 0.5rem 0.17rem 0.8rem;position: relative;box-sizing: border-box;height:1.3rem;}
+.order-goods-list li img{width:0.7rem;height:0.7rem;border-radius: 4px;position: absolute;left:0;}
+.order-goods-list li .right{position: absolute;right:0;top:0.17rem;text-align: right;}
+.order-goods-list li .bottom{position: absolute;right:0;bottom:0.15rem;}
+
+
+.address-list .mui-checkbox label{padding-left:0.4rem;padding-right:0;}
+.address-list .mui-checkbox input{left:0;right:auto;top:0.12rem;}
+.address-list .mui-checkbox label p{font-size:0.13rem;padding-top:0.08rem;}
+.address-list .mui-checkbox label div span{color:#666666;font-size:0.14rem;}
+
+
+
+
+
+
+
+
 
