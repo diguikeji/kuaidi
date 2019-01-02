@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>特卖商品</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/app.css">
+		<link rel="stylesheet" href="../css/page.css">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/secondPage.css">
+		<style>
+			body{background: #f7f8f9;}
+
+			.mall-goods-info{padding:0.1rem 15px;}
+			.mall-goods-info p{font-size:0.15rem;margin-bottom:0.04rem;}
+			.mall-goods-info .price{color:#FF5269;font-size:0.17rem;}
+			.mall-goods-info .price span{font-size:0.12rem;}
+
+			.mall-goods-detail img{display: block;width:100%;}
+			.mall-goods-tab span{font-size:0.14rem;}
+			.mall-goods-tab span{padding: 0.08rem 0.06rem;}
+
+		</style>
+		
+		
+		
+	</head>
+
+	<body>
+
+	<div class="transparent-header">
+
+		<div class="header-left">
+			<img src="../images/mall/mallIcon_03.png"/>
+		</div>
+
+		<div class="header-right">
+			<img src="../images/mall/tmBottom_03.png"/>
+		</div>
+
+
+	</div>
+
+	<div id="slider" class="mui-slider" >
+		<div class="mui-slider-group mui-slider-loop">
+			<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+			<div class="mui-slider-item mui-slider-item-duplicate">
+					<img src="../images/mall/tm_01.png">
+			</div>
+			<!-- 第一张 -->
+			<div class="mui-slider-item">
+					<img src="../images/mall/tm_01.png">
+			</div>
+			<!-- 第二张 -->
+			<div class="mui-slider-item">
+				<img src="../images/mall/tm_01.png">
+			</div>
+			<!-- 第三张 -->
+			<div class="mui-slider-item">
+				<img src="../images/mall/tm_01.png">
+			</div>
+			<!-- 第四张 -->
+			<div class="mui-slider-item">
+				<img src="../images/mall/tm_01.png">
+			</div>
+			<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+			<div class="mui-slider-item mui-slider-item-duplicate">
+				<a href="#">
+					<img src="../images/mall/tm_01.png">
+				</a>
+			</div>
+		</div>
+		<div class="mui-slider-indicator">
+			<div class="mui-indicator mui-active"></div>
+			<div class="mui-indicator"></div>
+			<div class="mui-indicator"></div>
+			<div class="mui-indicator"></div>
+		</div>
+
+
+
+	</div>
+
+	<div class="mall-goods-info">
+		<p>2019年最新优品波司登冬季羽绒服中长款新款韩版宽松连帽羽绒服</p>
+		<div class="price"><span>￥</span>259.<span>00</span></div>
+
+	</div>
+
+	<div class="main-tab-col  mall-goods-tab">
+			<span class="middle-tab-col">
+				<span class="active">商品介绍</span>
+				<span>规格描述</span>
+				<span>售后保障</span>
+			</span>
+	</div>
+
+
+	<div class="main-tab-detail">
+
+		<div class="tab-detail-col">
+		<div class="mall-goods-detail">
+			<img src="../images/mall/tm_03.png"/>
+			<img src="../images/mall/tm_04.jpg"/>
+		</div>
+		</div>
+
+	</div>
+
+	<div style="height:0.5rem"></div>
+
+	<div class="mall-temai-col">
+		<div class="first">
+			<div>
+				<img src="../images/mall/tmBottom_07.png"/>
+				<div>收藏</div>
+			</div>
+			<div>
+				<img src="../images/mall/tmBottom_09.png"/>
+				<div>收藏</div>
+			</div>
+		</div>
+		<div class="second">加入购物车</div>
+		<div class="third">立即购买</div>
+	</div>
+
+		<script src="../js/mui.min.js"></script>
+	    <script src="../js/jquery-2.1.1.min.js"></script>
+		<script>
+
+
+			$(".middle-tab-col span").click(function()
+			{
+				$(".middle-tab-col span").removeClass("active");
+				$(this).addClass("active");
+
+				$(".main-tab-detail .tab-detail-col").hide();
+				$(".main-tab-detail .tab-detail-col").eq($(this).index()).show();
+
+			});
+
+
+		</script>
+	</body>
+
+</html>
