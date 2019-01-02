@@ -293,16 +293,31 @@ font-size:0.12rem;display: inline-block;margin-top:0.05rem;}
 .order-goods-list li .right{position: absolute;right:0;top:0.17rem;text-align: right;}
 .order-goods-list li .bottom{position: absolute;right:0;bottom:0.15rem;}
 
-
+.address-list{padding-bottom:0.1rem;}
 .address-list .mui-checkbox label{padding-left:0.4rem;padding-right:0;}
 .address-list .mui-checkbox input{left:0;right:auto;top:0.12rem;}
 .address-list .mui-checkbox label p{font-size:0.13rem;padding-top:0.08rem;}
 .address-list .mui-checkbox label div span{color:#666666;font-size:0.14rem;}
+.address-list .bottom-btn,.payway-list .bottom-btn{line-height: 0.44rem;background: #107EFF;padding:0;text-align: center;color:#fff;margin-top:0.05rem;}
+.payway-list img{width:0.26rem;position: relative;margin-right:0.05rem;top:0.06rem;}
+.payway-list label{top:-0.15rem;position: relative;}
+.payway-list-top{height:0.4rem;margin-top:-0.08rem;}
+.payway-list-top .right{color:#999999;font-size:0.12rem;float:right;}
+.payway-list-top  .left{font-size:0.15rem;padding:0 0.15rem;}
 
+.mall-list-col{padding-left:0.86rem;}
+.mall-list-col .left-col{position: fixed;left:0;width:0.86rem;top:0.48rem;background: #f9f9f9;height:100%;}
+.mall-list-col .left-col li{position: relative;
+    text-align: center;font-size:0.13rem;padding:0.18rem 0;}
+.mall-list-col .left-col li.active{background: #fff;}
 
-
-
-
+.mall-list-col .left-col li.active:after{height:0.13rem;background:#107EFF;width:0.04rem;content: " ";display: block;position: absolute;left:0;top:50%;
+margin-top:-0.065rem;}
+.mall-list-col .right-col{padding:0.03rem 0.05rem;}
+.mall-list-col .right-col li{width:33%;float:left;padding:0 0.05rem;text-align: center;margin-bottom:0.1rem;}
+.mall-list-col .right-col li img{width:100%;height:0.84rem;}
+.mall-list-col .right-col .top-title{padding:0.16rem;border-top:1px solid #e3e3e3;font-size:0.12rem;}
+.mall-list-col .right-col .top-title:first-child{border-top:0;}
 
 
 

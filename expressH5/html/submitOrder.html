@@ -126,7 +126,7 @@
 
 			<div class="shadow-col"></div>
 
-			<div class="beizhu-text" id="selectAddress">
+			<div class="beizhu-text hide" id="selectAddress">
 				<div class="clearfix">
 					<span class="fl">选择地址</span>
 
@@ -137,8 +137,6 @@
 
 
 				<div class="address-list">
-
-
 
 					<div class="mui-input-row mui-checkbox">
 						<label>
@@ -157,6 +155,8 @@
 					</div>
 
 
+					<div class="bottom-btn"><span class="mui-icon mui-icon-plusempty"></span>新建地址</div>
+
 
 				</div>
 
@@ -164,6 +164,46 @@
 			</div>
 
 
+			<div class="beizhu-text" id="payWay">
+				<div class="clearfix">
+					<span class="fl">请选择支付方式</span>
+
+					<span class="fr right-close">
+						<span class="mui-icon mui-icon-closeempty"></span>
+					</span>
+				</div>
+
+
+				<div class="payway-list">
+
+					<div class="payway-list-top clearfix">
+						<span class="left">应付金额:<span class="red">￥507.00</span></span>
+
+						<span class="right">请在0小时30分内完成支付</span>
+					</div>
+
+					<div class="mui-input-row mui-checkbox">
+						<label>
+							<div><img src="../images/mall/payway_03.png">微信支付</div>
+						</label>
+						<input  type="checkbox">
+					</div>
+
+					<div class="mui-input-row mui-checkbox">
+						<label>
+							<div><img src="../images/mall/payway_07.png">支付宝支付</div>
+						</label>
+						<input  type="checkbox" >
+					</div>
+
+
+					<div class="bottom-btn">支付</div>
+
+
+				</div>
+
+
+			</div>
 
 
 		</div>
@@ -177,6 +217,12 @@
 			$(".address-list input").click(function()
 			{
 				$(".address-list input").removeAttr("checked");
+				$(this).prop("checked","checked");
+			});
+
+			$(".payway-list input").click(function()
+			{
+				$(".payway-list input").removeAttr("checked");
 				$(this).prop("checked","checked");
 			});
 
