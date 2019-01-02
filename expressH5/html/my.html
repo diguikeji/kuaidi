@@ -44,7 +44,7 @@
 <body>
 
 	<div class="pd">
-		<div class="my-top">
+		<div class="my-top" onclick="goToSetting();">
 			<div class="left">
 			<img class="touxiang" src="../images/wode/wode_03.jpg" />
 			<span>王大池</span>
@@ -155,6 +155,16 @@
 			}
 		}
 	});
+	//设置页面
+	function goToSetting(){
+		mui.openWindow({
+		    url: 'personal.html',
+		    id: 'personal.html',
+		    waiting: {
+		        autoShow: false
+		    }
+		})
+	}
 	
 	function goToAddress(){
 		mui.openWindow({
@@ -162,9 +172,6 @@
 		    id: 'my_address.html',
 		    waiting: {
 		        autoShow: false
-		    },
-		    extras: {
-		        isStep: true
 		    }
 		})
 	}
