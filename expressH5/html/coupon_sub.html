@@ -20,145 +20,55 @@
         .list_wrap {
             padding: 0px;
             box-sizing: border-box;
-			background-color: #EDECF2;
+			background-color: #F8F8F8;
 			
         }
         
         .item_wrap {
-            height: 220px;
+            height: 0.93rem;
             width: 92%;
-            margin: 15px 4%;
+            margin: 0.15rem 4%;
 			background-color: #FFFFFF;
-			border-radius: 4px;
-			/* box-shadow: 2px 2px 50px 20px #FDFDFD; */
+			border-radius: 0.04rem;
+			background: url(../images/coupon/coupon_online.png);
+			background-size: cover;
+			padding-left: 0.15rem;
+			box-shadow: 0px 0px 10px 0px #EAEAEA;
         }
-		.title_wrap{
-			padding: 15px;
-			font-size: 14px;
-			color: #666666;
-			height: 44rpx;
-			border-bottom: 1px solid #E3E3E3;
-			width: 100%;
-			box-sizing: border-box;
-		}
-		
-		.title_wrap .item_status{
-			color: #FF5269;
-			font-size: 14px;
-		}
-		
-		.title_wrap .item_status .dian{
-			font-weight: bold;
-			font-size: 25px;
-			position: relative;
-			top: -2px;
-		}
-		
-		.content_wrap{
-			width: 100%;
-			box-sizing: border-box;
-			padding: 15px 15px 0px;
-			
-		}
-		
-		.content_wrap .border{
-			height: 122px;
-			width: 100%;
-			border-bottom: 1px solid #E3E3E3;
-		}
-		
-		.content_up{
-			height: 122px;
-			width: 100%;
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
-		}
         
-		.content_up img{
-			width: 70px;
-			height: 70px;
-			border-radius: 4px;
+		.item_wrap img{
+			width: 0.63rem;
+			height: 0.63rem;
+			border-radius: 0.04rem;
 		}
 		
-		.content_center{
-			width:168px;
-			max-height:57px;
-			position: relative;
-			line-height: 20px;
-			overflow: hidden;
-			font-size: 14px;
-			color: #666666;
-			flex: 1;
-			padding: 0px 16px;
-		}
-		
-		.content_end{
-			color: #666666;
-			font-size: 14px;
+		.content_item{
+			margin-left: 0.3rem;
 			display: flex;
 			flex-direction: column;
+			justify-content: space-around;
 		}
 		
-		.content_end .number{
-			text-align: right;
-		}
-		
-		.content_down{
-			width: 100%;
-			text-align: right;
-			margin-bottom: 10px;
-		}
-		
-		.first_txt{
-			color: #999999;
-			font-size: 14px;
-		}
-		
-		.first_txt .num{
+		.content_item .name{
 			color: #333333;
+			font-size: 0.14rem;
 		}
 		
-		.sencod_txt{
-			font-size: 14px;
-			color: #333333;
+		.content_item .time{
+			color: #cccccc;
+			font-size: 0.11rem;
 		}
 		
-		.sencod_txt .money{
-			font-size: 12px;
+		.content_item .money_wrap{
+			color: #ff5269;
+			font-size: 0.14rem;
+			font-weight: 100;
 		}
 		
-		.sencod_txt .money_num{
-			font-size: 18px;
-		}
-		
-		.sencod_txt .num_float{
-			font-size: 12px;
-		}
-		
-		.item_down{
-			height: 60px;
-			font-size: 12px;
-			justify-content: flex-end;
-			width: 100%;
-			padding-right: 15px;
-		}
-		
-		.item_down span{
-			border-radius: 12px;
-			padding: 0px 11px;
-			margin-left: 10px;
-		}
-		
-		.warn_tag{
-			color: #FFFFFF;
-			background-color: #107EFF;
-		}
-		
-		.normal_tag{
-			color: #666666;
-			background-color: #FFFFFF;
-			border: 1px solid #999999;
+		.content_item .money{
+			color: #ff5269;
+			font-size: 0.16rem;
+			font-weight: 400;
 		}
         
     </style>
@@ -167,46 +77,22 @@
 <body>
 
 
-    <div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+    <div id="pullrefresh" class="mui-content mui-scroll-wrapper" style="background-color: #F8F8F8;">
         <div class="mui-scroll">
             <!--数据列表-->
             <ul class="mui-table-view-condensed list_wrap">
-				<li class=" mui-table-view-cell-item item_wrap col_between">
-					<div class="row_between title_wrap">
-						<span>2017-06-24</span>
-						<div class="row_center item_status"> 
-							<span class="dian">·</span>  
-							<span>&nbsp;待发货</span>
-						</div>
+				<li class=" mui-table-view-cell-item row item_wrap">
+					
+					<img src="../images/firstPageLive/homeBottom_03.jpg" />
+					<div class="content_item">
+						<span class="name">GUCCI 折扣券</span>
+						<span class="time">2018-01-01 至 2018-12-31 拷贝</span>
+						<span class="money_wrap">
+							满<span class="money">&nbsp;10000&nbsp;</span>
+							减<span class="money">&nbsp;100</span>
+						</span>
 					</div>
 					
-					<div class=" content_wrap">
-						<div class="col_between border">
-							<div class="content_up">
-								<img src="../images/firstPageLive/homeBottom_03.jpg" />
-								<span class="content_center">农夫山泉饮用水饮用天然水5L*4桶整箱装桶装水</span>
-								<div class="content_end">
-									<span>￥169.00</span>
-									<span class="number">x2</span>
-								</div>
-							</div>
-							<div class="content_down">
-								<span class="first_txt">共 <span class="num">8</span> 件</span>
-								<span class="sencod_txt">应付金额:
-									<span class="money">￥</span><span class="money_num">169</span>
-									<span class="num_float">.00</span>
-								</span>
-							</div>
-						</div>
-						
-						
-					</div>
-					
-					<div class="row item_down">
-						<span class="warn_tag">提醒发货</span>
-						<span class="normal_tag">提醒发货</span>
-						<span class="normal_tag">提醒发货</span>
-					</div>
 					
 				</li>
             </ul>

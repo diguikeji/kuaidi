@@ -94,6 +94,13 @@ body,html{
 	justify-content: center;
 }
 
+.col_center{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
 .col_around{
 	display: flex;
 	flex-direction: column;

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>商城</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/app.css">
+		<link rel="stylesheet" href="../css/page.css">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/firstPage.css">
+		<style type="text/css">
+			.input-col input{background:transparent;border:none;width:100%;height:100%;padding:0rem;box-sizing: border-box;font-size:0.13rem; margin: 0rem;}
+			.left-text{color:#333;font-size:0.12rem;height: 0.44rem;position: absolute; top: 50%; margin-top: -0.22rem; left: 0.5rem;}
+			.input-col{position: absolute; top: 50%; margin-top: -0.18rem; height: 0.36rem; 
+			right: 0.2rem; width: 2rem;border-radius: 0.18rem;border:1px solid #F7F7F7; 
+			background-color: #F8F8F8; padding: 0.11rem 0.15rem;}
+			.input-col img{width:0.14rem;padding: 0rem;height: 0.14rem; margin-right: 0.1rem;}
+			input::-webkit-input-placeholder {
+			    color:#9B9B9B; font-size: 0.14rem;
+			}
+			.left-text img{width:0.12rem;height: 0.12rem;margin-left:0.03rem; padding: 0rem;}
+			
+			.type_list{
+				flex: 86;
+				height: 100%;
+			}
+			
+			.type_list span{
+				width: 100%;
+				text-align: center;
+				height: 0.5rem;
+				line-height: 0.5rem;
+			}
+			
+			.item_list{
+				flex: 289;
+				background-color: #FFFFFF;
+				padding: 0rem 0.15rem;
+			}
+			
+			.item_list .name{
+				color: #333333;
+				font-size: 0.12rem;
+				text-align: left;
+				height: 0.5rem;
+				line-height: 0.5rem;
+			}
+			
+			.list{
+				display: flex;
+				flex-direction: row;
+				flex-flow: wrap;
+			}
+			
+			.content_wrap{
+				text-align: center; background: #F2F2F2;height: 100%;
+				display: flex; flex-direction: row;
+			}
+			
+			.active{background-color: #FFFFFF;}
+		</style>
+		
+		
+		
+	</head>
+
+	<body>
+
+		<header class="mui-bar mui-bar-nav" style="background-color: #FFFFFF; position: relative;">
+			<img src="../images/back.png" class="mui-action-back">
+			<span class="row left-text">
+				<span>上海歌斐中心</span>  
+				<img src="../images/firstPageLive/icon_mall.png"/>
+			</span>
+			<span class="row input-col">
+				<img src="../images/firstPageLive/icon2.png" />
+				<input type="text" placeholder="搜索关键字">
+			</span>
+			
+		</header>
+
+		<div class="mui-content content_wrap" style="padding-top: 0rem;">
+			<div class="col type_list">
+				<span class="active">推荐</span>
+				<span>服饰</span>
+				<span>食品</span>
+				<span>家具日用</span>
+				<span>美妆护肤</span>
+			</div>
+			<div class="item_list">
+				<div class="name">热门分类</div>
+				<div class="list">
+					<div class="col_center">
+						<img src="../images/firstPageLive/homeBottom_03.jpg">
+						<span>相机</span>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+	    <script src="../js/jquery-2.1.1.min.js"></script>
+		<script src="../lib/jquery.waterfall.js"></script>
+		<script>
+
+
+			$("#grid").waterfall({
+				itemClass: ".grid-item",
+				minColCount: 2,
+				spacingWidth:0,
+				spacingHeight: 0,
+				resizeable: true,
+				ajaxCallback: function(success, end) {
+
+				}
+			});
+
+
+			mui.init({
+				swipeBack: false,
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						style:'circle',
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			
+			function pulldownRefresh()
+			{
+				
+			}
+
+			function pullupRefresh()
+			{
+
+			}
+
+		</script>
+	</body>
+
+</html>
