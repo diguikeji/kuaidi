@@ -44,7 +44,9 @@ ul,li{list-style: none;padding:0;margin:0;}
 .transparent-header .header-right img{width:0.36rem;}
 .transparent-header .header-right{position: absolute;right:0;top:0;padding:0.15rem 0.15rem;}
 
+.red{color:#FF5269!important;}
 
+.mui-checkbox input[type=checkbox]:checked:before, .mui-radio input[type=radio]:checked:before{color: #FF5269!important;}
 
 
 

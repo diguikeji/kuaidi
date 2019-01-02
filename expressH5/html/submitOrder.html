@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>提交订单</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/app.css">
+		<link rel="stylesheet" href="../css/page.css">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/secondPage.css">
+		<style>
+
+			body,.mui-content{background: #fff!important;}
+			.submit-order-col{border-top:0.08rem solid #f9f9f9;padding-top:0.1rem;}
+			.submit-order-list{padding:0.18rem 0 0 0;box-sizing: border-box;font-size:0.13rem;}
+			.submit-order-list li{padding-left:0.15rem;}
+			.submit-order-list li .order-list-col{padding:0 0.23rem 0.14rem 0.52rem;position: relative;}
+			.submit-order-list li label{position: absolute;left:0;top:0;}
+			.submit-order-list li .mui-icon{position: absolute;right:0;top:0;color:#999;font-size:0.18rem;}
+			.submit-order-list li div{text-align: right;}
+			.submit-order-list li:last-child .order-list-col{border-top:1px solid #e3e3e3;padding-top:0.15rem;}
+			.submit-order-list li:last-child .order-list-col .mui-icon{top:0.15rem;}
+			.submit-order-list li:last-child .order-list-col label{top:0.15rem;}
+
+		</style>
+		
+		
+		
+	</head>
+
+	<body>
+
+
+		<div class="submit-order-col">
+
+			<div class="pd">
+			<ul class="submit-order-list">
+			<li>
+				<div class="order-list-col">
+					<label>收货人:</label>
+					<div class="text">王先生  1380013000</div>
+					</div>
+			</li>
+			<li>
+				<div class="order-list-col">
+				<label>收货地址:</label><div class="text">上海市湖滨路222号企业天地1号楼18楼</div>
+				<pan class="mui-icon mui-icon-arrowright"></pan>
+				</div>
+			</li>
+
+				<li>
+					<div class="order-list-col">
+					<label>优惠券:</label>
+					<div class="text">满1000减500</div>
+					<span class="mui-icon mui-icon-arrowright"></span>
+					</div>
+				</li>
+
+			</ul>
+
+
+
+			</div>
+
+			<div class="pd">
+			<ul class="order-goods-list">
+
+				<li>
+					<img src="../images/mall/orderGoods_03.jpg"/>
+
+					农夫山泉饮用水饮用天然水5L*4桶整箱装桶装水
+					<div>共1件
+						应付总额:
+
+						<span>￥169.00</span>
+					</div>
+
+					<div class="bottom">
+						共1件
+						<span>应付总额:<span>￥169.00</span></span>
+					</div>
+
+					<div class="right">
+						￥169.00
+						<div>x 1</div>
+					</div>
+
+				</li>
+
+			</ul>
+			</div>
+
+			<div class="bottom-col">
+
+				<div class="yunfei-bottom">
+
+					<div class="xieyi-col">
+
+						<span class="mui-checkbox">
+
+						<input name="checkbox" type="checkbox" >
+
+					  </span>
+
+						<span>本人同意并接受以下协议</span>
+
+
+					</div>
+
+
+					<span class="left"> <span><span class="small">¥</span>150.00</span></span>
+
+					<button type="button" class="submit-order-btn" >提交订单</button>
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+		<div class="beizhu-col">
+
+			<div class="shadow-col"></div>
+
+			<div class="beizhu-text" id="selectAddress">
+				<div class="clearfix">
+					<span class="fl">选择地址</span>
+
+					<span class="fr right-close">
+						<span class="mui-icon mui-icon-closeempty"></span>
+					</span>
+				</div>
+
+
+				<div class="address-list">
+
+
+
+					<div class="mui-input-row mui-checkbox">
+						<label>
+							<div>王先生 <span>1380013000 </span></div>
+							<p>上海普陀区金沙江路1518弄近铁城市广场 100室</p>
+						</label>
+						<input  type="checkbox">
+					</div>
+
+					<div class="mui-input-row mui-checkbox">
+						<label>
+							<div>王先生 <span>1380013000 </span></div>
+							<p>上海普陀区金沙江路1518弄近铁城市广场 100室</p>
+						</label>
+						<input  type="checkbox" >
+					</div>
+
+
+
+				</div>
+
+
+			</div>
+
+
+
+
+		</div>
+
+
+		<script src="../js/mui.min.js"></script>
+	    <script src="../js/jquery-2.1.1.min.js"></script>
+		<script>
+
+
+			$(".address-list input").click(function()
+			{
+				$(".address-list input").removeAttr("checked");
+				$(this).prop("checked","checked");
+			});
+
+
+
+		</script>
+	</body>
+
+</html>
