@@ -214,6 +214,7 @@
 .mall-detail .img-col{background:rgba(255,255,255,1);
     border:1px solid rgba(227,227,227,1);}
 
+
 .mall-detail-info{padding:0 0 0.1rem 0;}
 .mall-detail-info .right .first{margin-right:0.05rem;}
 
@@ -225,12 +226,15 @@
 .mall-detail .goods-col img{width:0.8rem;left:0;top:0.052rem;position: absolute;}
 .mall-detail .goods-col div{font-size:0.12rem;color:#666;}
 
-
 .mall-detail .bottom-col{height:0.49rem;line-height: 0.49rem;font-size:0.1rem;position: fixed;left:0;width:100%;z-index:1000;bottom:0;background: #fff;}
 .mall-detail .bottom-col div{width:50%;float:left;text-align: center;color:#666666;}
 .mall-detail .bottom-col img{width:0.245rem;position: relative;top:0.05rem;}
 
-
-
-
+.mall-temai-col{line-height: 0.49rem;height:0.49rem;position: fixed;left:0;bottom:0;width:100%;background: #fff;font-size:0.14rem;}
+.mall-temai-col>div{width:33%;float:left;box-sizing: border-box;text-align: center;}
+.mall-temai-col .first img{width:0.22rem;}
+.mall-temai-col .first>div{width:50%;float:left;color:#666666;font-size:0.12rem;text-align: center;line-height: normal;padding-top:0.07rem;}
+.mall-temai-col .first>div>div{position: relative;top:-0.04rem;}
+.mall-temai-col .second{background: #F39800;color:#fff;}
+.mall-temai-col .third{background:#107EFF;color:#fff;}
 
