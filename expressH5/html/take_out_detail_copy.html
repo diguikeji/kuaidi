@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>外卖详情</title>
+		<title>外卖拍照留档</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
@@ -72,17 +72,17 @@
 			.bottom .step-list .active{background: #B0D1F8!important;}
 			.bottom .step-list .step-left{width:8px;height:8px;border-radius: 50%;background: #CCCCCC;left:0.25rem;display: inline-block;position: absolute;top:0.07rem;}
 			.bottom .step-list .step-center-left{width:8px;height:8px;border-radius: 50%;background: #CCCCCC;left:35%;display: inline-block;position: absolute;top:0.07rem;}
-			.bottom .step-list .step-right{width:8px;height:8px;border-radius: 50%;background: #CCCCCC;right:0.25rem;display: inline-block;position: absolute;top:0.07rem;}
+			.bottom .step-list .step-right{width:8px;height:8px;border-radius: 50%;background: #CCCCCC;right:35%;display: inline-block;position: absolute;top:0.07rem;}
 			.bottom .step-list .line{height:1px;width:100%;background:#ccc;display: inline-block;position: relative;}
 			.bottom .step-list .line.active-line:after{width:50%;height:1px;background: #B0D1F8;content: " ";display:block;top:0;left:0;}
-			.bottom .step-list .step-middle{width:20px;height:20px;background: #fff;position: absolute;top:0.07rem;left:65%;margin-left:-10px;text-align: center;border-radius: 50%;}
+			.bottom .step-list .step-middle{width:20px;height:20px;background: #fff;position: absolute;top:0.07rem;left:92%;margin-left:-10px;text-align: center;border-radius: 50%;}
 			.bottom .step-list .step-middle .dian{width:8px;height:8px;border-radius: 50%;background: #107EFF;display: inline-block;position: relative;z-index:100;position: absolute;left:50%;margin-left:-4px;}
 			.bottom{position: relative;}
-			.bottom .step-tag{background: #107EFF;color:#fff;font-size:0.12rem;padding:0.032rem 0.1rem;border-radius: 0.1rem;white-space: nowrap;position: absolute;top:-0.52rem;left:-50%;margin-left:-0.2rem;}
+			.bottom .step-tag{background: #107EFF;color:#fff;font-size:0.12rem;padding:0.032rem 0.1rem;border-radius: 0.1rem;white-space: nowrap;position: absolute;top:-0.52rem;left:-50%;margin-left:-0.1rem;}
 			.bottom .step-tag img{width:0.12rem;position: absolute;left:50%;top:0.27rem;margin-left:-0.06rem;}
 			.bottom .left-text{color:#B0D1F8;font-size:0.11rem;position: absolute;left:0.15rem;top:0.18rem;}
 			.bottom .center-text{color:#B0D1F8;font-size:0.11rem;position: absolute;left:1.15rem;top:0.18rem;}
-			.bottom .right-text{color:#CCCCCC;font-size:0.11rem;position: absolute;right:0.15rem;top:0.18rem;}
+			.bottom .right-text{color:#CCCCCC;font-size:0.11rem;position: absolute;right:2%;top:0.18rem;}
 			
 			.bottom_wrap{box-shadow: 0px 0px 10px 0px #EAEAEA; margin: 0rem 0.15rem;
 				background-color: #FFFFFF; padding-left: 0.13rem}
@@ -96,23 +96,34 @@
 				padding-right: 0.12rem; color: #33333; font-size: 0.16rem;
 			}
 			
-			.bottom_block{
-				height: 0.72rem; padding: 0.14rem 0rem;
-				background-color: #FFFFFF;
-				position: fixed;
-				bottom: 0rem;
-				width: 100%;
+			.upload_wrap{
+				background: #FFFFFF;
+				color: #333333;
+				font-size: 0.14rem;
+				padding-top: 0.18rem;
+			}
+			  
+			.img_wrap{
+				flex-flow: wrap;
+				margin-top: 0.18rem;
 			}
 			
-			.bottom_block div{
-				border-radius: 0.03rem;
+			.img_wrap img{
+				width: 1rem;
+				height: 0.75rem;
+				margin-right: 0.1rem;
+				margin-bottom: 0.1rem;
+			} 
+			
+			.button{
+				border-radius: 6px;
+				width: 90%;
+				margin: 0.26rem 5% 0px;
+				box-sizing: border-box;
+				background-color: #107EFF;
 				color: #FFFFFF;
-				text-align: center;
-				width: 1.65rem;
-				background-color: #F39800;
-				font-size: 0.14rem;
+				font-size: 0.16rem;
 				height: 0.44rem;
-				line-height: 0.44rem;
 			}
 
 		</style>
@@ -127,7 +138,7 @@
 		<div class="mui-content" style="background-color: #F8F8F8;">
 			<div class="row_center head_wrap">
 				<img src="../images/firstPageLive/live_06.png" alt="">
-				<span>已送达楼服宝</span>
+				<span>已签收</span>
 			</div>
 			
 			<div class="col content_wrap">
@@ -142,7 +153,7 @@
 				<div class="bottom">
 					<span class="left-text">已发出</span>
 					<span class="center-text">派件中</span>
-					<span class="right-text">派件中</span>
+					<span class="right-text">楼服宝签收</span>
 					<div class="step">
 				
 						<div class="step-list">
@@ -152,7 +163,7 @@
 							<span class="step-right"></span>
 							<span class="step-middle">
 								<span class="step-tag">
-									<span>楼服宝签收</span>
+									<span>已签收</span>
 									<img src="../images/yunfei/sanjiao.png"/>
 								</span>
 								<span class="dian"></span>
@@ -176,19 +187,31 @@
 					<span style="color: #666666;">外卖</span>
 				</div>
 				
+				<div class="upload_wrap">
+					<span>上传图片</span>
+					<div class="row_around img_wrap">
+						
+					</div>
+				</div>
+				
 			</div>
 			
-			<div class="row_around bottom_block">
-				<div>送到手</div>
-				<div style="background-color: #107EFF;">送到前台</div>
-			</div>
-			
+			<button type="button" class="mui-btn mui-btn-primary button">上传存档</button>
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/jquery-2.1.1.min.js"></script>
 		<!-- <script src="../js/app.js"></script> -->
 		<script type="text/javascript">
 			
+			addImage();
+			function addImage(){
+				var html = '';
+				for(var i=0; i<10; i++){
+					html += '<img src="../images/firstPageLive/homeBottom_03.jpg" >';
+				}
+				
+				$(".img_wrap").append(html);
+			}
 			
 		</script>
 	</body>
