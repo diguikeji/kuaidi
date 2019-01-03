@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
 		<title>首页</title>
 		<script src="js/mui.min.js"></script>
 		<link href="css/mui.min.css" rel="stylesheet" />
@@ -484,12 +484,13 @@
 					swipeBack: true //启用右滑关闭功能
 				});
 				mui.plusReady(function() {
+		
 
 					// 创建子webview窗口 并初始化
 					var aniShow = {};
 					util.initSubpage(aniShow);
 					
-					var nview = plus.nativeObj.View.getViewById('tabBar'),
+					var nview = plus.nativeObj.View.getViewById('tabBarColView'),
 						activePage = plus.webview.currentWebview(),
 						targetPage,
 						subpages = util.options.subpages,
@@ -498,12 +499,14 @@
 
 					$("#slider2").click(function()
 					{
-						plus.webview.open('html/customize.html', 'customize', {}, 'slide-in-right', 200);
+						plus.webview.open('html/yunfei.html', 'customize', {}, 'slide-in-right', 200);
 					});
 					
 					/**
 					 * 根据判断view控件点击位置判断切换的tab
 					 */
+					
+					console.log(JSON.stringify(nview));
 					
 					nview.addEventListener('click', function(e) {
 						

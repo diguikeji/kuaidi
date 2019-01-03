@@ -1,6 +1,6 @@
 
 
-#topCol{height:0.36rem;position: fixed;left:0;width:100%;top:0;z-index:100000;padding:0 0.66rem 0 0.6rem;box-sizing: border-box;}
+#topCol{height:0.36rem;position: fixed;left:0;width:100%;top:20px;z-index:100000;padding:0 0.66rem 0 0.6rem;box-sizing: border-box;}
 #topCol input{background:#F7F7F7;opacity:0.6;border:0;width:100%;height:0.34rem;padding:0.03rem 0.1rem 0.03rem 0.3rem;box-sizing: border-box;font-size:0.13rem;border-radius: 0.18rem;}
 #topCol .left-text{color:#fff;font-size:0.12rem;position: absolute;left:15px;top:0.1rem;}
 #topCol .input-col{position: relative;}
@@ -55,7 +55,7 @@
     box-shadow:0px 2px 6px 0px rgba(126,125,125,0.14);
     border-radius:3px;margin-bottom:0.3rem;}
 .pro-list li{padding:0.17rem 0.17rem 0 0.17rem;}
-.pro-list li .pro-col{border-bottom:1px solid #E3E3E3;padding:0 0 15px 1.03rem,;position: relative;height:1.13rem;}
+.pro-list li .pro-col{border-bottom:1px solid #E3E3E3;padding:0 0 15px 1.03rem;position: relative;height:1.13rem;}
 .pro-list li img{border-radius: 4px;width:0.93rem;height:0.93rem;position: absolute;left:0;}
 .pro-list li .biaoti{color:#333333;font-size:14px;}
 .pro-list li .wenzi{font-size:0.12rem;line-height: 0.18rem;height:0.32rem;overflow: hidden;margin:0.02rem 0 0.06rem 0;}
@@ -63,14 +63,14 @@
     border-radius:3px;height:0.19rem;line-height: 0.19rem;padding:0 6px;font-size:0.12rem;color:#999;}
 
 
-.tuijian-col{box-shadow:0px 2px 6px 0px rgba(126,125,125,0.14);border:3px;position: relative;padding-left:1.7rem;}
-.tuijian-col .left{width:1.7rem;height:1.78rem;position: absolute;left:0;top:0;}
-.tuijian-col .right{width:1.72rem;}
+.tuijian-col{box-shadow:0px 2px 6px 0px rgba(126,125,125,0.14);border:3px;position: relative;}
+.tuijian-col .left{width:50%;height:1.78rem;float:left;position: relative;}
+.tuijian-col .right{width:50%;float:left;position: relative;}
 .tuijian-col .right .clearfix:first-child{border-bottom:1px solid #eee;}
-.tuijian-col .right .left-col{width:86px;float:left;box-sizing: border-box;padding-left:5px;}
+.tuijian-col .right .left-col{width:0.86rem;float:left;box-sizing: border-box;padding-left:0.05rem;}
 .tuijian-col .right .right-col{float:right;width:0.83rem;}
 .tuijian-col .right .left-col div{color:#000;font-size:0.13rem;margin-bottom:3px;padding-top:3px;}
-.tuijian-col .right .left-col p{color:#666;font-size:12px;margin-bottom:0;line-height: 15px;}
+.tuijian-col .right .left-col p{color:#666;font-size:0.12rem;margin-bottom:0;line-height: 0.15rem;}
 
 .three-list{margin-top:0.12rem;padding-bottom:0.82rem;}
 .three-list li{float:left;width:33%;box-sizing: border-box;padding-left:0.15rem;}
