@@ -27,11 +27,12 @@
 				height: 100%;
 			}
 			
-			.type_list span{
+			.type_list div{
 				width: 100%;
 				text-align: center;
 				height: 0.5rem;
 				line-height: 0.5rem;
+				position: relative;
 			}
 			
 			.item_list{
@@ -60,6 +61,16 @@
 			}
 			
 			.active{background-color: #FFFFFF;}
+			
+			.active_span{
+				position: absolute;
+				top: 50%;
+				left: 0rem;
+				height: 0.13rem;
+				width: 0.04rem;
+				margin-top: -0.065rem;
+				background-color: #107EFF;
+			}
 		</style>
 		
 		
@@ -83,17 +94,52 @@
 
 		<div class="mui-content content_wrap" style="padding-top: 0rem;">
 			<div class="col type_list">
-				<span class="active">推荐</span>
-				<span>服饰</span>
-				<span>食品</span>
-				<span>家具日用</span>
-				<span>美妆护肤</span>
+				<div class="active" onclick="changeType(0);">
+					<span >推荐</span>
+					<span class="active_span"></span>
+				</div>
+				
+				<div class="" onclick="changeType(1);">
+					<span>服饰</span>
+					<span class=""></span>
+				</div>
+				
+				<div class="" onclick="changeType(2);">
+					<span>食品</span>
+					<span class=""></span>
+				</div>
+				
+				<div class="" onclick="changeType(3);">
+					<span>家具日用</span>
+					<span class=""></span>
+				</div>
+				
+				<div class="" onclick="changeType(4);">
+					<span>美妆护肤</span>
+					<span class=""></span>
+				</div>
+				
 			</div>
 			<div class="item_list">
 				<div class="name">热门分类</div>
 				<div class="list">
 					<div class="col_center">
-						<img src="../images/firstPageLive/homeBottom_03.jpg">
+						<img src="../images/firstPageLive/home_05.jpg">
+						<span>相机</span>
+					</div>
+					
+					<div class="col_center">
+						<img src="../images/firstPageLive/home_05.jpg">
+						<span>相机</span>
+					</div>
+					
+					<div class="col_center">
+						<img src="../images/firstPageLive/home_05.jpg">
+						<span>相机</span>
+					</div>
+					
+					<div class="col_center">
+						<img src="../images/firstPageLive/home_05.jpg">
 						<span>相机</span>
 					</div>
 				</div>
@@ -105,44 +151,20 @@
 	    <script src="../js/jquery-2.1.1.min.js"></script>
 		<script src="../lib/jquery.waterfall.js"></script>
 		<script>
-
-
-			$("#grid").waterfall({
-				itemClass: ".grid-item",
-				minColCount: 2,
-				spacingWidth:0,
-				spacingHeight: 0,
-				resizeable: true,
-				ajaxCallback: function(success, end) {
-
-				}
-			});
-
-
-			mui.init({
-				swipeBack: false,
-				pullRefresh: {
-					container: '#pullrefresh',
-					down: {
-						style:'circle',
-						callback: pulldownRefresh
-					},
-					up: {
-						contentrefresh: '正在加载...',
-						callback: pullupRefresh
-					}
-				}
-			});
 			
-			function pulldownRefresh()
-			{
+			function changeType(index){
+				$(".type_list div").each(function(ind){
+					$(this).removeClass("active");
+					$(this).children("span").eq(1).removeClass("active_span");
+					if(index == ind){
+						$(this).addClass("active");
+						$(this).children("span").eq(1).addClass("active_span");
+					}
+				});
 				
 			}
 
-			function pullupRefresh()
-			{
-
-			}
+			
 
 		</script>
 	</body>
