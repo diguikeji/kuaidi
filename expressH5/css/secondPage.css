@@ -183,6 +183,24 @@
 
 
 .beizhu-col{position: fixed;z-index:10000;height:100%;width:100%;left:0;top:0;}
+
+.select-count{height:0.6rem;position: relative;}
+.select-count .middle{text-align: center;line-height: 0.62rem;font-size:0.14rem;font-family:DINAlternate-Bold;}
+.select-count .left{position: absolute;left:15px;top:0.15rem;}
+.select-count .right{position: absolute;right:15px;top:0.15rem;}
+.select-count i{border-radius: 50%;text-align: center;color:#666;border:1px solid rgba(227,227,227,1);
+    font-weight:bold;box-sizing:border-box;padding-top:0.08rem;font-size:0.24rem;display: inline-block;width:0.36rem;height:0.36rem;}
+.select-count i.active{color:#fff;background: #107EFF;}
+.select-count .middle{text-align: center;}
+
+.guige-col .clearfix{height:0.65rem;}
+.guige-col .fl img{width:1.05rem;border-radius:4px;position: absolute;top:-0.35rem;}
+
+.guige-row{padding:0.1rem 0;}
+.guige-row .title-col{font-size:0.16rem;padding:0 0 0.05rem 0;}
+.guige-list{width:100%;padding:0 0;}
+.guige-list li{text-align: center;font-size:0.13rem;padding:0.02rem 0;}
+.guige-list li.active{color:#107EFF;}
 .beizhu-col .shadow-col{background: rgba(0,0,0,0.6);left:0;top:0;position: absolute;height:100%;width:100%;z-index:10;}
 .beizhu-text{
     background:rgba(249,249,249,1);
@@ -243,6 +261,7 @@
 .mall-goods-pindan .pindan-bottom>span{font-size:0.12rem;display: inline-block;padding-top:0.1rem;line-height: normal;}
 .mall-goods-pindan .pindan-bottom>span span{font-size:0.1rem;}
 
+.guige-col .guige-confirm-btn{line-height:0.44rem;text-align: center;background: #107EFF;color:#fff;font-size:0.15rem;}
 
 .tuijian-list{border-bottom:6px solid #f9f9f9;}
 .tuijian-list .pindan-title{position: relative;padding:0.1rem 15px;}
@@ -310,7 +329,6 @@ font-size:0.12rem;display: inline-block;margin-top:0.05rem;}
 .mall-list-col .left-col li{position: relative;
     text-align: center;font-size:0.13rem;padding:0.18rem 0;}
 .mall-list-col .left-col li.active{background: #fff;}
-
 .mall-list-col .left-col li.active:after{height:0.13rem;background:#107EFF;width:0.04rem;content: " ";display: block;position: absolute;left:0;top:50%;
 margin-top:-0.065rem;}
 .mall-list-col .right-col{padding:0.03rem 0.05rem;}
@@ -318,6 +336,25 @@ margin-top:-0.065rem;}
 .mall-list-col .right-col li img{width:100%;height:0.84rem;}
 .mall-list-col .right-col .top-title{padding:0.16rem;border-top:1px solid #e3e3e3;font-size:0.12rem;}
 .mall-list-col .right-col .top-title:first-child{border-top:0;}
+
+
+.fuli-shiyong-bg{background: url("../images/fuli/fuliShiyong_05.jpg") repeat-y;background-size:100% auto;padding:0.55rem 0.5rem 0.1rem 0.5rem;}
+.fuli-shiyong-bg p{color:#D6F2FF;padding:0.03rem 0 0.03rem 0;margin-bottom:0;font-size:0.12rem;}
+
+.jiangpin-col{position: relative;}
+.jiangpin-col .start-col{position: absolute;width:22%;height:32%;background: #000;position: absolute;right:2%;top:12%;opacity: 0;}
+
+.jiangpin-list{position: absolute;top:33%;left:0;width:66.5%;left:10.5%;height:1.17rem;overflow: hidden;}
+
+.jiangpin-col .jiangpin-detail{color:#7A8846;font-size:0.12rem;width:33.3%;float:left;box-sizing: border-box;padding:0 0.05rem;}
+.jiangpin-col .jiangpin-detail-col{text-align: center;height:0.95rem;background: #fff;border-radius: 13px;margin:0.05rem 0;}
+.jiangpin-col .jiangpin-detail-col div{padding:0 0.05rem;line-height: normal;}
+.jiangpin-col .jiangpin-detail-col img{width:0.48rem;}
+
+
+.guige-col{border-radius: 0;}
+.guige-col .guige-bottom{padding:0.2rem 0;}
+
 
 
 

@@ -479,13 +479,11 @@
 				}
 			});
 
-
-			(function() {
+			
 				mui.init({
 					swipeBack: true //启用右滑关闭功能
 				});
 				mui.plusReady(function() {
-					
 
 					// 创建子webview窗口 并初始化
 					var aniShow = {};
@@ -502,14 +500,12 @@
 					{
 						plus.webview.open('html/customize.html', 'customize', {}, 'slide-in-right', 200);
 					});
-						
-						
-						
+					
 					/**
 					 * 根据判断view控件点击位置判断切换的tab
 					 */
+					
 					nview.addEventListener('click', function(e) {
-						
 						
 						var clientX = e.clientX;
 						if(clientX > 0 && clientX <= parseInt(pageW * 0.2)) {
@@ -553,7 +549,7 @@
 						
 					});
 				});
-			})();
+			
 		</script>
 	</body>
 

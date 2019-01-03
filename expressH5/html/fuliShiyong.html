@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>福利试用</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/app.css">
+		<link rel="stylesheet" href="../css/swiper.min.css">
+		<link rel="stylesheet" href="../css/page.css">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/secondPage.css">
+		<style>
+
+			body,.mui-content{background: #fff!important;}
+			.gonggao{position: relative;z-index:1000;height:0.65rem;}
+
+			.gonggao .swiper-container {
+				width: 100%;
+				position: absolute;
+				height:0.42rem;
+				padding-left:0.4rem;
+				top:-0.55rem;
+			}
+			.gonggao .swiper-slide {
+				text-align: center;
+				font-size: 0.12rem;
+				background: transparent;
+				color:#D6F2FF;
+				height:0.14rem;
+			}
+
+			.gonggao .swiper-slide span{color:#ff5269;}
+
+		</style>
+		
+		
+		
+	</head>
+
+	<body>
+
+
+	<div class="header-bar">
+
+		<div class="header-left">
+			<img src="../images/back.png"/>
+		</div>
+
+		<div class="header-title">LA MER试用装派发</div>
+
+	</div>
+
+	<div class="mui-content has-header">
+
+		<div class="jiangpin-col">
+			<img class="full-img" src="../images/fuli/fuliShiyong_02.jpg"/>
+			<div class="start-col">开始</div>
+
+			<div class="jiangpin-list clearfix">
+				<div class="jiangpin-detail">
+
+					<div class="jiangpin-detail-col">
+					<img src="../images/fuli/fulijiangpin_03.png">
+					<div>LA MER<div>试用装</div></div>
+					</div>
+
+					<div class="jiangpin-detail-col">
+						<img src="../images/fuli/fulijiangpin_03.png">
+						<div>LA MER<div>试用装</div></div>
+					</div>
+
+				</div>
+				<div class="jiangpin-detail">
+					<div class="jiangpin-detail-col">
+						<img src="../images/fuli/fulijiangpin_03.png">
+						<div>LA MER<div>试用装</div></div>
+					</div>
+					<div class="jiangpin-detail-col">
+						<img src="../images/fuli/fulijiangpin_03.png">
+						<div>LA MER<div>试用装</div></div>
+					</div>
+				</div>
+				<div class="jiangpin-detail">
+					<div class="jiangpin-detail-col">
+						<img src="../images/fuli/fulijiangpin_03.png">
+						<div>LA MER<div>试用装</div></div>
+					</div>
+					<div class="jiangpin-detail-col">
+						<img src="../images/fuli/fulijiangpin_03.png">
+						<div>LA MER<div>试用装</div></div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<img class="full-img" src="../images/fuli/fuliShiyong_03.jpg"/>
+		<div class="gonggao">
+
+		<img class="full-img" src="../images/fuli/fuliShiyong_04.jpg"/>
+
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+
+					<div class="swiper-slide">
+						恭喜用户150****8080抽中1<span>“LA MER试用装”</span>
+					</div>
+					<div class="swiper-slide">
+						恭喜用户150****8080抽中2<span>“LA MER试用装”</span>
+					</div>
+					<div class="swiper-slide">
+						恭喜用户150****8080抽中3<span>“LA MER试用装”</span>
+					</div>
+					<div class="swiper-slide">
+						恭喜用户150****8080抽中4<span>“LA MER试用装”</span>
+					</div>
+
+			   </div>
+
+		</div>
+
+		</div>
+		<div class="fuli-shiyong-bg">
+
+			<p>1.活动时间：2018年8月10日至2018年8月31日</p>
+			<p>2.活动期间每个订单有3次抽奖机会，每分享一次可以再抽取2次，分享获得抽奖次数每天最多2次。</p>
+			<p>3.抽奖成功率将和您的调查报告填写数量相关。填写越多获得奖品的概率更高哦。</p>
+
+		</div>
+		<img class="full-img" src="../images/fuli/fulishiyongBottom.jpg"/>
+
+	</div>
+
+		<script src="../js/mui.min.js"></script>
+	    <script src="../js/jquery-2.1.1.min.js"></script>
+	<script src="../lib/swiper.min.js"></script>
+		<script>
+
+
+			var swiper = new Swiper('.swiper-container', {
+				direction: 'vertical',
+				slidesPerView: 2,
+				pagination: {
+					el: '.swiper-pagination',
+					clickable: true,
+				},
+			});
+
+			$(".yunfei-img-list .swiper-slide").click(function()
+			{
+				$(".yunfei-img-list .swiper-slide").removeClass("active");
+				$(this).addClass("active");
+			});
+
+
+			mui.init({
+				swipeBack: false,
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						style:'circle',
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			
+			function pulldownRefresh()
+			{
+				
+			}
+
+			function pullupRefresh()
+			{
+
+			}
+
+		</script>
+	</body>
+
+</html>
