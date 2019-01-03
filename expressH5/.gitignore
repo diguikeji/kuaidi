@@ -1,7 +1,6 @@
 *.idea
 .wepycache
 unpackage
-manifest.json
 node_modules
 dist
 .DS_Store
