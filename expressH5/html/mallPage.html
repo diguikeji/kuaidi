@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="../css/mui.min.css">
 		<link rel="stylesheet" href="../css/firstPage.css">
 		<link rel="stylesheet" href="../css/secondPage.css">
-		<link rel="stylesheet" href="//at.alicdn.com/t/font_996940_7zuslf82vhm.css">
+		<link rel="stylesheet" href="http://at.alicdn.com/t/font_996940_7zuslf82vhm.css">
 
 		<style>
 			body,.mui-content{background: #fff;}
@@ -104,7 +104,7 @@
 		<span>波司登官方旗舰店</span>
 		</span>
 
-				<span class="right">进店逛</span>
+				<span class="right" id="goStore">进店逛</span>
 			</div>
 		</div>
 
@@ -163,7 +163,7 @@
 
 	<div style="height:0.5rem"></div>
 
-	<div class="beizhu-col">
+	<div class="beizhu-col hide" id="modalCol">
 
 		<div class="shadow-col"></div>
 
@@ -256,7 +256,7 @@
 				<div>客服</div>
 			</div>
 		</div>
-		<div class="second">加入购物车</div>
+		<div class="second" id="addCart">加入购物车</div>
 		<div class="third" id="buyBtn">立即购买</div>
 	</div>
 
@@ -274,6 +274,42 @@
 				$(".main-tab-detail .tab-detail-col").eq($(this).index()).show();
 
 			});
+
+			$("#buyBtn").click(function()
+			{
+				$("#modalCol").show();
+			});
+
+			$("#modalCol .right-close").click(function()
+			{
+				$("#modalCol").hide();
+			});
+
+			$("#goStore").click(function()
+			{
+				mui.openWindow({
+					url: 'mall.html',
+					id: 'mall.html',
+					waiting: {
+						autoShow: false
+					}
+				})
+			});
+
+			$("#addCart").click(function()
+			{
+				mui.openWindow({
+					url: 'shopping_card.html',
+					id: 'shopping_card.html',
+					waiting: {
+						autoShow: false
+					}
+				})
+			});
+
+
+
+
 
 
 		</script>

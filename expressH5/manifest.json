@@ -103,13 +103,17 @@
         }
     },
     "plus" : {
+    	
+    	"statusbar": {
+        "immersed": true
+		},
         "launchwebview" : {
 			"statusbar": "#fff",
             "bottom" : "0px",
             "background" : "#fff",
             "subNViews" : [
                 {
-                    "id" : "tabBar",
+                    "id" : "tabBarColView",
                     "styles" : {
                         "bottom" : "0px",
                         "left" : "0",

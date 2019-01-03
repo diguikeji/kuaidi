@@ -14,7 +14,6 @@
 		<style>
 
 			body,.mui-content{background: #fff!important;}
-			.mall-list-header{position: relative;}
 			.mall-list-header{padding-left:1.6rem;box-sizing: border-box;padding-right:15px;}
 			.mall-list-header .left-col{font-size:0.12rem;position: absolute;left:0.5rem;}
 			.mall-list-header .left-col img{width:0.16rem;position: relative;top:0.05rem;}
@@ -34,7 +33,7 @@
 
 	<div class="header-bar mall-list-header">
 
-		<div class="header-left">
+		<div class="header-left" onclick="mui.back();">
 			<img src="../images/back.png"/>
 		</div>
 
@@ -139,9 +138,12 @@
 
 		<script src="../js/mui.min.js"></script>
 	    <script src="../js/jquery-2.1.1.min.js"></script>
-	<script src="../lib/swiper.min.js"></script>
 		<script>
 
+			$(".right-col-list li").click(function()
+			{
+				plus.webview.open('mallPage.html', 'company_service', {}, 'slide-in-right', 200);
+			});
 
 
 

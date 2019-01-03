@@ -40,12 +40,15 @@
 		.buzhou-list li.active span{position: relative;z-index:10;}
 		.buzhou-list li.active:after{content:" ";display:block;height:0.55rem;top:0;left:0;position:absolute;width:100%;background: url("../images/fuli/fuli_08.jpg");background-size:100% 100%;}
 
-		.fuli-top{position: relative;text-align: center;height:0.5rem;box-shadow:0px 3px 27px 0px rgba(221,221,221,0.41);}
+		.fuli-top{position: fixed;text-align: center;height:0.6rem;padding-top:10px;box-shadow:0px 3px 27px 0px rgba(221,221,221,0.41);width:100%;z-index:1000;
+		background: #fff;width:100%;left:0;
+		}
 		.fuli-top .left-col{position: absolute;left:15px;top:0;font-size:0.11rem;}
-		.fuli-top .left-col div{width:0.4rem;line-height: 0.18rem;padding-top:0.1rem;color:#666;}
-		.fuli-top .left-col img{width:0.16rem;position: absolute;right:-0.2rem;top:0.15rem;}
+		.fuli-top .left-col div{width:0.4rem;line-height: 0.18rem;padding-top:0.2rem;color:#666;}
+		.fuli-top .left-col img{width:0.16rem;position: absolute;right:-0.2rem;top:0.26rem;}
 		.fuli-top .right-col div{font-size:0.11rem;color:#7A7A7A;position: relative;top:-0.04rem;}
-		.fuli-top .right-col img{width:0.18rem;}
+
+		.fuli-top .right-col img{width:0.18rem;margin-top:0.1rem;}
 		.fuli-top .right-col{position: absolute;right:0;top:0;padding:0.1rem 0.1rem;}
 
 		.fuli-top .middle-col{color:#333;font-size:0.16rem;color:#999999;line-height: 0.52rem;}
@@ -92,6 +95,8 @@
 	</div>
 
 </div>
+
+<div style="height:0.6rem;"></div>
 
 <div class="tab-main">
 
@@ -267,38 +272,23 @@
 <script src="../lib/masonry.pkgd.min.js"></script>
 <script>
 
+
 	$(".middle-col span").click(function()
 	{
 		$(".middle-col span").removeClass("active");
 		$(this).addClass("active");
 		$(".tab-main .tab-col").hide();
 		$(".tab-main .tab-col").eq($(this).index()).show();
+
 	});
 
-	mui.init({
-		swipeBack: false,
-		pullRefresh: {
-			container: '#pullrefresh',
-			down: {
-				style:'circle',
-				callback: pulldownRefresh
-			},
-			up: {
-				contentrefresh: '正在加载...',
-				callback: pullupRefresh
-			}
-		}
+
+	mui.plusReady(function() {
+
+		plus.navigator.setStatusBarStyle("UIStatusBarStyleDefault");
+
 	});
 
-	function pulldownRefresh()
-	{
-
-	}
-
-	function pullupRefresh()
-	{
-
-	}
 
 </script>
 </body>
