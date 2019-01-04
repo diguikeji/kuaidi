@@ -100,13 +100,13 @@
 
 		<div class="person-express-bottom clearfix">
 			<div class="person-express-col">
-				<div class="person-express-detail">
+				<div class="person-express-detail" onclick="openWindowPage('yunfei.html')">
 					<img src="../images/secondPage/personExpress_72.png">
 					<div>运费计算</div>
 				</div>
 			</div>
 			<div class="person-express-col">
-				<div class="person-express-detail">
+				<div class="person-express-detail" onclick="openWindowPage('forbid.html')">
 					<img src="../images/secondPage/personExpress_75.png">
 					<div>违禁品信息</div>
 				</div>
@@ -118,36 +118,22 @@
 
 		<script src="../js/mui.min.js"></script>
 	    <script src="../js/jquery-2.1.1.min.js"></script>
-		<script src="../lib/jquery.waterfall.js"></script>
+		<script src="../js/app.js"></script>
 		<script>
 
-
-
-
-			mui.init({
-				swipeBack: false,
-				pullRefresh: {
-					container: '#pullrefresh',
-					down: {
-						style:'circle',
-						callback: pulldownRefresh
-					},
-					up: {
-						contentrefresh: '正在加载...',
-						callback: pullupRefresh
+			$(".person-express-list li").click(function()
+			{
+				mui.openWindow({
+					url:"expressInfoAdd.html",
+					id: "expressInfoAdd.html",
+					waiting: {
+						autoShow: false
 					}
-				}
+				})
 			});
-			
-			function pulldownRefresh()
-			{
-				
-			}
 
-			function pullupRefresh()
-			{
 
-			}
+
 
 		</script>
 	</body>

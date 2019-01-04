@@ -35,7 +35,7 @@ ul,li{list-style: none;padding:0;margin:0;}
     border-radius:18px;height:36px;}
 .header-search .right-img{width:0.3rem;position: absolute;right:0.25rem;top:0.02rem;text-align: center;}
 .header-search .right-img img{width:0.24rem;}
-.header-search .left-img{width:0.21rem;position: absolute;left:0.6rem;top:0.14rem;}
+.header-search .left-img{width:0.21rem;position: absolute;left:0.6rem;top:0.24rem;}
 
 .transparent-header{height:0.49rem;position: fixed;top:0;width:100%;left:0;z-index:10000;}
 .transparent-header .header-left{position: absolute;left:0;top:0;padding:0.15rem 0.15rem;}

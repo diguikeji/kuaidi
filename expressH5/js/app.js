@@ -255,3 +255,14 @@ var Global = {};
 	
 	}
 }());
+
+
+function openWindowPage(url){
+    mui.openWindow({
+        url:url,
+        id: url,
+        waiting: {
+            autoShow: false
+        }
+    })
+}
