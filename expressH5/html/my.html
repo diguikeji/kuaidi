@@ -81,7 +81,7 @@
 				<p>订单</p>
 				</div>
 			</li>
-			<li>
+			<li onclick="goToLogin();">
 				<div>
 				<img src="../images/wode/wode_16.jpg">
 				<p>活动</p>
@@ -214,6 +214,17 @@
 		mui.openWindow({
 		    url: 'signup.html',
 		    id: 'signup.html',
+		    waiting: {
+		        autoShow: false
+		    }
+		})
+	}
+	
+	//登录
+	function goToLogin(){
+		mui.openWindow({
+		    url: 'login.html',
+		    id: 'login.html',
 		    waiting: {
 		        autoShow: false
 		    }
