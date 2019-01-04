@@ -178,7 +178,7 @@
 				
 			</div>
 			
-			<button class="mui-btn mui-btn-primary button">提交需求</button>
+			<button class="mui-btn mui-btn-primary button" onclick="goToServiceOrderSure();">提交需求</button>
 			
 		</div>
 		
@@ -214,6 +214,17 @@
 			complainPicker.show(function(item){
 				console.log(item)
 				mui('.content')[0].innerHTML = item[0].text;
+			})
+		}
+		
+		//企业饮水服务
+		function goToServiceOrderSure(){
+			mui.openWindow({
+			    url: 'service_order_sure.html',
+			    id: 'service_order_sure.html',
+			    waiting: {
+			        autoShow: false
+			    }
 			})
 		}
 		
