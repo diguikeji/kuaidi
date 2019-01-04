@@ -105,9 +105,11 @@
     "plus" : {
     	
     	"statusbar": {
-        "immersed": true
+        "immersed": true,
+        "background":"#ffffff"
 		},
         "launchwebview" : {
+        	
             "bottom" : "0px",
             "background" : "#fff",
             "subNViews" : [

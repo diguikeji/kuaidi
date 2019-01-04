@@ -6,7 +6,8 @@
       "html/my.html",
       "html/live.html",
       "html/fuli.html",
-      "html/express.html"
+      "html/express.html",
+      "html/service.html"
     ],
     "resources": [
       "html/service.html"

@@ -249,9 +249,7 @@ var Global = {};
     //   $("body").append("<div style='width:50px;height:50px;background:#000;position:absolute;right:0;bottom:50px;z-index:1000;' onclick='window.location.reload();'>reload</div><script src='http://10.8.66.213:1337/vorlon.js'></script>");
     //$("body").append("<div style='width:50px;height:50px;background:#000;position:absolute;right:0;bottom:50px;z-index:1000;' onclick='window.location.reload();'>reload</div><script src='http://192.168.23.109:1337/vorlon.js'></script>");
 
-    //公司
-    //  $("body").append("<div style='width:50px;height:50px;background:#000;position:absolute;right:0;bottom:50px;z-index:1000;' onclick='window.location.reload();'>reload</div><script src='http://10.8.66.150:1337/vorlon.js'></script>");
-	
+   
 	
 	}
 }());
@@ -266,3 +264,19 @@ function openWindowPage(url){
         }
     })
 }
+
+
+	 //调试
+      $("body").append("<div style='width:50px;height:50px;background:#000;position:absolute;right:0;bottom:50px;z-index:10000;' onclick='window.location.reload();'>reload</div>");
+	
+	
+	  $(".mui-title").click(function()
+	  {
+	  	window.location.reload(1);
+	  });
+
+
+
+	
+
+

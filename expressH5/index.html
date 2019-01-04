@@ -227,7 +227,7 @@
 				最近使用
 			</span>
 
-			<span class="fr">更多<img style="width:20px;position: relative;top:4px;" src="images/firstPageLive/home_24.jpg"/></span>
+			<span class="fr" id="morePage">更多<img style="width:20px;position: relative;top:4px;" src="images/firstPageLive/home_24.jpg"/></span>
 
 		</div>
 
@@ -478,7 +478,15 @@
 
 
 			}
-
+			
+			
+			$("#morePage").click(function()
+			{
+				
+				plus.webview.open('html/tiaozheng.html', 'tiaozheng.html', {}, 'slide-in-right', 200);
+			
+			});
+			
 			$(".three-list img").click(function()
 			{
 				plus.webview.open('html/mallPage.html', 'mallPage', {}, 'slide-in-right', 200);

@@ -29,7 +29,7 @@
 
 		<div class="header-title">功能调整</div>
 
-		<span class="header-right">
+		<span class="header-right" onclick="mui.back();">
 			<img src="../images/secondPage/tiaozheng_13.jpg"/>
 		</span>
 	</div>
@@ -148,6 +148,11 @@
 			{
 
 			}
+			
+			mui.plusReady(function() {
+				plus.navigator.setStatusBarStyle("UIStatusBarStyleDefault");
+		
+			});
 
 		</script>
 	</body>

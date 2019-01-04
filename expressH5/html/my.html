@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="../css/firstPage.css">
 	<link rel="stylesheet" href="../css/mui.min.css">
 	<style>
+		
 		body{background: #fff!important;}
 		.mui-content{background: #fff;}
 		.my-top{margin-top:0.35rem;margin-bottom:0.12rem;}
@@ -112,7 +113,7 @@
 				</span>
 				<span class="text">联系客服</span>
 				<span class="right">
-					<span class="right-text">400-888-8808</span>
+					<span class="right-text" id="haoma">400-888-8808</span>
 					<span class="mui-icon mui-icon-forward"></span>
 				</span>
 			</li>
@@ -139,22 +140,6 @@
 
 <script>
 
-
-
-	mui.init({
-		swipeBack: false,
-		pullRefresh: {
-			container: '#pullrefresh',
-			down: {
-				style:'circle',
-				callback: pulldownRefresh
-			},
-			up: {
-				contentrefresh: '正在加载...',
-				callback: pullupRefresh
-			}
-		}
-	});
 	//设置页面
 	function goToSetting(){
 		mui.openWindow({
@@ -231,15 +216,17 @@
 		})
 	}
 
-	function pulldownRefresh()
+	$("#haoma").click(function()
 	{
+            var phone="4008888808";
+            plus.device.dial(phone,false);
+	});
 
-	}
+	
+	mui.plusReady(function() {
+		plus.navigator.setStatusBarStyle("UIStatusBarStyleDefault");
 
-	function pullupRefresh()
-	{
-
-	}
+	});
 
 </script>
 </body>
