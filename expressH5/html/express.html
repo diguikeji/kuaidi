@@ -41,7 +41,7 @@
 		<div class="top-col clearfix">
 			<span class="left"><span class="blue">快递</span>服务</span>
 
-			<span class="right">
+			<span class="right" onclick="openWindowPage('expressSearch.html')">
 				<img src="../images/firstPageLive/icon2.png"/>
 				单号搜索
 			</span>
@@ -50,16 +50,16 @@
 
 		<div class="express-img">
 			<div class="express-img-list clearfix">
-			<div>
+			<div onclick="openWindowPage('expressSearch.html')">
 				<img src="../images/secondPage/express_10.jpg"/>
 			</div>
-			<div>
+			<div onclick="openWindowPage('personExpress.html')">
 				<img src="../images/secondPage/express_11.jpg"/>
 			</div>
-			<div>
+			<div onclick="openWindowPage('expressSearch.html')">
 				<img src="../images/secondPage/express_14.jpg"/>
 			</div>
-			<div>
+			<div onclick="openWindowPage('expressQianshou.html')">
 				<img src="../images/secondPage/express_15.jpg"/>
 			</div>
 		</div>
@@ -205,46 +205,24 @@
 
 		<script src="../js/mui.min.js"></script>
 	    <script src="../js/jquery-2.1.1.min.js"></script>
-		<script src="../lib/jquery.waterfall.js"></script>
+		<script src="../js/app.js"></script>
 		<script>
 
 
-			$("#grid").waterfall({
-				itemClass: ".grid-item",
-				minColCount: 2,
-				spacingWidth:0,
-				spacingHeight: 0,
-				resizeable: true,
-				ajaxCallback: function(success, end) {
+			$(".express-list li").click(function()
+			{
 
-				}
-			});
-
-
-			mui.init({
-				swipeBack: false,
-				pullRefresh: {
-					container: '#pullrefresh',
-					down: {
-						style:'circle',
-						callback: pulldownRefresh
-					},
-					up: {
-						contentrefresh: '正在加载...',
-						callback: pullupRefresh
+				mui.openWindow({
+					url:"expressDetail.html",
+					id: "expressDetail.html",
+					waiting: {
+						autoShow: false
 					}
-				}
+				})
+
 			});
+
 			
-			function pulldownRefresh()
-			{
-				
-			}
-
-			function pullupRefresh()
-			{
-
-			}
 
 		</script>
 	</body>
