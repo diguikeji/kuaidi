@@ -89,7 +89,7 @@
         <div class="mui-scroll">
             <!--数据列表-->
             <ul class="mui-table-view-condensed list_wrap">
-				<li class=" mui-table-view-cell-item item_wrap col_between" onclick="goToDetail();">
+				<li class=" mui-table-view-cell-item item_wrap col_between">
 					<div class="row_between title_wrap">
 						<div class="row">
 							<img src="../images/ma.png">
@@ -155,16 +155,20 @@
 //             }
         });
 		
-		function goToDetail(){
+		
+		mui("#pullrefresh").on('tap','li',function(){
+			
 			mui.openWindow({
-			    url: 'take_out_detail.html',
-			    id: 'take_out_detail.html',
+			    url: 'take_out_detail_copy.html',
+			    id: 'take_out_detail_copy.html',
 			    waiting: {
 			        autoShow: false
 			    }
 			})
-		}
-
+			
+		});
+		
+		
         mui.plusReady(function() {
             // pulldownRefresh();
 

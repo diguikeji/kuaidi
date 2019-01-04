@@ -102,9 +102,9 @@
 
 	</div>
 
-	<div class="pd" onclick="goToServiceOrder();">
+	<div class="pd">
 
-		<div class="imc-col clearfix">
+		<div class="imc-col clearfix" onclick="goToServiceOrder();">
 
 			<img class="left" src="../images/service/fuwu_19.jpg"/>
 
@@ -133,7 +133,7 @@
 
 				<p>需要更多企业服务?</p>
 
-				<button type="button">按需定制服务</button>
+				<button type="button" onclick="openWindowPage('customize.html')">按需定制服务</button>
 
 			</div>
 
@@ -146,25 +146,10 @@
 
 <script src="../js/mui.min.js"></script>
 <script src="../js/jquery-2.1.1.min.js"></script>
-
+<script src="../js/app.js"></script>
 <script>
 
 
-
-	mui.init({
-		swipeBack: false,
-		pullRefresh: {
-			container: '#pullrefresh',
-			down: {
-				style:'circle',
-				callback: pulldownRefresh
-			},
-			up: {
-				contentrefresh: '正在加载...',
-				callback: pullupRefresh
-			}
-		}
-	});
 	
 	//外卖服务
 	function goToTakeout(){

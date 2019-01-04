@@ -555,6 +555,7 @@
 						var clientX = e.clientX;
 						if(clientX > 0 && clientX <= parseInt(pageW * 0.2)) {
 							currIndex = 0;
+							
 						} else if(clientX > parseInt(pageW * 0.2) && clientX <= parseInt(pageW * 0.4)) {
 							currIndex = 1;
 						} 
@@ -573,9 +574,20 @@
 						// 匹配对应tab窗口	
 						if(currIndex > 0) {
 							targetPage = plus.webview.getWebviewById(subpages[currIndex - 1]);
+							
 						} else {
 							targetPage = plus.webview.currentWebview();
+							
 						}
+						
+						if(currIndex==0||currIndex==2)
+						{
+							plus.navigator.setStatusBarStyle("UIStatusBarStyleBlackOpaque");
+						}
+						else{
+							plus.navigator.setStatusBarStyle("UIStatusBarStyleDefault");
+						}
+						
 						
 						
 						if(targetPage == activePage) {
