@@ -2,7 +2,14 @@
   "index.html": {
     "refer": [
       "template.html",
-      "mine/login.html"
+      "mine/login.html",
+      "html/my.html",
+      "html/live.html",
+      "html/fuli.html",
+      "html/express.html"
+    ],
+    "resources": [
+      "html/service.html"
     ]
   },
   "template.html": {
@@ -10,6 +17,17 @@
       "template-main-third.html",
       "template-main-second.html",
       "template-main-first.html"
+    ],
+    "resources": []
+  },
+  "html/mallList.html": {
+    "refer": [
+      "html/mallPage.html"
+    ]
+  },
+  "html/live.html": {
+    "refer": [
+      "html/mallList.html"
     ]
   }
 }
