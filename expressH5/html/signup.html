@@ -209,19 +209,19 @@
 					<img src="../images/signup/5.png">
 					<div class="mui-media-body">额度提升</div>
 				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" onclick="goToCustomize();">
 					<img src="../images/signup/6.png">
 					<div class="mui-media-body">定制方案</div>
 				</li>
 			</ul> 
 			
-			<button class="mui-btn mui-btn-outlined button">注册会员</button>
+			<button class="mui-btn mui-btn-outlined button" onclick="registerVip();">注册会员</button>
 			
 		</div>
 		
 		
 		<!--注册会员弹窗-->
-		<div class="modal-mask col">
+		<div class="modal-mask col hideClass">
 			<div style="flex: 1;"></div>
 		    <div class="modal-dialog">
 				<div class="row_between modal_title_wrap">
@@ -277,6 +277,24 @@
 				countDown();
 			}
 			
+		}
+		
+		function registerVip(){
+			$(".modal-mask").removeClass("hideClass");
+		}
+		
+		function closeDialg(){
+			$(".modal-mask").addClass("hideClass");
+		}
+		
+		function goToCustomize(){
+			mui.openWindow({
+			    url: 'customize.html',
+			    id: 'customize.html',
+			    waiting: {
+			        autoShow: false
+			    }
+			})
 		}
 		
 		

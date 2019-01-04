@@ -61,7 +61,10 @@ body,html{
 }
 
 .row{
-	display: flex;
+	display: -webkit-box;
+    display: box;
+    display: -webkit-flex;
+    display: flex;
 	flex-direction: row;
 	align-items: center;
 }
@@ -89,14 +92,24 @@ body,html{
 
 
 .col{
-	display: flex;
-	flex-direction: column;
+	display: -webkit-box;
+    display: box;
+    display: -webkit-flex;
+    display: flex;
+	flex-flow: column nowrap;
+    -webkit-box-orient: vertical;
+    -webkit-flex-flow: column nowrap;
 	justify-content: center;
 }
 
 .col_center{
+	display: -webkit-box;
+	display: box;
+	display: -webkit-flex;
 	display: flex;
-	flex-direction: column;
+	flex-flow: column nowrap;
+	-webkit-box-orient: vertical;
+	-webkit-flex-flow: column nowrap;
 	justify-content: center;
 	align-items: center;
 }

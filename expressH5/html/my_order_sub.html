@@ -141,6 +141,7 @@
 			justify-content: flex-end;
 			width: 100%;
 			padding-right: 15px;
+			padding-top: 0.2rem;
 		}
 		
 		.item_down span{
@@ -221,16 +222,16 @@
     <!-- <script src="../js/app.js"></script> -->
     <script type="text/javascript">
         mui.init({
-            pullRefresh: {
-                container: '#pullrefresh',
-                down: {
-                    callback: pulldownRefresh
-                },
-                up: {
-                    contentrefresh: '正在加载...',
-                    callback: pullupRefresh
-                }
-            }
+//             pullRefresh: {
+//                 container: '#pullrefresh',
+//                 down: {
+//                     callback: pulldownRefresh
+//                 },
+//                 up: {
+//                     contentrefresh: '正在加载...',
+//                     callback: pullupRefresh
+//                 }
+//             }
         });
 
         mui.plusReady(function() {

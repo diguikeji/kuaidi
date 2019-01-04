@@ -86,7 +86,7 @@
 
 	</div>
 
-	<div class="pd">
+	<div class="pd" onclick="goToTakeout();">
 
 		<div class="imc-col clearfix">
 
@@ -102,7 +102,7 @@
 
 	</div>
 
-	<div class="pd">
+	<div class="pd" onclick="goToServiceOrder();">
 
 		<div class="imc-col clearfix">
 
@@ -165,6 +165,28 @@
 			}
 		}
 	});
+	
+	//外卖服务
+	function goToTakeout(){
+		mui.openWindow({
+		    url: 'take_out_order.html',
+		    id: 'take_out_order.html',
+		    waiting: {
+		        autoShow: false
+		    }
+		})
+	}
+	
+	//企业服务
+	function goToServiceOrder(){
+		mui.openWindow({
+		    url: 'service_order.html',
+		    id: 'service_order.html',
+		    waiting: {
+		        autoShow: false
+		    }
+		})
+	}
 
 	function pulldownRefresh()
 	{

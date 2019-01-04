@@ -75,7 +75,7 @@
 				<p>快递</p>
 				</div>
 			</li>
-			<li>
+			<li onclick="goToMyOrder();">
 				<div>
 				<img src="../images/wode/wode_19.jpg">
 				<p>订单</p>
@@ -87,7 +87,7 @@
 				<p>活动</p>
 				</div>
 			</li>
-			<li>
+			<li onclick="goToCoupon();">
 				<div>
 				<img src="../images/wode/wode_13.jpg">
 				<p>卡券</p>
@@ -116,14 +116,14 @@
 					<span class="mui-icon mui-icon-forward"></span>
 				</span>
 			</li>
-			<li>
+			<li onclick="goToSignUp();">
 				<span class="icon">
 				<img src="../images/wode/wode_34.jpg">
 				</span>
 				<span class="text">会员福利 </span>
 				<span class="right"><span class="mui-icon mui-icon-forward"></span></span>
 			</li>
-			<li>
+			<li onclick="goToComplain();">
 				<span class="icon">
 				<img src="../images/wode/wode_37.jpg">
 				</span>
@@ -165,11 +165,55 @@
 		    }
 		})
 	}
-	
+	//地址
 	function goToAddress(){
 		mui.openWindow({
 		    url: 'my_address.html',
 		    id: 'my_address.html',
+		    waiting: {
+		        autoShow: false
+		    }
+		})
+	}
+	
+	//订单
+	function goToMyOrder(){
+		mui.openWindow({
+		    url: 'my_order.html',
+		    id: 'my_order.html',
+		    waiting: {
+		        autoShow: false
+		    }
+		})
+	}
+	
+	//投诉建议
+	function goToComplain(){
+		mui.openWindow({
+		    url: 'complain.html',
+		    id: 'complain.html',
+		    waiting: {
+		        autoShow: false
+		    }
+		})
+	}
+	
+	//卡劵
+	function goToCoupon(){
+		mui.openWindow({
+		    url: 'coupon.html',
+		    id: 'coupon.html',
+		    waiting: {
+		        autoShow: false
+		    }
+		})
+	}
+	
+	//会员福利
+	function goToSignUp(){
+		mui.openWindow({
+		    url: 'signup.html',
+		    id: 'signup.html',
 		    waiting: {
 		        autoShow: false
 		    }

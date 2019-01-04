@@ -89,7 +89,7 @@
         <div class="mui-scroll">
             <!--数据列表-->
             <ul class="mui-table-view-condensed list_wrap">
-				<li class=" mui-table-view-cell-item item_wrap col_between">
+				<li class=" mui-table-view-cell-item item_wrap col_between" onclick="goToDetail();">
 					<div class="row_between title_wrap">
 						<div class="row">
 							<img src="../images/ma.png">
@@ -134,7 +134,7 @@
         </div>
 
     </div>
-    <div class="empty_text">
+    <div class="empty_text hideClass">
         数据为空
     </div>
 
@@ -143,20 +143,30 @@
     <!-- <script src="../js/app.js"></script> -->
     <script type="text/javascript">
         mui.init({
-            pullRefresh: {
-                container: '#pullrefresh',
-                down: {
-                    callback: pulldownRefresh
-                },
-                up: {
-                    contentrefresh: '正在加载...',
-                    callback: pullupRefresh
-                }
-            }
+//             pullRefresh: {
+//                 container: '#pullrefresh',
+//                 down: {
+//                     callback: pulldownRefresh
+//                 },
+//                 up: {
+//                     contentrefresh: '正在加载...',
+//                     callback: pullupRefresh
+//                 }
+//             }
         });
+		
+		function goToDetail(){
+			mui.openWindow({
+			    url: 'take_out_detail.html',
+			    id: 'take_out_detail.html',
+			    waiting: {
+			        autoShow: false
+			    }
+			})
+		}
 
         mui.plusReady(function() {
-            pulldownRefresh();
+            // pulldownRefresh();
 
             //点击上次浏览
             window.addEventListener('updatePreType', function(event) {
@@ -203,6 +213,7 @@
         var isDesc = false;
 
         function getMsglist(refreshType) {
+			return;
             var params = {
                 current: current,
                 size: 20,
