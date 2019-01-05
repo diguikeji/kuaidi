@@ -6,6 +6,7 @@
 		<title>购物车</title>
 		<link rel="stylesheet" href="../css/mui.min.css">
 		<link rel="stylesheet" href="../css/mui.picker.min.css" />
+		<link rel="stylesheet" href="../fonts/iconfont.css">
 		<link rel="stylesheet" href="../css/app.css">
 		<style type="text/css">
 			.header{
@@ -23,7 +24,8 @@
 				color: #FF5269;
 				position: absolute;
 				right: 0.2rem;
-				top: 0.14rem;
+				top: 0.12rem;
+				padding:0.1rem 0.1rem;
 			}
 			
 			.radio_item{
@@ -43,6 +45,8 @@
 				height: 0.7rem;
 				margin-right: 0.13rem;
 			}
+
+			.radio_item .checkbox-col{position: relative;padding-left:0.5rem;box-sizing: border-box;}
 			
 			.mui-checkbox input[type=checkbox], .mui-radio input[type=radio]{
 				top: auto!important;
@@ -62,7 +66,7 @@
 				text-align: center;
 				line-height: 0.24rem;
 				color: #999999;
-				font-size: 0.2rem;
+				font-size: 0.14rem;
 				border: 1px solid #E3E3E3;
 				border-radius: 50%;
 			}
@@ -132,8 +136,8 @@
 		<div class="mui-content">
 			
 			<form class="mui-input-group">
-				<div class="mui-input-row mui-radio mui-left radio_item">
-					<label>
+				<div class="mui-input-row mui-checkbox mui-left radio_item">
+					<div class="checkbox-col">
 						<div class="row ">
 							<img src="../images/firstPageLive/homeBottom_03.jpg" alt="">
 							<div class="col_between" style="height: 0.7rem;">
@@ -141,18 +145,19 @@
 								<div class="row_between money_wrap">
 									<span>￥169.00 </span>
 									<div class="row">
-										<span class="action_span">-</span>
+										<span class="action_span sub-value icon-move iconfont"></span>
 										<span class="num">2</span>
-										<span class="action_span">+</span>
+										<span class="action_span add-value icon-add1 iconfont">
+										</span>
 									</div>
 								</div>
 							</div>
 						</div>
-					</label>
-					<input name="radio1" type="radio">
+					</div>
+					<input  type="checkbox">
 				</div>
-				<div class="mui-input-row mui-radio mui-left radio_item">
-					<label>
+				<div class="mui-input-row mui-checkbox mui-left radio_item">
+					<div class="checkbox-col">
 						<div class="row ">
 							<img src="../images/firstPageLive/homeBottom_03.jpg" alt="">
 							<div class="col_between" style="height: 0.7rem;">
@@ -160,15 +165,16 @@
 								<div class="row_between money_wrap">
 									<span>￥169.00 </span>
 									<div class="row">
-										<span class="action_span">-</span>
+										<span class="action_span sub-value icon-move iconfont"></span>
 										<span class="num">2</span>
-										<span class="action_span">+</span>
+										<span class="action_span add-value icon-add1 iconfont">
+										</span>
 									</div>
 								</div>
 							</div>
 						</div>
-					</label>
-					<input name="radio1" type="radio" checked>
+					</div>
+					<input  type="checkbox">
 				</div>
 			</form>
 			

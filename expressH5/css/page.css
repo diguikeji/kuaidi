@@ -45,14 +45,18 @@ ul,li{list-style: none;padding:0;margin:0;}
 
 .red{color:#FF5269!important;}
 
-.mui-checkbox input[type=checkbox]:checked:before, .mui-radio input[type=radio]:checked:before{color: #FF5269!important;}
+.banner-col img{width:100%;display: block;}
 
+.banner-col .swiper-wrapper{height:auto;}
 
+.swiper-container .swiper-pagination-bullet{width:5px;
+height:5px;
+background:rgba(224,229,237,1);
+opacity:0.5;
+border-radius:50%;}
 
-
-
-
-
-
-
-
+.swiper-container .swiper-pagination-bullet-active{width:12px;
+height:5px;
+background:rgba(16,126,255,1);
+border-radius:3px;opacity: 1;}
+.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet{margin:0 3px;}

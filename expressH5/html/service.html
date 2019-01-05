@@ -62,7 +62,7 @@
 
 	<div class="pd">
 
-	<div class="imc-col clearfix">
+	<div class="imc-col clearfix" onclick="expressPage();">
 
 		<img class="left" src="../images/service/fuwu_06.jpg"/>
 
@@ -149,6 +149,17 @@
 <script src="../js/app.js"></script>
 <script>
 
+function expressPage()
+{
+	
+	mui.openWindow({
+		    url: 'express.html',
+		    id: 'express.html',
+		    waiting: {
+		        autoShow: false
+		    }
+		})
+}
 
 	
 	//外卖服务

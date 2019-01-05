@@ -265,15 +265,42 @@ function openWindowPage(url){
     })
 }
 
+//加减法计算
+mui("body").on('tap','.add-value',function(event){
+
+    event.stopPropagation();
+    var value=parseInt($(this).prev().text());
+    value++;
+    $(this).prev().text(value);
+
+});
+mui("body").on('tap','.sub-value',function(event){
+
+
+    event.stopPropagation();
+    var value=parseInt($(this).next().text());
+    if(value<=1)
+    {
+        return;
+    }
+    value--;
+    $(this).next().text(value);
+
+
+});
+
 
 	 //调试
-      $("body").append("<div style='width:50px;height:50px;background:#000;position:absolute;right:0;bottom:50px;z-index:10000;' onclick='window.location.reload();'>reload</div>");
+      //$("body").append("<div style='width:50px;height:50px;background:#000;position:absolute;right:0;bottom:50px;z-index:10000;' onclick='window.location.reload();'>reload</div>");
 	
 	
 	  $(".mui-title").click(function()
 	  {
-	  	window.location.reload(1);
+	  	//window.location.reload(1);
 	  });
+
+
+
 
 
 

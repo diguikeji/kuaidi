@@ -163,6 +163,7 @@ header h1{
 .mui-bar-nav~.mui-content{padding-top:56px;}
 
 
+.mui-checkbox input[type=checkbox]:checked:before, .mui-radio input[type=radio]:checked:before{color: #FF5269!important;}
 
 
 
