@@ -89,7 +89,7 @@
 		<span>线上特卖会</span>
 	</span>
 
-	<div class="right-col">
+	<div class="right-col" id="sosuo">
 		<img src="../images/firstPageLive/icon2.png"/>
 		<div>搜索</div>
 	</div>
@@ -271,6 +271,36 @@
 <script src="../js/jquery-2.1.1.min.js"></script>
 <script src="../lib/masonry.pkgd.min.js"></script>
 <script>
+
+	$(".buzhou-list li").click(function()
+	{
+		$(".buzhou-list li").removeClass("active");
+		$(this).addClass("active");
+	});
+
+
+	mui(".fuli-list").on('tap','li',function(){
+
+		mui.openWindow({
+			url: 'take_out_detail_copy.html',
+			id: 'take_out_detail_copy.html',
+			waiting: {
+				autoShow: false
+			}
+		})
+
+	});
+
+	$("#sosuo").click(function()
+	{
+		mui.openWindow({
+			url: 'take_out_detail_copy.html',
+			id: 'take_out_detail_copy.html',
+			waiting: {
+				autoShow: false
+			}
+		})
+	});
 
 
 	$(".middle-col span").click(function()

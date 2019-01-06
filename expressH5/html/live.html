@@ -68,7 +68,7 @@
 			<img src="../images/firstPageLive/icon2.png" />
 		</span>
 
-		<span class="right-img"><img src="../images/firstPageLive/live_03.png"/><span class="dian"></span></span>
+		<span class="right-img" id="morePage"><img src="../images/firstPageLive/live_03.png"/><span class="dian"></span></span>
 
 	</div>
 
@@ -216,6 +216,19 @@
 	    <script src="../js/jquery-2.1.1.min.js"></script>
 		<script src="../lib/jquery.waterfall.js"></script>
 		<script>
+
+
+			$("#morePage").click(function()
+			{
+				plus.webview.open('appointment.html', 'appointment.html', {}, 'slide-in-right', 200);
+			});
+
+
+			$(".type-list .child").click(function()
+			{
+				$(".type-list .child").removeClass("active");
+				$(this).addClass("active");
+			});
 
 			$(".list-col li").click(function()
 			{

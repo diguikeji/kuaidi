@@ -189,7 +189,7 @@
 .select-count .left{position: absolute;left:15px;top:0.15rem;}
 .select-count .right{position: absolute;right:15px;top:0.15rem;}
 .select-count i{border-radius: 50%;text-align: center;color:#666;border:1px solid rgba(227,227,227,1);
-    font-weight:bold;box-sizing:border-box;padding-top:0.08rem;font-size:0.24rem;display: inline-block;width:0.36rem;height:0.36rem;}
+    font-weight:bold;box-sizing:border-box;padding-top:0.06rem;font-size:0.18rem;display: inline-block;width:0.36rem;height:0.36rem;}
 .select-count i.active{color:#fff;background: #107EFF;}
 .select-count .middle{text-align: center;}
 

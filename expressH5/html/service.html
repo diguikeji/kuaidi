@@ -34,6 +34,8 @@
 		.bottom-col .bottom-col-detail{width:100%;top:20%;position: absolute;left:0;text-align: center;}
 		.bottom-col .bottom-col-detail button{border:1px solid #277EFF;color:#277EFF;border-radius: 20px;padding:0.06rem 0.2rem;}
 
+		.fuwu-first-col .left{height:1.23rem;}
+		.fuwu-first-col .right img{height:0.6rem;}
 
 	</style>
 
@@ -62,22 +64,21 @@
 
 	<div class="pd">
 
-	<div class="imc-col clearfix" onclick="expressPage();">
+	<div class="imc-col fuwu-first-col clearfix" >
 
-		<img class="left" src="../images/service/fuwu_06.jpg"/>
-
+		<img class="left" onclick="expressPage();" src="../images/service/fuwu_06.jpg"/>
 		<div class="right clearfix">
-			<div>
+			<div onclick="openExpressPage(0)">
 				<img src="../images/service/fuwu_08.jpg">
 			</div>
-			<div>
-				<img src="../images/service/fuwu_08.jpg">
+			<div onclick="openExpressPage(1)">
+				<img src="../images/service/fuwu_03.jpg">
 			</div>
-			<div>
-				<img src="../images/service/fuwu_08.jpg">
+			<div onclick="openExpressPage(2)">
+				<img src="../images/service/fuwu_12.jpg">
 			</div>
-			<div>
-				<img src="../images/service/fuwu_08.jpg">
+			<div onclick="openExpressPage(3)">
+				<img src="../images/service/fuwu_13.jpg">
 			</div>
 
 		</div>
@@ -148,6 +149,27 @@
 <script src="../js/jquery-2.1.1.min.js"></script>
 <script src="../js/app.js"></script>
 <script>
+
+function openExpressPage(str)
+{
+	if(str==0)
+	{
+		plus.webview.open('expressSearch.html', 'expressSearch.html', {}, 'slide-in-right', 200);
+	}
+	else if(str==1)
+	{
+		plus.webview.open('personExpress.html', 'personExpress', {}, 'slide-in-right', 200);
+	}
+	else if(str==2)
+	{
+		plus.webview.open('expressSearch.html', 'expressSearch', {}, 'slide-in-right', 200);
+	}
+	else if(str==3)
+	{
+		plus.webview.open('expressQianshou.html', 'expressQianshou', {}, 'slide-in-right', 200);
+	}
+}
+
 
 function expressPage()
 {

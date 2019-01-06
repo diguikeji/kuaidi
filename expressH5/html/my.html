@@ -62,7 +62,7 @@
 			<div class="money"><span>￥</span>2988.8</div>
 			<p>账户余额</p>
 
-			<div class="btn">
+			<div class="btn" id="tixian">
 				<img src="../images/wode/tixian-btn.png"/>
 			</div>
 
@@ -70,7 +70,7 @@
 		</div>
 
 		<ul class="my-list clearfix">
-			<li>
+			<li onclick="openWindowPage('express.html')">
 				<div>
 				<img src="../images/wode/wode_22.jpg">
 				<p>快递</p>
@@ -137,7 +137,7 @@
 
 <script src="../js/mui.min.js"></script>
 <script src="../js/jquery-2.1.1.min.js"></script>
-
+<script src="../js/app.js"></script>
 <script>
 
 	//设置页面
@@ -171,7 +171,8 @@
 		    }
 		})
 	}
-	
+
+
 	//投诉建议
 	function goToComplain(){
 		mui.openWindow({
@@ -220,6 +221,11 @@
 	{
             var phone="4008888808";
             plus.device.dial(phone,false);
+	});
+
+	$("#tixian").click(function()
+	{
+		mui.toast("提现成功");
 	});
 
 	
