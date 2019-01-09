@@ -88,18 +88,10 @@ var Global = {};
         },
         //网络请求
         commonAjax: function(params, callback, errorback) {
-           var baseUrl = "http://app.dev.xianghq.cn/api/";
+           var baseUrl = "https://lfb.kai-dian.com/api/";
             // var baseUrl = "https://app.xhq520.com/api/"; 
             //   var baseUrl = "http://192.168.1.26:8081/api/";
-            //应用版本号
-            var appVersion = plus.runtime.version;
-            //          //设备唯一标识
-            var deviceId = plus.device.uuid;
-            //          //系统的版本信息
-            var osVersion = plus.os.version;
-            //
-            var appType = plus.os.name;
-            var appName = "xhq";
+            
 
             //默认 get请求
             if (!params.method) {
@@ -107,12 +99,14 @@ var Global = {};
             } else {
                 params.method = "POST";
             }
-
+			
+			//没有网络
             if (plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE) {
                 Global.errorNet();
                 return;
             }
 
+			var deferred = $.Deferred();
             mui.ajax(baseUrl + params.url, {
                 dataType: "json",
                 type: params.method,
@@ -122,27 +116,19 @@ var Global = {};
                     'Content-Type': 'application/json'
                 },
                 beforeSend: function(xhr) {
-                    xhr.setRequestHeader("deviceId", deviceId);
-                    xhr.setRequestHeader("osVersion", osVersion);
-                    xhr.setRequestHeader("appVersion", appVersion);
-                    xhr.setRequestHeader("appType", appType);
-                    xhr.setRequestHeader("appName", appName);
                     xhr.setRequestHeader("Content-Type", "application/json");
                     // var token = myStorage.getItem("userToken");
 //                     if (token) {
 //                         xhr.setRequestHeader("Authorization", "Bearer " + token);
 //                     };
 
-                    if (params.url.indexOf("isShowPic=true") != -1) {
-                        console.log("显示图片");
-                    } else {
-                        Global.showLoading();
-                    }
+                    Global.showLoading();
 
 
                 },
                 success: function(data) {
-                    //console.log(JSON.stringify(data));
+                    console.log(JSON.stringify(data));
+					
                     if (data.code.indexOf("token") != -1 || params.url.indexOf("logout") != -1) {
                         //token 过期
 //                         if (myStorage) {
@@ -178,61 +164,30 @@ var Global = {};
                             return;
                         }
 
-                    } else if (data.code == "pay.ok") {
-                        callback(data.data ? data.data : "");
-                    } else if (data.code == "SUCCESS" || data.code == "OK" ||
-                        data.code == "success" || data.code == "ok") {
-                        callback(data.data ? data.data : "");
-                    }else if(data.code == "ocr.succ.over") {
-                        errorback && errorback(data.msg, data.code);
-                    }else if(data.code == "ocr.back.over"){
-                    		mui.toast(data.msg);
-                    		callback(data.data ? data.data : "");
-                    }else {
-                        errorback && errorback(data.msg);
-                    }
+                    } else if (data.success) {
+                        deferred.resolve(data.data ? data.data : "");
+                    } else{
+						deferred.reject(data.msg ? data.msg : "");
+					}
+					
+					return deferred.promise(); 
 
                 },
                 error: function(data) {
                     console.log(JSON.stringify(data));
-                    if (!data.response || !data.responseText) {
-                        Global.error500();
-                        return;
-                    }
-                    if (errorback) {
-                        errorback(data.msg);
-                    }
+                    deferred.reject(data.msg ? data.msg : "");
 
                 },
                 complete: function(xhr, status) {
-                    if (params.url.indexOf("isShowPic=true") != -1) {
-                        console.log("显示图片");
-                        return;
-                    }
-
-                    // setTimeout(function() {
-                    //     Global.hideLoading();
-                    // }, 500);
                     Global.hideLoading();
 
-                    if (params.url.indexOf("card") != -1) {
-                        console.log("9999999");
-                        return;
-                    }
-
-                    if (params.url.indexOf("changpay/prepare")) {
-                        //支付短信平台出错
-
-                        return;
-                    }
-
-                    if (status == 'error') {
-                        Global.error404();
-                    } else if (status == 'timeout') {
-                        Global.error500();
-                    } else if (status != 'success') {
-                        Global.errorNet();
-                    }
+//                     if (status == 'error') {
+//                         Global.error404();
+//                     } else if (status == 'timeout') {
+//                         Global.error500();
+//                     } else if (status != 'success') {
+//                         Global.errorNet();
+//                     }
 
 
                 }
