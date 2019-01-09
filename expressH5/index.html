@@ -384,7 +384,15 @@
 
 			$(".shiyong-list").click(function()
 			{
-				plus.webview.open('html/express.html', 'express.html', {}, 'slide-in-right', 200);
+
+				Global.openWindow({
+					url: 'html/express.html',
+					id: 'express.html',
+					waiting: {
+						autoShow: false
+					}
+				})
+				
 			});
 
 
@@ -392,23 +400,65 @@
 			{
 				if(str==0)
 				{
-					plus.webview.open('html/express.html', 'express.html', {}, 'slide-in-right', 200);
+					
+					
+					Global.openWindow({
+					url: 'html/express.html',
+					id: 'express.html',
+					waiting: {
+						autoShow: false
+					}
+					})
+					
 				}
 				else if(str==1)
 				{
-					plus.webview.open('html/take_out_order.html', 'take_out_order', {}, 'slide-in-right', 200);
+					
+					Global.openWindow({
+					url: 'html/take_out_order.html',
+					id: 'take_out_order.html',
+					waiting: {
+						autoShow: false
+					}
+					})
+					
 				}
 				else if(str==2)
 				{
-					plus.webview.open('html/fuliShiyong.html', 'fuliShiyong', {}, 'slide-in-right', 200);
+					
+					
+					Global.openWindow({
+					url: 'html/fuliShiyong.html',
+					id: 'fuliShiyong.html',
+					waiting: {
+						autoShow: false
+					}
+					})
+					
 				}
 				else if(str==3)
 				{
-					plus.webview.open('html/zhihuiLouyu.html', 'zhihuiLouyu', {}, 'slide-in-right', 200);
+					
+					
+					Global.openWindow({
+					url: 'html/zhihuiLouyu.html',
+					id: 'zhihuiLouyu.html',
+					waiting: {
+						autoShow: false
+					}
+					})
 				}
 				else if(str==4)
 				{
-					plus.webview.open('html/company_service.html', 'company_service', {}, 'slide-in-right', 200);
+				
+					
+					Global.openWindow({
+					url: 'html/company_service.html',
+					id: 'company_service.html',
+					waiting: {
+						autoShow: false
+					}
+					})
 				}
 
 
@@ -417,19 +467,41 @@
 			function openTopPage()
 			{
 				
-				plus.webview.open('html/question.html', 'question', {}, 'slide-in-right', 200);
+				
+				
+				mui.openWindow({
+					url: 'html/question.html',
+					id: 'question.html',
+					waiting: {
+						autoShow: false
+					}
+					})
 			}
 			
 			$("#morePage").click(function()
 			{
 				
-				plus.webview.open('html/tiaozheng.html', 'tiaozheng.html', {}, 'slide-in-right', 200);
+			
+				Global.openWindow({
+					url: 'html/tiaozheng.html',
+					id: 'tiaozheng.html',
+					waiting: {
+						autoShow: false
+					}
+					})
 			
 			});
 			
 			$(".three-list img").click(function()
 			{
-				plus.webview.open('html/mallPage.html', 'mallPage', {}, 'slide-in-right', 200);
+				
+				Global.openWindow({
+					url: 'html/mallPage.html',
+					id: 'mallPage.html',
+					waiting: {
+						autoShow: false
+					}
+					})
 			});
 
 

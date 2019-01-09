@@ -281,7 +281,7 @@
 
 	mui(".fuli-list").on('tap','li',function(){
 
-		mui.openWindow({
+		Global.openWindow({
 			url: 'take_out_detail_copy.html',
 			id: 'take_out_detail_copy.html',
 			waiting: {
@@ -293,7 +293,7 @@
 
 	$("#sosuo").click(function()
 	{
-		mui.openWindow({
+		Global.openWindow({
 			url: 'take_out_detail_copy.html',
 			id: 'take_out_detail_copy.html',
 			waiting: {
@@ -315,7 +315,16 @@
 	$(".fuli-temai-list li").click(function()
 	{
 
-		plus.webview.open('mallTemai.html', 'mallPage.html', {}, 'slide-in-right', 200);
+		
+		
+		Global.openWindow({
+		    url: 'mallTemai.html',
+		    id: 'mallTemai.html',
+		    waiting: {
+		        autoShow: false
+		    }
+		})
+		
 
 	});
 

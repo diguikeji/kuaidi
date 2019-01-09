@@ -142,7 +142,16 @@
 
 			$(".right-col-list li").click(function()
 			{
-				plus.webview.open('mallPage.html', 'company_service', {}, 'slide-in-right', 200);
+				
+				
+				Global.openWindow({
+					url: 'mallPage.html',
+					id: 'mallPage.html',
+					waiting: {
+						autoShow: false
+					}
+				})
+				
 			});
 
 

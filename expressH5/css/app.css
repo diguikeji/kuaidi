@@ -164,9 +164,6 @@ header h1{
 .mui-bar .has-select span{display: inline-block;vertical-align: middle;}
 .mui-bar .has-select img{width:0.16rem;height:0.19rem;display: inline-block;vertical-align: middle;margin-top:0;padding:0;}
 
-.mui-bar-nav~.mui-content{padding-top:56px;}
-
-
 .mui-checkbox input[type=checkbox]:checked:before, .mui-radio input[type=radio]:checked:before{color: #FF5269!important;}
 
 .blue{color:#107EFF!important;}

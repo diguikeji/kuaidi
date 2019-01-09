@@ -32,7 +32,7 @@
 			
 			.input_wrap{
 				width: 90%;
-				margin: 26px 5% 0px;
+				margin: 0 5% 0px;
 				height: 36px;
 				background-color: #FAFAFA;
 				box-sizing: border-box;
@@ -60,7 +60,7 @@
 				color: #107EFF;
 				position: absolute;
 				right: 20px;
-				top: 24px;
+				top: 12px;
 			}
 
 		</style>
@@ -88,7 +88,7 @@
 					url:'my_address_sub.html',
 					id:'my_address_sub.html',
 					styles:{
-						top: '118px',
+						top: '100px',
 						bottom: '0px'
 					}
 				}]
@@ -115,7 +115,7 @@
 				}
 				
 				function goToAddAddr(){
-					mui.openWindow({
+					Global.openWindow({
 					    url: 'add_address.html',
 					    id: 'add_address.html',
 					    waiting: {

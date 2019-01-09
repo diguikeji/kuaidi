@@ -154,19 +154,51 @@ function openExpressPage(str)
 {
 	if(str==0)
 	{
-		plus.webview.open('expressSearch.html', 'expressSearch.html', {}, 'slide-in-right', 200);
+		
+			Global.openWindow({
+					url: 'expressSearch.html',
+					id: 'expressSearch.html',
+					waiting: {
+						autoShow: false
+					}
+				})
 	}
 	else if(str==1)
 	{
-		plus.webview.open('personExpress.html', 'personExpress', {}, 'slide-in-right', 200);
+		
+		
+		Global.openWindow({
+					url: 'personExpress.html',
+					id: 'personExpress.html',
+					waiting: {
+						autoShow: false
+					}
+				})
+		
 	}
 	else if(str==2)
 	{
-		plus.webview.open('expressSearch.html', 'expressSearch', {}, 'slide-in-right', 200);
+		
+		Global.openWindow({
+					url: 'expressSearch.html',
+					id: 'expressSearch.html',
+					waiting: {
+						autoShow: false
+					}
+				})
+		
 	}
 	else if(str==3)
 	{
-		plus.webview.open('expressQianshou.html', 'expressQianshou', {}, 'slide-in-right', 200);
+
+		Global.openWindow({
+					url: 'expressQianshou.html',
+					id: 'expressQianshou.html',
+					waiting: {
+						autoShow: false
+					}
+				})
+		
 	}
 }
 
@@ -174,7 +206,7 @@ function openExpressPage(str)
 function expressPage()
 {
 	
-	mui.openWindow({
+	Global.openWindow({
 		    url: 'express.html',
 		    id: 'express.html',
 		    waiting: {
@@ -186,7 +218,7 @@ function expressPage()
 	
 	//外卖服务
 	function goToTakeout(){
-		mui.openWindow({
+		Global.openWindow({
 		    url: 'take_out_order.html',
 		    id: 'take_out_order.html',
 		    waiting: {
@@ -197,7 +229,7 @@ function expressPage()
 	
 	//企业服务
 	function goToServiceOrder(){
-		mui.openWindow({
+		Global.openWindow({
 		    url: 'company_service.html',
 		    id: 'company_service.html',
 		    waiting: {

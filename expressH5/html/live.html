@@ -220,7 +220,15 @@
 
 			$("#morePage").click(function()
 			{
-				plus.webview.open('appointment.html', 'appointment.html', {}, 'slide-in-right', 200);
+				
+				Global.openWindow({
+					url: 'appointment.html',
+					id: 'appointment.html',
+					waiting: {
+						autoShow: false
+					}
+				})
+				
 			});
 
 
@@ -233,14 +241,31 @@
 			$(".list-col li").click(function()
 			{
 
-				plus.webview.open('mallDetail.html', 'mallDetail.html', {}, 'slide-in-right', 200);
+				
+				
+				Global.openWindow({
+					url: 'mallDetail.html',
+					id: 'mallDetail.html',
+					waiting: {
+						autoShow: false
+					}
+				})
+				
+				
 
 			});
 
 			$("#mall").click(function()
 			{
 
-				plus.webview.open('mallList.html', 'mallList', {}, 'slide-in-right', 200);
+			
+				Global.openWindow({
+					url: 'mallList.html',
+					id: 'mallList.html',
+					waiting: {
+						autoShow: false
+					}
+				})
 
 			});
 

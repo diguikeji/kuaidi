@@ -158,7 +158,7 @@
 		
 		mui("#pullrefresh").on('tap','li',function(){
 			
-			mui.openWindow({
+			Global.openWindow({
 			    url: 'take_out_detail_copy.html',
 			    id: 'take_out_detail_copy.html',
 			    waiting: {
@@ -447,7 +447,7 @@
 		        			plus.runtime.openURL(item.goodsUrl);
 		        			return;
 		        		}
-                    mui.openWindow({
+                    Global.openWindow({
                         url: 'webview.html',
                         id: 'webview.html?url=' + item.goodsUrl,
                         waiting: {

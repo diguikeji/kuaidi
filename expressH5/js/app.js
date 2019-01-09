@@ -15,10 +15,10 @@ var Global = {};
 					};
     		
     		options.styles.statusbar = {
-							background: "#f7f7f7"
+							background: "#fff"
 						};
     		
-    		mui.openWindow($obj.url, $obj.id,option);
+    		mui.openWindow($obj.url, $obj.id,options);
     		
     	},
         showLoading: function() {
@@ -189,13 +189,21 @@ var Global = {};
 
 
 function openWindowPage(url){
-    mui.openWindow({
-        url:url,
-        id: url,
-        waiting: {
-            autoShow: false
-        }
-    })
+    
+    var options = {
+						styles:{
+							popGesture: "close"
+						},
+						extras:{}
+					};
+    		
+    		options.styles.statusbar = {
+							background: "#fff"
+						};
+    		
+    		mui.openWindow(url, url,options);
+    
+    
 }
 
 //加减法计算
