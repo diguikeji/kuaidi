@@ -21,16 +21,13 @@ var util = {
 		var subpage_style = {
 				top: 0,
 				bottom: 51,
-				statusbar: {
-					"style": "dark"
-				}
 			},
 			subpages = util.options.subpages,
 			self = plus.webview.currentWebview(),
 			temp = {};
 			
 		//兼容安卓上添加titleNView 和 设置沉浸式模式会遮盖子webview内容
-	/* 	if(mui.os.android) {
+	 	/*if(mui.os.android) {
 			if(plus.navigator.isImmersedStatusbar()) {
 				subpage_style.top += plus.navigator.getStatusbarHeight();
 			}
@@ -49,6 +46,7 @@ var util = {
 		for(var i = 0, len = subpages.length; i < len; i++) {
 
 			if(!plus.webview.getWebviewById(subpages[i])) {
+				console.log("测试");
 				var sub = plus.webview.create(subpages[i], subpages[i], subpage_style);
 				//初始化隐藏
 				sub.hide();

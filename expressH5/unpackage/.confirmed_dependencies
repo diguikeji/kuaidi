@@ -7,7 +7,8 @@
       "html/live.html",
       "html/fuli.html",
       "html/express.html",
-      "html/service.html"
+      "html/service.html",
+      "html/complain.html"
     ],
     "resources": [
       "html/service.html"
@@ -35,8 +36,11 @@
   },
   "html/my.html": {
     "refer": [
-      "html/my_address.html"
-    ]
+      "html/my_address.html",
+      "html/signup.html",
+      "html/complain.html"
+    ],
+    "resources": []
   },
   "html/my_address.html": {
     "resources": [
