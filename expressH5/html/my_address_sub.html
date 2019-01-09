@@ -84,7 +84,7 @@
         <div class="mui-scroll" style="background: #FFFFFF;">
             <!--数据列表-->
             <ul class="mui-table-view-condensed list_wrap">
-				<li class=" mui-table-view-cell-item item_wrap col_between">
+				<!-- <li class=" mui-table-view-cell-item item_wrap col_between">
 					<div class="row_between wrap">
 						<span class="sex">王</span>
 						<div class="content_wrap">
@@ -95,33 +95,7 @@
 						</div>
 						<img src="../images/firstPageLive/homeBottom_03.jpg" >
 					</div>
-				</li>
-				
-				<li class=" mui-table-view-cell-item item_wrap col_between">
-					<div class="row_between wrap">
-						<span class="sex">王</span>
-						<div class="content_wrap">
-							<span class="name">
-								王先生 &nbsp;&nbsp;<span class="tel">1380013000</span>
-							</span>
-							<span class="address">上海普陀区金沙江路1518弄近铁城市广场 100室</span>
-						</div>
-						<img src="../images/firstPageLive/homeBottom_03.jpg" >
-					</div>
-				</li>
-				
-				<li class=" mui-table-view-cell-item item_wrap col_between">
-					<div class="row_between wrap">
-						<span class="sex">王</span>
-						<div class="content_wrap">
-							<span class="name">
-								王先生 &nbsp;&nbsp;<span class="tel">1380013000</span>
-							</span>
-							<span class="address">上海普陀区金沙江路1518弄近铁城市广场 100室</span>
-						</div>
-						<img src="../images/firstPageLive/homeBottom_03.jpg" >
-					</div>
-				</li>
+				</li> -->
 				
 				
             </ul>
@@ -137,20 +111,20 @@
     <script src="../js/app.js"></script>
     <script type="text/javascript">
         mui.init({
-//             pullRefresh: {
-//                 container: '#pullrefresh',
-//                 down: {
-//                     callback: pulldownRefresh
-//                 },
-//                 up: {
-//                     contentrefresh: '正在加载...',
-//                     callback: pullupRefresh
-//                 }
-//             }
+            pullRefresh: {
+                container: '#pullrefresh',
+                down: {
+                    callback: pulldownRefresh
+                },
+                up: {
+                    contentrefresh: '正在加载...',
+                    callback: pullupRefresh
+                }
+            }
         });
 
         mui.plusReady(function() {
-            // pulldownRefresh();
+            pulldownRefresh();
 
             //点击上次浏览
             window.addEventListener('updatePreType', function(event) {
@@ -189,55 +163,46 @@
             getMsglist(1);
         }
 
-        //查询类型：HISTORY（查询历史浏览记录） TIME （根据期间） DEGREE: 高成功率 
-        var currentType = "DEGREE";
         //当前查询  页数
         var current = 1;
-        //根据期限查询是，是否倒序
-        var isDesc = false;
 
         function getMsglist(refreshType) {
             var params = {
                 current: current,
                 size: 20,
-                isDesc: isDesc,
-                queryType: currentType
             };
 
             $(".empty_text").hide();
             $("#pullrefresh").show();
-            console.log("-----" + currentType);
 			//mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 			
-			
-			setTimeout(function(){
-				getListData(0, [1,2,3], false);
-			}, 1000);
-			return;
             Global.commonAjax({
-                    url: "goods/payed/goodslist",
-                    method: "POST",
-                    data: params
+                    url: "addresses"
                 },
-                function(data) {
-                    if (data.current >= data.pages) {
-                        if ((data.current == 1) && (data.records.length == 0)) {
-                            //空数据
-                            $(".empty_text").show();
-                            $("#pullrefresh").hide();
-                            mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
-                        } else {
-                            //没有更多数据了
-                            getListData(refreshType, data.records, true);
-                        }
-                    } else {
-                        getListData(refreshType, data.records, false);
-                    }
-                },
-                function(err) {
-                    mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
-                }
-            )
+				function(data) {
+					if(!data){
+						$(".empty_text").show();
+						$("#pullrefresh").hide();
+						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					}else if (data.current_page < data.last_page) {
+				        if (data.data.length == 0) {
+				            //空数据
+				            $(".empty_text").show();
+				            $("#pullrefresh").hide();
+				            mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+				        } else {
+				            //没有更多数据了
+				            getListData(refreshType, data.data, true);
+				        }
+				    } else {
+						//还有数据
+				        getListData(refreshType, data.data, false);
+				    }
+				},
+				function(err) {
+				    mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+				})
+                
         }
 
         var findList = [];
@@ -277,35 +242,15 @@
                 li.className = 'mui-table-view-cell-item item_wrap col_between';
                 li.setAttribute("data-index", index);
                 
-				li.innerHTML = '<div class="row_between title_wrap">'+
-						'<span>2017-06-24</span>'+
-						'<div class="row_center item_status">'+ 
-							'<span class="dian">·</span>'+ 
-							'<span>&nbsp;待发货</span>'+
+				li.innerHTML = '<div class="row_between wrap">'+
+						'<span class="sex">王</span>'+
+						'<div class="content_wrap">'+
+							'<span class="name">'+
+								'王先生 &nbsp;&nbsp;<span class="tel">1380013000</span>'+
+							'</span>'+
+							'<span class="address">上海普陀区金沙江路1518弄近铁城市广场 100室</span>'+
 						'</div>'+
-					'</div>'+
-					
-					'<div class=" content_wrap">'+
-						'<div class="col_between border">'+
-							'<div class="content_up">'+
-								'<img src="../images/firstPageLive/homeBottom_03.jpg" />'+
-								'<span class="content_center">农夫山泉饮用水饮用天然水5L*4桶整箱装桶装水</span>'+
-								'<div class="content_end">'+
-									'<span>￥169.00</span>'+
-									'<span class="number">x2</span>'+
-								'</div>'+
-							'</div>'+
-							'<div class="content_down">'+
-								'<span class="first_txt">共 <span class="num">8</span> 件</span>'+
-								'<span class="sencod_txt">应付金额:'+
-									'<span class="money">￥</span><span class="money_num">169</span>'+
-									'<span class="num_float">.00</span>'+
-								'</span></div></div></div>'+
-					
-					'<div class="row item_down">'+
-						'<span class="warn_tag">提醒发货</span>'+
-						'<span class="normal_tag">提醒发货</span>'+
-						'<span class="normal_tag">提醒发货</span>'+
+						'<img src="../images/firstPageLive/homeBottom_03.jpg" >'+
 					'</div>';
 
                 

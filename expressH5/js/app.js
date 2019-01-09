@@ -87,11 +87,8 @@ var Global = {};
             return !isClose;
         },
         //网络请求
-        commonAjax: function(params, callback, errorback) {
+        commonAjax: function(params,callback, errorback) {
            var baseUrl = "https://lfb.kai-dian.com/api/";
-            // var baseUrl = "https://app.xhq520.com/api/"; 
-            //   var baseUrl = "http://192.168.1.26:8081/api/";
-            
 
             //默认 get请求
             if (!params.method) {
@@ -105,8 +102,8 @@ var Global = {};
                 Global.errorNet();
                 return;
             }
-
-			var deferred = $.Deferred();
+			
+			var waiting;
             mui.ajax(baseUrl + params.url, {
                 dataType: "json",
                 type: params.method,
@@ -122,64 +119,27 @@ var Global = {};
 //                         xhr.setRequestHeader("Authorization", "Bearer " + token);
 //                     };
 
-                    Global.showLoading();
-
+                    //Global.showLoading();
+					waiting = plus.nativeUI.showWaiting("加载中...");
 
                 },
                 success: function(data) {
-                    console.log(JSON.stringify(data));
-					
-                    if (data.code.indexOf("token") != -1 || params.url.indexOf("logout") != -1) {
-                        //token 过期
-//                         if (myStorage) {
-//                             myStorage.removeItem("userToken");
-//                             myStorage.removeItem("user");
-//                             myStorage.removeItem("userInfo");
-//                             myStorage.removeItem("wallet");
-//                             myStorage.removeItem("headPic");
-//                         }
-                        var curr = plus.webview.currentWebview();
-                        var wvs = plus.webview.all();
-                        console.log(data.code);
-                        if (wvs && wvs.length) {
-                            for (var i = 0; i < wvs.length; i++) {
-                                if (wvs[i]) {
-                                    if (wvs[i].getURL() == curr.getURL()) {
-                                        continue;
-                                    }
-                                    plus.webview.close(wvs[i]);
-                                }
-
-                            }
-                            if (params.url.indexOf("logout") != -1) {
-                                mui.toast("请重新登录");
-                            } else {
-                                mui.toast("登录信息已失效，请重新登录");
-                            }
-
-                            plus.webview.open('login.html');
-
-                            curr.close();
-
-                            return;
-                        }
-
-                    } else if (data.success) {
-                        deferred.resolve(data.data ? data.data : "");
+                    // console.log(JSON.stringify(data));
+					if (data.success) {
+                        callback(data.data ? data.data : "");
                     } else{
-						deferred.reject(data.msg ? data.msg : "");
+						errorback(data.msg ? data.msg : "");
 					}
-					
-					return deferred.promise(); 
 
                 },
                 error: function(data) {
                     console.log(JSON.stringify(data));
-                    deferred.reject(data.msg ? data.msg : "");
+                    errorback(data.msg ? data.msg : "");
 
                 },
                 complete: function(xhr, status) {
-                    Global.hideLoading();
+                    //Global.hideLoading();
+					waiting.close();
 
 //                     if (status == 'error') {
 //                         Global.error404();

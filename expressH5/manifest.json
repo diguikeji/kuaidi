@@ -103,11 +103,6 @@
         }
     },
     "plus" : {
-    	
-    	"statusbar": {
-        "immersed": true,
-        "background":"#ffffff"
-		},
         "launchwebview" : {
         	
             "bottom" : "0px",
