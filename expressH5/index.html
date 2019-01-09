@@ -478,8 +478,6 @@
 					});
 
 
-					plus.navigator.setStatusBarStyle("UIStatusBarStyleBlackOpaque");
-					//plus.navigator.setStatusBarBackground('#157AC9');//设置状态栏的颜色
 
 					// 创建子webview窗口 并初始化
 					var aniShow = {};
@@ -526,14 +524,6 @@
 							
 						}
 						
-						if(currIndex==0||currIndex==2)
-						{
-							plus.navigator.setStatusBarStyle("UIStatusBarStyleBlackOpaque");
-						}
-						else{
-							plus.navigator.setStatusBarStyle("UIStatusBarStyleDefault");
-						}
-						
 						
 						
 						if(targetPage == activePage) {
@@ -553,11 +543,7 @@
 					});
 				});
 			
-				window.addEventListener('refreshPage', function(e){//执行刷新
-
-					plus.navigator.setStatusBarStyle("UIStatusBarStyleBlackOpaque");
-
-				});
+				
 			
 		</script>
 	</body>

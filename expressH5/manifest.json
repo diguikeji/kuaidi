@@ -103,6 +103,10 @@
         }
     },
     "plus" : {
+    	"statusbar": {
+			"immersed": "supportedDevice",
+			"style": "dark"
+		},
         "launchwebview" : {
         	
             "bottom" : "0px",
@@ -376,6 +380,20 @@
 				"refer": [
 					"html/mallList.html"
 				],
+				"priority": 0
+			},
+			"html/my.html": {
+				"resources": [],
+				"refer": [
+					"html/my_address.html"
+				],
+				"priority": 0
+			},
+			"html/my_address.html": {
+				"resources": [
+					"html/my_address_sub.html"
+				],
+				"refer": [],
 				"priority": 0
 			}
 		},

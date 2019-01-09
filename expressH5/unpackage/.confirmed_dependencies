@@ -24,11 +24,26 @@
   "html/mallList.html": {
     "refer": [
       "html/mallPage.html"
-    ]
+    ],
+    "resources": []
   },
   "html/live.html": {
     "refer": [
       "html/mallList.html"
+    ],
+    "resources": []
+  },
+  "html/my.html": {
+    "refer": [
+      "html/my_address.html"
+    ]
+  },
+  "html/my_address.html": {
+    "resources": [
+      "html/my_address_sub.html"
+    ],
+    "refer": [
+      "html/my_address_sub.html"
     ]
   }
 }

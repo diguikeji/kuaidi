@@ -2,7 +2,7 @@ var util = {
 	options: {
 		tab: ['images/tab/1.jpg','images/tab/2.jpg','images/tab/3.jpg','images/tab/4.jpg','images/tab/5.jpg'],
 		tabActive:['images/tab/1-1.jpg','images/tab/2-1.jpg','images/tab/3-1.jpg','images/tab/4-1.jpg','images/tab/5-1.jpg'],
-		ACTIVE_COLOR: "#007aff",
+		ACTIVE_COLOR: "#000",
 		NORMAL_COLOR: "#000",
 		subpages: ["html/service.html", "html/live.html","html/fuli.html","html/my.html"]
 	},
@@ -20,7 +20,10 @@ var util = {
 	initSubpage: function(aniShow) {
 		var subpage_style = {
 				top: 0,
-				bottom: 51
+				bottom: 51,
+				statusbar: {
+					"style": "dark"
+				}
 			},
 			subpages = util.options.subpages,
 			self = plus.webview.currentWebview(),
