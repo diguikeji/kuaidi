@@ -124,15 +124,15 @@
 					if(index == ind){
 						$(this).addClass("active");
 						$(this).next().addClass("active_line");
-						//sendClickType(index);
+						sendClickType(index);
 					}
 				})
 			}
 				
 				function sendClickType(index){
 					console.log("发送事件"+index);
-					var h = plus.webview.getWebviewById("recommand_sub.html");
-					mui.fire(h,'updatePreType',{currentType: currentType, isDesc: isDesc});
+					var h = plus.webview.getWebviewById("my_order_sub.html");
+					mui.fire(h,'updateOrderType',{index: index});
 				}
 			
 		</script>

@@ -30,12 +30,10 @@
             margin: 0.15rem 4%;
 			background-color: #FFFFFF;
 			border-radius: 0.04rem;
-			background: url(../images/coupon/coupon_online.png);
-			background-size: cover;
+			background-size: 100% 100%;
 			padding-left: 0.15rem;
-			box-shadow: 0px 0px 10px 0px #EAEAEA;
         }
-        
+		
 		.item_wrap img{
 			width: 0.63rem;
 			height: 0.63rem;
@@ -81,12 +79,12 @@
         <div class="mui-scroll">
             <!--数据列表-->
             <ul class="mui-table-view-condensed list_wrap">
-				<li class=" mui-table-view-cell-item row item_wrap">
+				<li class=" mui-table-view-cell-item row item_wrap" style="background-image: url(../images/coupon/coupon_mall.png);">
 					
 					<img src="../images/firstPageLive/homeBottom_03.jpg" />
 					<div class="content_item">
 						<span class="name">GUCCI 折扣券</span>
-						<span class="time">2018-01-01 至 2018-12-31 拷贝</span>
+						<span class="time">2018-01-01 至 2018-12-31</span>
 						<span class="money_wrap">
 							满<span class="money">&nbsp;10000&nbsp;</span>
 							减<span class="money">&nbsp;100</span>
@@ -103,41 +101,40 @@
         数据为空
     </div>
 
-    <script src="../js/mui.min.js"></script>
+    <script>var h5pullDown = true;</script>
+    <script src="../js/mui.js"></script>
     <script src="../js/jquery-2.1.1.min.js"></script>
-    <!-- <script src="../js/app.js"></script> -->
+    <script src="../js/app.js"></script>
     <script type="text/javascript">
         mui.init({
-//             pullRefresh: {
-//                 container: '#pullrefresh',
-//                 down: {
-//                     callback: pulldownRefresh
-//                 },
-//                 up: {
-//                     contentrefresh: '正在加载...',
-//                     callback: pullupRefresh
-//                 }
-//             }
+            pullRefresh: {
+                container: '#pullrefresh',
+                down: {
+                    callback: pulldownRefresh
+                },
+                up: {
+                    contentrefresh: '正在加载...',
+                    callback: pullupRefresh
+                }
+            }
         });
 
         mui.plusReady(function() {
             // pulldownRefresh();
 
             //点击上次浏览
-            window.addEventListener('updatePreType', function(event) {
-                console.log("收到事件" + event.detail.currentType);
-                updateClick(event.detail);
+            window.addEventListener('updateCouponType', function(event) {
+                console.log("收到事件" + event.detail.index);
+                updateClick(event.detail.index);
             }, false);
 
         });
 
 
         // pulldownRefresh();
-
-        function updateClick(msg) {
-            console.log("99999")
-            currentType = msg.currentType;
-            isDesc = msg.isDesc;
+		var tabIndex = 0;
+        function updateClick(index) {
+			tabIndex = index;
             findList = [];
             pulldownRefresh();
         }
@@ -160,24 +157,17 @@
             getMsglist(1);
         }
 
-        //查询类型：HISTORY（查询历史浏览记录） TIME （根据期间） DEGREE: 高成功率 
-        var currentType = "DEGREE";
         //当前查询  页数
         var current = 1;
-        //根据期限查询是，是否倒序
-        var isDesc = false;
 
         function getMsglist(refreshType) {
             var params = {
                 current: current,
-                size: 20,
-                isDesc: isDesc,
-                queryType: currentType
+                size: 20
             };
 
             $(".empty_text").hide();
             $("#pullrefresh").show();
-            console.log("-----" + currentType);
 			//mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 			
 			
@@ -245,43 +235,18 @@
                 var li = document.createElement('li');
                 var item = cells[i];
 
-                li.className = 'mui-table-view-cell-item item_wrap col_between';
+                li.className = 'mui-table-view-cell-item row item_wrap';
                 li.setAttribute("data-index", index);
                 
-				li.innerHTML = '<div class="row_between title_wrap">'+
-						'<span>2017-06-24</span>'+
-						'<div class="row_center item_status">'+ 
-							'<span class="dian">·</span>'+ 
-							'<span>&nbsp;待发货</span>'+
-						'</div>'+
-					'</div>'+
+				li.innerHTML = '<img src="../images/firstPageLive/homeBottom_03.jpg" />'+
+					'<div class="content_item">'+
+						'<span class="name">GUCCI 折扣券</span>'+
+						'<span class="time">2018-01-01 至 2018-12-31 </span>'+
+						'<span class="money_wrap">'+
+							'满<span class="money">&nbsp;10000&nbsp;</span>'+
+							'减<span class="money">&nbsp;100</span>'+
+						'</span></div>';
 					
-					'<div class=" content_wrap">'+
-						'<div class="col_between border">'+
-							'<div class="content_up">'+
-								'<img src="../images/firstPageLive/homeBottom_03.jpg" />'+
-								'<span class="content_center">农夫山泉饮用水饮用天然水5L*4桶整箱装桶装水</span>'+
-								'<div class="content_end">'+
-									'<span>￥169.00</span>'+
-									'<span class="number">x2</span>'+
-								'</div>'+
-							'</div>'+
-							'<div class="content_down">'+
-								'<span class="first_txt">共 <span class="num">8</span> 件</span>'+
-								'<span class="sencod_txt">应付金额:'+
-									'<span class="money">￥</span><span class="money_num">169</span>'+
-									'<span class="num_float">.00</span>'+
-								'</span></div></div></div>'+
-					
-					'<div class="row item_down">'+
-						'<span class="warn_tag">提醒发货</span>'+
-						'<span class="normal_tag">提醒发货</span>'+
-						'<span class="normal_tag">提醒发货</span>'+
-					'</div>';
-
-                
-
-
                 table.appendChild(li);
 
                 index += 1;

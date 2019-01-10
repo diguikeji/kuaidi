@@ -46,6 +46,27 @@
 			font-size: 14px;
 		}
 		
+		/* 待付款 */
+		.title_wrap .item_pre_pay_status{
+			color: #F39800;
+			font-size: 14px;
+		}
+		
+		/* 待收货 */
+		.title_wrap .item_pre_get_status{
+			color: #18C800;
+			font-size: 14px;
+		}
+		
+		/* 已完成 */
+		.title_wrap .item_finish_status{
+			color: #999999;
+			font-size: 14px;
+		}
+		
+		.title_wrap .item_pre_pay_status .dian,
+		.title_wrap .item_pre_get_status .dian,
+		.title_wrap .item_finish_status .dian,
 		.title_wrap .item_status .dian{
 			font-weight: bold;
 			font-size: 25px;
@@ -137,7 +158,7 @@
 		
 		.item_down{
 			height: 0.6rem;
-			font-size: 12px;
+			font-size: 0.12rem;
 			justify-content: flex-end;
 			width: 100%;
 			padding-right: 15px;
@@ -216,41 +237,40 @@
         数据为空
     </div>
 
-    <script src="../js/mui.min.js"></script>
+    <script>var h5pullDown = true;</script>
+    <script src="../js/mui.js"></script>
     <script src="../js/jquery-2.1.1.min.js"></script>
     <script src="../js/app.js"></script>
     <script type="text/javascript">
         mui.init({
-//             pullRefresh: {
-//                 container: '#pullrefresh',
-//                 down: {
-//                     callback: pulldownRefresh
-//                 },
-//                 up: {
-//                     contentrefresh: '正在加载...',
-//                     callback: pullupRefresh
-//                 }
-//             }
+            pullRefresh: {
+                container: '#pullrefresh',
+                down: {
+                    callback: pulldownRefresh
+                },
+                up: {
+                    contentrefresh: '正在加载...',
+                    callback: pullupRefresh
+                }
+            }
         });
 
         mui.plusReady(function() {
             pulldownRefresh();
 
             //点击上次浏览
-            window.addEventListener('updatePreType', function(event) {
-                console.log("收到事件" + event.detail.currentType);
-                updateClick(event.detail);
+            window.addEventListener('updateOrderType', function(event) {
+                console.log("收到事件" + event.detail.index);
+                updateClick(event.detail.index);
             }, false);
 
         });
 
-
+		var tabIndex = 0;
         // pulldownRefresh();
 
-        function updateClick(msg) {
-            console.log("99999")
-            currentType = msg.currentType;
-            isDesc = msg.isDesc;
+        function updateClick(index) {
+			tabIndex = index;
             findList = [];
             pulldownRefresh();
         }
@@ -273,24 +293,17 @@
             getMsglist(1);
         }
 
-        //查询类型：HISTORY（查询历史浏览记录） TIME （根据期间） DEGREE: 高成功率 
-        var currentType = "DEGREE";
         //当前查询  页数
         var current = 1;
-        //根据期限查询是，是否倒序
-        var isDesc = false;
 
         function getMsglist(refreshType) {
             var params = {
                 current: current,
-                size: 20,
-                isDesc: isDesc,
-                queryType: currentType
+                size: 20
             };
 
             $(".empty_text").hide();
             $("#pullrefresh").show();
-            console.log("-----" + currentType);
 			//mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 			
 			
@@ -361,14 +374,40 @@
                 li.className = 'mui-table-view-cell-item item_wrap col_between';
                 li.setAttribute("data-index", index);
                 
-				li.innerHTML = '<div class="row_between title_wrap">'+
+				li.innerHTML = '';
+				if(tabIndex == 0){
+					li.innerHTML += '<div class="row_between title_wrap">'+
 						'<span>2017-06-24</span>'+
-						'<div class="row_center item_status">'+ 
-							'<span class="dian">·</span>'+ 
-							'<span>&nbsp;待发货</span>'+
-						'</div>'+
+							'<div class="row_center item_status">'+ 
+								'<span class="dian">·</span>'+ 
+								'<span>&nbsp;待发货</span>'+
+							'</div>';
+				}else if(tabIndex == 1){
+					li.innerHTML += '<div class="row_between title_wrap">'+
+						'<span>2017-06-24</span>'+
+							'<div class="row_center item_pre_order_status">'+ 
+								'<span class="dian">·</span>'+ 
+								'<span>&nbsp;待付款</span>'+
+							'</div>';
+				}else if(tabIndex == 2){
+					li.innerHTML += '<div class="row_between title_wrap">'+
+						'<span>2017-06-24</span>'+
+							'<div class="row_center item_pre_get_status">'+ 
+								'<span class="dian">·</span>'+ 
+								'<span>&nbsp;待发货</span>'+
+							'</div>';
+				}else if(tabIndex == 3){
+					li.innerHTML += '<div class="row_between title_wrap">'+
+						'<span>2017-06-24</span>'+
+							'<div class="row_center item_finish_status">'+ 
+								'<span class="dian">·</span>'+ 
+								'<span>&nbsp;待收货</span>'+
+							'</div>';
+				}		
+				console.log(li.innerHTML)
+				
+				li.innerHTML +=		
 					'</div>'+
-					
 					'<div class=" content_wrap">'+
 						'<div class="col_between border">'+
 							'<div class="content_up">'+
@@ -387,6 +426,7 @@
 								'</span></div></div></div>'+
 					
 					'<div class="row item_down">'+
+						'<span class="normal_tag">&nbsp;&nbsp;删除&nbsp;&nbsp;</span>'+
 						'<span class="warn_tag">提醒发货</span>'+
 						'<span class="normal_tag">提醒发货</span>'+
 						'<span class="normal_tag">提醒发货</span>'+
