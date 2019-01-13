@@ -66,14 +66,14 @@
 			
 			.button{
 				border-radius: 20px;
-				width: 100%;
-				margin: 30px 50px 0px;
+				width: 70%;
+				margin: 30px 15% 0px;
 				box-sizing: border-box;
 				background-color: #107EFF;
 				color: #FFFFFF;
 				font-size: 16px;
-				width: 265px;
 				height: 40px;
+				box-sizing: border-box;
 			}
 			
 			.regist_wrap{
@@ -108,18 +108,18 @@
 		<div class="login_wrap">
 			<div class="row">
 				<img src="../images/login/login_phone.png" style="margin-right: 6px;">
-				<input type="tel" placeholder="请输入手机号码" maxlength="11">
+				<input type="tel" placeholder="请输入手机号码" maxlength="11" class="mobile">
 			</div>
 			
 			<div class="row_between">
 				<img src="../images/login/login_code.png" style="width: 18px;">
-				<input type="tel" placeholder="请输入验证码" maxlength="6">
-				<span class="get_code_txt">获取验证码</span>
+				<input type="text" placeholder="请输入验证码" maxlength="6" class="code">
+				<span class="get_code_txt" onclick="getCode();">获取验证码</span>
 			</div>
 			
 			<div class="row">
 				<img src="../images/login/login_pwd.png" style="width:14px; margin-right: 4px;">
-				<input type="number" placeholder="请输入密码">
+				<input type="password" placeholder="请输入密码" class="password">
 			</div>
 			
 		</div>
@@ -128,7 +128,7 @@
 			<span>点击“注册”表示你已经阅读并同意隐私条款和用户协议</span>
 		</div>
 		
-		<button type="button" class="mui-btn mui-btn-primary button">注册</button>
+		<button type="button" class="mui-btn mui-btn-primary button" onclick="registerAction();">注册</button>
 		
 		<div class="regist_wrap">
 			<span>已有账号，<a class="regist_txt" href="login.html">立即登录</a></span>
@@ -137,16 +137,97 @@
 	<script type="text/javascript" src="../js/mui.min.js"></script>
 	<script src="../js/jquery-2.1.1.min.js"></script>
 	<script src="../js/app.js"></script>
+	<script src="../js/myStorage.js"></script>
 	<script type="text/javascript">
 		$("input").focus(function(){
-			console.log(this)
 		  $(this).parent().css("border-bottom","1px solid #107EFF");
 		});
 		
 		$("input").blur(function(){
-			console.log(this)
 		  $(this).parent().css("border-bottom","1px solid #E3E3E3");
 		});
+		
+		//获取验证码
+		function getCodeAction(){
+			var mobile = $(".mobile").val();
+			if(mobile && mobile.length != 11){
+				mui.toast("请输入正确手机号");
+				return;
+			}
+			var params = {
+				mobile: mobile
+			}
+			Global.commonAjax({
+				url: 'send/code',
+				method: 'POST',
+				data: params
+			}, function(data){
+				mui.toast("发送成功");
+				countDown();
+			}, function(err){
+				mui.toast(err);
+			});
+		}
+		
+		function registerAction(){
+			var mobile = $(".mobile").val();
+			if(mobile && mobile.length != 11){
+				mui.toast("请输入正确手机号");
+				return;
+			}
+			
+			var code = $(".code").val();
+			if(code && code.length != 6){
+				mui.toast("请输入正确的验证码");
+				return;
+			}
+			
+			var password = $(".password").val();
+			if(!password){
+				mui.toast("请输入正确的密码");
+				return;
+			}
+			
+			var params = {
+				mobile: mobile,
+				code: code,
+				password: password
+			}
+			Global.commonAjax({
+				url: 'register',
+				method: 'POST',
+				data: params
+			}, function(data){
+				mui.toast("注册成功");
+				window.location = "login.html";
+			}, function(err){
+				mui.toast(err);
+			});
+		}
+		
+		function getCode(){
+			var text = $(".get_code_txt").text();
+			if(text == '重新获取' || text == '获取验证码'){
+				getCodeAction();
+			}
+			
+		}
+		
+		var intervalObj, time=60;
+		function countDown() {
+		    intervalObj = setInterval(function() {
+		        time--;
+		        if (time <= 0) {
+		            time = 60;
+		            clearInterval(intervalObj);
+		            $(".get_code_txt").text("重新获取");
+		        } else {
+		            $(".get_code_txt").text("重新获取("+time+"s)");
+		        }
+		
+		    }, 1000);
+		}
+		
 		
 	</script>
 </html>

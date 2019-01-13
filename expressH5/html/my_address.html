@@ -33,7 +33,7 @@
 			.input_wrap{
 				width: 90%;
 				height: 0.36rem;
-				margin: 0.15rem 5% 0.15rem;
+				margin: 0.15rem 5% 0rem;
 				background-color: #FAFAFA;
 				box-sizing: border-box;
 				border-radius: 0.18rem;
@@ -76,7 +76,7 @@
 		<div class="mui-content" style="background-color: #FFFFFF;">
 			<div class="row input_wrap">
 				<img src="../images/address/search.png">
-				<input type="search" placeholder="请输入地址">
+				<input type="search" placeholder="请输入地址" id="searchInput" onkeyup="enterSearch(event)">
 			</div>
 		</div>
 		<script src="../js/mui.min.js"></script>
@@ -94,24 +94,17 @@
 				}]
 			}); 
 			
-			
-			function changeType(index){
-				$(".titleType").each(function(ind){
-					$(this).removeClass("active");
-					$(this).next().removeClass("active_line");
-					
-					if(index == ind){
-						$(this).addClass("active");
-						$(this).next().addClass("active_line");
-						//sendClickType(index);
-					}
-				})
+			function enterSearch(e){
+				if(e.keyCode == 13){
+					$("#searchInput").blur();
+					sendSearchType($("#searchInput").val());
+				}
 			}
 				
-				function sendClickType(index){
-					console.log("发送事件"+index);
-					var h = plus.webview.getWebviewById("recommand_sub.html");
-					mui.fire(h,'updatePreType',{currentType: currentType, isDesc: isDesc});
+				function sendSearchType(search){
+					console.log(search)
+					var h = plus.webview.getWebviewById("my_address_sub.html");
+					mui.fire(h,'searchType',{search: search});
 				}
 				
 				function goToAddAddr(){
