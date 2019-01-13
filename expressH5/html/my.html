@@ -48,7 +48,7 @@
 		<div class="my-top" onclick="goToSetting();">
 			<div class="left">
 			<img class="touxiang" src="../images/wode/wode_03.jpg" />
-			<span>王大池</span>
+			<span class="name">未登录</span>
 			</div>
 
 			<span class="right">
@@ -140,10 +140,21 @@
 <script src="../js/app.js"></script>
 <script src="../js/myStorage.js"></script>
 <script>
+	
+	mui.init();
+	var token;
+	mui.plusReady(function() {
+		token = myStorage.getItem("token");
+		console.log(token)
+		if(!token){
+			$(".name").val("未登录");
+		}else{
+			$(".name").val("王大池");
+		}
+	});
 
 	//设置页面
 	function goToSetting(){
-		var token = myStorage.getItem("token");
 		if(token){
 			Global.openWindow({
 			    url: 'personal.html',
