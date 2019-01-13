@@ -138,18 +138,31 @@
 <script src="../js/mui.min.js"></script>
 <script src="../js/jquery-2.1.1.min.js"></script>
 <script src="../js/app.js"></script>
+<script src="../js/myStorage.js"></script>
 <script>
 
 	//设置页面
 	function goToSetting(){
-		Global.openWindow({
-		    url: 'personal.html',
-		    id: 'personal.html',
-		    waiting: {
-		        autoShow: false
-		    }
-		})
+		var token = myStorage.getItem("token");
+		if(token){
+			Global.openWindow({
+			    url: 'personal.html',
+			    id: 'personal.html',
+			    waiting: {
+			        autoShow: false
+			    }
+			})
+		}else{
+			Global.openWindow({
+			    url: 'login.html',
+			    id: 'login.html',
+			    waiting: {
+			        autoShow: false
+			    }
+			})
+		}
 	}
+	
 	//地址
 	function goToAddress(){
 		Global.openWindow({

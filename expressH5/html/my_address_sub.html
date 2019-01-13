@@ -19,20 +19,19 @@
             padding: 0px;
             box-sizing: border-box;
 			background-color: #FFFFFF;
-			
         }
         
         .item_wrap {
-            height: 108px;
+            height: 1.08rem;
             width: 100%;
-			padding-left: 10px;
+			padding-left: 0.1rem;
 			background-color: #FFFFFF;
         }
 		
 		.wrap{
 			padding-right: 15px;
 			border-bottom: 1px solid #E3E3E3;
-			height: 108px;
+			height: 1.08rem;
 			width: 100%;
 			box-sizing: border-box;
 		}
@@ -75,6 +74,11 @@
 			color: #333333;
 			font-size: 14px;
 		}
+		
+		/* .mui-pull-top-pocket{
+			display: none!important;
+			height: 0px!important;
+		} */
         
     </style>
 </head>
@@ -86,7 +90,7 @@
 				style="background: #FFFFFF;">
         <div class="mui-scroll" >
             <!--数据列表-->
-            <ul class="mui-table-view-condensed list_wrap" >
+            <ul class="mui-table-view-condensed mui-table-view mui-table-view-chevron list_wrap" >
 				<!-- <li class=" mui-table-view-cell-item item_wrap col_between">
 					<div class="row_between wrap">
 						<span class="sex">王</span>
@@ -130,20 +134,19 @@
             pulldownRefresh();
 
             //点击上次浏览
-            window.addEventListener('updatePreType', function(event) {
-                console.log("收到事件" + event.detail.currentType);
-                updateClick(event.detail);
+            window.addEventListener('searchType', function(event) {
+                console.log("收到事件" + event.detail.search);
+                updateSearch(event.detail.search);
             }, false);
 
         });
 
 
         // pulldownRefresh();
+		var searchKey ;
 
-        function updateClick(msg) {
-            console.log("99999")
-            currentType = msg.currentType;
-            isDesc = msg.isDesc;
+        function updateSearch(val) {
+			searchKey = val;
             findList = [];
             pulldownRefresh();
         }
@@ -171,8 +174,7 @@
 
         function getMsglist(refreshType) {
             var params = {
-                current: current,
-                size: 20,
+				"q": searchKey
             };
 
             $(".empty_text").hide();
@@ -180,7 +182,8 @@
 			//mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 			
             Global.commonAjax({
-                    url: "addresses"
+                    url: searchKey ? "addresses/search?q="+searchKey : "addresses",
+					
                 },
 				function(data) {
 					if(!data){
@@ -195,11 +198,11 @@
 				            mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 				        } else {
 				            //没有更多数据了
-				            getListData(refreshType, data.data, true);
+				            getListData(refreshType, searchKey?data:data.data, true);
 				        }
 				    } else {
 						//还有数据
-				        getListData(refreshType, data.data, false);
+				        getListData(refreshType, searchKey?data:data.data, false);
 				    }
 				},
 				function(err) {

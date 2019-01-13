@@ -132,13 +132,14 @@ var Global = {};
                 },
                 beforeSend: function(xhr) {
                     xhr.setRequestHeader("Content-Type", "application/json");
-                       var token = myStorage.getItem("userToken");
-                       if (token) {
-                           xhr.setRequestHeader("Authorization", "Bearer " + token);
-                       };
+                    xhr.setRequestHeader("Accept", "application/json");
+                    var token = myStorage.getItem("token");
+                    if (token) {
+                        xhr.setRequestHeader("Authorization", "Bearer " + token);
+                    };
 
                     //Global.showLoading();
-					waiting = plus.nativeUI.showWaiting("加载中...");
+                    waiting = plus.nativeUI.showWaiting("加载中...");
 
                 },
                 success: function(data) {
@@ -151,8 +152,17 @@ var Global = {};
 
                 },
                 error: function(data) {
-                    console.log(JSON.stringify(data));
-                    errorback(data.msg ? data.msg : "");
+                    console.log(JSON.parse(data.response));
+					var error = JSON.parse(data.response).errors;
+					if(error){
+						var message = JSON.parse(data.response).errors.code[0] ;
+						errorback(message ? 
+						message : "请求出错");
+					}else{
+						errorback("请求出错");
+					}
+					
+                    
 
                 },
                 complete: function(xhr, status) {
@@ -228,6 +238,10 @@ mui("body").on('tap','.sub-value',function(event){
     $(this).next().text(value);
 
 
+});
+
+mui('body').on('tap','a',function(){
+	window.top.location.href=this.href;
 });
 
 
