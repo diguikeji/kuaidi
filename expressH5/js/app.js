@@ -139,7 +139,7 @@ var Global = {};
                     };
 
                     //Global.showLoading();
-					waiting = plus.nativeUI.showWaiting("加载中...");
+                    waiting = plus.nativeUI.showWaiting("加载中...");
 
                 },
                 success: function(data) {

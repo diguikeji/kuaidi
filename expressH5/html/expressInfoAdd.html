@@ -145,54 +145,12 @@
 
 				<div class="swiper-wrapper">
 
-					<div class="swiper-slide active">
-						<div>
-							<img src="../images/yunfei/yunfei_16.png"/>
-						</div>
-						<p>邮政EMS</p>
-						<div class="bottom">
-							<span class="first">￥8.0</span>
-							<span class="second">¥10.0</span>
-						</div>
-					</div>
 
-					<div class="swiper-slide">
-						<div>
-							<img src="../images/yunfei/yunfei_18.png"/>
-						</div>
-						<p>邮政EMS</p>
-						<div class="bottom">
-							<span class="first">￥8.0</span>
-							<span class="second">¥10.0</span>
-						</div>
-					</div>
 
-					<div class="swiper-slide">
-						<div>
-							<img src="../images/yunfei/yunfei_20.png"/>
-						</div>
-						<p>邮政EMS</p>
-						<div class="bottom">
-							<span class="first">￥8.0</span>
-							<span class="second">¥10.0</span>
-						</div>
-					</div>
-
-					<div class="swiper-slide">
-						<div>
-							<img src="../images/yunfei/yunfei_16.png"/>
-						</div>
-						<p>邮政EMS</p>
-						<div class="bottom">
-							<span class="first">￥8.0</span>
-							<span class="second">¥10.0</span>
-						</div>
-					</div>
+				</div>
 
 			</div>
-
-			</div>
-	</div>
+		</div>
 
 		<div class="pd" style="padding-right:0;">
 		<div class="miandan clearfix">
@@ -285,26 +243,77 @@
 
 		<script src="../js/mui.min.js"></script>
 	    <script src="../js/jquery-2.1.1.min.js"></script>
+	    <script src="../js/app.js"></script>
+	    <script src="../js/myStorage.js"></script>
 		<script src="../lib/swiper.min.js"></script>
 		<script>
 
 
+			   Global.commonAjax({
+                    url: "express/companies",
+					
+                },
+				function(data) {
 
-			var swiper = new Swiper('.swiper-container', {
+					
+
+					if(data)
+					{
+						var html="";
+						
+						
+						
+						for(var i=0;i<data.data.length;i++)
+						{
+							
+							console.log(JSON.stringify(data.data[i]));
+							
+							html=html+'<div class="swiper-slide">' +
+									'<div><img src="'+data.data[i].logo_url+'"/></div>' +
+									'<p>'+data.data[i].name+'</p>' +
+									'<div class="bottom">' +
+									'<span class="first">￥8.0</span>' +
+									'<span class="second">¥10.0</span>' +
+									'</div>' +
+									'</div>';
+						}
+
+						$(".swiper-wrapper").append(html);
+						$(".swiper-wrapper .swiper-slide").eq(0).addClass("active");
+
+						initExpressList();
+
+					}
+
+					
+
+					
+				},
+				function(err) {
+				    
+				})
+
+			function initExpressList()
+			{
+				
+				var swiper = new Swiper('.swiper-container', {
 				slidesPerView: 3.6,
 				spaceBetween: 15,
 				pagination: {
 					el: '.swiper-pagination',
 					type: 'fraction',
 				}
-			});
+				});
+	
+				$(".yunfei-img-list .swiper-slide").click(function()
+				{
+					$(".yunfei-img-list .swiper-slide").removeClass("active");
+					$(this).addClass("active");
+				});
 
-			$(".yunfei-img-list .swiper-slide").click(function()
-			{
-				$(".yunfei-img-list .swiper-slide").removeClass("active");
-				$(this).addClass("active");
-			});
+			}
 
+		
 
 			mui.init({
 				swipeBack: false,
