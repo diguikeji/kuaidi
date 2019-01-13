@@ -132,10 +132,10 @@ var Global = {};
                 },
                 beforeSend: function(xhr) {
                     xhr.setRequestHeader("Content-Type", "application/json");
-                    // var token = myStorage.getItem("userToken");
-//                     if (token) {
-//                         xhr.setRequestHeader("Authorization", "Bearer " + token);
-//                     };
+                       var token = myStorage.getItem("userToken");
+                       if (token) {
+                           xhr.setRequestHeader("Authorization", "Bearer " + token);
+                       };
 
                     //Global.showLoading();
 					waiting = plus.nativeUI.showWaiting("加载中...");
