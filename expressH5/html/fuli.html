@@ -77,6 +77,8 @@
 
 <body>
 
+<div class="status-bar" id="statusBar"></div>
+
 <div class="fuli-top">
 
 	<div class="left-col">
@@ -328,6 +330,15 @@
 
 	});
 
+
+mui.plusReady(function() {
+		var topHeight=plus.navigator.getStatusbarHeight();
+		if(mui.os.android)
+		{
+			$("#statusBar").height(topHeight);
+		}
+		
+});
 
 	
 

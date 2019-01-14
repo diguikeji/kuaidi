@@ -60,6 +60,8 @@ body,html{
 	padding: 0px;
 }
 
+.status-bar{background: #222;}
+
 .row{
 	display: -webkit-box;
     display: box;

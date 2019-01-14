@@ -15,7 +15,7 @@
 		
 		body{background: #fff!important;}
 		.mui-content{background: #fff;}
-		.my-top{margin-top:0.35rem;margin-bottom:0.12rem;}
+		.my-top{margin-top:0.25rem;margin-bottom:0.12rem;}
 		.my-top .touxiang{border-radius: 50%;width:0.37rem;height:0.37rem;display: inline-block;vertical-align: middle;}
 		.my-top .left span{vertical-align: middle;display: inline-block;font-size:0.13rem;}
 		.my-top .right{position: absolute;right:15px;top:0.35rem;}
@@ -43,7 +43,7 @@
 </head>
 
 <body>
-
+	<div class="status-bar" id="statusBar"></div>
 	<div class="pd">
 		<div class="my-top" onclick="goToSetting();">
 			<div class="left">
@@ -141,9 +141,18 @@
 <script src="../js/myStorage.js"></script>
 <script>
 	
+
 	mui.init();
 	var token;
 	mui.plusReady(function() {
+		
+		var topHeight=plus.navigator.getStatusbarHeight();
+		if(mui.os.android)
+		{
+			$("#statusBar").height(topHeight);
+		}
+		
+		
 		token = myStorage.getItem("token");
 		console.log(token)
 		if(!token){
