@@ -19,7 +19,7 @@
 	    #slider2  .fenlei-list .fenlei-child img{width:0.49rem;display: inline-block;}
 		.fenlei-list-col{border-bottom:1px solid #E3E3E3;height:0.98rem;}
 
-		 #topCol{padding-left:1.2rem;}
+		 #topCol{padding-left:1.2rem;top:20px;}
 
 		 #slider2{border-radius: 10px 10px 0 0;margin-top:-0.06rem;}
 		.top-text{padding:0.2rem 0 0 0;}
@@ -549,7 +549,14 @@
 					
 					$(".pro-list li").click(function()
 					{
-						plus.webview.open('html/take_out_detail.html', 'company_service', {}, 'slide-in-right', 200);
+						Global.openWindow({
+							url: 'html/take_out_detail.html',
+							id: 'take_out_detail.html',
+							waiting: {
+								autoShow: false
+							}
+						})
+
 					});
 
 

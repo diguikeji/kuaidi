@@ -179,15 +179,40 @@
 			</div>
 			
 			<div class="row_around bottom_block">
-				<div>送到手</div>
-				<div style="background-color: #107EFF;">送到前台</div>
+				<div id="sendDaoShou">送到手</div>
+				<div style="background-color: #107EFF;" id="sendQiantai">送到前台</div>
 			</div>
 			
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/jquery-2.1.1.min.js"></script>
-		<!-- <script src="../js/app.js"></script> -->
+		 <script src="../js/app.js"></script> 
 		<script type="text/javascript">
+			
+			$("#sendDaoShou").click(function()
+			{
+				Global.openWindow({
+			    url: 'take_out_detail_copy.html',
+			    id: 'take_out_detail_copy.html',
+			    waiting: {
+			        autoShow: false
+			    }
+				})
+			});
+			
+			$("#sendQiantai").click(function()
+			{
+				Global.openWindow({
+			    url: 'take_out_detail_copy.html',
+			    id: 'take_out_detail_copy.html',
+			    waiting: {
+			        autoShow: false
+			    }
+				})
+			});
+			
+			
+			
 			
 			
 		</script>

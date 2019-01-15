@@ -38,10 +38,10 @@ ul,li{list-style: none;padding:0;margin:0;}
 .header-search .left-img{width:0.21rem;position: absolute;left:0.6rem;top:0.12rem;}
 
 .transparent-header{height:0.49rem;position: fixed;top:0;width:100%;left:0;z-index:10000;}
-.transparent-header .header-left{position: absolute;left:0;top:0;padding:0.2rem 0.15rem;}
+.transparent-header .header-left{position: absolute;left:0;top:0;padding:0.1rem 0.15rem;}
 .transparent-header .header-left img{width:0.34rem;}
 .transparent-header .header-right img{width:0.36rem;}
-.transparent-header .header-right{position: absolute;right:0;top:0;padding:0.2rem 0.15rem;}
+.transparent-header .header-right{position: absolute;right:0;top:0;padding:0.1rem 0.15rem;}
 
 .red{color:#FF5269!important;}
 
