@@ -380,6 +380,7 @@
 		<script src="js/jquery-2.1.1.min.js"></script>
 	   <script src="lib/swiper.min.js"></script>
 		<script src="js/app.js"></script>
+		<script src="js/myStorage.js"></script>
 		<script type="text/javascript">
 
 			$(".shiyong-list").click(function()
@@ -575,7 +576,7 @@
 					/**
 					 * 根据判断view控件点击位置判断切换的tab
 					 */
-					console.log(JSON.stringify(nview));
+					//console.log(JSON.stringify(nview));
 					
 					nview.addEventListener('click', function(e) {
 						var clientX = e.clientX;
@@ -626,6 +627,62 @@
 				});
 			
 				
+				
+				//外卖列表
+				Global.commonAjax({
+	                    url: "express/deliveries"
+						
+	            },
+				function(data) {
+					console.log("外卖列表");
+					console.log(JSON.stringify(data));
+				},
+				function(err) {
+				    console.log("外卖列表失败"+JSON.stringify(err));
+				});
+				
+				//外卖详情
+				Global.commonAjax({
+	                    url: "express/deliveries/1"
+						
+	            },
+				function(data) {
+					console.log("外卖详情");
+					console.log(JSON.stringify(data));
+				},
+				function(err) {
+				    console.log("外卖详情"+JSON.stringify(err));
+				});
+				
+				
+				//楼宇列表
+				Global.commonAjax({
+	                    url: "buildings"
+						
+	            },
+				function(data) {
+					console.log("楼宇列表");
+					console.log(JSON.stringify(data));
+				},
+				function(err) {
+				    console.log("楼宇列表"+JSON.stringify(err));
+				});
+				
+				
+				//楼宇按照地理位置搜索
+				Global.commonAjax({
+	                    url: "buildings/locate?lat=31&lng=121"
+						
+	            },
+				function(data) {
+					console.log("楼宇按照地理位置搜索");
+					console.log(JSON.stringify(data));
+				},
+				function(err) {
+				    console.log("楼宇按照地理位置搜索报错"+JSON.stringify(err));
+				});
+				
+
 			
 		</script>
 	</body>

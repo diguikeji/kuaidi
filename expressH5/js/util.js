@@ -46,7 +46,7 @@ var util = {
 		for(var i = 0, len = subpages.length; i < len; i++) {
 
 			if(!plus.webview.getWebviewById(subpages[i])) {
-				console.log("测试");
+				//console.log("测试");
 				var sub = plus.webview.create(subpages[i], subpages[i], subpage_style);
 				//初始化隐藏
 				sub.hide();
@@ -79,7 +79,7 @@ var util = {
 	 */
 	toggleNview: function(currIndex) {
 		
-		console.log("currIndex:"+currIndex);
+		//console.log("currIndex:"+currIndex);
 		
 		// 重绘当前tag 包括icon和text，所以执行两个重绘操作
 		util.updateSubNView(currIndex, util.options.ACTIVE_COLOR);

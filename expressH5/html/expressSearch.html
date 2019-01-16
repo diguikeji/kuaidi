@@ -317,7 +317,7 @@
 			}
 
 
-			//getData();
+			getData();
 
 
 			mui.init({
@@ -344,6 +344,23 @@
 			{
 
 			}
+			
+			
+			//订单详情
+			Global.commonAjax({
+                    url: "express/orders/1"
+					
+            },
+			function(data) {
+				console.log("订单详情");
+				console.log(JSON.stringify(data));
+			},
+			function(err) {
+			    console.log("失败");
+			});
+
+		
+
 
 		</script>
 	</body>

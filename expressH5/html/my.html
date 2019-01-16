@@ -261,6 +261,19 @@
 		mui.toast("提现成功");
 	});
 
+
+	//个人资料
+	Global.commonAjax({
+            url: "profile"
+			
+    },
+	function(data) {
+		console.log("个人资料");
+		console.log(JSON.stringify(data));
+	},
+	function(err) {
+	    console.log("个人资料"+JSON.stringify(err));
+	});
 	
 	
 

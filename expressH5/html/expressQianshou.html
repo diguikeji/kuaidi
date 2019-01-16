@@ -15,6 +15,24 @@
 			body,.mui-content{background: #fff!important;}
 
 
+			.bottom_block{
+				height: 0.72rem; padding: 0.14rem 0rem;
+				background-color: #FFFFFF;
+				width: 100%;
+			}
+			
+			.bottom_block div{
+				border-radius: 0.03rem;
+				color: #FFFFFF;
+				text-align: center;
+				width: 1.65rem;
+				background-color: #F39800;
+				font-size: 0.14rem;
+				height: 0.44rem;
+				line-height: 0.44rem;
+			}
+
+
 
 		</style>
 		
@@ -89,6 +107,12 @@
 
 		</div>
 		
+		
+		</div>
+		
+		<div class="row_around bottom_block">
+				<div id="sendDaoShou" onclick="clearCanvas()">清除</div>
+				<div style="background-color: #107EFF;" id="submitBtn">提交</div>
 		</div>
 
 	</div>
@@ -188,10 +212,11 @@
     };
 
     //清除画布
-    /*document.getElementById("clearCanvas").addEventListener("click", function() {
-        canvasObj.cxt.clearRect(0, 0, canvasObj.canvas.width, canvasObj.canvas.height);
-    }.bind(this), false);*/
-
+    function clearCanvas()
+    {
+    	canvasObj.cxt.clearRect(0, 0, canvasObj.canvas.width, canvasObj.canvas.height);
+    }
+    
 
     //保存图片，直接转base64
    /* document.getElementById("saveCanvas").addEventListener("click", function() {
@@ -199,6 +224,24 @@
         console.log(imgBase64);
     }.bind(this), false);*/
 			
+
+	$("#submitBtn").click(function()
+	{
+		
+		//订单详情
+			Global.commonAjax({
+                    url: "express/orders/1"
+					
+            },
+			function(data) {
+				console.log("订单详情");
+				console.log(JSON.stringify(data));
+			},
+			function(err) {
+			    console.log("失败");
+			});
+		
+	});
 
 		</script>
 	</body>

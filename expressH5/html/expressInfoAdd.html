@@ -177,7 +177,7 @@
 
 			</div>
 
-			<button type="button">运费试算</button>
+			<button type="button"  id="submitBtn" onclick="submitData()">提交订单</button>
 
 		</div>
 
@@ -247,8 +247,7 @@
 	    <script src="../js/myStorage.js"></script>
 		<script src="../lib/swiper.min.js"></script>
 		<script>
-
-
+				
 			   Global.commonAjax({
                     url: "express/companies",
 					
@@ -313,8 +312,6 @@
 
 			}
 
-		
-
 			mui.init({
 				swipeBack: false,
 				pullRefresh: {
@@ -339,6 +336,78 @@
 			{
 
 			}
+			
+			//提交订单
+			function submitData()
+			{
+				Global.commonAjax({
+                    url: "express/orders",
+                    method:"post",
+                    data:
+                    {
+					    "from_address_id": 61212,
+					    "to_address_id": 61213,
+					    "express_company_id": 1,
+					    "package": "文件",
+					    "weight": 1.0,
+					    "comment": "寄送的是文件",
+					    "express_company_id": 1,
+					    "type": "1",
+					    "insured_value": 0,
+					    "insured_price": 0
+					}
+					
+	            },
+				function(data) {
+					console.log("提交订单");
+					console.log(JSON.stringify(data));
+				},
+				function(err) {
+				    console.log("提交订单失败");
+				});
+				
+			}
+			
+			
+			//地理位置转换
+			Global.commonAjax({
+                    url: "location?lat=31.3094530562&lng=121.5241955154",
+					
+                },
+				function(data) {
+					console.log(JSON.stringify(data));
+				},
+				function(err) {
+				    
+				});
+				
+			//快递计算价格
+			Global.commonAjax({
+                    url: "express/calculate",
+                    method:"post"
+					
+            },
+			function(data) {
+				console.log("计算");
+				console.log(JSON.stringify(data));
+			},
+			function(err) {
+			    console.log("失败");
+			});
+				
+				
+			//快递计算价格
+			Global.commonAjax({
+                    url: "express/search?sn=1"
+					
+            },
+			function(data) {
+				console.log("计算");
+				console.log(JSON.stringify(data));
+			},
+			function(err) {
+			    console.log("失败");
+			});
 
 		</script>
 	</body>
