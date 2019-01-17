@@ -15,6 +15,24 @@
 			body,.mui-content{background: #fff!important;}
 
 
+			.bottom_block{
+				height: 0.72rem; padding: 0.14rem 0rem;
+				background-color: #FFFFFF;
+				width: 100%;
+			}
+			
+			.bottom_block div{
+				border-radius: 0.03rem;
+				color: #FFFFFF;
+				text-align: center;
+				width: 1.65rem;
+				background-color: #F39800;
+				font-size: 0.14rem;
+				height: 0.44rem;
+				line-height: 0.44rem;
+			}
+
+
 
 		</style>
 		
@@ -84,18 +102,32 @@
 		</div>
 
 		<div class="pd">
-		<canvas class="qianshou-qianzi">
+		
+		<div class="qianshou-qianzi" id="myCanvas">
 
-
-
-		</canvas>
+		</div>
+		
+		
+		</div>
+		
+		<div class="row_around bottom_block">
+				<div id="sendDaoShou" onclick="clearCanvas()">清除</div>
+				<div style="background-color: #107EFF;" id="submitBtn">提交</div>
 		</div>
 
 	</div>
 
 		<script src="../js/mui.min.js"></script>
-
+	    <script src="../js/jquery-2.1.1.min.js"></script>
+	    <script src="../js/app.js"></script>
 		<script>
+
+			$(".qianshou-col .qianshou-btn").click(function()
+			{
+				$(".qianshou-col .qianshou-btn button").removeClass("active");
+				$(this).find("button").addClass("active");
+			});
+
 
 			mui.init({
 				swipeBack: false,
@@ -121,6 +153,95 @@
 			{
 
 			}
+			
+	  var canvasObj=new lineCanvas({
+            el: document.getElementById("myCanvas")
+        });
+
+			var topHeight=$("#myCanvas").offset().top;
+
+
+    function lineCanvas(obj) {
+        this.linewidth = 5;
+        this.color = "#000000";
+        this.background = "#ffffff";
+        for (var i in obj) {
+            this[i] = obj[i];
+        };
+        this.canvas = document.createElement("canvas");
+        this.el.appendChild(this.canvas);
+        this.cxt = this.canvas.getContext("2d");
+        this.canvas.width = this.el.clientWidth;
+        this.canvas.height = this.el.clientHeight;
+		this.cxt.fillStyle = 'rgba(0, 0, 0, 0)';
+        this.cxt.fillRect(0, 0, this.canvas.width, this.canvas.width);
+        this.cxt.strokeStyle = this.color;
+        this.cxt.lineWidth = this.linewidth;
+        this.cxt.lineCap = "round";
+        //开始绘制
+        this.canvas.addEventListener("touchstart", function(e) {
+            this.cxt.beginPath();
+
+            var pageX=e.changedTouches[0].pageX-0;
+            var pageY=e.changedTouches[0].pageY-topHeight;
+            this.cxt.moveTo(pageX, pageY);
+
+        }.bind(this), false);
+
+
+        //绘制中
+        this.canvas.addEventListener("touchmove", function(e) {
+
+            var pageX=e.changedTouches[0].pageX-0;
+            var pageY=e.changedTouches[0].pageY-topHeight;
+
+		/*	console.log("pageX"+pageX);
+			console.log("pageY"+pageY);*/
+
+
+            this.cxt.lineTo(pageX, pageY);
+            this.cxt.stroke();
+        }.bind(this), false);
+        //结束绘制
+        this.canvas.addEventListener("touchend", function() {
+            this.cxt.closePath();
+
+        }.bind(this), false);
+
+
+    };
+
+    //清除画布
+    function clearCanvas()
+    {
+    	canvasObj.cxt.clearRect(0, 0, canvasObj.canvas.width, canvasObj.canvas.height);
+    }
+    
+
+    //保存图片，直接转base64
+   /* document.getElementById("saveCanvas").addEventListener("click", function() {
+        var imgBase64 = canvasObj.canvas.toDataURL();
+        console.log(imgBase64);
+    }.bind(this), false);*/
+			
+
+	$("#submitBtn").click(function()
+	{
+		
+		//订单详情
+			Global.commonAjax({
+                    url: "express/orders/1"
+					
+            },
+			function(data) {
+				console.log("订单详情");
+				console.log(JSON.stringify(data));
+			},
+			function(err) {
+			    console.log("失败");
+			});
+		
+	});
 
 		</script>
 	</body>
