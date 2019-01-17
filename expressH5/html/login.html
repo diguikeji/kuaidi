@@ -89,8 +89,8 @@
 	</head>
 	<body>
 		<div class="row_between head_wrap">
-			<img src="../images/login/login_close.png" onclick="close();">
-			<img src="../images/login/shengluehao.png" >
+			<img src="../images/login/login_close.png" onclick="closeLogin();">
+			<!-- <img src="../images/login/shengluehao.png" > -->
 		</div>
 		
 		<div class="logo_wrap">
@@ -125,6 +125,13 @@
 	<script src="../js/app.js"></script>
 	<script src="../js/myStorage.js"></script>
 	<script type="text/javascript">
+		
+		mui.init();
+		
+		mui.plusReady(function() {
+			
+		});
+		
 		$("input").focus(function(){
 			console.log(this)
 		  $(this).parent().css("border-bottom","1px solid #107EFF");
@@ -134,6 +141,7 @@
 			console.log(this)
 		  $(this).parent().css("border-bottom","1px solid #E3E3E3");
 		});
+		
 		
 		function goToRegister(){
 			Global.openWindow({
@@ -171,15 +179,29 @@
 				mui.toast("登录成功");
 				console.log(data.token);
 				myStorage.setItem("token", data.token);
+				//发送事件 我的页面刷新
+				sendRefresh();
 				plus.webview.currentWebview().close();
+				
 			}, function(err){
 				mui.toast(err);
 			});
 		}
 		
-		function close(){
+		function closeLogin(){
 			console.log("colse")
 			plus.webview.currentWebview().close();
+		}
+		
+		function sendRefresh(){
+			console.log("sendRefresh")
+// 			var h = plus.webview.getWebviewById("my.html");
+// 			mui.fire(h,'loginRefresh',{loginRefresh: "loginRefresh"});
+			//获得父页面的webview
+			var list = plus.webview.currentWebview().opener();
+	　　　　 //触发父页面的自定义事件(refresh),从而进行刷新
+			mui.fire(list, 'refreshPage');
+					
 		}
 		
 	</script>
