@@ -153,7 +153,7 @@ var Global = {};
 
                 },
                 error: function(data) {
-                    console.log(JSON.parse(data.response));
+                    console.log(JSON.stringify(data));
 					var error = JSON.parse(data.response).errors;
 					if(error){
 						var message = JSON.parse(data.response).errors.code[0] ;
