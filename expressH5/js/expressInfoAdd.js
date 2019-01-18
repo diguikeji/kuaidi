@@ -81,23 +81,18 @@ function  httpRequest()
 
 
 
-                for(var i=0;i<data.data.length;i++)
+                for(var i=0;i<data.length;i++)
                 {
 
-                    console.log(JSON.stringify(data.data[i]));
+                    console.log(JSON.stringify(data[i]));
 
-                    html=html+'<div class="swiper-slide">' +
-                        '<div><img src="'+data.data[i].logo_url+'"/></div>' +
-                        '<p>'+data.data[i].name+'</p>' +
-                        '<div class="bottom">' +
-                        '<span class="first">￥8.0</span>' +
-                        '<span class="second">¥10.0</span>' +
-                        '</div>' +
+                    html=html+'<div class="swiper-slide" data-id="'+data[i].id+'">' +
+                        '<div><img src="'+data[i].logo_url+'"/></div>' +
+                        '<p>'+data[i].name+'</p>' +
                         '</div>';
                 }
 
                 $(".swiper-wrapper").append(html);
-                $(".swiper-wrapper .swiper-slide").eq(0).addClass("active");
 
                 initExpressList();
 
@@ -108,7 +103,7 @@ function  httpRequest()
 
         },
         function(err) {
-
+			console.log("获取快递公司"+JSON.stringify(err));
         })
 
     //地理位置转换
@@ -176,27 +171,97 @@ function initExpressList()
 }
 
 
+if(myStorage.getItem("storageExpressCreateType")==1)
+{
+    $("#titleCol").text("国内快递");
+}
+else if(myStorage.getItem("storageExpressCreateType")==2)
+{
+    $("#titleCol").text("国际快递");
+}
+else if(myStorage.getItem("storageExpressCreateType")==3)
+{
+    $("#titleCol").text("同城快递");
+}
+else
+{
+    $("#titleCol").text("物流大件");
+}
+
 
 //提交订单
 function submitData()
 {
+    if(!$("#chufa").hasClass("active"))
+    {
+        mui.toast("请选择寄件地址");
+        return;
+    }
+
+    if(!$("#daoda").hasClass("active"))
+    {
+        mui.toast("请选择收件地址");
+        return;
+    }
+
+    if($("#wupinSelect .text").text()=="请选择")
+    {
+        mui.toast("请选择物品类型");
+        return;
+    }
+
+    if($("#payWaySelect .text").text()=="请选择")
+    {
+        mui.toast("请选择付款方式");
+        return;
+    }
+
+    if($(".yunfei-img-list .active").length==0)
+    {
+        mui.toast("请选择快递公司");
+        return;
+    }
+
+
+
+    var express_company_id=$(".yunfei-img-list .active").attr("data-id");
+    var package=$("#wupinSelect .text").text();
+
+    var weight=parseInt($(".sub-value").next().text());
+
+    var comment=$("#beizhuWenzi .beizhu").text();
+
+    var is_freight_collect=$("#payWaySelect .text").val();
+    is_freight_collect=is_freight_collect=="货到付款"?1:0;
+
+    var is_print=$("#is_print").hasClass("mui-active");
+
+    var type=myStorage.getItem("storageExpressType");
+    var create_type=myStorage.getItem("storageExpressCreateType");
+    var insured_value=100;
+    var insured_price=30;
+
+    var paramObj={
+        from_address_id:43784,
+        to_address_id:4839,
+        express_company_id:express_company_id,
+        package:package,
+        weight:weight,
+        comment:comment,
+        is_freight_collect:is_freight_collect,
+        is_print:is_print,
+        type:type,
+        create_type:create_type,
+        insured_value:insured_value,
+        insured_price:insured_price
+    };
+
+   console.log(JSON.stringify(paramObj));
+
     Global.commonAjax({
             url: "express/orders",
             method:"post",
-            data:
-            {
-                "from_address_id": 61212,
-                "to_address_id": 61213,
-                "express_company_id": 1,
-                "package": "文件",
-                "weight": 1.0,
-                "comment": "寄送的是文件",
-                "express_company_id": 1,
-                "type": "1",
-                "insured_value": 0,
-                "insured_price": 0
-            }
-
+            data:paramObj
         },
         function(data) {
             console.log("提交订单");

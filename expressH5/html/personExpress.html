@@ -31,7 +31,7 @@
 			<img src="../images/back.png"/>
 		</div>
 
-		<div class="header-title color">个人快递</div>
+		<div class="header-title color" id="titleCol"></div>
 
 		<span class="header-right">
 			<img src="../images/secondPage/dianIcon.jpg"/>
@@ -44,7 +44,7 @@
 
 		<div class="pd">
 			<ul class="person-express-list">
-				<li>
+				<li data-type="1">
 					<div class="person-express-detail">
 					<img src="../images/secondPage/personExpress_17.png">
 					<div class="text">
@@ -56,7 +56,7 @@
 					</span>
 						</div>
 				</li>
-				<li>
+				<li data-type="2">
 					<div class="person-express-detail">
 					<img src="../images/secondPage/personExpress_31.png">
 					<div class="text">
@@ -68,7 +68,7 @@
 					</span>
 						</div>
 				</li>
-				<li>
+				<li data-type="3">
 					<div class="person-express-detail">
 					<img src="../images/secondPage/personExpress_45.png">
 					<div class="text">
@@ -80,7 +80,7 @@
 					</span>
 						</div>
 				</li>
-				<li>
+				<li data-type="4">
 					<div class="person-express-detail">
 					<img src="../images/secondPage/personExpress_59.png">
 					<div class="text">
@@ -118,11 +118,25 @@
 
 		<script src="../js/mui.min.js"></script>
 	    <script src="../js/jquery-2.1.1.min.js"></script>
+		<script src="../js/myStorage.js"></script>
 		<script src="../js/app.js"></script>
 		<script>
 
+
+			if(myStorage.getItem("storageExpressType")==2)
+			{
+				$("#titleCol").text("企业快递");
+			}
+			else
+			{
+				$("#titleCol").text("个人快递");
+			}
+
 			$(".person-express-list li").click(function()
 			{
+
+				myStorage.setItem("storageExpressCreateType",parseInt($(this).attr("data-type")));
+
 				Global.openWindow({
 					url:"expressInfoAdd.html",
 					id: "expressInfoAdd.html",
