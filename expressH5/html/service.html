@@ -50,7 +50,7 @@
 	<div class="top-col">
 		<img class="main-img" src="../images/service/fuwu_01.jpg"/>
 
-		<div class="text">上海歌斐中心<img class="img" src="../images/firstPageLive/icon1.png" /></div>
+		<div class="text" id="louyuText"><span>请选择楼宇</span><img class="img" src="../images/firstPageLive/icon1.png" /></div>
 
 	</div>
 
@@ -147,8 +147,16 @@
 
 <script src="../js/mui.min.js"></script>
 <script src="../js/jquery-2.1.1.min.js"></script>
+<script src="../js/myStorage.js"></script>
 <script src="../js/app.js"></script>
 <script>
+
+	mui.plusReady(function() {
+
+		commonEvent();
+
+	});
+
 
 function openExpressPage(str)
 {

@@ -16,7 +16,7 @@ ul,li{list-style: none;padding:0;margin:0;}
 .header-bar .header-title{font-size:17px;color:#333333;text-align: center;font-weight: 500;}
 .header-bar .header-right{position: absolute;right:0;top:0;padding:0 0.1rem;}
 .header-bar .header-right img{width:0.28rem;margin-top:0.08rem;}
-.has-header{padding-top:0.58rem;}
+.has-header{padding-top:0.48rem;}
 .header-bar .header-left{position: absolute;left:0;padding:0 0.16rem;}
 .header-bar .header-left img{width:0.16rem;margin-top:0.15rem;}
 .pd{padding:0 15px;}

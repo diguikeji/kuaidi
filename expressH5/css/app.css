@@ -169,7 +169,7 @@ header h1{
 .mui-checkbox input[type=checkbox]:checked:before, .mui-radio input[type=radio]:checked:before{color: #FF5269!important;}
 
 .blue{color:#107EFF!important;}
-
+.pd-bottom{padding-bottom:0.1rem;}
 
 
 

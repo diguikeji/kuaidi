@@ -52,7 +52,8 @@
 			.img-list .grid-item .bottom-text .fr .dianzan{width:0.14rem;height:0.14rem;background-image: url('../images/firstPageLive/live_11.png');
 			background-size:100% 100%;display: inline-block;position: relative;top:0.02rem;}
 
-			#topCol{padding:0 0.66rem 0 1.16rem;}
+			#topCol{padding:0 0.66rem 0 1.16rem;top:20px;}
+			#topCol .right-img{top:0.1rem;}
 
 		</style>
 		
@@ -63,8 +64,8 @@
 	<body>
 
 	<div id="topCol">
-		<span class="left-text">上海歌斐中心 <img src="../images/firstPageLive/live_06.png"/></span>
-		<span class="input-col"><input type="text" placeholder="搜索关键字">
+		<span class="left-text" id="louyuText"><span>请选择楼宇</span> <img src="../images/firstPageLive/live_06.png"/></span>
+		<span class="input-col hide"><input type="text" placeholder="搜索关键字">
 			<img src="../images/firstPageLive/icon2.png" />
 		</span>
 
@@ -215,9 +216,15 @@
 		<script src="../js/mui.min.js"></script>
 	    <script src="../js/jquery-2.1.1.min.js"></script>
 		<script src="../lib/jquery.waterfall.js"></script>
-		<script src="../js/app.js"></script>
+	<script src="../js/myStorage.js"></script>
+	<script src="../js/app.js"></script>
 		<script>
 
+			mui.plusReady(function() {
+
+				commonEvent();
+
+			});
 
 			$("#morePage").click(function()
 			{
