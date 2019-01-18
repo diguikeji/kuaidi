@@ -36,7 +36,7 @@
 
 		<div id="topCol">
 		<span class="left-text">上海歌斐中心 <img src="images/firstPageLive/live_06.png"/></span>
-		<span class="input-col"><input type="text" placeholder="搜索关键字">
+		<span class="input-col hide"><input type="text" placeholder="搜索关键字">
 			<img src="images/firstPageLive/icon2.png" />
 		</span>
 
@@ -545,6 +545,7 @@
 				
 				mui.plusReady(function() {
 					
+					httpRequest();
 					
 					plus.navigator.setStatusBarBackground('transparent');
 					
@@ -628,59 +629,73 @@
 			
 				
 				
-				//外卖列表
-				Global.commonAjax({
-	                    url: "express/deliveries"
+				
+				
+				
+				
+				
+				
+				function httpRequest()
+				{
+					
+						//外卖列表
+						Global.commonAjax({
+			                    url: "express/deliveries"
+								
+			            },
+						function(data) {
+							console.log("外卖列表");
+							console.log(JSON.stringify(data));
+						},
+						function(err) {
+						    console.log("外卖列表失败"+JSON.stringify(err));
+						});	
+								//外卖详情
+						Global.commonAjax({
+			                    url: "express/deliveries/1"
+								
+			            },
+						function(data) {
+							console.log("外卖详情");
+							console.log(JSON.stringify(data));
+						},
+						function(err) {
+						    console.log("外卖详情"+JSON.stringify(err));
+						});
 						
-	            },
-				function(data) {
-					console.log("外卖列表");
-					console.log(JSON.stringify(data));
-				},
-				function(err) {
-				    console.log("外卖列表失败"+JSON.stringify(err));
-				});
-				
-				//外卖详情
-				Global.commonAjax({
-	                    url: "express/deliveries/1"
 						
-	            },
-				function(data) {
-					console.log("外卖详情");
-					console.log(JSON.stringify(data));
-				},
-				function(err) {
-				    console.log("外卖详情"+JSON.stringify(err));
-				});
-				
-				
-				//楼宇列表
-				Global.commonAjax({
-	                    url: "buildings"
+						//楼宇列表
+						Global.commonAjax({
+			                    url: "buildings"
+								
+			            },
+						function(data) {
+							console.log("楼宇列表");
+							console.log(JSON.stringify(data));
+						},
+						function(err) {
+						    console.log("楼宇列表"+JSON.stringify(err));
+						});
 						
-	            },
-				function(data) {
-					console.log("楼宇列表");
-					console.log(JSON.stringify(data));
-				},
-				function(err) {
-				    console.log("楼宇列表"+JSON.stringify(err));
-				});
-				
-				
-				//楼宇按照地理位置搜索
-				Global.commonAjax({
-	                    url: "buildings/locate?lat=31&lng=121"
 						
-	            },
-				function(data) {
-					console.log("楼宇按照地理位置搜索");
-					console.log(JSON.stringify(data));
-				},
-				function(err) {
-				    console.log("楼宇按照地理位置搜索报错"+JSON.stringify(err));
-				});
+						//楼宇按照地理位置搜索
+						Global.commonAjax({
+			                    url: "buildings/locate?lat=31&lng=121"
+								
+			            },
+						function(data) {
+							console.log("楼宇按照地理位置搜索");
+							console.log(JSON.stringify(data));
+						},
+						function(err) {
+						    console.log("楼宇按照地理位置搜索报错"+JSON.stringify(err));
+						});
+					
+					
+				}
+				
+				
+				
 				
 
 			
