@@ -153,38 +153,36 @@ var Global = {};
 
                 },
                 error: function(data) {
-					errorback("请求出错");
-					return;
-					var error = JSON.parse(data.response).errors;
-					if(error){
-						var message = JSON.parse(data.response).errors.code[0] ;
-						errorback(message ? 
-						message : "请求出错");
-					}else{
-						errorback("请求出错");
-					}
 					
-                    
 
                 },
                 complete: function(xhr, status) {
-                    //Global.hideLoading();
+                    console.log(xhr.status);
 					waiting.close();
-
-//                     if (status == 'error') {
-//                         Global.error404();
-//                     } else if (status == 'timeout') {
-//                         Global.error500();
-//                     } else if (status != 'success') {
-//                         Global.errorNet();
-//                     }
-
+					if(xhr.status == 401){
+						//重新登录
+						Global.goToLogin();
+					}else if(xhr.status == 200){
+						
+					}else{
+						errorback("请求出错");
+					}
 
                 }
             });
 
 
         },
+		
+		goToLogin: function(){
+			Global.openWindow({
+			    url: 'login.html',
+			    id: 'login.html',
+			    waiting: {
+			        autoShow: false
+			    }
+			})
+		},
 
 		getCanvasBase64: function(img) {
 		    var image = new Image();
