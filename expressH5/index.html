@@ -23,7 +23,7 @@
 
 		 #slider2{border-radius: 10px 10px 0 0;margin-top:-0.06rem;}
 		.top-text{padding:0.2rem 0 0 0;}
-
+		 #topCol .right-img{top:0.1rem;}
 
 		</style>
 	</head>
@@ -35,7 +35,7 @@
 		<div class="home-top" id="homeTop">
 
 		<div id="topCol">
-		<span class="left-text">上海歌斐中心 <img src="images/firstPageLive/live_06.png"/></span>
+		<span class="left-text" id="louyuText"><span>请选择楼宇</span> <img src="images/firstPageLive/live_06.png"/></span>
 		<span class="input-col hide"><input type="text" placeholder="搜索关键字">
 			<img src="images/firstPageLive/icon2.png" />
 		</span>
@@ -546,7 +546,8 @@
 				mui.plusReady(function() {
 					
 					httpRequest();
-					
+					commonEvent();
+
 					plus.navigator.setStatusBarBackground('transparent');
 					
 					$(".pro-list li").click(function()
@@ -664,20 +665,7 @@
 						});
 						
 						
-						//楼宇列表
-						Global.commonAjax({
-			                    url: "buildings"
-								
-			            },
-						function(data) {
-							console.log("楼宇列表");
-							console.log(JSON.stringify(data));
-						},
-						function(err) {
-						    console.log("楼宇列表"+JSON.stringify(err));
-						});
-						
-						
+
 						//楼宇按照地理位置搜索
 						Global.commonAjax({
 			                    url: "buildings/locate?lat=31&lng=121"

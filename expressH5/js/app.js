@@ -186,13 +186,7 @@ var Global = {};
         },
 
 
-    //家里
-    //    $("body").append("<div style='width:50px;height:50px;background:#000;position:absolute;right:0;bottom:50px;z-index:1000;' onclick='window.location.reload();'>reload</div><script src='http://192.168.3.31:1337/vorlon.js'></script>");
-
-    //公司
-    //   $("body").append("<div style='width:50px;height:50px;background:#000;position:absolute;right:0;bottom:50px;z-index:1000;' onclick='window.location.reload();'>reload</div><script src='http://10.8.66.213:1337/vorlon.js'></script>");
-    //$("body").append("<div style='width:50px;height:50px;background:#000;position:absolute;right:0;bottom:50px;z-index:1000;' onclick='window.location.reload();'>reload</div><script src='http://192.168.23.109:1337/vorlon.js'></script>");
-
+    
    
 	
 	}
@@ -242,15 +236,66 @@ mui("body").on('tap','.sub-value',function(event){
 });
 
 mui('body').on('tap','a',function(){
-	window.top.location.href=this.href;
+	//window.top.location.href=this.href;
 });
 
-var u = navigator.userAgent, app = navigator.appVersion;
+    var u = navigator.userAgent, app = navigator.appVersion;
     var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
     var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+
+//公共ready后的事件
+function commonEvent()
+{
+    if($("#louyuText").length>0)
+    {
+    	updateLouyuName();
+        window.addEventListener('updateLouyuName', function(event) {
+            console.log("updateLouyuName");
+            updateLouyuName();
+        }, false);
+    }
+
+}
+
+function updateLouyuName()
+{
+	if(myStorage.getItem("louyuName"))
+	{
+		var louyuObj=JSON.parse(myStorage.getItem("louyuName"));
+	    console.log(louyuObj.name);
+	    $("#louyuText").find("span").text(louyuObj.name);
+	    $("#louyuText").find("span").attr("data-id",louyuObj.id);
+	}
     
+}
+
+$("#louyuText").click(function()
+{
+    if(window.location.href.indexOf("index.html")>-1)
+    {
+        Global.openWindow({
+            url: 'html/louyuList.html',
+            id: 'louyuList.html',
+            waiting: {
+                autoShow: false
+            }
+        })
+    }
+    else {
+        Global.openWindow({
+            url: 'louyuList.html',
+            id: 'louyuList.html',
+            waiting: {
+                autoShow: false
+            }
+        })
+    }
+
+});
+
+
 	 //调试
-      //$("body").append("<div style='width:50px;height:50px;background:#000;position:absolute;right:0;bottom:50px;z-index:10000;' onclick='window.location.reload();'>reload</div>");
+      $("body").append("<div style='width:50px;height:50px;background:#000;position:absolute;right:0;bottom:50px;z-index:10000;' onclick='window.location.reload();'>reload</div>");
 	
 	
 	  $(".mui-title").click(function()
