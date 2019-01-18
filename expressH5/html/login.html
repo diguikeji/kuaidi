@@ -189,9 +189,7 @@
 				myStorage.setItem("token", data.token);
 				//发送事件 我的页面刷新
 				sendRefresh();
-				setTimeout(function(){
-					plus.webview.currentWebview().close();
-				}, 1000)
+				plus.webview.currentWebview().close();
 				
 				
 			}, function(err){
@@ -206,7 +204,7 @@
 		
 		function sendRefresh(){
 			console.log("sendRefresh")
-			var h = plus.webview.getWebviewById("my.html");
+			var h = plus.webview.getWebviewById("html/my.html");
 			mui.fire(h,'loginRefresh',{loginRefresh: "loginRefresh"});
 		}
 		

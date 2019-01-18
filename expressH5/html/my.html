@@ -93,9 +93,10 @@
 				</div>
 			</li>
 			<li onclick="goToLogin();">
-				<div>
+				<div class="badge_wrap">
 				<img src="../images/wode/wode_16.jpg">
 				<p>活动</p>
+				<span class="badge events_count">1</span>
 				</div>
 			</li>
 			<li onclick="goToCoupon();">
@@ -164,10 +165,10 @@
 		}
 		
 		window.addEventListener('loginRefresh', function(event) {
-			console.log("loginRefresh");
+			console.log("loginRefresh----");
 		    refreshPage();
+			getPersonInfo();
 		}, false);
-		
 		getPersonInfo();
 		
 	});
@@ -177,6 +178,7 @@
 			url: 'profile'
 		}, function(data){
 			console.log(JSON.stringify(data));
+			myStorage.setItem("user", data);
 			$(".money_num").html(data.total_balance);
 			$(".name").html(data.username);
 			if(data.expresses_count > 0){
@@ -202,6 +204,14 @@
 				$(".addresses_count").hide();
 			}
 			
+			if(data.events_count > 0){
+				$(".events_count").html(data.events_count);
+			}else{
+				$(".events_count").hide();
+			}
+			
+			$(".name").val(data.realname);
+			
 			
 		}, function(err){
 			mui.toast(err);
@@ -213,13 +223,12 @@
 		console.log(token)
 		if(!token){
 			$(".name").val("未登录");
-		}else{
-			$(".name").val("王大池");
 		}
 	}
 
 	//设置页面
 	function goToSetting(){
+		console.log("token"+token)
 		if(token){
 			Global.openWindow({
 			    url: 'personal.html',
