@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>生活</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/app.css">
+		<link rel="stylesheet" href="../css/page.css">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/firstPage.css">
+		<style>
+			body{background: #f7f8f9;}
+			.type-list{height:0.57rem;box-sizing: border-box;padding:0.07rem 0;background: #fff;}
+			.type-list .child{width:25%;float:left;text-align: center;position: relative;height:0.57rem;}
+			.type-list .child span{background-size:100% 100%;display: inline-block;}
+			.type-list .child p{font-size:0.12rem;}
+			.type-list .child.active p{color:#107EFF;}
+			.type-list .child p{position: absolute;width:100%;text-align: center;bottom:0.05rem;left:0;}
+			.type-list .child1 span{background-image: url("../images/firstPageLive/icon_tj.png");}
+			.type-list .child1.active span{background-image: url("../images/firstPageLive/icon_tj_active.png");}
+			.type-list .child2 span{background-image: url("../images/firstPageLive/icon_fs.png");}
+			.type-list .child2.active span{background-image: url("../images/firstPageLive/icon_fs_active.png");}
+			.type-list .child3 span{background-image: url("../images/firstPageLive/icon_sx.png");}
+			.type-list .child3.active span{background-image: url("../images/firstPageLive/icon_sx_active.png");}
+			.type-list .child4 span{background-image: url("../images/firstPageLive/icon_mz.png");}
+			.type-list .child4.active span{background-image: url("../images/firstPageLive/icon_mz_active.png");}
+			#mall{width:60px;height:60px;border-radius: 50%;position: fixed;right:9px;bottom:12px;text-align: center;z-index:1000;background: #fff;}
+			#mall img{width:20px;margin-top:13px;}
+			#mall p{font-size:11px;line-height: normal;}
+
+			.list-col{padding:0 8px;box-sizing: border-box;}
+			.img-list{width:100%;list-style: none;padding:0 0;box-sizing: border-box;margin:0.08rem 0 0 0;position: relative;}
+			.img-list .grid-item { width: 50%;padding:8px 8px;box-sizing: border-box;margin-bottom:0.16rem;float:left;box-sizing: border-box;}
+			.img-list .grid-item .grid-item-col{background: #fff;}
+			.img-list .grid-item .img{width:100%;}
+			.img-list .grid-item .bottom-text img{width:0.12rem;position: relative;top:0.02rem;margin-right:0.02rem;}
+			.img-list .grid-item .bottom-text{padding:0 8px 6px 8px;}
+			.img-list .grid-item p{font-size:0.12rem;line-height:0.18rem;height:0.36rem;text-overflow: -o-ellipsis-lastline;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				line-clamp: 2;
+				-webkit-box-orient: vertical;
+				padding:0 8px;
+				margin-bottom:0;
+			}
+			.img-list .grid-item .bottom-text{font-size:10px;color:#999;}
+			.img-list .grid-item .bottom-text .fr .dianzan{width:0.14rem;height:0.14rem;background-image: url('../images/firstPageLive/live_11.png');
+			background-size:100% 100%;display: inline-block;position: relative;top:0.02rem;}
+
+			#topCol{padding:0 0.66rem 0 1.16rem;}
+
+		</style>
+		
+		
+		
+	</head>
+
+	<body>
+
+	<div id="topCol">
+		<span class="left-text">上海歌斐中心 <img src="../images/firstPageLive/live_06.png"/></span>
+		<span class="input-col"><input type="text" placeholder="搜索关键字">
+			<img src="../images/firstPageLive/icon2.png" />
+		</span>
+
+		<span class="right-img" id="morePage"><img src="../images/firstPageLive/live_03.png"/><span class="dian"></span></span>
+
+	</div>
+
+	<div id="slider" class="mui-slider" >
+		<div class="mui-slider-group mui-slider-loop">
+			<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+			<div class="mui-slider-item mui-slider-item-duplicate">
+					<img src="../images/firstPageLive/banner1.png">
+			</div>
+			<!-- 第一张 -->
+			<div class="mui-slider-item">
+					<img src="../images/firstPageLive/banner1.png">
+			</div>
+			<!-- 第二张 -->
+			<div class="mui-slider-item">
+				<img src="../images/firstPageLive/banner1.png">
+			</div>
+			<!-- 第三张 -->
+			<div class="mui-slider-item">
+				<img src="../images/firstPageLive/banner1.png">
+			</div>
+			<!-- 第四张 -->
+			<div class="mui-slider-item">
+				<img src="../images/firstPageLive/banner1.png">
+			</div>
+			<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+			<div class="mui-slider-item mui-slider-item-duplicate">
+				<a href="#">
+					<img src="../images/firstPageLive/banner1.png">
+				</a>
+			</div>
+		</div>
+		<div class="mui-slider-indicator">
+			<div class="mui-indicator mui-active"></div>
+			<div class="mui-indicator"></div>
+			<div class="mui-indicator"></div>
+			<div class="mui-indicator"></div>
+		</div>
+
+
+
+	</div>
+
+
+	<div class="type-list">
+		<div class="child child1 active">
+			<span  style="width:0.16rem;height:0.16rem;"></span>
+			<p>推荐</p>
+		</div>
+		<div class="child child2">
+			<span  style="width:0.15rem;height:0.16rem;"></span>
+			<p>服饰鞋包</p>
+		</div>
+		<div class="child child3">
+			<span  style="width:0.13rem;height:0.16rem;"></span>
+			<p>食品生鲜</p>
+		</div>
+		<div class="child child4">
+			<span  style="width:0.08rem;height:0.18rem;"></span>
+			<p>美妆护肤</p>
+		</div>
+	</div>
+
+	<div class="list-col">
+	<ul class="img-list clearfix" id="grid">
+		<li class="grid-item">
+			<div class="grid-item-col">
+			<img class="img" src="../images/firstPageLive/img1.png"/>
+			<p>深层补水保湿舒缓滋润拯救你的肌肤，滋润你的冬天...</p>
+			<div class="clearfix bottom-text">
+				<span class="fl"><img src="../images/firstPageLive/live_14.png"/>2018-12-17</span>
+				<span class="fr">
+					<i class="dianzan"></i>
+					98
+				</span>
+			</div>
+			</div>
+		</li>
+		<li class="grid-item">
+			<div class="grid-item-col">
+				<img class="img" src="../images/firstPageLive/img2.png"/>
+				<p>治愈系双十二必买清单，理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天</p>
+				<div class="clearfix bottom-text">
+					<span class="fl"><img src="../images/firstPageLive/live_14.png"/>2018-12-17</span>
+					<span class="fr"><i class="dianzan"></i>98</span>
+				</div>
+			</div>
+		</li>
+
+		<li class="grid-item">
+			<div class="grid-item-col">
+				<img class="img" src="../images/firstPageLive/img3.png"/>
+				<p>治愈系双十二必买清单，理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天</p>
+				<div class="clearfix bottom-text">
+					<span class="fl"><img src="../images/firstPageLive/live_14.png"/>2018-12-17</span>
+					<span class="fr"><i class="dianzan"></i>98</span>
+				</div>
+			</div>
+		</li>
+
+		<li class="grid-item">
+			<div class="grid-item-col">
+				<img class="img" src="../images/firstPageLive/img4.png"/>
+				<p>治愈系双十二必买清单，理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天</p>
+				<div class="clearfix bottom-text">
+					<span class="fl"><img src="../images/firstPageLive/live_14.png"/>2018-12-17</span>
+					<span class="fr"><i class="dianzan"></i>98</span>
+				</div>
+			</div>
+		</li>
+
+		<li class="grid-item">
+			<div class="grid-item-col">
+				<img class="img" src="../images/firstPageLive/img5.png"/>
+				<p>治愈系双十二必买清单，理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天</p>
+				<div class="clearfix bottom-text">
+					<span class="fl"><img src="../images/firstPageLive/live_14.png"/>2018-12-17</span>
+					<span class="fr"><i class="dianzan"></i>98</span>
+				</div>
+			</div>
+		</li>
+
+		<li class="grid-item">
+			<div class="grid-item-col">
+				<img class="img" src="../images/firstPageLive/img6.png"/>
+				<p>治愈系双十二必买清单，理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天</p>
+				<div class="clearfix bottom-text">
+					<span class="fl"><img src="../images/firstPageLive/live_14.png"/>2018-12-17</span>
+					<span class="fr"><i class="dianzan"></i>98</span>
+				</div>
+			</div>
+		</li>
+
+
+
+	</ul>
+	</div>
+
+	<div id="mall">
+		<img src="../images/firstPageLive/icon_mall.png"/>
+		<p>商城</p>
+	</div>
+
+		<script src="../js/mui.min.js"></script>
+	    <script src="../js/jquery-2.1.1.min.js"></script>
+		<script src="../lib/jquery.waterfall.js"></script>
+		<script src="../js/app.js"></script>
+		<script>
+
+			
+
+		</script>
+	</body>
+
+</html>

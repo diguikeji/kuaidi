@@ -153,7 +153,8 @@ var Global = {};
 
                 },
                 error: function(data) {
-                    // console.log(JSON.stringify(data));
+					errorback("请求出错");
+					return;
 					var error = JSON.parse(data.response).errors;
 					if(error){
 						var message = JSON.parse(data.response).errors.code[0] ;

@@ -98,7 +98,7 @@
 	<body>
 		<div class="row_between head_wrap">
 			<img src="../images/login/login_close.png" >
-			<img src="../images/login/shengluehao.png" >
+			<!-- <img src="../images/login/shengluehao.png" > -->
 		</div>
 		
 		<div class="logo_wrap">
@@ -150,7 +150,7 @@
 		//获取验证码
 		function getCodeAction(){
 			var mobile = $(".mobile").val();
-			if(mobile && mobile.length != 11){
+			if(!mobile || mobile.length != 11){
 				mui.toast("请输入正确手机号");
 				return;
 			}
@@ -171,13 +171,13 @@
 		
 		function registerAction(){
 			var mobile = $(".mobile").val();
-			if(mobile && mobile.length != 11){
+			if(!mobile || mobile.length != 11){
 				mui.toast("请输入正确手机号");
 				return;
 			}
 			
 			var code = $(".code").val();
-			if(code && code.length != 6){
+			if(!code || code.length != 6){
 				mui.toast("请输入正确的验证码");
 				return;
 			}
