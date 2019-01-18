@@ -134,7 +134,7 @@ var Global = {};
                     xhr.setRequestHeader("Content-Type", "application/json");
                     xhr.setRequestHeader("Accept", "application/json");
                     var token = myStorage.getItem("token");
-                    console.log(token);
+                    
                     if (token) {
                         xhr.setRequestHeader("Authorization", "Bearer " + token);
                     };
@@ -161,7 +161,13 @@ var Global = {};
 					waiting.close();
 					if(xhr.status == 401){
 						//重新登录
-						Global.goToLogin();
+						if(params.url.indexOf("profile") != -1){
+							//包含
+							errorback("");
+						}else{
+							Global.goToLogin();
+						}
+						
 					}else if(xhr.status == 200){
 						
 					}else{

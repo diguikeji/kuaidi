@@ -107,7 +107,7 @@
 				<div class="row_between" onclick="changeHeadImg();">
 					<span>头像</span>
 					<div class="row">
-						<img src="../images/wode/wode_03.jpg" class="top-img">
+						<img src="../images/wode/mtyou_icon.png" class="top-img">
 						<span class="arraw" style="margin-left: 19px"></span>
 					</div>
 				</div>
@@ -236,6 +236,7 @@
 		function loginOut(){
 			myStorage.removeItem("token");
 			myStorage.removeItem("user");
+			sendRefresh();
 			plus.webview.currentWebview().close();
 		}
 		
@@ -321,14 +322,20 @@
 		        function(data) {
 		            console.log(data + "-------");
 		            mui.toast("上传成功");
-		            //$('.top-img').data('src') = data;
-		            myStorage.setItem("headPic", data);
+		            $('.top-img').attr("src", data.url);
+		            sendRefresh();
 		        },
 		        function(err) {
 		            mui.toast("上传失败");
-		            $('.top-img').attr('src', "../images/wode/wode_03.jpg");
+		            $('.top-img').attr('src', "../images/wode/wmtyou_icon.png");
 		        }
 		    );
+		}
+		
+		function sendRefresh(){
+			console.log("sendRefresh")
+			var h = plus.webview.getWebviewById("html/my.html");
+			mui.fire(h,'loginRefresh',{loginRefresh: "loginRefresh"});
 		}
 		
 		

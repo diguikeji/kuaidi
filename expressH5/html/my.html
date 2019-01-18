@@ -82,28 +82,28 @@
 				<div class="badge_wrap">
 				<img src="../images/wode/wode_22.jpg">
 				<p>快递</p>
-				<span class="badge expresses_count">1</span>
+				<span class="badge expresses_count hideClass">1</span>
 				</div>
 			</li>
 			<li onclick="goToMyOrder();">
 				<div class="badge_wrap">
 				<img src="../images/wode/wode_19.jpg">
 				<p>订单</p>
-				<span class="badge orders_count">1</span>
+				<span class="badge orders_count hideClass">1</span>
 				</div>
 			</li>
 			<li onclick="goToLogin();">
 				<div class="badge_wrap">
 				<img src="../images/wode/wode_16.jpg">
 				<p>活动</p>
-				<span class="badge events_count">1</span>
+				<span class="badge events_count hideClass">1</span>
 				</div>
 			</li>
 			<li onclick="goToCoupon();">
 				<div class="badge_wrap">
 				<img src="../images/wode/wode_13.jpg">
 				<p>卡券</p>
-				<span class="badge coupons_count">1</span>
+				<span class="badge coupons_count hideClass">1</span>
 				</div>
 			</li>
 		</ul>
@@ -166,6 +166,7 @@
 		
 		window.addEventListener('loginRefresh', function(event) {
 			console.log("loginRefresh----");
+			token = myStorage.getItem("token");
 		    refreshPage();
 			getPersonInfo();
 		}, false);
@@ -183,38 +184,53 @@
 			$(".name").html(data.username);
 			if(data.expresses_count > 0){
 				$(".expresses_count").html(data.expresses_count);
+				$(".expresses_count").show();
 			}else{
 				$(".expresses_count").hide();
 			}
 			if(data.orders_count > 0){
+				$(".orders_count").show();
 				$(".orders_count").html(data.orders_count);
 			}else{
 				$(".orders_count").hide();
 			}
 			
 			if(data.coupons_count > 0){
+				$(".coupons_count").show();
 				$(".coupons_count").html(data.coupons_count);
 			}else{
 				$(".coupons_count").hide();
 			}
 			
 			if(data.addresses_count > 0){
+				$(".addresses_count").show();
 				$(".addresses_count").html(data.addresses_count);
 			}else{
 				$(".addresses_count").hide();
 			}
 			
 			if(data.events_count > 0){
+				$(".events_count").show();
 				$(".events_count").html(data.events_count);
 			}else{
 				$(".events_count").hide();
 			}
 			
 			$(".name").val(data.realname);
+			if(data.avatar){
+				$(".touxiang").attr("src", data.avatar);
+			}else{
+				$(".touxiang").attr("src", "../images/wode/mtyou_icon.png");
+			}
 			
 			
 		}, function(err){
-			mui.toast(err);
+			$(".expresses_count").hide();
+			$(".orders_count").hide();
+			$(".coupons_count").hide();
+			$(".addresses_count").hide();
+			$(".events_count").hide();
+			$(".touxiang").attr("src", "../images/wode/mtyou_icon.png");
 		});
 	}
 	
