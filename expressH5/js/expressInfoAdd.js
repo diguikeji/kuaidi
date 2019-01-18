@@ -5,7 +5,30 @@
 
 mui.plusReady(function() {
     commonEvent();
-    httpRequest()
+    httpRequest();
+    
+    window.addEventListener('storageAddressValue', function(event) {
+            var addressObj=myStorage.getItem("storageAddressValue");
+            console.log(JSON.stringify(addressObj));
+            if(myStorage.getItem("storageSelectAddressValue")==1)
+            {
+                $("#chufa").attr("data-id",addressObj.id);
+                $("#chufa").addClass("active");
+            	$("#chufa").find(".middle-value").html('<div class="middle-value-top">'+addressObj.name+'&nbsp'+addressObj.mobile+'</div>' +
+                    '<div class="middle-value-bottom">'+addressObj.province+addressObj.city+addressObj.area+addressObj.detail+'</div>');
+            }
+            else if(myStorage.getItem("storageSelectAddressValue")==2)
+            {
+                $("#daoda").attr("data-id",addressObj.id);
+                $("#daoda").addClass("active");
+                $("#daoda").find(".middle-value").html('<div class="middle-value-top">'+addressObj.name+'&nbsp'+addressObj.mobile+'</div>' +
+                    '<div class="middle-value-bottom">'+addressObj.province+addressObj.city+addressObj.area+addressObj.detail+'</div>');
+            }
+            
+            
+        }, false);
+    
+    
 
 });
 
@@ -242,8 +265,8 @@ function submitData()
     var insured_price=30;
 
     var paramObj={
-        from_address_id:43784,
-        to_address_id:4839,
+        from_address_id:61212,
+        to_address_id:61213,
         express_company_id:express_company_id,
         package:package,
         weight:weight,
@@ -260,7 +283,7 @@ function submitData()
 
     Global.commonAjax({
             url: "express/orders",
-            method:"post",
+            method:"POST",
             data:paramObj
         },
         function(data) {
@@ -273,5 +296,17 @@ function submitData()
 
 }
 
-
+function selectAddress(value)
+{
+	
+	myStorage.setItem("storageSelectAddressValue",value);
+	Global.openWindow({
+			    url: 'my_address.html',
+			    id: 'my_address.html',
+			    waiting: {
+			        autoShow: false
+			    }
+			})
+	
+}
 

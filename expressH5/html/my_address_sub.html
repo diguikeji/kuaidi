@@ -288,6 +288,15 @@
             var index = $(this).data("index");
             $(this).addClass("clicked");
             var item = findList[index];
+            
+            if(myStorage.getItem("storageSelectAddressValue")>0)
+            {
+            	myStorage.setItem("storageAddressValue",item);
+            	var list = plus.webview.getWebviewById("expressInfoAdd.html");
+				mui.fire(list, 'storageAddressValue');
+            	mui.back();
+            }
+            
             if (!(item && item.goodsUrl)) {
                 return;
             }
