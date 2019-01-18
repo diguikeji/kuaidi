@@ -348,6 +348,23 @@ function updateLouyuName()
     
 }
 
+$(".shadow-col").click(function()
+{
+    hideBottomModal();
+	
+});
+
+$(".beizhu-col .right-close").click(function()
+{
+    hideBottomModal();
+});
+
+function  hideBottomModal()
+{
+    $(".beizhu-col").hide();
+    $(".beizhu-col .beizhu-text").hide();
+}
+
 $("#louyuText").click(function()
 {
     if(window.location.href.indexOf("index.html")>-1)
@@ -373,8 +390,11 @@ $("#louyuText").click(function()
 });
 
 
+
+
+
 	 //调试
-      $("body").append("<div style='width:50px;height:50px;background:#000;position:absolute;right:0;bottom:50px;z-index:10000;' onclick='window.location.reload();'>reload</div>");
+      //$("body").append("<div style='width:50px;height:50px;background:#000;position:absolute;right:0;bottom:50px;z-index:10000;' onclick='window.location.reload();'>reload</div>");
 	
 	
 	  $(".mui-title").click(function()
