@@ -111,7 +111,7 @@
 		</div>
 		
 		<div class="forget_wrap">
-			<a href="forget.html">忘记密码</a>
+			<span onclick="goToForget();">忘记密码</span>
 		</div>
 		
 		<button type="button" class="mui-btn mui-btn-primary button" onclick="loginAction();">登录</button>
@@ -133,14 +133,22 @@
 		});
 		
 		$("input").focus(function(){
-			console.log(this)
 		  $(this).parent().css("border-bottom","1px solid #107EFF");
 		});
 		
 		$("input").blur(function(){
-			console.log(this)
 		  $(this).parent().css("border-bottom","1px solid #E3E3E3");
 		});
+		
+		function goToForget(){
+			Global.openWindow({
+			    url: 'forget.html',
+			    id: 'forget.html',
+			    waiting: {
+			        autoShow: false
+			    }
+			})
+		}
 		
 		
 		function goToRegister(){
@@ -183,6 +191,7 @@
 				sendRefresh();
 				plus.webview.currentWebview().close();
 				
+				
 			}, function(err){
 				mui.toast(err);
 			});
@@ -195,13 +204,8 @@
 		
 		function sendRefresh(){
 			console.log("sendRefresh")
-// 			var h = plus.webview.getWebviewById("my.html");
-// 			mui.fire(h,'loginRefresh',{loginRefresh: "loginRefresh"});
-			//获得父页面的webview
-			var list = plus.webview.currentWebview().opener();
-	　　　　 //触发父页面的自定义事件(refresh),从而进行刷新
-			mui.fire(list, 'refreshPage');
-					
+			var h = plus.webview.getWebviewById("html/my.html");
+			mui.fire(h,'loginRefresh',{loginRefresh: "loginRefresh"});
 		}
 		
 	</script>

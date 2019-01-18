@@ -111,7 +111,7 @@
 				<div class="row_between item">
 					<span>昵称</span>
 					<div class="row">
-						<span class="item_name">王大吃</span>
+						<span class="item_name name">王大吃</span>
 						<span class="arraw"></span>
 					</div>
 				</div>
@@ -122,7 +122,7 @@
 				<div class="row_between item">
 					<span>手机号</span>
 					<div class="row">
-						<span class="item_name">1380013000</span>
+						<span class="item_name mobile">1380013000</span>
 						<span class="arraw"></span>
 					</div>
 				</div>
@@ -132,12 +132,12 @@
 			<div class="col item_wrap" style="margin-top: 8px;">
 				<div class="row_between item" style="border-top: 0px solid transparent;">
 					<div class="row">
-						<img src="../images/personal/weixin.png" >
+						<img src="../images/personal/weixin.png" class="wx_icon">
 						<span>微信</span>
 					</div>
 					
 					<div class="row">
-						<span class="item_name un_active">未绑定</span>
+						<span class="item_name un_active wx_openid">未绑定</span>
 						<span class="arraw"></span>
 					</div>
 				</div>
@@ -147,12 +147,12 @@
 			<div class="col item_wrap" >
 				<div class="row_between item">
 					<div class="row">
-						<img src="../images/personal/wb_active.png" >
+						<img src="../images/personal/wb_active.png" class="web_icon">
 						<span>微博</span>
 					</div>
 					
 					<div class="row">
-						<span class="item_name">绑定</span>
+						<span class="item_name web_openid">绑定</span>
 						<span class="arraw"></span>
 					</div>
 				</div>
@@ -161,12 +161,12 @@
 			<div class="col item_wrap" >
 				<div class="row_between item">
 					<div class="row">
-						<img src="../images/personal/qq.png" style="width: 16px; height: 17px; margin-right: 10px;"> 
+						<img src="../images/personal/qq.png" style="width: 16px; height: 17px; margin-right: 10px;" class="qq_icon"> 
 						<span>QQ</span>
 					</div>
 					
 					<div class="row">
-						<span class="item_name un_active">未绑定</span>
+						<span class="item_name un_active wx_unionid">未绑定</span>
 						<span class="arraw"></span>
 					</div>
 				</div>
@@ -180,7 +180,19 @@
 	<script type="text/javascript" src="../js/mui.min.js"></script>
 	<script src="../js/jquery-2.1.1.min.js"></script>
 	<script src="../js/app.js"></script>
+	<script src="../js/myStorage.js"></script>
 	<script type="text/javascript">
+		
+		mui.init();
+		var user;
+		mui.plusReady(function() {
+			user = myStorage.getItem("user");
+			console.log(user.realname);
+			
+			$(".name").html(user.realname);
+			$(".mobile").html(user.mobile);
+		});
+		
 		$("input").focus(function(){
 			console.log(this)
 		  $(this).parent().css("border-bottom","1px solid #107EFF");
@@ -200,20 +212,6 @@
 		}
 		
 		
-		var intervalObj, time=60;
-		function countDown() {
-		    intervalObj = setInterval(function() {
-		        time--;
-		        if (time <= 0) {
-		            time = 60;
-		            clearInterval(intervalObj);
-		            $(".get_code_txt").text("重新获取");
-		        } else {
-		            $(".get_code_txt").text("重新获取("+time+"s)");
-		        }
-		
-		    }, 1000);
-		}
 		
 		
 	</script>

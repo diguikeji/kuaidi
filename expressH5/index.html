@@ -595,7 +595,9 @@
 							currIndex = 3;
 						} 
 						else {
-							
+							//刷新我的页面
+							var h = plus.webview.getWebviewById("html/my.html");
+							mui.fire(h,'loginRefresh',{loginRefresh: "loginRefresh"});
 							currIndex = 4;
 						}
 						
