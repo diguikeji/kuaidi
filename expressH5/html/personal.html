@@ -42,7 +42,6 @@
 				border-right: 0.02rem solid #999999;
 				transform: rotate(45deg);
 				margin-left: 0.02rem;
-				margin-bottom: 0.04rem;
 			  }
 			  
 			  .item_wrap{
@@ -69,6 +68,14 @@
 			  
 			  .un_active{
 				color: #cccccc;
+			  }
+			  input{
+			  	margin-bottom: 0px;
+			  	border: none;
+			  	background: transparent;
+				text-align: right;
+				height: 100%;
+				box-sizing: border-box;
 			  }
 			  
 			  .button{
@@ -97,10 +104,10 @@
 		
 		<div class="mui-content content_wrap">
 			<div class="col head_wrap">
-				<div class="row_between">
+				<div class="row_between" onclick="changeHeadImg();">
 					<span>头像</span>
 					<div class="row">
-						<img src="../images/wode/wode_03.jpg" >
+						<img src="../images/wode/wode_03.jpg" class="top-img">
 						<span class="arraw" style="margin-left: 19px"></span>
 					</div>
 				</div>
@@ -111,7 +118,7 @@
 				<div class="row_between item">
 					<span>昵称</span>
 					<div class="row">
-						<span class="item_name name">王大吃</span>
+						<input class="item_name name"/>
 						<span class="arraw"></span>
 					</div>
 				</div>
@@ -121,8 +128,8 @@
 			<div class="col item_wrap">
 				<div class="row_between item">
 					<span>手机号</span>
-					<div class="row">
-						<span class="item_name mobile">1380013000</span>
+					<div class="row_center">
+						<input class="item_name mobile"/>
 						<span class="arraw"></span>
 					</div>
 				</div>
@@ -147,12 +154,12 @@
 			<div class="col item_wrap" >
 				<div class="row_between item">
 					<div class="row">
-						<img src="../images/personal/wb_active.png" class="web_icon">
+						<img src="../images/personal/weibo.png" class="web_icon">
 						<span>微博</span>
 					</div>
 					
 					<div class="row">
-						<span class="item_name web_openid">绑定</span>
+						<span class="item_name un_active web_openid">未绑定</span>
 						<span class="arraw"></span>
 					</div>
 				</div>
@@ -187,7 +194,10 @@
 		var user;
 		mui.plusReady(function() {
 			user = myStorage.getItem("user");
-			console.log(user.realname);
+			if(!user){
+				return;
+			}
+			console.log(user);
 			
 			$(".name").html(user.realname);
 			$(".mobile").html(user.mobile);
@@ -223,22 +233,103 @@
 			}
 		});
 		
-		$("input").focus(function(){
-			console.log(this)
-		  $(this).parent().css("border-bottom","1px solid #107EFF");
-		});
-		
-		$("input").blur(function(){
-			console.log(this)
-		  $(this).parent().css("border-bottom","1px solid #E3E3E3");
-		});
-		
 		function loginOut(){
 			myStorage.removeItem("token");
 			myStorage.removeItem("user");
 			plus.webview.currentWebview().close();
 		}
 		
+		var fileName = "temp.jpg";
+		//修改头像
+		function changeHeadImg() {
+		    plus.nativeUI.actionSheet({
+		        cancel: "取消",
+		        buttons: [{
+		            title: "拍照"
+		        }, {
+		            title: "从相册中选择"
+		        }]
+		    }, function(e) { //1 是拍照  2 从相册中选择
+		        switch (e.index) {
+		            case 1:
+		                appendByCamera();
+		                break;
+		            case 2:
+		                appendByGallery();
+		                break;
+		        }
+		    });
+		}
+		
+		
+		// 拍照添加文件
+		function appendByCamera() {
+		    plus.camera.getCamera().captureImage(function(e) {
+		        console.log("e is" + e);
+		        plus.io.resolveLocalFileSystemURL(e, function(entry) {
+		            var path = entry.toLocalURL();
+		            console.log(path);
+		            $('.top-img').attr('src', path);
+		            var pathList = path.split("/");
+		            fileName = pathList[pathList.length-1];
+		            console.log(fileName);
+					
+		            Global.getCanvasBase64(path)
+		                .then(function(base64) {
+		                    console.log(base64);
+		                    uploadFile(base64);
+		                }, function(err) {
+		                    console.log(err);
+		                })
+		
+		        }, function(e) {
+		            mui.toast("读取拍照文件错误：" + e.message);
+		        });
+		
+		    });
+		}
+		// 从相册添加文件
+		function appendByGallery() {
+		    plus.gallery.pick(function(path) {
+				var pathList = path.split("/");
+				fileName = pathList[pathList.length-1];
+				console.log(fileName);
+				
+		        $('.top-img').attr('src', path);
+		        
+		        Global.getCanvasBase64(path)
+		            .then(function(base64) {
+		                console.log(base64);
+		                uploadFile(base64);
+		            }, function(err) {
+		                console.log(err);
+		            })
+		
+		    });
+		}
+		//上传图片
+		function uploadFile(base64) {
+		    var params = {
+		        file: base64,
+				name: fileName
+		    };
+		    Global.commonAjax({
+		            url: "upload/post",
+		            method: "POST",
+		            data: params
+		        },
+		        function(data) {
+		            console.log(data + "-------");
+		            mui.toast("上传成功");
+		            //$('.top-img').data('src') = data;
+		            myStorage.setItem("headPic", data);
+		        },
+		        function(err) {
+		            mui.toast("上传失败");
+		            $('.top-img').attr('src', "../images/wode/wode_03.jpg");
+		        }
+		    );
+		}
 		
 		
 		
