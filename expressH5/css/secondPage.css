@@ -69,7 +69,7 @@
 .yunfei-col .yunfei-list .middle-col{height:0.7rem;}
 .yunfei-col .yunfei-list .middle-col>div{line-height:0.7rem;height:0.7rem;}
 .yunfei-col .yunfei-list li>div{border-bottom:1px solid #e3e3e3;line-height:0.49rem;height:0.49rem;position: relative;}
-.yunfei-col .yunfei-list li>div .right{position: absolute;right:15px;font-size:0.13rem;color:#666;z-index:100;}
+.yunfei-col .yunfei-list li>div .right{position: absolute;right:15px;font-size:0.13rem;color:#666;z-index:100;top:0;}
 .yunfei-col .yunfei-list li>div .right .mui-icon-arrowright{color:#999;font-size:0.14rem;}
 .yunfei-col .yunfei-list li>div .right.no-arrow .text{margin-right:0.15rem;display: inline-block;}
 .yunfei-col .yunfei-list li>div .left{font-size:0.13rem;position: absolute;left:0;z-index:100;}

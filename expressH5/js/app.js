@@ -269,6 +269,23 @@ function updateLouyuName()
     
 }
 
+$(".shadow-col").click(function()
+{
+    hideBottomModal();
+	
+});
+
+$(".beizhu-col .right-close").click(function()
+{
+    hideBottomModal();
+});
+
+function  hideBottomModal()
+{
+    $(".beizhu-col").hide();
+    $(".beizhu-col .beizhu-text").hide();
+}
+
 $("#louyuText").click(function()
 {
     if(window.location.href.indexOf("index.html")>-1)
@@ -292,6 +309,9 @@ $("#louyuText").click(function()
     }
 
 });
+
+
+
 
 
 	 //调试
