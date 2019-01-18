@@ -36,6 +36,10 @@
 		.my-dianji li .right{position: absolute;right:0;top:0.2rem;}
 		.my-dianji li .right .mui-icon{color:#999;font-size:14px;}
 		.my-dianji li .right .right-text{font-size:0.16rem;color:#666666;}
+		
+		.badge_wrap{position: relative;}
+		.badge{position: absolute; color: #FFFFFF; right: 0.1rem; padding: 0rem 0.05rem;
+		background: #FF0000; font-size: 10px; border-radius: 0.1rem; display: inline;}
 	</style>
 
 
@@ -59,7 +63,10 @@
 
 		<div class="my-info">
 
-			<div class="money"><span>￥</span>2988.8</div>
+			<div class="money">
+				<span>￥</span>
+				<span class="money_num">2988.8</span>
+			</div>
 			<p>账户余额</p>
 
 			<div class="btn" id="tixian">
@@ -71,9 +78,10 @@
 
 		<ul class="my-list clearfix">
 			<li onclick="openWindowPage('express.html')">
-				<div>
+				<div class="badge_wrap">
 				<img src="../images/wode/wode_22.jpg">
 				<p>快递</p>
+				<span class="badge">1</span>
 				</div>
 			</li>
 			<li onclick="goToMyOrder();">
@@ -152,7 +160,28 @@
 			$("#statusBar").height(topHeight);
 		}
 		
+		window.addEventListener('loginRefresh', function(event) {
+			console.log("loginRefresh");
+		    refreshPage();
+		}, false);
 		
+		getPersonInfo();
+		
+	});
+	
+	function getPersonInfo(){
+		Global.commonAjax({
+			url: 'profile'
+		}, function(data){
+			console.log(data.total_balance);
+			$(".money_num").html(data.total_balance);
+			$(".name").html(data.username);
+		}, function(err){
+			mui.toast(err);
+		});
+	}
+	
+	function refreshPage(){
 		token = myStorage.getItem("token");
 		console.log(token)
 		if(!token){
@@ -160,7 +189,7 @@
 		}else{
 			$(".name").val("王大池");
 		}
-	});
+	}
 
 	//设置页面
 	function goToSetting(){
