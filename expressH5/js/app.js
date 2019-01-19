@@ -181,13 +181,26 @@ var Global = {};
         },
 		
 		goToLogin: function(){
-			Global.openWindow({
-			    url: 'login.html',
-			    id: 'login.html',
-			    waiting: {
-			        autoShow: false
-			    }
-			})
+			var path = plus.webview.currentWebview();
+			if(path && path.__view_array__[0].id.indexOf("html/") != -1){
+				//包含
+				Global.openWindow({
+				    url: 'html/login.html',
+				    id: 'html/login.html',
+				    waiting: {
+				        autoShow: false
+				    }
+				})
+			}else{
+				Global.openWindow({
+				    url: 'login.html',
+				    id: 'login.html',
+				    waiting: {
+				        autoShow: false
+				    }
+				})
+			}
+			
 		},
 
 		getCanvasBase64: function(img) {
