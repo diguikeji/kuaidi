@@ -52,12 +52,12 @@
 			.button{
 				border-radius: 3px;
 				width: 90%;
-				margin: 26px 5% 0px;
+				margin: 0.1rem 5% 0px;
 				box-sizing: border-box;
 				background-color: #107EFF;
 				color: #FFFFFF;
 				font-size: 16px;
-				height: 44px;
+				height: 0.44rem;
 			}
 			
 			.arraw{
@@ -96,6 +96,22 @@
 				margin-top: 18px;
 			}
 			
+			textarea{
+				padding: 9px 11px;
+				height: 0.6rem;
+				background-color: #F9F9F9;
+				margin-top: 0.2rem;
+				margin-left: 5%;
+				width: 90%;
+				margin-bottom: 0.05rem;
+				font-size: 0.12rem;
+			}
+			
+			textarea::-webkit-input-placeholder{
+				color: #999999;
+				font-size: 12px;
+			}
+			
 		</style>
 	</head>
 	<body>
@@ -104,6 +120,7 @@
 			<img src="../images/back.png" class="mui-action-back">
 			
 		    <h1 class="mui-title">新增地址</h1>
+			
 		</header>
 		
 		<div class="mui-content">
@@ -155,7 +172,14 @@
 				</div>
 			</div>
 			
+			
+			<textarea  placeholder="请输入地址" class="parse_address"></textarea>
+				
+			<button type="button" class="mui-btn mui-btn-primary button"
+			onclick="parseAddress();">解析地址</button>
+			
 			<button type="button" class="mui-btn mui-btn-primary button" onclick="saveAddress();">保存</button>
+			<button type="button" class="mui-btn mui-btn-primary button" onclick="delAddress();">删除</button>
 			
 		</div>
 		
@@ -168,43 +192,52 @@
 	<script src="../js/myStorage.js"></script>
 	<script type="text/javascript">
 		mui.init();
+		var isEdit = false, address_id = 0;
 		mui.plusReady(function() {
 			//上页中的 传递的值
 			var self = plus.webview.currentWebview();
-			var isEdit = self.isEdit;
+			isEdit = self.isEdit;
+			address_id = self.address_id;
+			console.log("address_id:"+address_id);
 			if(isEdit){
 				$(".mui-title").html("修改地址");
+				
+				var addressItem = myStorage.getItem("addressItem");
+				if(addressItem){
+					if(addressItem.name){
+						$(".name").val(addressItem.name);
+					}
+					
+					if(addressItem.mobile){
+						$(".mobile").val(addressItem.mobile);
+					}
+					
+					if(addressItem.detail){
+						$(".detail").val(addressItem.detail);
+					}
+					
+					if(addressItem.is_default == 1){
+						is_default = 1;
+						$(".mui-switch").addClass("mui-active");
+					}else{
+						$(".mui-switch").removeClass("mui-active");
+					}
+					
+					province = addressItem.province;
+					province_id = addressItem.province_id;
+					city = addressItem.city;
+					city_id = addressItem.city_id;
+					region = addressItem.area;
+					area_id = addressItem.area_id;
+					$(".content").html(addressItem.province+addressItem.city+addressItem.area);
+					
+				}
+				
 			}else{
 				$(".mui-title").html("新增地址");
 			}
 			
-			var addressItem = myStorage.getItem("addressItem");
-			if(addressItem){
-				if(addressItem.name){
-					$(".name").val(addressItem.name);
-				}
-				
-				if(addressItem.mobile){
-					$(".mobile").val(addressItem.mobile);
-				}
-				
-				if(addressItem.detail){
-					$(".detail").val(addressItem.detail);
-				}
-				
-				if(addressItem.is_default == 1){
-					is_default = 1;
-					$(".mui-switch").addClass("mui-active");
-				}else{
-					$(".mui-switch").removeClass("mui-active");
-				}
-				
-				province = addressItem.province;
-				city = addressItem.city;
-				region = addressItem.area;
-				$(".content").html(addressItem.province+addressItem.city+addressItem.area);
-				
-			}
+			
 			
 			
 			mui('.mui-content .mui-switch').each(function() { //循环所有toggle
@@ -224,6 +257,8 @@
 		var regionPicker = new mui.PopPicker();
 		
 		var province = "", city = "", region="";
+		var province_id = 0, city_id = 0, area_id = 0;
+		
 		function showReason(){
 			complainPicker.show(function(item){
 				console.log(item)
@@ -231,6 +266,7 @@
 				city = "";
 				region = "";
 				mui('.content')[0].innerHTML = item[0].text;
+				province_id = item[0].value;
 				getCity(item[0].value)
 			})
 		}
@@ -241,6 +277,7 @@
 				city = item[0].text;
 				region = "";
 				mui('.content')[0].innerHTML = province +"-"+ item[0].text;
+				city_id = item[0].value;
 				getRegions(item[0].value);
 			})
 		}
@@ -249,6 +286,7 @@
 			regionPicker.show(function(item){
 				console.log(item)
 				region = item[0].text;
+				area_id = item[0].value;
 				mui('.content')[0].innerHTML = province +"-"+ city +"-"+ item[0].text;
 			})
 		}
@@ -257,7 +295,7 @@
 			Global.commonAjax({
 				url: 'regions?pid=1'
 			}, function(data){
-				console.log(JSON.stringify(data));
+				//console.log(JSON.stringify(data));
 				var areaList = [];
 				data.map(function(item){
 					var areaItem = {
@@ -280,7 +318,7 @@
 			Global.commonAjax({
 				url: 'regions?pid='+id
 			}, function(data){
-				console.log(JSON.stringify(data));
+				//console.log(JSON.stringify(data));
 				var areaList = [];
 				data.map(function(item){
 					var areaItem = {
@@ -300,7 +338,7 @@
 			Global.commonAjax({
 				url: 'regions?pid='+id
 			}, function(data){
-				console.log(JSON.stringify(data));
+				//console.log(JSON.stringify(data));
 				var areaList = [];
 				data.map(function(item){
 					var areaItem = {
@@ -319,21 +357,82 @@
 		
 		function saveAddress(){
 			var params = {
-				province: province,
-				city: city,
-				area: region,
+				province_id: province_id,
+				city_id: city_id,
+				area_id: area_id,
 				detail: $(".detail").val(),
 				mobile: $(".mobile").val(),
 				name: $(".name").val(),
-				is_default: is_default
+				is_default: is_default,
+				type: 1
 			};
+			var url, method;
+			if(isEdit){
+				url = "addresses/"+address_id;
+				method = "PUT";
+			}else{
+				url = "addresses";
+				method = "POST";
+			}
+			
 			Global.commonAjax({
-				url: 'addresses/1',
-				method: "PUT",
+				url: url,
+				method: method,
 				data: params
 			}, function(data){
 				console.log(JSON.stringify(data));
 				mui.toast("更新成功");
+				sendSearchType("");
+				plus.webview.currentWebview().close();
+				
+			}, function(err){
+				mui.toast(err);
+			});
+		}
+		
+		//解析地址
+		function parseAddress(){
+			var addre = $(".parse_address").val();
+			if(!addre){
+				mui.toast("请输入要解析的地址");
+				return;
+			}
+			Global.commonAjax({
+				url: 'addresses/parse',
+				method: "POST",
+				data: {address: addre}
+			}, function(data){
+				console.log(JSON.stringify(data));
+				mui.toast("解析成功");
+				var result = data.data;
+				if(result.name){
+					$(".name").val(result.name);
+				}
+				
+				if(result.mobile){
+					$(".mobile").val(result.mobile);
+				}
+				
+				if(result.detail){
+					$(".detail").val(result.detail);
+				}
+				
+				$(".content").val(result.province+result.city+result.area);
+				
+			}, function(err){
+				mui.toast(err);
+			});
+			
+		}
+		
+		//删除地址
+		function delAddress(){
+			Global.commonAjax({
+				url: "addresses/"+address_id,
+				method: "DELETE"
+			}, function(data){
+				console.log(JSON.stringify(data));
+				mui.toast("删除成功");
 				sendSearchType("");
 				plus.webview.currentWebview().close();
 				

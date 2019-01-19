@@ -182,7 +182,8 @@ var Global = {};
 		
 		goToLogin: function(){
 			var path = plus.webview.currentWebview();
-			if(path && path.__view_array__[0].id.indexOf("html/") != -1){
+			if(path && path.__view_array__[0] && 
+					path.__view_array__[0].id.indexOf("html/") != -1){
 				//包含
 				Global.openWindow({
 				    url: 'html/login.html',

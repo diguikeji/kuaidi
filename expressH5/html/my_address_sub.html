@@ -300,21 +300,21 @@
             }
             else{
 
-                myStorage.setItem("addressItem", item);
-                Global.openWindow({
-                    url: 'add_address.html',
-                    id: 'add_address.html',
-                    waiting: {
-                        autoShow: false
-                    },
-                    extras: {
-                        isEdit: true
-                    }
-                })
+               myStorage.setItem("addressItem", item);
+				Global.openWindow({
+				url: 'add_address.html',
+				id: 'add_address.html',
+				waiting: {
+				    autoShow: false
+				},
+				extras: {
+					isEdit: true,
+					address_id: item.id
+				}
+				})
 
             }
             
-
         });
         
         

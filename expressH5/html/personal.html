@@ -129,7 +129,7 @@
 				<div class="row_between item">
 					<span>手机号</span>
 					<div class="row_center">
-						<input class="item_name mobile"/>
+						<input class="item_name mobile" disabled="disabled"/>
 						<span class="arraw"></span>
 					</div>
 				</div>
@@ -195,8 +195,8 @@
 		mui.init();
 		var user;
 		var updateParams = {
-		    avatar: "../images/wode/mtyou_icon.png",
-			name: "",
+		    avatar: "",
+			realname: "",
 			mobile: ""
 		};
 		
@@ -347,7 +347,7 @@
 		//更新用户信息
 		function updateInfo(){
 			if($(".name").val()){
-				updateParams.name = $(".name").val();
+				updateParams.realname = $(".name").val();
 			}
 			if($(".mobile").val()){
 				updateParams.mobile = $(".mobile").val();
