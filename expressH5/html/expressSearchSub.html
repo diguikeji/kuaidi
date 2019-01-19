@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>快递单号搜索</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="../css/app.css">
+	<link rel="stylesheet" href="../css/page.css">
+	<link rel="stylesheet" href="../css/mui.min.css">
+	<link rel="stylesheet" href="../css/secondPage.css">
+	<style>
+		body,.mui-content{background: #fff!important;}
+
+
+	</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="header-bar header-search">
+
+	<div class="header-left" onclick="mui.back();">
+		<img src="../images/secondPage/kuaidiSosuo_03.png"/>
+	</div>
+
+	<div class="header-title color">
+		<img class="left-img" src="../images/secondPage/kuaidiSosuo_05.png">
+		<input class="search-input" id="searchText" type="text" />
+		<span class="right-img" id="scanCol"><img  src="../images/secondPage/kuaidiSosuo_07.png"></span>
+
+	</div>
+
+
+</div>
+
+<div class="mui-content has-header express-col express-search">
+
+	<ul class="express-list">
+
+	
+
+	</ul>
+
+
+</div>
+
+<script src="../js/mui.min.js"></script>
+<script src="../js/jquery-2.1.1.min.js"></script>
+<script src="../js/myStorage.js"></script>
+<script src="../js/app.js"></script>
+<script>
+
+	function getData(page)
+	{
+		Global.commonAjax({
+					url: "express/search?sn="+$("#searchText").val()+"&page="+page
+
+				},
+				function(data) {
+
+					console.log(JSON.stringify(data));
+
+					if(data)
+					{
+						var html="";
+
+						for(var i=0;i<data.data.length;i++)
+						{
+							//console.log(JSON.stringify(data.data[i]));
+
+							html=html+'<li data-id="'+data.data[i].id+'"><div class="clearfix top">' +
+									'<div class="left">' +
+									'<div class="name">'+data.data[i].from_name+'</div>' +
+									'<p>'+data.data[i].from_province+data.data[i].from_city+data.data[i].from_area+data.data[i].from_detail+'</p>' +
+									'</div>' +
+									'<img class="middle-img" src="../images/secondPage/express_22.jpg">' +
+									'<div class="right">' +
+									'<div class="name">'+data.data[i].to_name+'</div>' +
+									'<p>'+data.data[i].to_province+data.data[i].to_city+data.data[i].to_area+data.data[i].to_detail+'</p>' +
+									'</div>' +
+									'</div>' +
+									'<div class="middle">' +
+									'<span class="first"><span></span>未签收</span>' +
+									'<span class="second">'+data.data[i].to_company_name+'</span>' +
+									'</div>' +
+									'<div class="bottom">' +
+									'<img src="../images/secondPage/express_27.jpg"/>' +
+									'<span class="first">顺丰快递</span>' +
+									'<span>'+data.data[i].express_sn+'</span>' +
+									'</div>' +
+									'</li>';
+						}
+
+						$(".express-list").append(html);
+
+
+
+					}
+
+
+
+
+				},
+				function(err) {
+
+					console.log("err");
+
+				})
+	}
+
+	var page=1;
+
+	mui.plusReady(function() {
+		commonEvent();
+		getData(page);
+	});
+
+	mui(".express-list").on('tap', 'li ', function() {
+
+		var id=$(this).attr("data-id");
+
+		Global.openWindow({
+			url:"expressDetail.html?id="+id,
+			id: "expressDetail.html",
+			waiting: {
+				autoShow: false
+			}
+		})
+
+	})
+
+
+
+
+
+</script>
+</body>
+
+</html>

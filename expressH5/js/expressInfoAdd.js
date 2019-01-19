@@ -2,7 +2,6 @@
  * Created by Administrator on 2019/1/18.
  */
 
-
 mui.plusReady(function() {
     commonEvent();
     httpRequest();
@@ -76,7 +75,8 @@ document.getElementById("baojiaSwitch").addEventListener('toggle', function(even
     else
     {
         $("#baojiaCol").hide();
-        $("#baojiaCol input").text("");
+        $("#baojiaCol input").val("");
+        $(".baofei").text("0");
     }
 
 });
@@ -88,10 +88,12 @@ $("#confirmBtn").click(function()
 });
 
 
+var expressPriceList=[];
+
 function  httpRequest()
 {
     Global.commonAjax({
-            url: "express/companies",
+            url: "express/companies?create_type="+myStorage.getItem("storageExpressCreateType"),
 
         },
         function(data) {
@@ -102,12 +104,10 @@ function  httpRequest()
             {
                 var html="";
 
-
-
                 for(var i=0;i<data.length;i++)
                 {
 
-                    console.log(JSON.stringify(data[i]));
+                    //console.log(JSON.stringify(data[i]));
 
                     html=html+'<div class="swiper-slide" data-id="'+data[i].id+'">' +
                         '<div><img src="'+data[i].logo_url+'"/></div>' +
@@ -149,6 +149,7 @@ function  httpRequest()
         },
         function(data) {
             console.log("计算");
+            expressPriceList=data;
             console.log(JSON.stringify(data));
         },
         function(err) {
@@ -156,13 +157,13 @@ function  httpRequest()
         });
 
 
-//快递计算价格
+//快递订单搜索
     Global.commonAjax({
             url: "express/search?sn=1"
 
         },
         function(data) {
-            console.log("计算");
+            console.log("快递计算价格");
             console.log(JSON.stringify(data));
         },
         function(err) {
@@ -172,7 +173,7 @@ function  httpRequest()
 }
 
 
-
+var expressPriceObj;
 function initExpressList()
 {
 
@@ -189,8 +190,82 @@ function initExpressList()
     {
         $(".yunfei-img-list .swiper-slide").removeClass("active");
         $(this).addClass("active");
+        var companyId=$(".yunfei-img-list .active").attr("data-id");
+        for(var i=0;i<expressPriceList.length;i++)
+        {
+            if(companyId==expressPriceList[i].id)
+            {
+                expressPriceObj=expressPriceList[i];
+            }
+        }
+        countFeiyong();
+        console.log(JSON.stringify(expressPriceObj));
+
     });
 
+}
+
+function countFeiyong()
+{
+    console.log("计算运费");
+    if(expressPriceObj)
+    {
+        var weight=parseInt($(".sub-value").next().text());
+
+        var priceText=weight*expressPriceObj.price;
+        priceText=priceText.toFixed(1);
+        $("#priceText").text(priceText);
+
+    }
+
+
+}
+
+$("#baojiaColInput").on("blur",function()
+{
+    baojiaHttp();
+});
+
+function baojiaHttp()
+{
+    if($("#baojiaSwitch").hasClass("mui-active"))
+    {
+
+        var from_address_id=$("#chufa").attr("data-id");
+        var to_address_id=$("#daoda").attr("data-id");
+
+        var express_company_id=$(".yunfei-img-list .active").attr("data-id");
+        var package=$("#wupinSelect .text").text();
+
+        var weight=parseInt($(".sub-value").next().text());
+
+        var insured_value=$("#baojiaCol input").val();
+
+        var paramObj={
+            from_address_id:from_address_id,
+            to_address_id:to_address_id,
+            express_company_id:express_company_id,
+            package:package,
+            weight:weight,
+            insured_value:insured_value,
+        };
+
+        Global.commonAjax({
+                url: "express/insurance/calculate",
+                method:"POST",
+               data:paramObj
+
+            },
+            function(data) {
+                console.log("保费计算");
+                console.log(JSON.stringify(data));
+                console.log(data.insure_price);
+                $(".baofei").text(data.insure_price);
+            },
+            function(err) {
+                console.log("保费计算失败");
+            });
+    }
 }
 
 
@@ -239,6 +314,15 @@ function submitData()
         return;
     }
 
+    if($("#baojiaSwitch").hasClass("mui-active"))
+    {
+        if(!$("#baojiaCol input").val())
+        {
+            mui.toast("请输入保额");
+            return;
+        }
+    }
+
     if($(".yunfei-img-list .active").length==0)
     {
         mui.toast("请选择快递公司");
@@ -247,6 +331,10 @@ function submitData()
 
 
 
+
+    var from_address_id=$("#chufa").attr("data-id");
+    var to_address_id=$("#daoda").attr("data-id");
+
     var express_company_id=$(".yunfei-img-list .active").attr("data-id");
     var package=$("#wupinSelect .text").text();
 
@@ -254,19 +342,25 @@ function submitData()
 
     var comment=$("#beizhuWenzi .beizhu").text();
 
+	if(comment=="请输入备注信息")
+	{
+		comment="";
+	}
+
+
     var is_freight_collect=$("#payWaySelect .text").val();
-    is_freight_collect=is_freight_collect=="货到付款"?1:0;
+    is_freight_collect=is_freight_collect=="到付"?1:0;
 
     var is_print=$("#is_print").hasClass("mui-active");
 
     var type=myStorage.getItem("storageExpressType");
     var create_type=myStorage.getItem("storageExpressCreateType");
-    var insured_value=100;
-    var insured_price=30;
+    var insured_value=parseFloat($("#baojiaColInput").val());
+    var insured_price=parseFloat($(".baofei").text());
 
     var paramObj={
-        from_address_id:61212,
-        to_address_id:61213,
+        from_address_id:from_address_id,
+        to_address_id:to_address_id,
         express_company_id:express_company_id,
         package:package,
         weight:weight,
@@ -288,6 +382,7 @@ function submitData()
         },
         function(data) {
             console.log("提交订单");
+            mui.toast("提交成功");
             console.log(JSON.stringify(data));
         },
         function(err) {

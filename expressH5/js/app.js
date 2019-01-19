@@ -315,6 +315,7 @@ mui("body").on('tap','.add-value',function(event){
     var value=parseInt($(this).prev().text());
     value++;
     $(this).prev().text(value);
+    countFeiyong();
 
 });
 mui("body").on('tap','.sub-value',function(event){
@@ -328,7 +329,7 @@ mui("body").on('tap','.sub-value',function(event){
     }
     value--;
     $(this).next().text(value);
-
+    countFeiyong();
 
 });
 
@@ -407,8 +408,13 @@ $("#louyuText").click(function()
 
 });
 
-
-
+//url传参数
+function GetQueryString(name)
+{
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);//search,查询？后面的参数，并匹配正则
+    if(r!=null)return  unescape(r[2]); return null;
+}
 
 
 	 //调试

@@ -289,9 +289,19 @@
             $(this).addClass("clicked");
             var item = findList[index];
 			console.log(JSON.stringify(item));
-            
-			myStorage.setItem("addressItem", item);
-			Global.openWindow({
+
+            if(myStorage.getItem("storageSelectAddressValue")>0)
+            {
+                myStorage.setItem("storageAddressValue",item);
+                var list = plus.webview.getWebviewById("expressInfoAdd.html");
+                mui.fire(list, 'storageAddressValue');
+                mui.back();
+                return false;
+            }
+            else{
+
+               myStorage.setItem("addressItem", item);
+				Global.openWindow({
 				url: 'add_address.html',
 				id: 'add_address.html',
 				waiting: {
@@ -301,7 +311,10 @@
 					isEdit: true,
 					address_id: item.id
 				}
-			})
+				})
+
+            }
+            
         });
         
         

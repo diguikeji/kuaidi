@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="../css/app.css">
 	<link rel="stylesheet" href="../css/page.css">
 	<link rel="stylesheet" href="../css/mui.min.css">
+	<link rel="stylesheet" href="../css/swiper.min.css">
 	<link rel="stylesheet" href="../css/firstPage.css">
 	<style>
 		body{background: #fff;}
@@ -70,6 +71,7 @@
 		.fuli-temai-list li button{background: #F39800;color:#fff;border:0;width:0.89rem;line-height:0.36rem;padding:0;position: absolute;right:0.1rem;bottom:0.15rem;}
 
 		.fuli-temai-list li img{display: block;width:100%;}
+		.swiper-banner img{display: block;width:100%;}
 
 	</style>
 
@@ -103,45 +105,30 @@
 <div class="tab-main">
 
 <div class="tab-col">
-	<div id="slider" class="mui-slider" >
-		<div class="mui-slider-group mui-slider-loop">
-			<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-			<div class="mui-slider-item mui-slider-item-duplicate">
+
+
+	<div class="swiper-container swiper-banner">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide">
 				<img src="../images/fuli/fuli_06.jpg">
 			</div>
-			<!-- 第一张 -->
-			<div class="mui-slider-item">
+			<div class="swiper-slide">
 				<img src="../images/fuli/fuli_06.jpg">
 			</div>
-			<!-- 第二张 -->
-			<div class="mui-slider-item">
+			<div class="swiper-slide">
 				<img src="../images/fuli/fuli_06.jpg">
-			</div>
-			<!-- 第三张 -->
-			<div class="mui-slider-item">
-				<img src="../images/fuli/fuli_06.jpg">
-			</div>
-			<!-- 第四张 -->
-			<div class="mui-slider-item">
-				<img src="../images/fuli/fuli_06.jpg">
-			</div>
-			<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-			<div class="mui-slider-item mui-slider-item-duplicate">
-				<a href="#">
-					<img src="../images/fuli/fuli_06.jpg">
-				</a>
 			</div>
 		</div>
-		<div class="mui-slider-indicator">
-			<div class="mui-indicator mui-active"></div>
-			<div class="mui-indicator"></div>
-			<div class="mui-indicator"></div>
-			<div class="mui-indicator"></div>
-		</div>
+
+
+		<div class="swiper-pagination swiper-banner-pagination"></div>
 	</div>
+
+
+
 
 	<ul class="buzhou-list clearfix">
-		<li class="disabled">
+		<li class="disabled active">
 			<span>10:00</span>
 			<div>活动结束</div>
 		</li>
@@ -149,7 +136,7 @@
 			<span>10:00</span>
 			<div>活动结束</div>
 		</li>
-		<li class="active">
+		<li>
 			<span>10:00</span>
 			<div>活动结束</div>
 		</li>
@@ -163,107 +150,314 @@
 		</li>
 	</ul>
 
-	<div class="pd">
 
-		<ul class="fuli-list">
-			<li>
-				<img class="img" src="../images/fuli/fuli_15.jpg">
-				<div>
-					<div class="biaoti">GUCCI 八折优惠券</div>
-					<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
-					<div class="riqi">2018-01-01 至 2018-12-31</div>
+	<div class="swiper-container swiper-detail-col">
+		<div class="swiper-wrapper">
+
+			<div class="swiper-slide">
+
+			<div class="pd">
+
+				<ul class="fuli-list">
+					<li>
+						<img class="img" src="../images/fuli/fuli_15.jpg">
+						<div>
+							<div class="biaoti">GUCCI 八折优惠券1</div>
+							<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
+							<div class="riqi">2018-01-01 至 2018-12-31</div>
+						</div>
+
+						<div class="lingqu">
+							<div>立即</div>
+							<div>领取</div>
+						</div>
+
+					</li>
+
+					<li>
+						<img class="img" src="../images/fuli/fuli_15.jpg">
+						<div>
+							<div class="biaoti">GUCCI 八折优惠券</div>
+							<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
+							<div class="riqi">2018-01-01 至 2018-12-31</div>
+						</div>
+
+						<div class="lingqu">
+							<div>立即</div>
+							<div>领取</div>
+						</div>
+
+					</li>
+
+					<li>
+						<img class="img" src="../images/fuli/fuli_15.jpg">
+						<div>
+							<div class="biaoti">GUCCI 八折优惠券</div>
+							<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
+							<div class="riqi">2018-01-01 至 2018-12-31</div>
+						</div>
+
+						<div class="lingqu">
+							<div>立即</div>
+							<div>领取</div>
+						</div>
+
+					</li>
+
+					<li>
+						<img class="img" src="../images/fuli/fuli_15.jpg">
+						<div>
+							<div class="biaoti">GUCCI 八折优惠券</div>
+							<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
+							<div class="riqi">2018-01-01 至 2018-12-31</div>
+						</div>
+
+						<div class="lingqu">
+							<div>立即</div>
+							<div>领取</div>
+						</div>
+
+					</li>
+				</ul>
+
+			</div>
+			</div>
+			<div class="swiper-slide">
+
+					<div class="pd">
+
+						<ul class="fuli-list">
+							<li>
+								<img class="img" src="../images/fuli/fuli_15.jpg">
+								<div>
+									<div class="biaoti">GUCCI 八折优惠券2</div>
+									<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
+									<div class="riqi">2018-01-01 至 2018-12-31</div>
+								</div>
+
+								<div class="lingqu">
+									<div>立即</div>
+									<div>领取</div>
+								</div>
+
+							</li>
+
+
+						</ul>
+
+					</div>
+			</div>
+			<div class="swiper-slide">
+
+				<div class="pd">
+
+					<ul class="fuli-list">
+						<li>
+							<img class="img" src="../images/fuli/fuli_15.jpg">
+							<div>
+								<div class="biaoti">GUCCI 八折优惠券</div>
+								<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
+								<div class="riqi">2018-01-01 至 2018-12-31</div>
+							</div>
+
+							<div class="lingqu">
+								<div>立即</div>
+								<div>领取</div>
+							</div>
+
+						</li>
+
+						<li>
+							<img class="img" src="../images/fuli/fuli_15.jpg">
+							<div>
+								<div class="biaoti">GUCCI 八折优惠券</div>
+								<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
+								<div class="riqi">2018-01-01 至 2018-12-31</div>
+							</div>
+
+							<div class="lingqu">
+								<div>立即</div>
+								<div>领取</div>
+							</div>
+
+						</li>
+
+						<li>
+							<img class="img" src="../images/fuli/fuli_15.jpg">
+							<div>
+								<div class="biaoti">GUCCI 八折优惠券</div>
+								<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
+								<div class="riqi">2018-01-01 至 2018-12-31</div>
+							</div>
+
+							<div class="lingqu">
+								<div>立即</div>
+								<div>领取</div>
+							</div>
+
+						</li>
+
+						<li>
+							<img class="img" src="../images/fuli/fuli_15.jpg">
+							<div>
+								<div class="biaoti">GUCCI 八折优惠券</div>
+								<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
+								<div class="riqi">2018-01-01 至 2018-12-31</div>
+							</div>
+
+							<div class="lingqu">
+								<div>立即</div>
+								<div>领取</div>
+							</div>
+
+						</li>
+					</ul>
+
 				</div>
+			</div>
+			<div class="swiper-slide">
 
-				<div class="lingqu">
-					<div>立即</div>
-					<div>领取</div>
+				<div class="pd">
+
+					<ul class="fuli-list">
+						<li>
+							<img class="img" src="../images/fuli/fuli_15.jpg">
+							<div>
+								<div class="biaoti">GUCCI 八折优惠券</div>
+								<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
+								<div class="riqi">2018-01-01 至 2018-12-31</div>
+							</div>
+
+							<div class="lingqu">
+								<div>立即</div>
+								<div>领取</div>
+							</div>
+
+						</li>
+
+						<li>
+							<img class="img" src="../images/fuli/fuli_15.jpg">
+							<div>
+								<div class="biaoti">GUCCI 八折优惠券</div>
+								<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
+								<div class="riqi">2018-01-01 至 2018-12-31</div>
+							</div>
+
+							<div class="lingqu">
+								<div>立即</div>
+								<div>领取</div>
+							</div>
+
+						</li>
+
+						<li>
+							<img class="img" src="../images/fuli/fuli_15.jpg">
+							<div>
+								<div class="biaoti">GUCCI 八折优惠券</div>
+								<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
+								<div class="riqi">2018-01-01 至 2018-12-31</div>
+							</div>
+
+							<div class="lingqu">
+								<div>立即</div>
+								<div>领取</div>
+							</div>
+
+						</li>
+
+						<li>
+							<img class="img" src="../images/fuli/fuli_15.jpg">
+							<div>
+								<div class="biaoti">GUCCI 八折优惠券</div>
+								<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
+								<div class="riqi">2018-01-01 至 2018-12-31</div>
+							</div>
+
+							<div class="lingqu">
+								<div>立即</div>
+								<div>领取</div>
+							</div>
+
+						</li>
+					</ul>
+
 				</div>
+			</div>
+			<div class="swiper-slide">
 
-			</li>
+				<div class="pd">
 
-			<li>
-				<img class="img" src="../images/fuli/fuli_15.jpg">
-				<div>
-					<div class="biaoti">GUCCI 八折优惠券</div>
-					<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
-					<div class="riqi">2018-01-01 至 2018-12-31</div>
+					<ul class="fuli-list">
+						<li>
+							<img class="img" src="../images/fuli/fuli_15.jpg">
+							<div>
+								<div class="biaoti">GUCCI 八折优惠券</div>
+								<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
+								<div class="riqi">2018-01-01 至 2018-12-31</div>
+							</div>
+
+							<div class="lingqu">
+								<div>立即</div>
+								<div>领取</div>
+							</div>
+
+						</li>
+
+						<li>
+							<img class="img" src="../images/fuli/fuli_15.jpg">
+							<div>
+								<div class="biaoti">GUCCI 八折优惠券</div>
+								<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
+								<div class="riqi">2018-01-01 至 2018-12-31</div>
+							</div>
+
+							<div class="lingqu">
+								<div>立即</div>
+								<div>领取</div>
+							</div>
+
+						</li>
+
+						<li>
+							<img class="img" src="../images/fuli/fuli_15.jpg">
+							<div>
+								<div class="biaoti">GUCCI 八折优惠券</div>
+								<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
+								<div class="riqi">2018-01-01 至 2018-12-31</div>
+							</div>
+
+							<div class="lingqu">
+								<div>立即</div>
+								<div>领取</div>
+							</div>
+
+						</li>
+
+						<li>
+							<img class="img" src="../images/fuli/fuli_15.jpg">
+							<div>
+								<div class="biaoti">GUCCI 八折优惠券</div>
+								<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
+								<div class="riqi">2018-01-01 至 2018-12-31</div>
+							</div>
+
+							<div class="lingqu">
+								<div>立即</div>
+								<div>领取</div>
+							</div>
+
+						</li>
+					</ul>
+
 				</div>
+			</div>
 
-				<div class="lingqu">
-					<div>立即</div>
-					<div>领取</div>
-				</div>
-
-			</li>
-
-			<li>
-				<img class="img" src="../images/fuli/fuli_15.jpg">
-				<div>
-					<div class="biaoti">GUCCI 八折优惠券</div>
-					<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
-					<div class="riqi">2018-01-01 至 2018-12-31</div>
-				</div>
-
-				<div class="lingqu">
-					<div>立即</div>
-					<div>领取</div>
-				</div>
-
-			</li>
-
-			<li>
-				<img class="img" src="../images/fuli/fuli_15.jpg">
-				<div>
-					<div class="biaoti">GUCCI 八折优惠券</div>
-					<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
-					<div class="riqi">2018-01-01 至 2018-12-31</div>
-				</div>
-
-				<div class="lingqu">
-					<div>立即</div>
-					<div>领取</div>
-				</div>
-
-			</li>
-		</ul>
+		</div>
 
 	</div>
-</div>
 
-<div class="tab-col hide">
 
-	<ul class="fuli-temai-list">
-		<li>
-			<img src="../images/fuli/temai_08.jpg">
-			<p>景德镇优质青花瓷碗</p>
-			<div><span>¥</span>928.00</div>
-			<button type="button">立即抢购</button>
-		</li>
-		<li>
-			<img src="../images/fuli/temai_14.jpg">
-			<p>景德镇优质青花瓷碗</p>
-			<div><span>¥</span>928.00</div>
-			<button type="button">立即抢购</button>
-		</li>
-		<li>
-			<img src="../images/fuli/temai_08.jpg">
-			<p>景德镇优质青花瓷碗</p>
-			<div><span>¥</span>928.00</div>
-			<button type="button">立即抢购</button>
-		</li>
-		<li>
-			<img src="../images/fuli/temai_08.jpg">
-			<p>景德镇优质青花瓷碗</p>
-			<div><span>¥</span>928.00</div>
-			<button type="button">立即抢购</button>
-		</li>
-		<li>
-			<img src="../images/fuli/temai_08.jpg">
-			<p>景德镇优质青花瓷碗</p>
-			<div><span>¥</span>928.00</div>
-			<button type="button">立即抢购</button>
-		</li>
-	</ul>
+
 
 </div>
 
@@ -271,14 +465,38 @@
 
 <script src="../js/mui.min.js"></script>
 <script src="../js/jquery-2.1.1.min.js"></script>
+<script src="../lib/swiper.min.js"></script>
 <script src="../js/myStorage.js"></script>
 <script src="../js/app.js"></script>
 <script>
+
+	var swiper = new Swiper('.swiper-banner', {
+		pagination: {
+			el: '.swiper-banner-pagination',
+		}
+	});
+
+	var swiperDetail = new Swiper('.swiper-detail-col', {
+		on:{
+			slideChange: function(index){
+				console.log(this.activeIndex);
+				$(".buzhou-list li").removeClass("active");
+				$(".buzhou-list li").eq(this.activeIndex).addClass("active");
+
+			},
+		},
+
+	});
 
 	$(".buzhou-list li").click(function()
 	{
 		$(".buzhou-list li").removeClass("active");
 		$(this).addClass("active");
+		var index=$(this).index();
+		console.log(index);
+		swiperDetail.slideTo(index, 500, false);
+
+
 	});
 
 
