@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>快递单号搜索</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="../css/app.css">
+	<link rel="stylesheet" href="../css/page.css">
+	<link rel="stylesheet" href="../css/mui.min.css">
+	<link rel="stylesheet" href="../css/secondPage.css">
+	<style>
+		body,.mui-content{background: #fff!important;}
+
+
+
+	</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="header-bar header-search">
+
+	<div class="header-left" onclick="mui.back();">
+		<img src="../images/secondPage/kuaidiSosuo_03.png"/>
+	</div>
+
+	<div class="header-title color">
+		<img class="left-img" src="../images/secondPage/kuaidiSosuo_05.png">
+		<input class="search-input" id="searchText" type="text" />
+		<span class="right-img" id="scanCol"><img  src="../images/secondPage/kuaidiSosuo_07.png"></span>
+
+	</div>
+
+
+</div>
+
+<div class="mui-content has-header express-col express-search">
+
+	<ul class="express-list">
+
+	
+
+	</ul>
+
+
+</div>
+
+<script src="../js/mui.min.js"></script>
+<script src="../js/jquery-2.1.1.min.js"></script>
+<script src="../js/myStorage.js"></script>
+<script src="../js/app.js"></script>
+<script>
+
+	function getData()
+	{
+		Global.commonAjax({
+					url: "express/search?sn="+$("#searchText").val(),
+
+				},
+				function(data) {
+
+					console.log(JSON.stringify(data));
+
+					if(data)
+					{
+						var html="";
+
+						for(var i=0;i<data.data.length;i++)
+						{
+							//console.log(JSON.stringify(data.data[i]));
+
+							html=html+'<li><div class="clearfix top">' +
+									'<div class="left">' +
+									'<div class="name">张得发</div>' +
+									'<p>上海市黄浦区歌斐中心</p>' +
+									'</div>' +
+									'<img class="middle-img" src="../images/secondPage/express_22.jpg">' +
+									'<div class="right">' +
+									'<div class="name">张得发</div>' +
+									'<p>上海市黄浦区歌斐中心</p>' +
+									'</div>' +
+									'</div>' +
+									'<div class="middle">' +
+									'<span class="first"><span></span>未签收</span>' +
+									'<span class="second">广东深圳南山区建华路报社村30栋-01</span>' +
+									'</div>' +
+									'<div class="bottom">' +
+									'<img src="../images/secondPage/express_27.jpg"/>' +
+									'<span class="first">顺丰快递</span>' +
+									'<span>11001010123030306</span>' +
+									'</div>' +
+									'</li>';
+						}
+
+						$(".express-list").append(html);
+
+
+
+					}
+
+
+
+
+				},
+				function(err) {
+
+					console.log("err");
+
+				})
+	}
+
+
+	getData();
+
+
+	mui.init({
+		swipeBack: false,
+		pullRefresh: {
+			container: '#pullrefresh',
+			down: {
+				style:'circle',
+				callback: pulldownRefresh
+			},
+			up: {
+				contentrefresh: '正在加载...',
+				callback: pullupRefresh
+			}
+		}
+	});
+
+	function pulldownRefresh()
+	{
+
+	}
+
+	function pullupRefresh()
+	{
+
+	}
+
+
+	//订单详情
+	Global.commonAjax({
+				url: "express/orders/1"
+
+			},
+			function(data) {
+				console.log("订单详情");
+				console.log(JSON.stringify(data));
+			},
+			function(err) {
+				console.log("失败");
+			});
+
+
+
+
+</script>
+</body>
+
+</html>
