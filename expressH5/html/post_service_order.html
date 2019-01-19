@@ -110,6 +110,23 @@
 				background-color: #107EFF!important;
 				color: #FFFFFF;
 			  }
+			  
+			  [data-type="date"] [data-id="picker-d"] {
+			      display: none;
+			  }
+			  
+			  [data-type="date"] .mui-picker {
+			      width: 50%;
+			  }
+			  
+			  [data-type="date"] .mui-dtpicker-title h5 {
+			      width: 50%;
+			  }
+			  
+			  [data-type="date"] [data-id="title-d"] {
+			      display: none!important;
+			  }
+			  
 			
 		</style>
 	</head>
@@ -156,7 +173,7 @@
 				需求明细
 			</div>
 			
-			<div class="row item_wrap" onclick="showType();">
+			<div class="row item_wrap" onclick="showTypeAction();">
 				<div class="row_between pick_item">
 					<span>类型</span>
 					<span class="content">请选择</span>
@@ -168,6 +185,15 @@
 				<div class="row_between item">
 					<span>数量</span>
 					<input type="tel" placeholder="请填写数量" class="number"/>
+				</div>
+				
+			</div>
+			
+			<div class="row item_wrap" onclick="lookTime();">
+				<div class="row_between pick_item">
+					<span>服务时间</span>
+					<span class="content service_time">请选择</span>
+					<span class="arraw"></span>
 				</div>
 				
 			</div>
@@ -185,11 +211,48 @@
 	</body>
 	<script type="text/javascript" src="../js/mui.min.js"></script>
 	<script src="../js/mui.picker.min.js"></script>
+	<script type="text/javascript" src="../js/mui.dtpicker.js"></script>
 	<script src="../js/jquery-2.1.1.min.js"></script>
 	<script src="../js/app.js"></script>
 	<script src="../js/myStorage.js"></script>
 	
 	<script type="text/javascript">
+		mui.init();
+		mui.plusReady(function() {
+			
+		});
+		
+		//有效期
+		var timePicker = new mui.DtPicker({
+					type: "date", //设置日历初始视图模式
+					beginYear: "1970",
+					endYear: "2070"
+				});
+		var endTimePicker = new mui.DtPicker({
+					type: "date", //设置日历初始视图模式
+					beginYear: "1970",
+					endYear: "2070"
+				});
+		var from_time="", to_time="";		
+		function lookTime(){
+			timePicker.show(function(SelectedItem) {
+		        console.log(SelectedItem.text);
+				from_time = SelectedItem.text.substring(0,7);
+		        $(".service_time").html(from_time)
+		        lookEndTime();
+		    })
+		}
+		
+		function lookEndTime(){
+			endTimePicker.show(function(SelectedItem) {
+		        console.log(SelectedItem.text);
+				to_time = SelectedItem.text.substring(0,7);
+		        $(".service_time").html(from_time+" ~ "+to_time)
+		        
+		    })
+		}
+		
+		
 		$("input").focus(function(){
 		  $(this).parent().css("border-bottom","1px solid #107EFF");
 		});
@@ -208,12 +271,13 @@
 		}, {
 			value: '3', 
 			text: '绿植服务'
-		},{
+		}, {
 			value: '4', 
 			text: '商务场地'
-		}]);
+		}]
+		);
 		
-		function showType(){
+		function showTypeAction(){
 			complainPicker.show(function(item){
 				console.log(item)
 				mui('.content')[0].innerHTML = item[0].text;
@@ -260,19 +324,28 @@
 				mui.toast("请输入数量");
 				return;
 			}
+			
+			var service_time = $(".service_time").html();
+			if(service_time == "请选择"){
+				mui.toast("请输入服务时间");
+				return;
+			}
+			
 			var params = {
 				name: name,
 				mobile: mobile,
 				company_name: company_name,
 				type: type,
 				requirements: requirements,
-				amounts: number
+				amounts: number,
+				from: from_time,
+				to: to_time
 			}
 			
 			Global.commonAjax({
 				url: 'service/orders',
 				method: "POST",
-				params: params
+				data: params
 			}, function(data){
 				mui.toast("提交成功");
 				Global.openWindow({
@@ -280,7 +353,10 @@
 				    id: 'service_order_sure.html',
 				    waiting: {
 				        autoShow: false
-				    }
+				    },
+					extras:{
+						postServiceItem: params
+					}
 				})
 				
 			}, function(err){

@@ -38,6 +38,10 @@
 				font-size: 0.14rem;
 			}
 			
+			.item_wrap span{
+				min-width: 0.8rem;
+			}
+			
 			.button{
 				border-radius: 0.03rem;
 				width: 90%;
@@ -109,8 +113,7 @@
 			
 			.content_wrap .content{
 				width: 100%; text-align: left; color:#666666; font-size:0.14rem;
-				height: 0.67rem;
-				padding: 0.16rem 0.01rem 0rem;
+				
 			}
 			
 			.bottom_wrap{
@@ -122,6 +125,7 @@
 				width: 100%;
 				box-sizing: border-box;
 				background-color: #FFFFFF;
+				box-shadow: 0px 0px 10px 0px #EAEAEA;
 			}
 			
 			.bottom_wrap .btn{
@@ -132,6 +136,7 @@
 				background-color: #107EFF;
 				border-radius: 0.03rem;
 				text-align: center;
+				
 			}
 			
 			.money_info{
@@ -156,42 +161,42 @@
 		<div class="mui-content">
 			<div class="head_wrap">
 				<div style="margin-bottom: 0.17rem; font-weight: bold;">成交内容</div>
-				<span>由楼服宝提供100桶桶装水，并且送水上门</span>
+				<span class="service_content">由楼服宝提供100桶桶装水，并且送水上门</span>
 			</div>
 			
 			<div class="row_around img_wrap">
-				<img src="../images/back.png" >
+				<img src="../images/service/hetongchakan.png" >
 				<span style="flex: 1;">合同查看</span>
 				<span class="arraw"></span>
 			</div>
 			
 			<div class="row_between time_wrap">
 				<span>服务期限</span>
-				<span>2018.11 - 2019.01</span>
+				<span class="service_time">2018.11 - 2019.01</span>
 			</div>
 			
 			<div class="content_wrap">
 				<div class="info">联系人信息</div>
 				<div class="row_between item_wrap">
 					<span>姓名</span>
-					<span class="content">张三</span>
+					<span class="content name">张三</span>
 				</div>
 				
 				<div class="row_between item_wrap">
 					<span>手机</span>
-					<span class="content">13800138000</span>
+					<span class="content mobile">13800138000</span>
 				</div>
 				
 				<div class="row_between item_wrap">
 					<span>公司名称</span>
-					<span class="content">上海楼冠信息科技有限公司</span>
+					<span class="content company_name">上海楼冠信息科技有限公司</span>
 				</div>
 			</div>
 			
 			<div class="content_wrap" style="height: 1.18rem;">
 				<div class="info">需求明细</div>
 				
-				<div class="content">
+				<div class="content requirements">
 					我司本季度需要100桶桶装水我司本季度需要100桶 桶装水。
 				</div>
 			</div>
@@ -214,25 +219,40 @@
 	<script src="../js/mui.picker.min.js"></script>
 	<script src="../js/jquery-2.1.1.min.js"></script>
 	<script src="../js/app.js"></script>
+	<script src="../js/myStorage.js"></script>
 	<script type="text/javascript">
-		var complainPicker = new mui.PopPicker();
-		complainPicker.setData([{
-			value: 'ywj',
-			text: '董事长 叶文洁'
-		}, {
-			value: 'aaa',
-			text: '总经理 艾AA'
-		}, {
-			value: 'gezh', 
-			text: '歌者'
-		}]);
-		
-		function showReason(){
-			complainPicker.show(function(item){
-				console.log(item)
-				mui('.content')[0].innerHTML = item[0].text;
-			})
-		}
+		mui.init();
+		var item;
+		mui.plusReady(function() {
+			var self = plus.webview.currentWebview();
+			item = self.postServiceItem;
+			console.log(item);
+			if(item){
+				if(item.amounts){
+					$(".service_content").html("由楼服宝提供"+item.amounts+"桶桶装水，并且送水上门");
+				}
+				
+				if(item.name){
+					$(".name").html(item.name);
+				}
+				
+				if(item.mobile){
+					$(".mobile").html(item.mobile);
+				}
+				
+				if(item.company_name){
+					$(".company_name").html(item.company_name);
+				}
+				
+				if(item.requirements){
+					$(".requirements").html(item.requirements);
+				}
+				
+				if(item.from){
+					$(".service_time").html(item.from+" ~ "+item.to);
+				}
+			}
+		});
 		
 		
 		
