@@ -2,7 +2,6 @@
  * Created by Administrator on 2019/1/18.
  */
 
-
 mui.plusReady(function() {
     commonEvent();
     httpRequest();
@@ -76,7 +75,8 @@ document.getElementById("baojiaSwitch").addEventListener('toggle', function(even
     else
     {
         $("#baojiaCol").hide();
-        $("#baojiaCol input").text("");
+        $("#baojiaCol input").val("");
+        $(".baofei").text("0");
     }
 
 });
@@ -221,11 +221,16 @@ function countFeiyong()
 
 }
 
+$("#baojiaColInput").on("blur",function()
+{
+    baojiaHttp();
+});
+
 function baojiaHttp()
 {
     if($("#baojiaSwitch").hasClass("mui-active"))
     {
-        var paramObj={};
+
         var from_address_id=$("#chufa").attr("data-id");
         var to_address_id=$("#daoda").attr("data-id");
 
@@ -236,6 +241,15 @@ function baojiaHttp()
 
         var insured_value=$("#baojiaCol input").val();
 
+        var paramObj={
+            from_address_id:from_address_id,
+            to_address_id:to_address_id,
+            express_company_id:express_company_id,
+            package:package,
+            weight:weight,
+            insured_value:insured_value,
+        };
+
         Global.commonAjax({
                 url: "express/insurance/calculate",
                 method:"POST",
@@ -243,11 +257,13 @@ function baojiaHttp()
 
             },
             function(data) {
-                console.log("快递计算价格");
+                console.log("保费计算");
                 console.log(JSON.stringify(data));
+                console.log(data.insure_price);
+                $(".baofei").text(data.insure_price);
             },
             function(err) {
-                console.log("失败");
+                console.log("保费计算失败");
             });
     }
 }
@@ -298,11 +314,22 @@ function submitData()
         return;
     }
 
+    if($("#baojiaSwitch").hasClass("mui-active"))
+    {
+        if(!$("#baojiaCol input").val())
+        {
+            mui.toast("请输入保额");
+            return;
+        }
+    }
+
     if($(".yunfei-img-list .active").length==0)
     {
         mui.toast("请选择快递公司");
         return;
     }
+
+
 
 
     var from_address_id=$("#chufa").attr("data-id");
@@ -322,14 +349,14 @@ function submitData()
 
 
     var is_freight_collect=$("#payWaySelect .text").val();
-    is_freight_collect=is_freight_collect=="货到付款"?1:0;
+    is_freight_collect=is_freight_collect=="到付"?1:0;
 
     var is_print=$("#is_print").hasClass("mui-active");
 
     var type=myStorage.getItem("storageExpressType");
     var create_type=myStorage.getItem("storageExpressCreateType");
-    var insured_value=100;
-    var insured_price=30;
+    var insured_value=parseFloat($("#baojiaColInput").val());
+    var insured_price=parseFloat($(".baofei").text());
 
     var paramObj={
         from_address_id:from_address_id,

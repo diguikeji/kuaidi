@@ -15,7 +15,6 @@
 		body,.mui-content{background: #fff!important;}
 
 
-
 	</style>
 
 
@@ -58,10 +57,10 @@
 <script src="../js/app.js"></script>
 <script>
 
-	function getData()
+	function getData(page)
 	{
 		Global.commonAjax({
-					url: "express/search?sn="+$("#searchText").val(),
+					url: "express/search?sn="+$("#searchText").val()+"&page="+page
 
 				},
 				function(data) {
@@ -76,25 +75,25 @@
 						{
 							//console.log(JSON.stringify(data.data[i]));
 
-							html=html+'<li><div class="clearfix top">' +
+							html=html+'<li data-id="'+data.data[i].id+'"><div class="clearfix top">' +
 									'<div class="left">' +
-									'<div class="name">张得发</div>' +
-									'<p>上海市黄浦区歌斐中心</p>' +
+									'<div class="name">'+data.data[i].from_name+'</div>' +
+									'<p>'+data.data[i].from_province+data.data[i].from_city+data.data[i].from_area+data.data[i].from_detail+'</p>' +
 									'</div>' +
 									'<img class="middle-img" src="../images/secondPage/express_22.jpg">' +
 									'<div class="right">' +
-									'<div class="name">张得发</div>' +
-									'<p>上海市黄浦区歌斐中心</p>' +
+									'<div class="name">'+data.data[i].to_name+'</div>' +
+									'<p>'+data.data[i].to_province+data.data[i].to_city+data.data[i].to_area+data.data[i].to_detail+'</p>' +
 									'</div>' +
 									'</div>' +
 									'<div class="middle">' +
 									'<span class="first"><span></span>未签收</span>' +
-									'<span class="second">广东深圳南山区建华路报社村30栋-01</span>' +
+									'<span class="second">'+data.data[i].to_company_name+'</span>' +
 									'</div>' +
 									'<div class="bottom">' +
 									'<img src="../images/secondPage/express_27.jpg"/>' +
 									'<span class="first">顺丰快递</span>' +
-									'<span>11001010123030306</span>' +
+									'<span>'+data.data[i].express_sn+'</span>' +
 									'</div>' +
 									'</li>';
 						}
@@ -116,48 +115,27 @@
 				})
 	}
 
+	var page=1;
 
-	getData();
-
-
-	mui.init({
-		swipeBack: false,
-		pullRefresh: {
-			container: '#pullrefresh',
-			down: {
-				style:'circle',
-				callback: pulldownRefresh
-			},
-			up: {
-				contentrefresh: '正在加载...',
-				callback: pullupRefresh
-			}
-		}
+	mui.plusReady(function() {
+		commonEvent();
+		getData(page);
 	});
 
-	function pulldownRefresh()
-	{
+	mui(".express-list").on('tap', 'li ', function() {
 
-	}
+		var id=$(this).attr("data-id");
 
-	function pullupRefresh()
-	{
+		Global.openWindow({
+			url:"expressDetail.html?id="+id,
+			id: "expressDetail.html",
+			waiting: {
+				autoShow: false
+			}
+		})
 
-	}
+	})
 
-
-	//订单详情
-	Global.commonAjax({
-				url: "express/orders/1"
-
-			},
-			function(data) {
-				console.log("订单详情");
-				console.log(JSON.stringify(data));
-			},
-			function(err) {
-				console.log("失败");
-			});
 
 
 
