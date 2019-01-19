@@ -40,7 +40,7 @@
 		.badge_wrap{position: relative;}
 		.badge{position: absolute; color: #FFFFFF; right: 0.1rem; padding: 0.01rem 0.05rem;
 		background: #FF0000; font-size: 0.1rem; border-radius: 0.1rem; display: inline-block; height: 0.12rem;
-			line-height: 0.12rem;box-sizing: border-box;}
+			line-height: 0.12rem;box-sizing: border-box; top: 0.1rem;}
 	</style>
 
 
@@ -166,7 +166,6 @@
 		
 		window.addEventListener('loginRefresh', function(event) {
 			console.log("loginRefresh----");
-			token = myStorage.getItem("token");
 		    refreshPage();
 			getPersonInfo();
 		}, false);
@@ -231,6 +230,8 @@
 			$(".addresses_count").hide();
 			$(".events_count").hide();
 			$(".touxiang").attr("src", "../images/wode/mtyou_icon.png");
+			$(".name").val("未登录");
+			$(".money_num").html("0.00");
 		});
 	}
 	
@@ -244,7 +245,7 @@
 
 	//设置页面
 	function goToSetting(){
-		console.log("token"+token)
+		token = myStorage.getItem("token");
 		if(token){
 			Global.openWindow({
 			    url: 'personal.html',

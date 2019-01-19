@@ -179,6 +179,8 @@
 				</div>
 			</div>
 			
+			<button class="mui-btn mui-btn-primary button" style="color: #FFFFFF!important;" onclick="updateInfo();">更新</button>
+			
 			<button class="mui-btn mui-btn-primary mui-btn-outlined button" onclick="loginOut();">退出</button>
 			
 		</div>
@@ -192,15 +194,26 @@
 		
 		mui.init();
 		var user;
+		var updateParams = {
+		    avatar: "../images/wode/mtyou_icon.png",
+			name: "",
+			mobile: ""
+		};
+		
 		mui.plusReady(function() {
 			user = myStorage.getItem("user");
 			if(!user){
 				return;
 			}
-			console.log(user);
+			console.log(JSON.stringify(user));
+			if(user.avatar){
+				$(".top-img").attr("src", user.avatar);
+			}else{
+				$(".top-img").attr("src", "../images/wode/mtyou_icon.png");
+			}
 			
-			$(".name").html(user.realname);
-			$(".mobile").html(user.mobile);
+			$(".name").val(user.realname);
+			$(".mobile").val(user.mobile);
 			//微信
 			if(user.wx_openid){
 				$(".wx_openid").html("绑定");
@@ -237,7 +250,7 @@
 			myStorage.removeItem("token");
 			myStorage.removeItem("user");
 			sendRefresh();
-			plus.webview.currentWebview().close();
+			
 		}
 		
 		var fileName = "temp.jpg";
@@ -320,10 +333,9 @@
 		            data: params
 		        },
 		        function(data) {
-		            console.log(data + "-------");
+		            updateParams.avatar = data.url;
 		            mui.toast("上传成功");
 		            $('.top-img').attr("src", data.url);
-		            sendRefresh();
 		        },
 		        function(err) {
 		            mui.toast("上传失败");
@@ -332,10 +344,36 @@
 		    );
 		}
 		
+		//更新用户信息
+		function updateInfo(){
+			if($(".name").val()){
+				updateParams.name = $(".name").val();
+			}
+			if($(".mobile").val()){
+				updateParams.mobile = $(".mobile").val();
+			}
+			
+			Global.commonAjax({
+			        url: "profile",
+			        method: "PUT",
+			        data: updateParams
+			    },
+			    function(data) {
+			        console.log(data + "-------");
+			        mui.toast("更新成功");
+			        sendRefresh();
+			    },
+			    function(err) {
+			        mui.toast("更新失败");
+			    }
+			);
+		}
+		
 		function sendRefresh(){
 			console.log("sendRefresh")
 			var h = plus.webview.getWebviewById("html/my.html");
 			mui.fire(h,'loginRefresh',{loginRefresh: "loginRefresh"});
+			plus.webview.currentWebview().close();
 		}
 		
 		

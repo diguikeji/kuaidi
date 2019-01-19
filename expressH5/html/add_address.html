@@ -79,7 +79,7 @@
 			}
 			
 			.item .item_span{
-				width: 70px;
+				width: 1rem;
 				color: #333333;
 				font-size: 14px;
 			}
@@ -114,14 +114,14 @@
 			<div class="row item_wrap">
 				<div class="row_between item">
 					<span class="item_span">姓名</span>
-					<input type="text"  placeholder="请填写收件人姓名">
+					<input type="text"  placeholder="请填写收件人姓名" class="name">
 				</div>
 			</div>
 			
 			<div class="row item_wrap">
 				<div class="row_between item">
 					<span class="item_span">手机号</span>
-					<input type="tel" maxlength="11" placeholder="请输入手机号码">
+					<input type="tel" maxlength="11" placeholder="请输入手机号码" class="mobile">
 				</div>
 			</div>
 			
@@ -140,7 +140,7 @@
 			<div class="row item_wrap">
 				<div class="row_between item">
 					<span class="item_span">详细地址</span>
-					<input type="tel" maxlength="11" placeholder="请填写详细地址">
+					<input type="text" placeholder="请填写详细地址" class="detail">
 				</div>
 			</div>
 			
@@ -163,7 +163,51 @@
 	<script src="../js/mui.picker.min.js"></script>
 	<script src="../js/jquery-2.1.1.min.js"></script>
 	<script src="../js/app.js"></script>
+	<script src="../js/myStorage.js"></script>
 	<script type="text/javascript">
+		mui.init();
+		mui.plusReady(function() {
+			//上页中的 传递的值
+			var self = plus.webview.currentWebview();
+			var isEdit = self.isEdit;
+			if(isEdit){
+				$(".mui-title").html("修改地址");
+			}else{
+				$(".mui-title").html("新增地址");
+			}
+			
+			var addressItem = myStorage.getItem("addressItem");
+			if(addressItem){
+				if(addressItem.name){
+					$(".name").val(addressItem.name);
+				}
+				
+				if(addressItem.mobile){
+					$(".mobile").val(addressItem.mobile);
+				}
+				
+				if(addressItem.detail){
+					$(".detail").val(addressItem.detail);
+				}
+				
+				if(addressItem.is_default == 1){
+					$(".mui-switch").addClass("mui-active");
+				}else{
+					$(".mui-switch").removeClass("mui-active");
+				}
+			}
+			
+			mui('.mui-content .mui-switch').each(function() { //循环所有toggle
+				
+				this.addEventListener('toggle', function(event) {
+					//event.detail.isActive 可直接获取当前状态
+					console.log(event.detail.isActive)
+				});
+			});
+			
+			getRegions();
+		});
+		
 		var complainPicker = new mui.PopPicker();
 		complainPicker.setData([{
 			value: 'ywj',
@@ -183,14 +227,15 @@
 			})
 		}
 		
-		addImage();
-		function addImage(){
-			var html = '';
-			for(var i=0; i<10; i++){
-				html += '<img src="../images/firstPageLive/homeBottom_03.jpg" >';
-			}
-			
-			$(".img_wrap").append(html);
+		function getRegions(){
+			Global.commonAjax({
+				url: 'regions?pid=1'
+			}, function(data){
+				console.log(JSON.stringify(data));
+				
+			}, function(err){
+				mui.toast(err);
+			});
 		}
 		
 	</script>

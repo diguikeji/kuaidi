@@ -288,122 +288,24 @@
             var index = $(this).data("index");
             $(this).addClass("clicked");
             var item = findList[index];
+			console.log(JSON.stringify(item));
             
-            if(myStorage.getItem("storageSelectAddressValue")>0)
-            {
-            	myStorage.setItem("storageAddressValue",item);
-            	var list = plus.webview.getWebviewById("expressInfoAdd.html");
-				mui.fire(list, 'storageAddressValue');
-            	mui.back();
-            }
-            
-            if (!(item && item.goodsUrl)) {
-                return;
-            }
-            var clickType = {
-                source: myStorage.getItem("user").sourceCode,
-                goodsCode: item.goodsCode,
-                page: "payed"
-            }
-            plus.statistic.eventTrig("loansgoods", JSON.stringify(clickType))
-			
-			if (mui.os.android) {
-				clickFindItem(item);
-				return;
-			        checkPermissionPhoto(function() {
-			            clickFindItem(item);
-			        }, function() {
-			            var btnArray = ['去设置','取消'];
-			            var mainAct = plus.android.runtimeMainActivity();
-	                    mui.confirm("请在设置里面允许权限", '提示', btnArray, function(e) {
-	                        if (e.index == 0) {
-	                            //去设置
-	                            plus.android.invoke("org.qldc.xianghq.Tools", "goToSetting", mainAct);
-	                        }
-	                    })
-			        });
-			    } else {
-
-                plus.plugintest.PluginXcqxFunction("Html5", "Plus", "AsyncFunction", "MultiArgument!", function(result) {
-                    //alert( result[0].toString());
-
-                    if(result[0]=="1")
-                    {
-                        clickFindItem(item);
-
-
-                    }
-                    else
-                    {
-
-
-                        var btnArray = ['取消', '设置'];
-                        mui.confirm('在设备的"设置-隐私-相机"中允许访问相机', '提示', btnArray, function(e) {
-                            if (e.index == 1) {
-
-                                var UIApplication = plus.ios.import("UIApplication");
-                                var NSURL = plus.ios.import("NSURL");
-                                var setting = NSURL.URLWithString("app-settings:");
-                                var application = UIApplication.sharedApplication();
-                                application.openURL(setting);
-                                plus.ios.deleteObject(setting);
-                                plus.ios.deleteObject(application);
-
-                            } else {
-
-
-
-
-                            }
-                        })
-
-
-                    }
-
-
-                }, function(result) {
-                    //alert(result)
-                });
-			
-			
-			    }
-    
-    
-            
+			myStorage.setItem("addressItem", item);
+			Global.openWindow({
+				url: 'add_address.html',
+				id: 'add_address.html',
+				waiting: {
+				    autoShow: false
+				},
+				extras: {
+					isEdit: true
+				}
+			})
         });
         
         
-        function clickFindItem(item){
-        		var params = {
-                goodsCode: item.goodsCode
-            }
-            Global.commonAjax({
-                    url: "goods/click",
-                    data: params,
-                    method: "POST"
-                },
-                function(data) {
-                		if(mui.os.android && (item.jumpType == "out")){
-		        			plus.runtime.openURL(item.goodsUrl);
-		        			return;
-		        		}
-                    Global.openWindow({
-                        url: 'webview.html',
-                        id: 'webview.html?url=' + item.goodsUrl,
-                        waiting: {
-                            autoShow: false
-                        },
-                        extras: {
-                            title: item.goodsTitle
-                        }
-                    })
-                },
-                function(err) {
-
-                }
-            )
-        }
-    </script>
+     
+	</script>
 </body>
 
 </html>

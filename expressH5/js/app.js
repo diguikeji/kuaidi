@@ -6,12 +6,12 @@ var Global = {};
     	
     	openWindow:function($obj)
     	{
-    		
+			
     		var options = {
 						styles:{
 							popGesture: "close"
 						},
-						extras:{}
+						extras:$obj.extras
 					};
     		
     		options.styles.statusbar = {
@@ -112,7 +112,7 @@ var Global = {};
             if (!params.method) {
                 params.method = "GET";
             } else {
-                params.method = "POST";
+                params.method = params.method;
             }
 			
 			//没有网络
