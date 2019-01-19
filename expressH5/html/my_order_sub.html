@@ -241,6 +241,7 @@
     <script src="../js/mui.js"></script>
     <script src="../js/jquery-2.1.1.min.js"></script>
     <script src="../js/app.js"></script>
+    <script src="../js/myStorage.js"></script>
     <script type="text/javascript">
         mui.init({
             pullRefresh: {
@@ -306,15 +307,9 @@
             $("#pullrefresh").show();
 			//mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 			
-			
-			setTimeout(function(){
-				getListData(0, [1,2,3], false);
-			}, 1000);
-			return;
             Global.commonAjax({
-                    url: "goods/payed/goodslist",
-                    method: "POST",
-                    data: params
+                    url: "service/orders",
+                    method: "POST"
                 },
                 function(data) {
                     if (data.current >= data.pages) {
