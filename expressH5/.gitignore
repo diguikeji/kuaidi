@@ -1,6 +1,5 @@
 *.idea
 .wepycache
-unpackage
 node_modules
 dist
 .DS_Store
