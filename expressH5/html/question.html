@@ -51,7 +51,7 @@
 			.item span{
 				width: 0.8rem;
 				color: #666666;
-				font-size: 0.14px;
+				font-size: 0.14rem;
 			}
 			
 			.item input{
@@ -182,7 +182,7 @@
 	</head>
 	<body>
 		<div class="row_between head_wrap">
-			<img src="../images/address/search.png" >
+			<img src="../images/back_white.png" class="mui-action-back">
 		</div>
 		
 		<div class="login_wrap">
@@ -211,10 +211,10 @@
 			<div class="info_txt">您对楼服宝的看法是? </div>
 			
 			<div class="row" style="flex-flow: wrap;">
-				<span class="tag active">非常好</span>
-				<span class="tag">很好</span>
-				<span class="tag">好</span>
-				<span class="tag">一般</span>
+				<span class="tag first_tag active" onclick="changeTage(0);">非常好</span>
+				<span class="tag second_tag" onclick="changeTage(1);">很好</span>
+				<span class="tag third_tag" onclick="changeTage(2);">好</span>
+				<span class="tag fourth_tag" onclick="changeTage(3);">一般</span>
 			</div>
 			
 		</div>
@@ -228,7 +228,7 @@
 		        <div class="modal-content">
 		            <div class="title">恭喜您获得奖品</div>
 					<div class="img">
-						<img src="../images/firstPageLive/home_02.jpg" alt="">
+						<img src="../images/fuli/fuliImg.png" onclick="goToCoupon();">
 					</div>
 					<div class="btn" onclick="closeDialg();">确认</div>
 		        </div>
@@ -258,6 +258,31 @@
 		
 		function closeDialg(){
 			$(".modal-mask").addClass("hideClass");
+		}
+		
+		function goToCoupon(){
+			Global.openWindow({
+				url: 'coupon.html',
+				id: 'coupon.html',
+				waiting: {
+					autoShow: false
+				}
+			})
+		}
+		
+		function changeTage(index){
+			$(".tag").removeClass("active");
+			if(index == 0){
+				$(".first_tag").addClass("active");
+			}else if(index ==1){
+				$(".second_tag").addClass("active");
+			}else if(index ==2){
+				$(".third_tag").addClass("active");
+			}else{
+				$(".fourth_tag").addClass("active");
+			}
+			
+			
 		}
 		
 		
