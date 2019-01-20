@@ -136,7 +136,7 @@
 				
 			</div>
 			
-			<div class="col item_wrap" style="margin-top: 8px;">
+			<div class="col item_wrap" style="margin-top: 8px;" onclick="weixinAuth();">
 				<div class="row_between item" style="border-top: 0px solid transparent;">
 					<div class="row">
 						<img src="../images/personal/weixin.png" class="wx_icon">
@@ -376,7 +376,26 @@
 			plus.webview.currentWebview().close();
 		}
 		
-		
+		//微信授权
+		function weixinAuth(){
+			plus.oauth.getServices(function(services){
+				var s = services[0];
+				if ( !s.authResult ) {
+					s.login( function(e){
+						// 获取登录操作结果
+						var result = e.target.authResult;
+						mui.toast( "认证成功");
+					}, function(e){
+						mui.toast( "认证失败");
+					}, {} );
+				}
+				
+			}, function(services){
+				
+			})
+			
+			
+		}
 		
 	</script>
 </html>
