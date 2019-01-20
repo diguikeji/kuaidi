@@ -57,7 +57,7 @@
 
 		<div class="jiangpin-col">
 			<img class="full-img" src="../images/fuli/fuliShiyong_02.jpg"/>
-			<div class="start-col">开始</div>
+			<div class="start-col" onclick="goToQuestion();">开始</div>
 
 			<div class="jiangpin-list clearfix">
 				<div class="jiangpin-detail">
@@ -137,6 +137,8 @@
 		<script src="../js/mui.min.js"></script>
 	    <script src="../js/jquery-2.1.1.min.js"></script>
 	<script src="../lib/swiper.min.js"></script>
+	<script src="../js/app.js"></script>
+	<script src="../js/myStorage.js"></script>
 		<script>
 
 
@@ -170,6 +172,16 @@
 					}
 				}
 			});
+			
+			function goToQuestion(){
+				Global.openWindow({
+					url: 'question.html',
+					id: 'question.html',
+					waiting: {
+						autoShow: false
+					}
+				})
+			}
 			
 			function pulldownRefresh()
 			{
