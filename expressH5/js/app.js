@@ -290,6 +290,12 @@ var Global = {};
 }());
 
 
+//数据配置文件
+var Config={};
+Config.wmStatus=["已经送出","派件中","已经送达楼服宝","已经送达用户","已经送达前台"];
+
+
+
 function openWindowPage(url){
     
     var options = {
@@ -340,6 +346,8 @@ mui('body').on('tap','a',function(){
     var u = navigator.userAgent, app = navigator.appVersion;
     var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
     var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+
+
 
 //公共ready后的事件
 function commonEvent()

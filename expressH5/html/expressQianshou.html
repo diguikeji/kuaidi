@@ -92,11 +92,11 @@
 		<div class="qianshou-col clearfix">
 
 			<div class="qianshou-btn">
-				<button class="active" type="button">本人签收</button>
+				<button class="active" type="button" data-type="1">本人签收</button>
 			</div>
 
 			<div class="qianshou-btn">
-				<button type="button">他人代签</button>
+				<button type="button" data-type="1">他人代签</button>
 			</div>
 
 		</div>
@@ -119,6 +119,7 @@
 
 		<script src="../js/mui.min.js"></script>
 	    <script src="../js/jquery-2.1.1.min.js"></script>
+		<script src="../js/myStorage.js"></script>
 	    <script src="../js/app.js"></script>
 		<script>
 
@@ -129,30 +130,6 @@
 			});
 
 
-			mui.init({
-				swipeBack: false,
-				pullRefresh: {
-					container: '#pullrefresh',
-					down: {
-						style:'circle',
-						callback: pulldownRefresh
-					},
-					up: {
-						contentrefresh: '正在加载...',
-						callback: pullupRefresh
-					}
-				}
-			});
-			
-			function pulldownRefresh()
-			{
-				
-			}
-
-			function pullupRefresh()
-			{
-
-			}
 			
 	  var canvasObj=new lineCanvas({
             el: document.getElementById("myCanvas")
@@ -223,25 +200,69 @@
         var imgBase64 = canvasObj.canvas.toDataURL();
         console.log(imgBase64);
     }.bind(this), false);*/
-			
+
+	var  id=23;
 
 	$("#submitBtn").click(function()
 	{
-		
-		//订单详情
-			Global.commonAjax({
-                    url: "express/orders/1"
-					
-            },
-			function(data) {
-				console.log("订单详情");
-				console.log(JSON.stringify(data));
-			},
-			function(err) {
-			    console.log("失败");
-			});
+
+		uploadFile();
+
 		
 	});
+
+			var imgUrl;
+			function  uploadFile()
+			{
+				var fileData=canvasObj.canvas.toDataURL();
+				Global.commonAjax({
+							url: "upload/post",
+							method:"POST",
+							data:{
+								file:fileData,
+								name:new Date().getTime()+".png"
+							}
+
+						},
+						function(data) {
+							console.log("上传文件");
+							console.log(JSON.stringify(data));
+							imgUrl=data.url;
+							submitData();
+						},
+						function(err) {
+							console.log("上传文件失败");
+						});
+			}
+
+
+			function submitData()
+			{
+
+				var paramObj={};
+				paramObj.sign_type=$(".qianshou-col .active").attr("data-type");
+				paramObj.signature=imgUrl;
+
+				Global.commonAjax({
+							url: "express/orders/"+id,
+							method:"put",
+							data:paramObj
+
+						},
+						function(data) {
+							console.log("订单签收");
+							console.log(JSON.stringify(data));
+							mui.toast("订单签收成功");
+							mui.back();
+						},
+						function(err) {
+							console.log("订单签收失败");
+						});
+
+
+			}
+
+
 
 		</script>
 	</body>

@@ -164,7 +164,7 @@
 .express-search{margin-top:0.1rem;}
 .express-detail-list{padding-left:15px;padding-bottom:0.1rem;}
 
-.express-detail-list .more-row{height:auto;line-height: 0.22rem;padding:0.1rem 0 0.2rem 0.55rem;}
+.express-detail-list .more-row{height:auto;line-height: 0.22rem;padding:0.1rem 15px 0.2rem 0.55rem;}
 .express-detail-list .more-row .left{position: absolute;left:0;top:0.1rem;}
 
 .express-detail-list li{border-bottom:1px solid #e3e3e3;height:0.46rem;line-height: 0.46rem;padding-right:15px;position: relative;}

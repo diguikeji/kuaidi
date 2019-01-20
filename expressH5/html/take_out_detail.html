@@ -68,21 +68,32 @@
 			.bottom{border-top:1px solid #e3e3e3;padding:0rem;}
 			.bottom img{width:0.16rem;display: inline-block;vertical-align: middle;margin-right:2px;position: relative;top:0;}
 			.bottom span{display: inline-block;vertical-align: middle;}
-			.bottom .step-list{padding:0 0.38rem;position: relative;margin-top:0.55rem; margin-bottom: 0.1rem;}
+			.bottom .step{padding:0 0.38rem;box-sizing: border-box}
+			.bottom .step-list{position: relative;margin-top:0.55rem; margin-bottom: 0.1rem;}
+
+			.bottom .step-list .step-col{width:33.333%;float:left;position: relative;height:1px;z-index:10;}
+			.bottom .step-list .step-col.active .step-col-detail{background: #B0D1F8;}
+			.bottom .step-list .step-col.last{position: absolute;right:0;width:8px;}
 			.bottom .step-list .active{background: #B0D1F8!important;}
-			.bottom .step-list .step-left{width:8px;height:8px;border-radius: 50%;background: #CCCCCC;left:0.25rem;display: inline-block;position: absolute;top:0.07rem;}
-			.bottom .step-list .step-center-left{width:8px;height:8px;border-radius: 50%;background: #CCCCCC;left:35%;display: inline-block;position: absolute;top:0.07rem;}
-			.bottom .step-list .step-right{width:8px;height:8px;border-radius: 50%;background: #CCCCCC;right:0.25rem;display: inline-block;position: absolute;top:0.07rem;}
-			.bottom .step-list .line{height:1px;width:100%;background:#ccc;display: inline-block;position: relative;}
-			.bottom .step-list .line.active-line:after{width:50%;height:1px;background: #B0D1F8;content: " ";display:block;top:0;left:0;}
-			.bottom .step-list .step-middle{width:20px;height:20px;background: #fff;position: absolute;top:0.07rem;left:65%;margin-left:-10px;text-align: center;border-radius: 50%;}
-			.bottom .step-list .step-middle .dian{width:8px;height:8px;border-radius: 50%;background: #107EFF;display: inline-block;position: relative;z-index:100;position: absolute;left:50%;margin-left:-4px;}
-			.bottom{position: relative;}
-			.bottom .step-tag{background: #107EFF;color:#fff;font-size:0.12rem;padding:0.032rem 0.1rem;border-radius: 0.1rem;white-space: nowrap;position: absolute;top:-0.52rem;left:-50%;margin-left:-0.2rem;}
-			.bottom .step-tag img{width:0.12rem;position: absolute;left:50%;top:0.27rem;margin-left:-0.06rem;}
-			.bottom .left-text{color:#B0D1F8;font-size:0.11rem;position: absolute;left:0.15rem;top:0.18rem;}
-			.bottom .center-text{color:#B0D1F8;font-size:0.11rem;position: absolute;left:1.15rem;top:0.18rem;}
-			.bottom .right-text{color:#CCCCCC;font-size:0.11rem;position: absolute;right:0.15rem;top:0.18rem;}
+			.bottom .step-list .step-col-detail{width:8px;height:8px;border-radius: 50%;background: #CCCCCC;left:0;display: inline-block;position: absolute;top:-4px;}
+			.bottom .step-list .line{height:1px;width:100%;background:#ccc;display: inline-block;position: absolute;bottom:0;left:0;}
+			.bottom .step-list .active .step-col-detail .step-tag{color:#B0D1F8;}
+			.bottom .step-list .step-col-detail.current{width:8px;height:8px;
+				background: #fff;position: absolute;top:0.07rem;left:65%;margin-left:-10px;text-align: center;border-radius: 50%;}
+			.bottom .step-list .current .step-col-detail{background: #107EFF;}
+			.bottom{position: relative;height:0.76rem;}
+			.bottom .step-list .step-col-detail img{display: none;}
+			.bottom .step-list .step-col-detail .step-tag{
+				color: #CCCCCC;
+				font-size: 0.11rem;
+				position: absolute;
+				left: -0.15rem;
+				top: -0.34rem;
+				white-space: nowrap;
+			}
+			.bottom .step-list .current .step-tag{background: #107EFF;color:#fff;width:0.8rem;text-align:center;font-size:0.12rem;padding:0.032rem 0.1rem;border-radius: 0.1rem;white-space: nowrap;position: absolute;top:-0.38rem;left:-0.38rem;}
+			.bottom .step-list .current .step-tag img{width:0.12rem;position: absolute;left:50%;top:0.27rem;margin-left:-0.06rem;display: inline-block;}
+
 			
 			.bottom_wrap{box-shadow: 0px 0px 10px 0px #EAEAEA; margin: 0rem 0.15rem;
 				background-color: #FFFFFF; padding-left: 0.13rem}
@@ -93,7 +104,7 @@
 				
 			.bottom_wrap .bottom_item{
 				height: 0.48rem; border-bottom: 1px solid #E3E3E3;
-				padding-right: 0.12rem; color: #33333; font-size: 0.16rem;
+				padding-right: 0.12rem; color: #333; font-size: 0.16rem;
 			}
 			
 			.bottom_block{
@@ -127,37 +138,68 @@
 		<div class="mui-content" style="background-color: #F8F8F8;">
 			<div class="row_center head_wrap">
 				<img src="../images/firstPageLive/live_06.png" alt="">
-				<span>已送达楼服宝</span>
+				<span id="status"></span>
 			</div>
 			
 			<div class="col content_wrap">
 				<div class="row content_item">
-					<img src="../images/firstPageLive/homeBottom_03.jpg" >
+					<img id="logo" src="" >
 					<div class="col">
-						<span class="name">福荣祥烧腊（安远店）</span>
-						<span class="order_no">单号:19A7113C71540664618075</span>
+						<span class="name" id="resturant_name"></span>
+						<span class="order_no">单号:<span id="sn"></span></span>
 					</div>
 				</div>
 				
 				<div class="bottom">
-					<span class="left-text">已发出</span>
-					<span class="center-text">派件中</span>
-					<span class="right-text">派件中</span>
+
+
 					<div class="step">
 				
-						<div class="step-list">
-				
-							<span class="step-left active"></span>
-							<span class="step-center-left active"></span>
-							<span class="step-right"></span>
-							<span class="step-middle">
+						<div class="step-list mui-clearfix">
+
+							<div class="step-col">
+
+								<span class="step-col-detail">
+
 								<span class="step-tag">
+									<span>已发出</span>
+									<img src="../images/yunfei/sanjiao.png"/>
+								</span>
+
+							</span>
+
+							</div>
+
+							<div class="step-col">
+							<span class="step-col-detail">
+
+								<span class="step-tag">
+									<span>派件中</span>
+									<img src="../images/yunfei/sanjiao.png"/>
+								</span>
+
+							</span>
+							</div>
+
+							<div class="step-col">
+							<span class="step-col-detail">
+								<span class="step-tag" style="left:-0.26rem;">
 									<span>楼服宝签收</span>
 									<img src="../images/yunfei/sanjiao.png"/>
 								</span>
-								<span class="dian"></span>
 							</span>
-							<span class="line active-line"></span>
+							</div>
+
+							<div class="step-col last">
+							<span class="step-col-detail">
+								<span class="step-tag">
+									<span>已签收</span>
+									<img src="../images/yunfei/sanjiao.png"/>
+								</span>
+							</span>
+							</div>
+
+							<span class="line"></span>
 						</div>
 				
 					</div>
@@ -168,7 +210,7 @@
 				<div class="bottom_title">订单详情</div>
 				<div class="row_between bottom_item">
 					<span>下单时间</span>
-					<span style="color: #666666;">2018-08-30 12:30</span>
+					<span style="color: #666666;" id="created_at"></span>
 				</div>
 				
 				<div class="row_between bottom_item">
@@ -178,37 +220,92 @@
 				
 			</div>
 			
-			<div class="row_around bottom_block">
-				<div id="sendDaoShou">送到手</div>
-				<div style="background-color: #107EFF;" id="sendQiantai">送到前台</div>
+			<div class="row_around bottom_block" id="songdao">
+				<div id="sendDaoShou" data-id="1">送到手</div>
+				<div style="background-color: #107EFF;" id="sendQiantai" data-id="2">送到前台</div>
 			</div>
 			
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/jquery-2.1.1.min.js"></script>
+		<script src="../js/myStorage.js"></script> 
 		 <script src="../js/app.js"></script> 
 		<script type="text/javascript">
-			
-			$("#sendDaoShou").click(function()
-			{
-				Global.openWindow({
-			    url: 'take_out_detail_copy.html',
-			    id: 'take_out_detail_copy.html',
-			    waiting: {
-			        autoShow: false
-			    }
-				})
+
+
+			mui.plusReady(function() {
+				httpRequest();
+				commonEvent();
 			});
-			
-			$("#sendQiantai").click(function()
+
+			var id=GetQueryString("id");
+
+			function  httpRequest()
 			{
-				Global.openWindow({
-			    url: 'take_out_detail_copy.html',
-			    id: 'take_out_detail_copy.html',
-			    waiting: {
-			        autoShow: false
-			    }
-				})
+				//外卖订单详情
+				Global.commonAjax({
+							url: "deliveries/"+id
+
+						},
+						function(data) {
+							console.log("外卖订单详情");
+							console.log(JSON.stringify(data));
+							$("#created_at").text(data.created_at);
+							$("#resturant_name").text(data.resturant_name);
+							$("#sn").text(data.sn);
+							$("#logo").attr("src",data.logo);
+							$("#status").text(Config.wmStatus[data.status]);
+
+							var eqIndex=data.status;
+
+							if(eqIndex>=3)
+							{
+								eqIndex=3;
+							}
+
+							$(".step-list .step-col").eq(eqIndex).addClass("current");
+							for(var i=0;i<data.status;i++)
+							{
+								if(i<data.status&&i<=3)
+								{
+									$(".step-list .step-col").eq(i).addClass("active");
+								}
+
+
+
+							}
+
+							
+							
+						},
+						function(err) {
+							console.log("外卖订单详情失败");
+						});
+
+			}
+			
+			
+
+			$("#songdao div").click(function()
+			{
+				var type=$(this).attr("data-id");
+				//接收外卖
+				Global.commonAjax({
+							url: "deliveries/"+id,
+							method:"PUT",
+							data:{
+								delivery_type:type
+							}
+
+						},
+						function(data) {
+							console.log("接收外卖");
+							console.log(JSON.stringify(data));
+							mui.toast("接收外卖成功");
+						},
+						function(err) {
+							console.log("接收外卖失败");
+						});
 			});
 			
 			

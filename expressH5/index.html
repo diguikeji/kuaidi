@@ -641,18 +641,7 @@
 				function httpRequest()
 				{
 					
-						//外卖列表
-						Global.commonAjax({
-			                    url: "express/deliveries"
-								
-			            },
-						function(data) {
-							console.log("外卖列表");
-							console.log(JSON.stringify(data));
-						},
-						function(err) {
-						    console.log("外卖列表失败"+JSON.stringify(err));
-						});	
+						
 								//外卖详情
 						Global.commonAjax({
 			                    url: "express/deliveries/1"
