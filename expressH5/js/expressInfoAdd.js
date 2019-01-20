@@ -383,6 +383,7 @@ function submitData()
         function(data) {
             console.log("提交订单");
             mui.toast("提交成功");
+            mui.back();
             console.log(JSON.stringify(data));
         },
         function(err) {
