@@ -32,6 +32,8 @@
 				line-height: 0.44rem;
 			}
 
+			.express-col{visibility: hidden;}
+			.express-col.active{visibility: visible;}
 
 
 		</style>
@@ -46,15 +48,17 @@
 	<div class="header-bar header-search">
 
 		<div class="header-left" onclick="mui.back();">
-			<img src="../images/back.png"/>
+			<img src="../images/secondPage/kuaidiSosuo_03.png"/>
 		</div>
 
-		<div class="header-title color">
+		<form class="header-title color">
 			<img class="left-img" src="../images/secondPage/kuaidiSosuo_05.png">
-			<input class="search-input" type="text" />
-			<span class="right-img"><img  src="../images/secondPage/kuaidiSosuo_07.png"></span>
+			<input class="search-input" id="searchText" type="search" />
+		<span class="right-img" id="scanCol">
+			<img  src="../images/secondPage/kuaidiSosuo_07.png">
+		</span>
 
-		</div>
+		</form>
 
 
 	</div>
@@ -63,27 +67,29 @@
 
 		<ul class="express-list">
 			<li>
+				
+				
 				<div class="clearfix top">
-					<div class="left">
-						<div class="name">张得发</div>
-						<p>上海市黄浦区歌斐中心</p>
+						<div class="left">
+							<div class="name" id="from_name"></div>
+							<p id="from_address"></p>
+						</div>
+						<img class="middle-img" src="../images/secondPage/express_22.jpg">
+						<div class="right">
+							<div class="name" id="to_name"></div>
+							<p id="to_address"></p>
+						</div>
 					</div>
-					<img class="middle-img" src="../images/secondPage/express_22.jpg">
-					<div class="right">
-						<div class="name">张得发</div>
-						<p>上海市黄浦区歌斐中心</p>
-					</div>
-				</div>
 
 				<div class="middle">
 					<span class="first"><span></span>未签收</span>
-					<span class="second">广东深圳南山区建华路报社村30栋-01</span>
+					<span class="second" id="second_address"></span>
 				</div>
 
 				<div class="bottom">
 					<img src="../images/secondPage/express_27.jpg"/>
 					<span class="first">顺丰快递</span>
-					<span>11001010123030306</span>
+					<span class="sn" id="sn"></span>
 				</div>
 
 			</li>
@@ -263,6 +269,61 @@
 			}
 
 
+			mui.plusReady(function()
+			{
+
+
+
+			});
+
+			var page=1;
+			function getData(page)
+			{
+				Global.commonAjax({
+							url: "express/search?sn="+$("#searchText").val()+"&page="+page
+
+						},
+						function(data) {
+
+
+							console.log(JSON.stringify(data));
+
+							if(data.data.length>0)
+							{
+
+								data=data.data[0];
+
+								console.log(JSON.stringify(data));
+
+								$(".express-search").addClass("active");
+
+								$("#from_name").text(data.from_name);
+								$("#to_name").text(data.to_name);
+								$("#from_address").text(data.from_province+data.from_city+data.from_area);
+								$("#to_address").text(data.to_province+data.to_city+data.to_area);
+
+								$("#second_address").text(data.to_detail+data.to_company_name);
+								$("#sn").text(data.express_sn);
+
+							}
+
+
+						},
+						function(err) {
+
+							console.log("err");
+
+						})
+			}
+
+
+			document.getElementById("searchText").addEventListener("keypress",function(event) {
+				if(event.keyCode == "13") {
+					document.activeElement.blur();//收起虚拟键盘
+					getData(page);
+					event.preventDefault(); // 阻止默认事件---阻止页面刷新
+				}
+			});
 
 		</script>
 	</body>

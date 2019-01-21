@@ -40,23 +40,23 @@
 
 
 		<ul class="yunfei-list">
-			<li>
+			<li id="wupinSelect">
 				<div>
-				<span class="left">物品类型</span>
+					<span class="left">物品类型</span>
 				<span class="right">
-					<span>文件</span>
+					<span class="text">请选择</span>
 					<span class="mui-icon mui-icon-arrowright"></span>
 				</span>
 				</div>
 			</li>
 			<li class="middle-col">
 				<div>
-					<span class="left">物品类型</span>
+					<span class="left">重量</span>
 
 					<span class="middle">
-						<img src="../images/yunfei/yunfei_09.png"/>
-						<span class="value">9</span>
-						<img src="../images/yunfei/yunfei_12.png"/>
+						<img class="sub-value" src="../images/yunfei/yunfei_09.png"/>
+						<span class="value active">1</span>
+						<img class="add-value" src="../images/yunfei/yunfei_12.png"/>
 					</span>
 
 				<span class="right no-arrow">
@@ -64,120 +64,214 @@
 				</span>
 				</div>
 			</li>
-			<li>
+
+			<li id="kuaidiSelect">
 				<div>
-					<span class="left">物品类型</span>
+					<span class="left">快递类型</span>
 				<span class="right">
-					<span>国内</span>
+					<span class="text">请选择</span>
 					<span class="mui-icon mui-icon-arrowright"></span>
 				</span>
 				</div>
 			</li>
+
+
 		</ul>
 
-		<div class="yunfei-img-title">请选择快递公司</div>
+		<div class="select-company">
 
-		<div class="yunfei-img-list">
-
-			<div class="swiper-container">
-
-				<div class="swiper-wrapper">
-
-					<div class="swiper-slide active">
-						<div>
-							<img src="../images/yunfei/yunfei_16.png"/>
-						</div>
-						<p>邮政EMS</p>
-						<div class="bottom">
-							<span class="first">￥8.0</span>
-							<span class="second">¥10.0</span>
-						</div>
-					</div>
-
-					<div class="swiper-slide">
-						<div>
-							<img src="../images/yunfei/yunfei_18.png"/>
-						</div>
-						<p>邮政EMS</p>
-						<div class="bottom">
-							<span class="first">￥8.0</span>
-							<span class="second">¥10.0</span>
-						</div>
-					</div>
-
-					<div class="swiper-slide">
-						<div>
-							<img src="../images/yunfei/yunfei_20.png"/>
-						</div>
-						<p>邮政EMS</p>
-						<div class="bottom">
-							<span class="first">￥8.0</span>
-							<span class="second">¥10.0</span>
-						</div>
-					</div>
-
-					<div class="swiper-slide">
-						<div>
-							<img src="../images/yunfei/yunfei_16.png"/>
-						</div>
-						<p>邮政EMS</p>
-						<div class="bottom">
-							<span class="first">￥8.0</span>
-							<span class="second">¥10.0</span>
-						</div>
-					</div>
-
+			<div class="yunfei-img-title">
+				请选择快递公司
 			</div>
 
+			<div class="yunfei-img-list">
+
+				<div class="swiper-container">
+
+					<div class="swiper-wrapper">
+
+
+
+					</div>
+
+				</div>
 			</div>
-	</div>
+
+
+		</div>
+
+
+		<div class="bottom-space"></div>
+
 
 		<div class="yunfei-bottom">
 
-			<span class="left">运费: <span>¥15.0</span></span>
+			<span class="left">运费: <span>¥<label id="priceText">0.0</label></span></span>
 
-			<button type="button">运费试算</button>
+			<button type="button" onclick="countYunfei()">运费计算</button>
 
 		</div>
 
 	</div>
 
+
+	<div class="beizhu-col hide">
+
+		<div class="shadow-col"></div>
+
+
+
+		<div class="beizhu-text hide" id="goodsType">
+			<div class="clearfix">
+				<span class="fl">物品类型</span>
+
+					<span class="fr right-close">
+						<span class="mui-icon mui-icon-closeempty"></span>
+					</span>
+			</div>
+
+			<div class="tag-list">
+				<span>文件</span>
+				<span>日用品</span>
+				<span>食品</span>
+
+				<span>数码产品</span>
+				<span>衣物</span>
+				<span>其他</span>
+
+			</div>
+
+		</div>
+
+
+		<div class="beizhu-text hide" id="kuaidiType">
+			<div class="clearfix">
+				<span class="fl">快递类型</span>
+
+					<span class="fr right-close">
+						<span class="mui-icon mui-icon-closeempty"></span>
+					</span>
+			</div>
+
+			<div class="tag-list">
+				<span data-type="1">国内快递</span>
+				<span data-type="2">国际快递</span>
+				<span data-type="3">同城快递</span>
+
+				<span data-type="4">物流大件</span>
+
+
+			</div>
+
+		</div>
+
+
+	</div>
+
+
 		<script src="../js/mui.min.js"></script>
 	    <script src="../js/jquery-2.1.1.min.js"></script>
-	<script src="../lib/swiper.min.js"></script>
+		<script src="../lib/swiper.min.js"></script>
+		<script src="../js/myStorage.js"></script>
+		<script src="../js/app.js"></script>
+
+		<script src="../js/expressInfoAdd.js"></script>
+
 		<script>
 
 
-			var swiper = new Swiper('.swiper-container', {
-				slidesPerView: 3.6,
-				spaceBetween: 15,
-				pagination: {
-					el: '.swiper-pagination',
-					type: 'fraction',
-				}
-			});
-
-			$(".yunfei-img-list .swiper-slide").click(function()
+			$("#kuaidiSelect").click(function()
 			{
-				$(".yunfei-img-list .swiper-slide").removeClass("active");
-				$(this).addClass("active");
+				$(".beizhu-col").show();
+				$("#kuaidiType").show();
+
 			});
 
-		
-			mui.init({
-			beforeback: function() {
-		　　　　 //获得父页面的webview
-				var list = plus.webview.currentWebview().opener();
-		　　　　 //触发父页面的自定义事件(refresh),从而进行刷新
-				mui.fire(list, 'refreshPage');
-				//返回true,继续页面关闭逻辑
-				return true;
-			}
-		});
+			$("#kuaidiType .tag-list span").click(function()
+			{
+				$("#kuaidiType .tag-list span").removeClass("active");
+				$(this).addClass("active");
+				$("#kuaidiSelect .text").text( $("#kuaidiType .tag-list .active").text());
+				hideBottomModal();
+			});
 
-			
+			function countYunfei()
+			{
+
+
+				if($("#wupinSelect .text").text()=="请选择")
+				{
+					mui.toast("请选择物品类型");
+					return;
+				}
+
+				if(!$("#kuaidiType .tag-list .active").attr("data-type"))
+				{
+					mui.toast("请选择快递类型");
+					return;
+				}
+
+				if($(".yunfei-img-list .active").length==0)
+				{
+					mui.toast("请选择快递公司");
+					return;
+				}
+
+				var from_address_id=$("#chufa").attr("data-id");
+				var to_address_id=$("#daoda").attr("data-id");
+
+				var express_company_id=$(".yunfei-img-list .active").attr("data-id");
+				var package=$("#wupinSelect .text").text();
+
+				var weight=parseInt($(".sub-value").next().text());
+
+				var type=myStorage.getItem("storageExpressType");
+
+				var create_type=$("#kuaidiType .tag-list .active").attr("data-type");
+
+
+
+				var insured_value=$("#baojiaCol input").val();
+
+				var paramObj={
+					from_address_id:from_address_id,
+					to_address_id:to_address_id,
+					express_company_id:express_company_id,
+					package:package,
+					type:type,
+					create_type:create_type,
+					weight:weight,
+					insured_value:insured_value,
+				};
+
+				Global.commonAjax({
+							url: "express/calculate",
+							method:"POST",
+							data:paramObj
+
+						},
+						function(data) {
+							console.log("运费计算");
+							console.log(JSON.stringify(data));
+							$("#priceText").text(data);
+							mui.toast("运费计算成功");
+
+
+						},
+						function(err) {
+							console.log("运费计算失败");
+						});
+
+
+
+
+			}
+
+
 
 		</script>
+
+
 	</body>
 
 </html>

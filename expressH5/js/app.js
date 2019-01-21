@@ -321,7 +321,6 @@ mui("body").on('tap','.add-value',function(event){
     var value=parseInt($(this).prev().text());
     value++;
     $(this).prev().text(value);
-    countFeiyong();
 
 });
 mui("body").on('tap','.sub-value',function(event){
@@ -335,7 +334,6 @@ mui("body").on('tap','.sub-value',function(event){
     }
     value--;
     $(this).next().text(value);
-    countFeiyong();
 
 });
 
@@ -375,10 +373,15 @@ function updateLouyuName()
     
 }
 
-$(".shadow-col").click(function()
+updateLouyuName();
+
+
+
+$(".shadow-col").on("click",function()
 {
-    hideBottomModal();
 	
+    hideBottomModal();
+
 });
 
 $(".beizhu-col .right-close").click(function()

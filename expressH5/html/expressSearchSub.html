@@ -30,12 +30,14 @@
 		<img src="../images/secondPage/kuaidiSosuo_03.png"/>
 	</div>
 
-	<div class="header-title color">
+	<form class="header-title color">
 		<img class="left-img" src="../images/secondPage/kuaidiSosuo_05.png">
-		<input class="search-input" id="searchText" type="text" />
-		<span class="right-img" id="scanCol"><img  src="../images/secondPage/kuaidiSosuo_07.png"></span>
+		<input class="search-input" id="searchText" type="search" />
+		<span class="right-img" id="scanCol">
+			<img  src="../images/secondPage/kuaidiSosuo_07.png">
+		</span>
 
-	</div>
+	</form>
 
 
 </div>
@@ -56,6 +58,11 @@
 <script src="../js/myStorage.js"></script>
 <script src="../js/app.js"></script>
 <script>
+
+	if(GetQueryString("sn"))
+	{
+		$("#searchText").val(GetQueryString("sn"))
+	}
 
 	function getData(page)
 	{
@@ -121,6 +128,16 @@
 		commonEvent();
 		getData(page);
 	});
+
+	
+document.getElementById("searchText").addEventListener("keypress",function(event) {
+    if(event.keyCode == "13") {
+        document.activeElement.blur();//收起虚拟键盘
+		$(".express-list").empty();
+        getData(page);
+        event.preventDefault(); // 阻止默认事件---阻止页面刷新
+    }
+});
 
 	mui(".express-list").on('tap', 'li ', function() {
 

@@ -5,29 +5,29 @@
 mui.plusReady(function() {
     commonEvent();
     httpRequest();
-    
+
     window.addEventListener('storageAddressValue', function(event) {
-            var addressObj=myStorage.getItem("storageAddressValue");
-            console.log(JSON.stringify(addressObj));
-            if(myStorage.getItem("storageSelectAddressValue")==1)
-            {
-                $("#chufa").attr("data-id",addressObj.id);
-                $("#chufa").addClass("active");
-            	$("#chufa").find(".middle-value").html('<div class="middle-value-top">'+addressObj.name+'&nbsp'+addressObj.mobile+'</div>' +
-                    '<div class="middle-value-bottom">'+addressObj.province+addressObj.city+addressObj.area+addressObj.detail+'</div>');
-            }
-            else if(myStorage.getItem("storageSelectAddressValue")==2)
-            {
-                $("#daoda").attr("data-id",addressObj.id);
-                $("#daoda").addClass("active");
-                $("#daoda").find(".middle-value").html('<div class="middle-value-top">'+addressObj.name+'&nbsp'+addressObj.mobile+'</div>' +
-                    '<div class="middle-value-bottom">'+addressObj.province+addressObj.city+addressObj.area+addressObj.detail+'</div>');
-            }
-            
-            
-        }, false);
-    
-    
+        var addressObj=myStorage.getItem("storageAddressValue");
+        console.log(JSON.stringify(addressObj));
+        if(myStorage.getItem("storageSelectAddressValue")==1)
+        {
+            $("#chufa").attr("data-id",addressObj.id);
+            $("#chufa").addClass("active");
+            $("#chufa").find(".middle-value").html('<div class="middle-value-top">'+addressObj.name+'&nbsp'+addressObj.mobile+'</div>' +
+                '<div class="middle-value-bottom">'+addressObj.province+addressObj.city+addressObj.area+addressObj.detail+'</div>');
+        }
+        else if(myStorage.getItem("storageSelectAddressValue")==2)
+        {
+            $("#daoda").attr("data-id",addressObj.id);
+            $("#daoda").addClass("active");
+            $("#daoda").find(".middle-value").html('<div class="middle-value-top">'+addressObj.name+'&nbsp'+addressObj.mobile+'</div>' +
+                '<div class="middle-value-bottom">'+addressObj.province+addressObj.city+addressObj.area+addressObj.detail+'</div>');
+        }
+
+
+    }, false);
+
+
 
 });
 
@@ -66,20 +66,24 @@ $("#payWaySelect").click(function()
     $("#payWay").show();
 });
 
-document.getElementById("baojiaSwitch").addEventListener('toggle', function(event) {
+if($("#baojiaSwitch").length>0)
+{
+    document.getElementById("baojiaSwitch").addEventListener('toggle', function(event) {
 
-    if(event.detail.isActive)
-    {
-        $("#baojiaCol").show();
-    }
-    else
-    {
-        $("#baojiaCol").hide();
-        $("#baojiaCol input").val("");
-        $(".baofei").text("0");
-    }
+        if(event.detail.isActive)
+        {
+            $("#baojiaCol").show();
+        }
+        else
+        {
+            $("#baojiaCol").hide();
+            $("#baojiaCol input").val("");
+            $(".baofei").text("0");
+        }
 
-});
+    });
+}
+
 
 $("#confirmBtn").click(function()
 {
@@ -126,11 +130,11 @@ function  httpRequest()
 
         },
         function(err) {
-			console.log("获取快递公司"+JSON.stringify(err));
+            console.log("获取快递公司"+JSON.stringify(err));
         })
 
     //地理位置转换
-    Global.commonAjax({
+  /*  Global.commonAjax({
             url: "location?lat=31.3094530562&lng=121.5241955154",
 
         },
@@ -139,41 +143,12 @@ function  httpRequest()
         },
         function(err) {
 
-        });
+        });*/
 
-//快递计算价格
-    Global.commonAjax({
-            url: "express/calculate",
-            method:"post"
-
-        },
-        function(data) {
-            console.log("计算");
-            expressPriceList=data;
-            console.log(JSON.stringify(data));
-        },
-        function(err) {
-            console.log("失败");
-        });
-
-
-//快递订单搜索
-    Global.commonAjax({
-            url: "express/search?sn=1"
-
-        },
-        function(data) {
-            console.log("快递计算价格");
-            console.log(JSON.stringify(data));
-        },
-        function(err) {
-            console.log("失败");
-        });
 
 }
 
 
-var expressPriceObj;
 function initExpressList()
 {
 
@@ -186,37 +161,75 @@ function initExpressList()
         }
     });
 
-    $(".yunfei-img-list .swiper-slide").click(function()
-    {
-        $(".yunfei-img-list .swiper-slide").removeClass("active");
-        $(this).addClass("active");
-        var companyId=$(".yunfei-img-list .active").attr("data-id");
-        for(var i=0;i<expressPriceList.length;i++)
-        {
-            if(companyId==expressPriceList[i].id)
-            {
-                expressPriceObj=expressPriceList[i];
-            }
-        }
-        countFeiyong();
-        console.log(JSON.stringify(expressPriceObj));
 
-    });
+        $(".yunfei-img-list .swiper-slide").click(function()
+        {
+            $(".yunfei-img-list .swiper-slide").removeClass("active");
+            $(this).addClass("active");
+
+            if(window.location.href.indexOf("expressInfoAdd")>-1)
+            {
+                countFeiyong();
+            }
+
+        });
+
 
 }
 
 function countFeiyong()
 {
     console.log("计算运费");
-    if(expressPriceObj)
+
+    var from_address_id=$("#chufa").attr("data-id");
+    var to_address_id=$("#daoda").attr("data-id");
+
+    var express_company_id=$(".yunfei-img-list .active").attr("data-id");
+    var package=$("#wupinSelect .text").text();
+
+    var weight=parseInt($(".sub-value").next().text());
+
+    var type=myStorage.getItem("storageExpressType");
+
+    var create_type=myStorage.getItem("storageExpressCreateType");
+
+    if(window.location.href.indexOf("yunfei.html")>-1)
     {
-        var weight=parseInt($(".sub-value").next().text());
-
-        var priceText=weight*expressPriceObj.price;
-        priceText=priceText.toFixed(1);
-        $("#priceText").text(priceText);
-
+        create_type=$("#kuaidiType .tag-list .active").attr("data-type");
     }
+
+
+    var insured_value=0;
+
+    var paramObj={
+        from_address_id:from_address_id,
+        to_address_id:to_address_id,
+        express_company_id:express_company_id,
+        package:package,
+        type:type,
+        create_type:create_type,
+        weight:weight,
+        insured_value:insured_value,
+    };
+
+    Global.commonAjax({
+            url: "express/calculate",
+            method:"POST",
+            data:paramObj
+
+        },
+        function(data) {
+            console.log("运费计算");
+            console.log(JSON.stringify(data));
+            $("#priceText").text(data);
+
+
+        },
+        function(err) {
+            console.log("运费计算失败");
+        });
+
+
 
 
 }
@@ -239,6 +252,9 @@ function baojiaHttp()
 
         var weight=parseInt($(".sub-value").next().text());
 
+        var type=myStorage.getItem("storageExpressType");
+        var create_type=myStorage.getItem("storageExpressCreateType");
+
         var insured_value=$("#baojiaCol input").val();
 
         var paramObj={
@@ -246,6 +262,8 @@ function baojiaHttp()
             to_address_id:to_address_id,
             express_company_id:express_company_id,
             package:package,
+            type:type,
+            create_type:create_type,
             weight:weight,
             insured_value:insured_value,
         };
@@ -253,7 +271,7 @@ function baojiaHttp()
         Global.commonAjax({
                 url: "express/insurance/calculate",
                 method:"POST",
-               data:paramObj
+                data:paramObj
 
             },
             function(data) {
@@ -342,10 +360,10 @@ function submitData()
 
     var comment=$("#beizhuWenzi .beizhu").text();
 
-	if(comment=="请输入备注信息")
-	{
-		comment="";
-	}
+    if(comment=="请输入备注信息")
+    {
+        comment="";
+    }
 
 
     var is_freight_collect=$("#payWaySelect .text").val();
@@ -355,7 +373,13 @@ function submitData()
 
     var type=myStorage.getItem("storageExpressType");
     var create_type=myStorage.getItem("storageExpressCreateType");
-    var insured_value=parseFloat($("#baojiaColInput").val());
+    var insured_value=0;
+    
+    if($("#baojiaColInput").val())
+    {
+    	insured_value=parseFloat($("#baojiaColInput").val());
+    }
+    
     var insured_price=parseFloat($(".baofei").text());
 
     var paramObj={
@@ -373,7 +397,7 @@ function submitData()
         insured_price:insured_price
     };
 
-   console.log(JSON.stringify(paramObj));
+    console.log(JSON.stringify(paramObj));
 
     Global.commonAjax({
             url: "express/orders",
@@ -388,21 +412,22 @@ function submitData()
         },
         function(err) {
             console.log("提交订单失败");
+            mui.toast("提交订单失败");
         });
 
 }
 
 function selectAddress(value)
 {
-	
-	myStorage.setItem("storageSelectAddressValue",value);
-	Global.openWindow({
-			    url: 'my_address.html',
-			    id: 'my_address.html',
-			    waiting: {
-			        autoShow: false
-			    }
-			})
-	
+
+    myStorage.setItem("storageSelectAddressValue",value);
+    Global.openWindow({
+        url: 'my_address.html',
+        id: 'my_address.html',
+        waiting: {
+            autoShow: false
+        }
+    })
+
 }
 

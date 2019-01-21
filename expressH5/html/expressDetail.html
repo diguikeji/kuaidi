@@ -231,22 +231,37 @@
 
 			$("#cancelBtn").click(function()
 			{
-				
-				//订单详情
-				Global.commonAjax({
-							url: "express/orders/"+id,
-							method:"DELETE"
 
-						},
-						function(data) {
-							console.log("订单删除");
-							console.log(JSON.stringify(data));
-							mui.toast("删除成功");
-							mui.back();
-						},
-						function(err) {
-							console.log("订单删除失败");
-						});
+				var btnArray = ['否', '是'];
+
+				mui.confirm('是否取消订单？', '提示', btnArray, function(e) {
+
+					if (e.index == 1) {
+
+						//订单详情
+						Global.commonAjax({
+									url: "express/orders/"+id,
+									method:"DELETE"
+
+								},
+								function(data) {
+									console.log("订单删除");
+									console.log(JSON.stringify(data));
+									mui.toast("取消成功");
+									mui.back();
+								},
+								function(err) {
+									console.log("订单删除失败");
+								});
+
+
+					} else {
+
+
+
+					}
+				})
+
 
 				
 			});

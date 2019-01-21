@@ -34,6 +34,12 @@ function getData(page)
 				'</li>';
 		}
 		$("#list").append(html);
+
+		if(page==1&&data.data.length==0)
+		{
+			$(".empty_text").show();
+		}
+
 		
 	},
 	function(err) {
