@@ -116,7 +116,7 @@ var Global = {};
             }
 			
 			//没有网络
-            if (plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE) {
+            if (plus && (plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE)) {
                 Global.errorNet();
                 return;
             }
@@ -363,7 +363,7 @@ function commonEvent()
 
 function updateLouyuName()
 {
-	if(myStorage.getItem("louyuName"))
+	if(myStorage && myStorage.getItem("louyuName"))
 	{
 		var louyuObj=JSON.parse(myStorage.getItem("louyuName"));
 	    console.log(louyuObj.name);
