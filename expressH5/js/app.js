@@ -116,7 +116,8 @@ var Global = {};
             }
 			
 			//没有网络
-            if (plus && (plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE)) {
+			console.log("params+"+params.url);
+            if (plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE) {
                 Global.errorNet();
                 return;
             }
@@ -161,12 +162,13 @@ var Global = {};
 					waiting.close();
 					if(xhr.status == 401){
 						//重新登录
-						if(params.url.indexOf("profile") != -1){
-							//包含
-							errorback("");
-						}else{
-							Global.goToLogin();
-						}
+// 						if(params.url.indexOf("profile") != -1){
+// 							
+// 							errorback("");
+// 						}else{
+// 							Global.goToLogin();
+// 						}
+						Global.goToLogin();
 						
 					}else if(xhr.status == 200){
 						
@@ -182,6 +184,10 @@ var Global = {};
 		
 		goToLogin: function(){
 			var path = plus.webview.currentWebview();
+			if(path.id.indexOf("login.html") != -1){
+				//当前页面是登录页
+				return;
+			}
 			if(path && path.__view_array__[0] && 
 					path.__view_array__[0].id.indexOf("html/") != -1){
 				//包含
@@ -373,7 +379,7 @@ function updateLouyuName()
     
 }
 
-updateLouyuName();
+// updateLouyuName();
 
 
 
