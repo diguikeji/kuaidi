@@ -33,7 +33,7 @@
 	<form class="header-title color">
 		<img class="left-img" src="../images/secondPage/kuaidiSosuo_05.png">
 		<input class="search-input" id="searchText" type="search" />
-		<span class="right-img" id="scanCol">
+		<span class="right-img" id="scanCol" onclick="scanQrCode()">
 			<img  src="../images/secondPage/kuaidiSosuo_07.png">
 		</span>
 
@@ -58,6 +58,28 @@
 <script src="../js/myStorage.js"></script>
 <script src="../js/app.js"></script>
 <script>
+
+	function scaned(t, r, f)
+	{
+		$("#searchText").val(r);
+
+		$(".express-list").empty();
+		page=1;
+		getData(page);
+	}
+
+	function scanQrCode()
+	{
+		Global.openWindow({
+			url:"barcode_scan.html",
+			id: "barcode_scan.html",
+			waiting: {
+				autoShow: false
+			}
+		})
+	}
+
+
 
 	if(GetQueryString("sn"))
 	{

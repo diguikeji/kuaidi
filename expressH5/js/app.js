@@ -379,7 +379,6 @@ function updateLouyuName()
     
 }
 
-// updateLouyuName();
 
 
 
