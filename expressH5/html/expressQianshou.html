@@ -54,7 +54,7 @@
 		<form class="header-title color">
 			<img class="left-img" src="../images/secondPage/kuaidiSosuo_05.png">
 			<input class="search-input" id="searchText" type="search" />
-		<span class="right-img" id="scanCol">
+		<span class="right-img" id="scanCol" onclick="scanQrCode();">
 			<img  src="../images/secondPage/kuaidiSosuo_07.png">
 		</span>
 
@@ -64,7 +64,7 @@
 	</div>
 
 
-	<img src="../images/secondPage/qianshou.jpg"/>
+	<img id="qrCode" onclick="scanQrCode();" style="position: absolute;display: block;width:1.75rem;top:30%;left:50%;margin-left:-0.85rem;" src="../images/secondPage/qianshou.jpg"/>
 
 	<div class="mui-content has-header express-col express-search">
 
@@ -138,6 +138,24 @@
 				$(this).find("button").addClass("active");
 			});
 
+
+			//快递订单搜索功能
+			function scaned(t, r, f)
+			{
+				$("#searchText").val(r);
+				getData(page);
+			}
+
+			function scanQrCode()
+			{
+				Global.openWindow({
+					url:"barcode_scan.html",
+					id: "barcode_scan.html",
+					waiting: {
+						autoShow: false
+					}
+				})
+			}
 
 			
 	  var canvasObj=new lineCanvas({
@@ -299,6 +317,7 @@
 								console.log(JSON.stringify(data));
 
 								$(".express-search").addClass("active");
+								$("#qrCode").hide();
 
 								$("#from_name").text(data.from_name);
 								$("#to_name").text(data.to_name);

@@ -24,6 +24,9 @@
 		 #slider2{border-radius: 10px 10px 0 0;margin-top:-0.06rem;}
 		.top-text{padding:0.2rem 0 0 0;}
 		 #topCol .right-img{top:0.1rem;}
+		.home-bottom.active{background: #fff;position: absolute;
+			top: 0.56rem;
+			z-index: 1000;width:100%;left:0;}
 
 		</style>
 	</head>
@@ -206,20 +209,21 @@
 				<div class="ad-col">
 					<img src="images/firstPageLive/home_38.jpg"/>
 				</div>
+		</div>
 
-				<div class="zhankai">
+		</div>
+
+
+		<div class="home-bottom">
+		<div class="zhankai">
 
 					<span id="openMore">
 						<img src="images/firstPageLive/xiala.jpg"/>
 					</span>
 
-				</div>
-
 		</div>
 
-		</div>
-
-		<div id="moreCol" class="main-col hide">
+		<div id="moreCol" class="main-col">
 
 		<div class="top-text clearfix">
 
@@ -374,6 +378,7 @@
 
 		</div>
 
+		</div>
 
 	</div>
 		<script src="js/util.js"></script>
@@ -512,12 +517,13 @@
 				if($(this).hasClass("active"))
 				{
 					$(this).removeClass("active");
-					$("#moreCol").slideUp();
+					$(".home-bottom").removeClass("active");
 				}
 				else
 				{
 					$(this).addClass("active");
-					$("#moreCol").slideDown();
+					$(".home-bottom").addClass("active");
+					$('html,body').animate({scrollTop:0},500);
 				}
 
 				$("#homeTop").toggleClass("active");

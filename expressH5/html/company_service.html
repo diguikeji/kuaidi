@@ -152,25 +152,40 @@
 	</body>
 	<script type="text/javascript" src="../js/mui.min.js"></script>
 	<script src="../js/jquery-2.1.1.min.js"></script>
+	<script src="../js/myStorage.js"></script>
 	<script src="../js/app.js"></script>
 	<script type="text/javascript">
-		$("input").focus(function(){
-			console.log(this)
-		  $(this).parent().css("border-bottom","1px solid #107EFF");
+
+
+		mui.plusReady(function() {
+			commonEvent();
+			httpRequest();
 		});
-		
-		$("input").blur(function(){
-			console.log(this)
-		  $(this).parent().css("border-bottom","1px solid #E3E3E3");
-		});
-		
-		function post(){
-			$(".modal-mask").removeClass("hideClass");
+
+
+		function  httpRequest()
+		{
+
+
+
+			//服务类型
+			Global.commonAjax({
+						url: "service/types"
+
+					},
+					function(data) {
+						console.log("服务类型");
+						console.log(JSON.stringify(data));
+
+
+
+					},
+					function(err) {
+						console.log("服务类型失败");
+					});
+
 		}
-		
-		function closeDialg(){
-			$(".modal-mask").addClass("hideClass");
-		}
+
 		
 		//企业服务
 		function goToService(){

@@ -185,21 +185,21 @@
 
 			});
 
+			
+			mui('.express-list').on('tap','li',function(){
 
-			$(".express-list li").click(function()
-			{
+				var id=$(this).attr("data-id");
 
 				Global.openWindow({
-					url:"expressDetail.html",
+					url:"expressDetail.html?id="+id,
 					id: "expressDetail.html",
 					waiting: {
 						autoShow: false
 					}
 				})
-
+				
+				
 			});
-
-			
 			
 
 		</script>

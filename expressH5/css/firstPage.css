@@ -44,6 +44,7 @@
     -webkit-transition: all .5s;
 }
 
+.home-bottom.active .zhankai{top:0;}
 .zhankai span img{width:0.15rem;margin-top:0.12rem;}
 .zhankai span.active img{-webkit-transform:rotate(180deg);-webkit-transition: all .5s; }
 
