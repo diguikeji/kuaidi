@@ -2946,7 +2946,9 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
 					var $container = $(container);
 					if($container.length === 1) {
 						if($.os.plus) { //5+环境
-							if(hasPulldown && pullRefreshOptions.down.style == "circle") { //原生转圈
+							if(hasPulldown && pullRefreshOptions.down.style == "circle") {
+
+								//原生转圈
 								$.plusReady(function() {
 									//这里改写$.fn.pullRefresh
 									$.fn.pullRefresh = $.fn.pullRefresh_native;
@@ -2954,6 +2956,7 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
 								});
 
 							} else if($.os.android && !window.h5pullDown) { //非原生转圈，但是Android环境
+
 								$.plusReady(function() {
 									//这里改写$.fn.pullRefresh
 									$.fn.pullRefresh = $.fn.pullRefresh_native
@@ -2990,6 +2993,7 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
 										}
 									}
 								});
+
 							} else { //非原生转圈，iOS环境
 								$container.pullRefresh(pullRefreshOptions);
 							}
