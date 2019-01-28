@@ -46,10 +46,16 @@
 <div id="pullrefresh" class="mui-content mui-scroll-wrapper express-col express-search" style="margin-top:0.45rem;">
 	<div class="mui-scroll">
 		<!--数据列表-->
-		<ul class="mui-table-view mui-table-view-chevron">
+		<ul class="express-list">
+
+
 
 		</ul>
 	</div>
+</div>
+
+<div class="empty_text hideClass">
+	数据为空
 </div>
 
 <script src="../js/mui.min.js"></script>
@@ -75,15 +81,9 @@
 	 */
 	function pulldownRefresh() {
 		setTimeout(function() {
-			var table = document.body.querySelector('.mui-table-view');
-			var cells = document.body.querySelectorAll('.mui-table-view-cell');
-			for (var i = cells.length, len = i + 3; i < len; i++) {
-				var li = document.createElement('li');
-				li.className = 'mui-table-view-cell';
-				li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
-				//下拉刷新，新纪录插到最前面；
-				table.insertBefore(li, table.firstChild);
-			}
+
+			page=1;
+			getData(page);
 			mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
 		}, 1500);
 	}
@@ -93,22 +93,22 @@
 	 */
 	function pullupRefresh() {
 		setTimeout(function() {
-			mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
-			var table = document.body.querySelector('.mui-table-view');
-			var cells = document.body.querySelectorAll('.mui-table-view-cell');
-			for (var i = cells.length, len = i + 20; i < len; i++) {
-				var li = document.createElement('li');
-				li.className = 'mui-table-view-cell';
-				li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
-				table.appendChild(li);
-			}
+			mui('#pullrefresh').pullRefresh().endPullupToRefresh(isEnd); //参数为true代表没有更多数据了。
+			getData(page);
 		}, 1500);
 	}
 	if (mui.os.plus) {
 		mui.plusReady(function() {
+
 			setTimeout(function() {
 				mui('#pullrefresh').pullRefresh().pullupLoading();
 			}, 1000);
+
+			commonEvent();
+			getData(page);
+
+
+
 
 		});
 	} else {
@@ -145,10 +145,10 @@
 		$("#searchText").val(GetQueryString("sn"))
 	}
 
-	function getData(page)
+	function getData(pageIndex)
 	{
 		Global.commonAjax({
-					url: "express/search?sn="+$("#searchText").val()+"&page="+page
+					url: "express/search?sn="+$("#searchText").val()+"&page="+pageIndex
 
 				},
 				function(data) {
@@ -159,34 +159,51 @@
 					{
 						var html="";
 
-						for(var i=0;i<data.data.length;i++)
+						if(data.data.length>0)
 						{
-							//console.log(JSON.stringify(data.data[i]));
+							for(var i=0;i<data.data.length;i++)
+							{
+								//console.log(JSON.stringify(data.data[i]));
 
-							html=html+'<li data-id="'+data.data[i].id+'"><div class="clearfix top">' +
-									'<div class="left">' +
-									'<div class="name">'+data.data[i].from_name+'</div>' +
-									'<p>'+data.data[i].from_province+data.data[i].from_city+data.data[i].from_area+data.data[i].from_detail+'</p>' +
-									'</div>' +
-									'<img class="middle-img" src="../images/secondPage/express_22.jpg">' +
-									'<div class="right">' +
-									'<div class="name">'+data.data[i].to_name+'</div>' +
-									'<p>'+data.data[i].to_province+data.data[i].to_city+data.data[i].to_area+data.data[i].to_detail+'</p>' +
-									'</div>' +
-									'</div>' +
-									'<div class="middle">' +
-									'<span class="first"><span></span>未签收</span>' +
-									'<span class="second">'+data.data[i].to_company_name+'</span>' +
-									'</div>' +
-									'<div class="bottom">' +
-									'<img src="../images/secondPage/express_27.jpg"/>' +
-									'<span class="first">顺丰快递</span>' +
-									'<span>'+data.data[i].express_sn+'</span>' +
-									'</div>' +
-									'</li>';
+								html=html+'<li data-id="'+data.data[i].id+'"><div class="clearfix top">' +
+										'<div class="left">' +
+										'<div class="name">'+data.data[i].from_name+'</div>' +
+										'<p>'+data.data[i].from_province+data.data[i].from_city+data.data[i].from_area+data.data[i].from_detail+'</p>' +
+										'</div>' +
+										'<img class="middle-img" src="../images/secondPage/express_22.jpg">' +
+										'<div class="right">' +
+										'<div class="name">'+data.data[i].to_name+'</div>' +
+										'<p>'+data.data[i].to_province+data.data[i].to_city+data.data[i].to_area+data.data[i].to_detail+'</p>' +
+										'</div>' +
+										'</div>' +
+										'<div class="middle">' +
+										'<span class="first"><span></span>未签收</span>' +
+										'<span class="second">'+data.data[i].to_company_name+'</span>' +
+										'</div>' +
+										'<div class="bottom">' +
+										'<img src="../images/secondPage/express_27.jpg"/>' +
+										'<span class="first">顺丰快递</span>' +
+										'<span>'+data.data[i].express_sn+'</span>' +
+										'</div>' +
+										'</li>';
+							}
+
+							page++;;
+
+							$(".express-list").append(html);
+						}
+						else
+						{
+							isEnd=1;
 						}
 
-						$(".express-list").append(html);
+
+						if(pageIndex==1&&data.data.length==0)
+						{
+							$(".empty_text").show();
+						}
+
+
 
 
 
@@ -204,11 +221,8 @@
 	}
 
 	var page=1;
+	var isEnd=0;
 
-	mui.plusReady(function() {
-		commonEvent();
-		getData(page);
-	});
 
 
 	document.getElementById("searchText").addEventListener("keypress",function(event) {

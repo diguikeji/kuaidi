@@ -83,7 +83,7 @@
 		<div class=" head_wrap">
 			<div class="row_between">
 				<img src="../images/back_white.png" class="mui-action-back">
-				<span style="font-size: 0.14rem;">服务订单</span>
+				<span style="font-size: 0.14rem;" onclick="openWindowPage('service_order.html')">服务订单</span>
 			</div>
 			
 			<div>
@@ -133,7 +133,7 @@
 				
 			</div>
 			
-			<div class="bottom-col" onclick="goToOrder();">
+			<div class="bottom-col" onclick="goToService();">
 				<img class="full-img" src="../images/service/bottom.jpg"/>
 				<div class="bottom-col-detail">
 			
@@ -173,7 +173,7 @@
 		}
 		
 		//企业服务
-		function goToOrder(){
+		function goToService(){
 			Global.openWindow({
 			    url: 'customize.html',
 			    id: 'customize.html',

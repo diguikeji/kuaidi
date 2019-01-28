@@ -14,7 +14,7 @@
 .express-img-list div img{width:100%;}
 .express-col .top{background: #fff;}
 
-.express-list{padding:0 15px 0.2rem 15px;}
+.express-list{padding:0 15px 0.1rem 15px;}
 .express-list li{border:1px solid rgba(243, 243, 243, 1);
     box-shadow:0px 2px 6px 0px rgba(126,125,125,0.14);
     border-radius:4px;box-sizing: border-box;padding:0 0.15rem;color:#666;font-size:12px;margin-bottom:0.1rem;}

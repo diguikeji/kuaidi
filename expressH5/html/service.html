@@ -37,6 +37,18 @@
 		.fuwu-first-col .left{height:1.23rem;}
 		.fuwu-first-col .right img{height:0.6rem;}
 
+		.imc-col .right .waimai-col{width:100%;box-shadow: #ddd 0px 0px 2px;margin-top:0.02rem;height:0.76rem;border-radius: 0.02rem;}
+		.imc-col .right .waimai-main{box-sizing: border-box;padding-left:0.03rem;float: none;width:100%;padding-right:0.02rem;}
+
+
+		.imc-col .right .waimai-col .top-col{position: relative;padding-left:0.42rem;box-sizing: border-box;float:none;width:100%;}
+		.waimai-col .top-col .top-col-left{width:0.29rem;height:0.29rem;border-radius: 50%;float:none;position:absolute;left:0.1rem;top:0.12rem;}
+		.waimai-col .top-col .top-col-right{float:none;width:100%;padding-top:0.08rem;}
+		.waimai-col .top-col .top-col-right p span{color:#666;}
+		.waimai-col .top-col .top-col-right div{float:none;font-size:0.14rem;color:#999;width:100%;}
+		.waimai-col .top-col .top-col-right p{font-size:0.12rem;margin-top:-0.02rem;margin-bottom:0;}
+		.imc-col .right .waimai-col .detail-col{float:none;width:100%;font-size:0.13rem;color:#000;padding-left:0.1rem;}
+
 	</style>
 
 
@@ -89,13 +101,23 @@
 
 	<div class="pd" onclick="goToTakeout();">
 
-		<div class="imc-col clearfix">
+		<div class="imc-col clearfix" style="margin-bottom:0.1rem;">
 
 			<img class="left" src="../images/service/fuwu_17.jpg"/>
 
 			<div class="right clearfix">
 
-				<img src="../images/service/serviceKong.jpg"/>
+				<img class="hideClass" id="emptyImg" src="../images/service/serviceKong.jpg"/>
+
+				<div class="waimai-main">
+					<div class="waimai-col">
+
+
+
+					</div>
+				</div>
+
+
 
 			</div>
 
@@ -154,8 +176,50 @@
 	mui.plusReady(function() {
 
 		commonEvent();
+		getData();
 
 	});
+
+	var page=1;
+	function getData(page)
+	{
+		//外卖列表
+		Global.commonAjax({
+					url: "deliveries?page="+page
+
+				},
+				function(data) {
+					console.log("外卖");
+					console.log(JSON.stringify(data));
+					var html="";
+					for(var i=0;i<data.data.length;i++)
+					{
+						html='<div class="top-col">'+
+								'<img class="top-col-left" src="'+data.data[i].logo+'" />'+
+								'<div class="top-col-right">'+
+								'<div>'+data.data[i].resturant_name+'</div>'+
+								'<p>单号：<span>'+data.data[i].sn+'</span></p>'+
+								'</div>'+
+								'</div>'+
+								'<div class="detail-col">'+data.data[i].foods+'</div>';
+
+
+					}
+					$(".waimai-col").html(html);
+
+					if(page==1&&data.data.length==0)
+					{
+						$("#emptyImg").show();
+						$(".waimai-col").hide();
+					}
+
+
+				},
+				function(err) {
+					console.log("外卖失败"+JSON.stringify(err));
+				});
+	}
+
 
 	document.getElementById("searchText").addEventListener("keypress",function(event) {
 		if(event.keyCode == "13") {
