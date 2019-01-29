@@ -54,7 +54,7 @@
 			}
 			
 			.item_wrap img{
-				width: 0.5rem;
+				width: 0.36rem;
 				margin-right: 0.1rem;
 			}
 			
@@ -74,6 +74,8 @@
 			.bottom-col .bottom-col-detail{width:100%;top:20%;position: absolute;left:0;text-align: center;}
 			.bottom-col .bottom-col-detail button{border:1px solid #277EFF;color:#FFFFFF;border-radius: 20px;padding:0.06rem 0.2rem;background-color: #277EFF}
 			.full-img{display: block;width:100%;}
+			.row_between{flex-flow:row wrap;}
+			.row_between-col{width:50%;}
 			
 			
 			
@@ -95,50 +97,18 @@
 		
 		<div class="login_wrap">
 			
-			<div class="row_between">
-				<div class="row_center item_wrap" onclick="goToServiceOrderSure();">
-					<img src="../images/qiye/qiyefuwu_07.png" >
-					<div class="col">
-						<span>饮水服务</span>
-						<span class="info">健康饮水从这开始</span>
-					</div>
-				</div>
-				
-				<div class="row_center item_wrap" onclick="openWindowPage('service_order.html')">
-					<img src="../images/qiye/qiyefuwu_09.png" >
-					<div class="col">
-						<span>保洁服务</span>
-						<span class="info">专业的清洁专家</span>
-					</div>
-				</div>
-				
+			<div class="row_between" id="list">
+
+
+
 			</div>
-			
-			<div class="row_between">
-				<div class="row_center item_wrap" onclick="openWindowPage('service_order.html')">
-					<img src="../images/qiye/qiyefuwu_17.png" >
-					<div class="col">
-						<span>绿植服务</span>
-						<span class="info">您身边的勤劳园丁</span>
-					</div>
-				</div>
-				
-				<div class="row_center item_wrap" onclick="openWindowPage('service_order.html')">
-					<img src="../images/qiye/qiyefuwu_19.png" >
-					<div class="col">
-						<span>商务场地</span>
-						<span class="info">快捷商务场地预定</span>
-					</div>
-				</div>
-				
-			</div>
-			
+
 			<div class="bottom-col" onclick="goToService();">
 				<img class="full-img" src="../images/service/bottom.jpg"/>
 				<div class="bottom-col-detail">
-			
+
 					<p>需要更多企业服务?</p>
-			
+
 					<button type="button">按需定制服务</button>
 			
 				</div>
@@ -176,8 +146,18 @@
 					function(data) {
 						console.log("服务类型");
 						console.log(JSON.stringify(data));
-
-
+						for(var i=0;i<data.length;i++)
+						{
+							$("#list").append('<div class="row_between-col" data-id="'+data[i].id+'" data-title="'+data[i].title+'">'+
+									'<div class="row_center item_wrap">'+
+									'<img src="'+data[i].icon+'" >'+
+									'<div class="col">'+
+									'<span>'+data[i].title+'</span>'+
+									'<span class="info">'+data[i].subtitle+'</span>'+
+									'</div>'+
+									'</div>'+
+									'</div>');
+						}
 
 					},
 					function(err) {
@@ -208,6 +188,21 @@
 			    }
 			})
 		}
+		
+	 mui("#list").on('tap', '.row_between-col ', function() {
+
+		var id=$(this).attr("data-id");
+		var name=myStorage.setItem("localServiceName",$(this).attr("data-title"));
+
+		Global.openWindow({
+			    url: 'post_service_order.html?id='+id,
+			    id: 'post_service_order.html',
+			    waiting: {
+			        autoShow: false
+			    }
+			})
+
+	})
 		
 		
 	</script>

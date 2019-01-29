@@ -135,7 +135,7 @@
 		    <!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
 			<img src="../images/back.png" class="mui-action-back">
 			
-		    <h1 class="mui-title">企业饮水服务</h1>
+		    <h1 class="mui-title" id="topTitle"></h1>
 		</header>
 		
 		<div class="mui-content">
@@ -221,6 +221,8 @@
 		mui.plusReady(function() {
 			
 		});
+		
+		$("#topTitle").text("企业"+myStorage.getItem("localServiceName"));
 		
 		//有效期
 		var timePicker = new mui.DtPicker({
