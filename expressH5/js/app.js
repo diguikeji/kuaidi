@@ -183,16 +183,16 @@ var Global = {};
         },
 		
 		goToLogin: function(){
+			
 			var path = plus.webview.currentWebview();
 			//获取所有已经打开的webview窗口
 			var wvs = plus.webview.all();
 			for (var i = 0, len = wvs.length; i < len; i++) {
-			    
-			    if (wvs[i].getURL().indexOf("index.html") != -1) {
+			    if (wvs[i].getURL().indexOf("login.html") != -1) {
 			        return;
 			    }
 			}
-			
+			console.log("ddddddddddddddd")
 			if(path && path.__view_array__[0] && 
 					path.__view_array__[0].id.indexOf("html/") != -1){
 				//包含
