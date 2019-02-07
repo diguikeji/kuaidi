@@ -270,6 +270,19 @@
 		  $(this).parent().css("border-bottom","1px solid #E3E3E3");
 		});
 		
+		mui.init();
+		mui.plusReady(function() {
+			
+			var isVip = myStorage.getItem("vip");
+			console.log("isVip"+isVip);
+			if(isVip){
+				$(".button").addClass("hideClass");
+			}else{
+				$(".button").removeClass("hideClass");
+			}
+			
+		});
+		
 		function getCode(){
 			var text = $(".get_code_txt").text();
 			if(text == '重新获取' || text == '获取验证码'){
@@ -326,7 +339,7 @@
 				return;
 			}
 			
-			var address = $(".phone").val();
+			var address = $(".address").val();
 			if(!address){
 				mui.toast("请输入地址");
 				return;
@@ -343,8 +356,8 @@
 				data: params
 			}, function(data){
 				console.log(JSON.stringify(data));
-				
-				plus.webview.currentWebview().close();
+				myStorage.setItem("vip", true);
+				goToAppointment();
 				
 			}, function(err){
 				mui.toast(err)
@@ -352,7 +365,17 @@
 			
 		}
 		
-		
+		function goToAppointment(){
+			$(".btn").addClass("hide");
+			closeDialg();
+			Global.openWindow({
+			    url: 'zhihuiLouyu.html',
+			    id: 'zhihuiLouyu.html',
+			    waiting: {
+			        autoShow: false
+			    }
+			})
+		}
 
 		
 	</script>

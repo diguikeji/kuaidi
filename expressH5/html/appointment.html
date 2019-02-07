@@ -126,14 +126,14 @@
 			<div class="row item_wrap">
 				<div class="row_between item">
 					<span>姓名</span>
-					<input type="tel" maxlength="11" placeholder="请输入姓名">
+					<input type="text" maxlength="11" placeholder="请输入姓名" class="name">
 				</div>
 			</div>
 			
 			<div class="row item_wrap">
 				<div class="row_between item">
 					<span>手机号</span>
-					<input type="tel" maxlength="11" placeholder="请填写手机号">
+					<input type="tel" maxlength="11" placeholder="请填写手机号" class="mobile">
 				</div>
 			</div>
 			
@@ -147,7 +147,8 @@
 			
 			
 			
-			<button type="button" class="mui-btn mui-btn-primary button">确定</button>
+			<button type="button" class="mui-btn mui-btn-primary button"
+				onclick="sure();">确定</button>
 			
 		</div>
 		
@@ -157,24 +158,78 @@
 	<script src="../js/mui.picker.min.js"></script>
 	<script src="../js/jquery-2.1.1.min.js"></script>
 	<script src="../js/app.js"></script>
+	<script src="../js/myStorage.js"></script>
 	<script type="text/javascript">
 		var complainPicker = new mui.PopPicker();
 		complainPicker.setData([{
-			value: 'ywj',
-			text: '董事长 叶文洁'
+			value: '1',
+			text: '1'
 		}, {
-			value: 'aaa',
-			text: '总经理 艾AA'
+			value: '2',
+			text: '2'
 		}, {
-			value: 'gezh', 
-			text: '歌者'
+			value: '3', 
+			text: '3'
 		}]);
 		
+		var level = 0;
 		function showReason(){
 			complainPicker.show(function(item){
 				console.log(item)
 				mui('.content')[0].innerHTML = item[0].text;
+				level = item[0].value;
 			})
+		}
+		
+		function sure(){
+			var name = $(".name").val();
+			if(!name){
+				mui.toast("请输入姓名");
+				return;
+			}
+			
+			var mobile = $(".mobile").val();
+			if(!mobile){
+				mui.toast("请输入手机号");
+				return;
+			}
+			
+			if(level == 0){
+				mui.toast("请输入选择楼层");
+				return;
+			}
+			var params = {
+				name: name,
+				mobile: mobile,
+				level: level
+			};
+			
+			Global.commonAjax({
+				url: 'building/'+level+'/visitor/register',
+				method: "POST",
+				data: params
+			}, function(data){
+				console.log(JSON.stringify(data));
+				goToFuli();
+			
+			}, function(err){
+				mui.toast(err)
+			});
+		}
+		
+		function goToFuli(){
+			var path = plus.webview.currentWebview();
+			//获取所有已经打开的webview窗口
+			var parent = path.opener();
+			var pp = parent.opener();
+			console.log(JSON.stringify(pp));
+			if(pp.id.indexOf(".html") != -1){
+				pp.close();
+			}else{
+				
+			}
+			path.close();
+			parent.close();
 		}
 
 		
