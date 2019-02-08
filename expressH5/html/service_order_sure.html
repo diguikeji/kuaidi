@@ -167,24 +167,24 @@
 			
 			<div class="row_between time_wrap">
 				<span>服务期限</span>
-				<span class="service_time">2018.11 - 2019.01</span>
+				<span class="service_time"></span>
 			</div>
 			
 			<div class="content_wrap">
 				<div class="info">联系人信息</div>
 				<div class="row_between item_wrap">
 					<span>姓名</span>
-					<span class="content name">张三</span>
+					<span class="content name"></span>
 				</div>
 				
 				<div class="row_between item_wrap">
 					<span>手机</span>
-					<span class="content mobile">13800138000</span>
+					<span class="content mobile"></span>
 				</div>
 				
 				<div class="row_between item_wrap">
 					<span>公司名称</span>
-					<span class="content company_name">上海楼冠信息科技有限公司</span>
+					<span class="content company_name"></span>
 				</div>
 			</div>
 			
@@ -242,18 +242,28 @@
 			}
 		});
 	
-		function confirmHetong()
-		{
-			Global.openWindow({
-				url: 'pay_now.html',
-				id: 'pay_now.html',
-				waiting: {
-					autoShow: false
-				},
-				extras:{
-					postServiceItem: item
-				}
-			})
+		function confirmHetong(){
+			
+			Global.commonAjax({
+				url: 'api/service/orders/16/confirm',
+				method: "PUT",
+				data: ""
+			}, function(data){
+				mui.toast("提交成功");
+				Global.openWindow({
+				    url: 'pay_now.html',
+				    id: 'pay_now.html',
+				    waiting: {
+				        autoShow: false
+				    },
+					extras:{
+						postServiceItem: item
+					}
+				})
+				
+			}, function(err){
+				mui.toast(err);
+			});
 			
 		}
 	
