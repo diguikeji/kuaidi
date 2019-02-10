@@ -350,6 +350,7 @@
 				data: params
 			}, function(data){
 				mui.toast("提交成功");
+				alert(JSON.stringify(data));
 				Global.openWindow({
 				    url: 'service_order_sure.html',
 				    id: 'service_order_sure.html',

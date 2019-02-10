@@ -2,6 +2,21 @@
  * Created by Administrator on 2019/1/18.
  */
 
+$(".address-tab .address-col").click(function()
+{
+    $(".address-tab .address-col").removeClass("active");
+    $(this).addClass("active");
+
+    if($(this).index()==2)
+    {
+        $(".liancheng-col").show();
+    }
+    else {
+        $(".liancheng-col").hide();
+    }
+
+});
+
 mui.plusReady(function() {
     commonEvent();
     httpRequest();
@@ -23,6 +38,13 @@ mui.plusReady(function() {
             $("#daoda").find(".middle-value").html('<div class="middle-value-top">'+addressObj.name+'&nbsp'+addressObj.mobile+'</div>' +
                 '<div class="middle-value-bottom">'+addressObj.province+addressObj.city+addressObj.area+addressObj.detail+'</div>');
         }
+        else if(myStorage.getItem("storageSelectAddressValue")==3)
+        {
+            $("#daoda1").attr("data-id",addressObj.id);
+            $("#daoda1").addClass("active");
+            $("#daoda1").find(".middle-value").html('<div class="middle-value-top">'+addressObj.name+'&nbsp'+addressObj.mobile+'</div>' +
+                '<div class="middle-value-bottom">'+addressObj.province+addressObj.city+addressObj.area+addressObj.detail+'</div>');
+        }
 
 
     }, false);
@@ -38,13 +60,7 @@ $("#wupinSelect").click(function()
 
 });
 
-$("#goodsType .tag-list span").click(function()
-{
-    $("#goodsType .tag-list span").removeClass("active");
-    $(this).addClass("active");
-    $("#wupinSelect .text").text( $("#goodsType .tag-list .active").text());
-    hideBottomModal();
-});
+
 
 $("#payWay .tag-list span").click(function()
 {
@@ -64,6 +80,12 @@ $("#payWaySelect").click(function()
 {
     $(".beizhu-col").show();
     $("#payWay").show();
+});
+
+$("#fapiaoSelect").click(function()
+{
+    $(".beizhu-col").show();
+    $("#fapiaoType").show();
 });
 
 if($("#baojiaSwitch").length>0)
@@ -97,11 +119,10 @@ var expressPriceList=[];
 function  httpRequest()
 {
     Global.commonAjax({
-            url: "express/companies?create_type="+myStorage.getItem("storageExpressCreateType"),
+            url: "express/companies?type="+myStorage.getItem("storageExpressCreateType"),
 
         },
         function(data) {
-
 
 
             if(data)
@@ -290,112 +311,240 @@ function baojiaHttp()
 if(myStorage.getItem("storageExpressCreateType")==1)
 {
     $("#titleCol").text("国内快递");
+    $(".guoji-col").show();
 }
 else if(myStorage.getItem("storageExpressCreateType")==2)
 {
     $("#titleCol").text("国际快递");
+
+    $("#goodsType .tag-list").html('<span class="active">文件</span><span>包裹</span>');
+
 }
 else if(myStorage.getItem("storageExpressCreateType")==3)
 {
     $("#titleCol").text("同城快递");
+    $(".tongcheng-col").show();
+    $(".guoji-col").show();
 }
 else
 {
     $("#titleCol").text("物流大件");
+    $(".guoji-col").show();
 }
 
 
-//提交订单
-function submitData()
+$("#baoguoCol").click(function()
 {
-    if(!$("#chufa").hasClass("active"))
+    $(".beizhu-col").show();
+    $("#baoguoAdd").show();
+});
+
+mui("#baoguoDetailCol").on('tap','.baoguo-delete',function(event){
+
+    event.stopPropagation();
+   $(this).parent().remove();
+
+});
+
+function addBaoguoRow()
+{
+    if($("#rowValue1").val()=="")
     {
+        mui.toast("内件品名不能为空");
+        return;
+    }
+    if($("#rowValue3").val()=="")
+    {
+        mui.toast("重量不能为空");
+        return;
+    }
+    if($("#rowValue4").val()=="")
+    {
+        mui.toast("单件价值不能为空");
+        return;
+    }
+    if($("#rowValue5").val()=="")
+    {
+        mui.toast("原产地不能为空");
+        return;
+    }
+
+    $("#baoguoDetailCol").append('<div class="baoguo-row">'+
+        '<div><span class="row-value1">'+$("#rowValue1").val()+'</span><span><label class="row-value2">'+$("#rowValue2").text()+'</label>件</span><span>重量：<label class="row-value3">'+$("#rowValue3").val()+'</label>KG</span></div>'+
+        '<div><span>价格：<label class="row-value4">'+$("#rowValue4").val()+'</label>USD</span><span>原产地：<label class="row-value5"">'+$("#rowValue5").val()+'</label></span></div>'+
+        '<span class="right baoguo-delete">'+
+        '<span class="mui-icon mui-icon-minus"></span>'+
+        '</span>'+
+        '</div>');
+
+    $("#baoguoAdd input").val("");
+    $("#rowValue2").text("1");
+    hideBottomModal();
+
+
+
+}
+
+$("#goodsType .tag-list span").click(function()
+{
+    $("#goodsType .tag-list span").removeClass("active");
+    $(this).addClass("active");
+    $("#wupinSelect .text").text( $("#goodsType .tag-list .active").text());
+    hideBottomModal();
+
+    if(myStorage.getItem("storageExpressCreateType")==2)
+    {
+        if($("#wupinSelect .text").text()=="文件")
+        {
+            $(".baoguo-col").hide();
+        }
+        else if($("#wupinSelect .text").text()=="包裹")
+        {
+            $(".baoguo-col").show();
+        }
+    }
+
+
+});
+
+$("#fapiaoType .tag-list span").click(function() {
+    $("#fapiaoType .tag-list span").removeClass("active");
+    $(this).addClass("active");
+    $("#fapiaoSelect .text").text($("#fapiaoType .tag-list .active").text());
+    $("#fapiaoSelect .text").attr("data-value",$("#fapiaoType .tag-list .active").attr("data-value"));
+    hideBottomModal();
+
+});
+
+
+//提交订单
+function submitData() {
+    if (!$("#chufa").hasClass("active")) {
         mui.toast("请选择寄件地址");
         return;
     }
 
-    if(!$("#daoda").hasClass("active"))
-    {
+    if (!$("#daoda").hasClass("active")) {
         mui.toast("请选择收件地址");
         return;
     }
 
-    if($("#wupinSelect .text").text()=="请选择")
-    {
-        mui.toast("请选择物品类型");
-        return;
-    }
-
-    if($("#payWaySelect .text").text()=="请选择")
-    {
-        mui.toast("请选择付款方式");
-        return;
-    }
-
-    if($("#baojiaSwitch").hasClass("mui-active"))
-    {
-        if(!$("#baojiaCol input").val())
-        {
-            mui.toast("请输入保额");
+    if (myStorage.getItem("storageExpressCreateType") == 3 && $(".address-tab .address-col").index($(".address-tab .active")) == 2) {
+        if (!$("#daoda1").hasClass("active")) {
+            mui.toast("请选择最终收件地址");
             return;
         }
     }
 
-    if($(".yunfei-img-list .active").length==0)
-    {
+    if ($("#wupinSelect .text").text() == "请选择") {
+        mui.toast("请选择物品类型");
+        return;
+    }
+
+    if (myStorage.getItem("storageExpressCreateType") != 2) {
+        if ($("#payWaySelect .text").text() == "请选择") {
+            mui.toast("请选择付款方式");
+            return;
+        }
+
+        if ($("#baojiaSwitch").hasClass("mui-active")) {
+            if (!$("#baojiaCol input").val()) {
+                mui.toast("请输入保额");
+                return;
+            }
+        }
+
+    }
+
+
+    if ($(".yunfei-img-list .active").length == 0) {
         mui.toast("请选择快递公司");
         return;
     }
 
 
+    var from_address_id = $("#chufa").attr("data-id");
+    var to_address_id = $("#daoda").attr("data-id");
 
+    var express_company_id = $(".yunfei-img-list .active").attr("data-id");
+    var package = $("#wupinSelect .text").text();
 
-    var from_address_id=$("#chufa").attr("data-id");
-    var to_address_id=$("#daoda").attr("data-id");
+    var weight = parseInt($(".sub-value").next().text());
 
-    var express_company_id=$(".yunfei-img-list .active").attr("data-id");
-    var package=$("#wupinSelect .text").text();
+    var comment = $("#beizhuWenzi .beizhu").text();
 
-    var weight=parseInt($(".sub-value").next().text());
-
-    var comment=$("#beizhuWenzi .beizhu").text();
-
-    if(comment=="请输入备注信息")
-    {
-        comment="";
+    if (comment == "请输入备注信息") {
+        comment = "";
     }
 
 
-    var is_freight_collect=$("#payWaySelect .text").val();
-    is_freight_collect=is_freight_collect=="到付"?1:0;
+    var is_freight_collect = $("#payWaySelect .text").val();
+    is_freight_collect = is_freight_collect == "到付" ? 1 : 0;
 
-    var is_print=$("#is_print").hasClass("mui-active");
+    var is_print = $("#is_print").hasClass("mui-active");
 
-    var type=myStorage.getItem("storageExpressType");
-    var create_type=myStorage.getItem("storageExpressCreateType");
-    var insured_value=0;
-    
-    if($("#baojiaColInput").val())
-    {
-    	insured_value=parseFloat($("#baojiaColInput").val());
+    var type = myStorage.getItem("storageExpressType");
+    var create_type = myStorage.getItem("storageExpressCreateType");
+    var insured_value = 0;
+
+    if ($("#baojiaColInput").val()) {
+        insured_value = parseFloat($("#baojiaColInput").val());
     }
-    
-    var insured_price=parseFloat($(".baofei").text());
 
-    var paramObj={
-        from_address_id:from_address_id,
-        to_address_id:to_address_id,
-        express_company_id:express_company_id,
-        package:package,
-        weight:weight,
-        comment:comment,
-        is_freight_collect:is_freight_collect,
-        is_print:is_print,
-        type:type,
-        create_type:create_type,
-        insured_value:insured_value,
-        insured_price:insured_price
+    var insured_price = parseFloat($(".baofei").text());
+
+    var paramObj = {
+        from_address_id: from_address_id,
+        to_address_id: to_address_id,
+        express_company_id: express_company_id,
+        package: package,
+        weight: weight,
+        comment: comment,
+        is_freight_collect: is_freight_collect,
+        type: type,
+        create_type: create_type
     };
+
+
+        paramObj.insured_value=insured_value;
+        paramObj.insured_price=insured_price;
+        paramObj.is_print=is_print;
+
+
+    if(myStorage.getItem("storageExpressCreateType")==3)
+    {
+        if($(".address-tab .address-col").index($(".address-tab .active"))==2)
+        {
+            paramObj.is_flash_send=$("#jiajiSwitch").hasClass("mui-active");
+            paramObj.dest_address_id=$("#daoda1").attr("data-id");
+
+        }
+
+        paramObj.qc_order_type=$(".address-tab .active").attr("data-id");
+
+
+    }
+
+    if(myStorage.getItem("storageExpressCreateType")==2&&$("#wupinSelect .text").text()=="包裹") {
+
+        paramObj.invoice_type=$("#fapiaoSelect .text").attr("data-value");
+
+        var package_details=[];
+        $("#baoguoDetailCol .baoguo-row").each(function()
+        {
+            var package_detailsObj={};
+            package_detailsObj.name=$(this).find(".row-value1").text();
+            package_detailsObj.amount=$(this).find(".row-value2").text();
+            package_detailsObj.weight=$(this).find(".row-value3").text();
+            package_detailsObj.value=$(this).find(".row-value4").text();
+            package_detailsObj.origin=$(this).find(".row-value5").text();
+            package_details.push(package_detailsObj);
+
+        });
+        paramObj.package_details=package_details;
+
+
+    }
 
     console.log(JSON.stringify(paramObj));
 

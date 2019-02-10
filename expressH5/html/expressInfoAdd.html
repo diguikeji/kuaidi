@@ -15,7 +15,10 @@
 		<style>
 
 			body,.mui-content{background: #f9f9f9!important;}
-
+			.address-tab{padding:0 0.05rem;box-sizing: border-box;}
+			.address-tab>.address-col{width:33.3%;float:left;text-align: center;padding:0.1rem 0.1rem;font-size:0.12rem;}
+			.address-tab>.address-col .address-detail{border-radius: 4px;border:1px solid #eee;background: #fff;padding:0.08rem 0;line-height: normal;}
+			.address-tab>.address-col.active .address-detail{background: #107EFF;color:#fff;}
 		</style>
 		
 		
@@ -37,6 +40,26 @@
 
 	<div class="mui-content has-header yunfei-col">
 
+		<div class="address-tab hide clearfix tongcheng-col">
+			<div class="address-col active" data-id="1">
+				<div class="address-detail">
+				单程件
+				<div>A -> B</div>
+				</div>
+			</div>
+			<div class="address-col" data-id="2">
+				<div class="address-detail">
+				来回件
+					<div>A -> B -> A</div>
+				</div>
+			</div>
+			<div class="address-col" data-id="3">
+				<div class="address-detail">
+				联程件
+					<div>A -> B -> C</div>
+				</div>
+			</div>
+		</div>
 
 		<div class="express-info">
 			<div class="express-info-col">
@@ -61,6 +84,18 @@
 					</div>
 				</div>
 				<span class="right" onclick="selectAddress(2)">地址簿</span>
+
+			</div>
+
+			<div class="express-info-col hide liancheng-col">
+				<img src="../images/secondPage/expressInfoAdd_06.png">
+				<div class="middle-text" id="daoda1">
+					<div class="placeholder">再寄到哪里</div>
+					<div class="middle-value">
+
+					</div>
+				</div>
+				<span class="right" onclick="selectAddress(3)">地址簿</span>
 
 			</div>
 
@@ -92,7 +127,7 @@
 				</span>
 				</div>
 			</li>
-			<li id="payWaySelect">
+			<li id="payWaySelect" class="guoji-col hide">
 				<div>
 					<span class="left">付款方式</span>
 				<span class="right">
@@ -101,11 +136,45 @@
 				</span>
 				</div>
 			</li>
-			<li>
+
+			<li id="fapiaoSelect" class="baoguo-col hide">
+				<div>
+					<span class="left">发票类型</span>
+				<span class="right">
+					<span class="text" data-value="1">商业发票</span>
+					<span class="mui-icon mui-icon-arrowright"></span>
+				</span>
+				</div>
+			</li>
+
+			<li id="baoguoCol" class="hide baoguo-col">
+				<div>
+					<span class="left">包裹详情</span>
+				<span class="right">
+					<span class="mui-icon mui-icon-plus"></span>
+				</span>
+				</div>
+			</li>
+
+			<li id="baoguoDetailCol">
+
+			</li>
+
+			<li class="guoji-col hide">
 				<div>
 					<span class="left">是否保价</span>
 				<span class="right">
 					<span class="mui-switch mui-switch-mini mui-switch-blue " id="baojiaSwitch">
+						<div class="mui-switch-handle"></div>
+					</span>
+				</span>
+				</div>
+			</li>
+			<li class="liancheng-col hide">
+				<div>
+					<span class="left">是否加急</span>
+				<span class="right">
+					<span class="mui-switch mui-switch-mini mui-switch-blue" id="jiajiSwitch">
 						<div class="mui-switch-handle"></div>
 					</span>
 				</span>
@@ -154,7 +223,7 @@
 			</div>
 		</div>
 
-		<div class="pd" style="padding-right:0;">
+		<div class="pd guoji-col hide" style="padding-right:0;">
 		<div class="miandan clearfix">
 
 			<div class="left">是否打印电子面单</div>
@@ -213,6 +282,72 @@
 				<div class="tag-list">
 					<span class="active">寄付</span>
 					<span>到付</span>
+				</div>
+
+			</div>
+
+			<div class="beizhu-text hide" id="baoguoAdd">
+				<div class="clearfix">
+					<span class="fl">添加包裹详情</span>
+
+					<span class="fr right-close" onclick="hideBottomModal();">
+						<span class="mui-icon mui-icon-closeempty"></span>
+					</span>
+				</div>
+
+				<div class="add-list">
+
+					<div class="mui-input-group">
+						<div class="mui-input-row">
+							<label>内件品名</label>
+							<input type="text" id="rowValue1" placeholder="请输入内件品名">
+						</div>
+
+						<div class="mui-input-row jianshu-col">
+							<label>件数</label>
+							<span class="middle">
+							<img class="sub-value" src="../images/yunfei/yunfei_09.png">
+							<span class="value active" id="rowValue2">1</span>
+							<img class="add-value" src="../images/yunfei/yunfei_12.png">
+							</span>
+						</div>
+
+						<div class="mui-input-row">
+							<label>重量</label>
+							<input type="number" id="rowValue3" placeholder="请输入重量">
+						</div>
+						<div class="mui-input-row">
+							<label>单件价值(USD)</label>
+							<input type="number" id="rowValue4" placeholder="请输入单件价值">
+						</div>
+						<div class="mui-input-row">
+							<label>原产地</label>
+							<input type="text" id="rowValue5" placeholder="请输入原产地">
+						</div>
+
+
+
+						<div  style="padding:20px 0 20px 15px;box-sizing: border-box;">
+							<div  class="mui-btn mui-btn-primary btn" style="display: block;" onclick="addBaoguoRow()">保存</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="beizhu-text hide" id="fapiaoType">
+				<div class="clearfix">
+					<span class="fl">发票类型</span>
+
+					<span class="fr right-close" onclick="hideBottomModal();">
+						<span class="mui-icon mui-icon-closeempty"></span>
+					</span>
+				</div>
+
+				<div class="tag-list">
+					<span class="active" data-value="1">商业发票</span>
+					<span data-value="2">形式发票</span>
 				</div>
 
 			</div>

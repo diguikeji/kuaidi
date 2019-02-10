@@ -126,7 +126,7 @@
 .yunfei-top-col .middle .left{color:#666666;font-size:0.13rem;}
 .yunfei-top-col .middle .right{color:#107EFF;font-size:0.14rem;float: right;margin-right:0.15rem;}
 .yunfei-top-col .middle .right span{width:6px;height:6px;background: #107EFF;border-radius: 50%;display: inline-block;vertical-align: middle;}
-.yunfei-top-col .middle .danhao{font-size:0.16rem;padding:0.05rem 0;}
+.yunfei-top-col .middle .danhao{font-size:0.16rem;padding:0.05rem 0;width:90%;box-sizing: border-box;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 
 .yunfei-top-detail .bottom .step-list{padding:0 0.38rem;position: relative;margin-top:0.42rem;}
 .yunfei-top-detail .bottom .step-list .active{background: #B0D1F8!important;}
@@ -203,13 +203,13 @@
 .guige-list li.active{color:#107EFF;}
 .beizhu-col .shadow-col{background: rgba(0,0,0,0.6);left:0;top:0;position: absolute;height:100%;width:100%;z-index:10;}
 .beizhu-text{
-    background:rgba(249,249,249,1);
+    background:#fff;
     border-radius:4px;width:100%;left:0;bottom:0;position: absolute;padding:0.15rem 15px;z-index:100;
 }
 .beizhu-text .right-close{position: relative;top:-0.12rem;right:-0.1rem;}
 .beizhu-text .right-close span{color:#333333;font-size:0.32rem;}
 
-.beizhu-text .clearfix{padding-bottom:0.13rem;font-size:0.17rem;}
+.beizhu-text .clearfix{padding-bottom:0.13rem;font-size:0.14rem;font-weight: bold;}
 .beizhu-text .clearfix .fr{color:#107EFF;font-size:0.13rem;display: inline-block;padding:0.02rem 0  0.02rem 0.05rem;}
 .beizhu-text textarea{font-size:0.13rem;}
 
@@ -354,7 +354,23 @@ margin-top:-0.065rem;}
 
 .guige-col{border-radius: 0;}
 .guige-col .guige-bottom{padding:0.2rem 0;}
+.add-list .mui-input-row{height:50px;}
+.add-list .mui-input-row label{font-size:0.14rem;line-height: 50px;box-sizing: border-box;padding:0 15px;}
+.add-list .mui-input-row input{font-size:0.14rem;height:50px;}
+.jianshu-col img{width:0.24rem;display: inline-block;vertical-align: middle;}
+.jianshu-col .middle{position: relative;top:0.12rem;}
+.jianshu-col .middle .value{display: inline-block;vertical-align: middle;width:0.2rem;text-align: center;}
 
+.yunfei-col .yunfei-list li#baoguoDetailCol{height: auto;}
+.yunfei-col .yunfei-list li#baoguoDetailCol>.baoguo-row{height:auto;line-height: 0.2rem;font-size:0.12rem;padding:0.08rem 0;text-align: left;position: relative;}
+
+.yunfei-col .yunfei-list li#baoguoDetailCol>div .right{top:0.15rem;}
+.yunfei-col .yunfei-list li#baoguoDetailCol>.baoguo-row span{margin:0 0.02rem;}
+
+.add-list{margin-top:-0.15rem;}
+.add-list .mui-input-group:before{display: none;}
+.add-list .mui-input-group:after{display: none;}
+.add-list .btn{height:0.4rem;line-height: 0.4rem;padding:0 12px;}
 
 
 

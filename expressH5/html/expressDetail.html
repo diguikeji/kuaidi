@@ -161,7 +161,7 @@
 
 		<div class="tab-detail-col hide">
 			<ul class="genzong-list">
-			<li class="active">
+			<!--<li class="active">
 				<div class="left">
 					<div class="time">08:28</div>
 					<p>2018-09-22</p>
@@ -199,7 +199,7 @@
 				<div class="right">
 					快递已经送至北京市西城区阜成门内宫 门口二条19号123楼
 				</div>
-			</li>
+			</li>-->
 		</ul>
 		</div>
 
@@ -328,7 +328,32 @@
 							$("#to_address").text(data.to_province+data.to_city+data.to_area);
 							
 							$("#second_address").text(data.to_detail+data.to_company_name);
-							
+
+							if(data.logistics.length>0)
+							{
+								var wuliuList=data.logistics[0].data;
+
+								var wuliuHtml="";
+								for(var i=0;i<wuliuList.length;i++)
+								{
+									wuliuHtml=wuliuHtml+'<li class="active">'+
+											'<div class="left">'+
+											'<div class="time">'+wuliuList[i].time.split(" ")[1].substr(0,5)+'</div>'+
+											'<p>'+wuliuList[i].time.split(" ")[0]+'</p>'+
+											'<div class="line">'+
+											'<span></span>'+
+											'<div class="line-col"></div>'+
+											'</div>'+
+											'</div>'+
+											'<div class="right">'+wuliuList[i].context+
+											'</div>'+
+											'</li>';
+								}
+
+								$(".genzong-list").append(wuliuHtml);
+							}
+
+
 							
 						},
 						function(err) {
