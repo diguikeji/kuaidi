@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>消息中心</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="../css/app.css">
+	<link rel="stylesheet" href="../css/mui.min.css">
+	<style>
+		body,.mui-content{background: #fff!important;}
+		
+		.title_wrap{
+			padding: 0.1rem;
+			font-size: 0.14rem;
+		}
+		
+		.title_wrap img{
+			width: 0.4rem;
+			height: 0.4rem;
+		}
+		
+		.content{
+			padding: 0rem 0.2rem;
+			font-size: 0.16rem;
+		}
+
+	</style>
+
+
+
+</head>
+
+<body>
+
+		<header class="mui-bar mui-bar-nav" >
+		    <img src="../images/back.png" class="mui-action-back">	
+		    <h1 class="mui-title">消息详情</h1>
+		</header>
+		
+		<div class="mui-content">
+			<div class="row_between title_wrap">
+				<img src="../images/app.png" alt="">
+				<span>2018.02.18</span>
+			</div>
+			<div class="content">
+				消息内容
+			</div>
+		</div>
+
+<script src="../js/mui.js"></script>
+<script src="../js/jquery-2.1.1.min.js"></script>
+<script src="../js/myStorage.js"></script>
+<script src="../js/app.js"></script>
+
+<script>
+	mui.init();
+
+	function getData(pageIndex)
+	{
+		Global.commonAjax({
+					url: "express/search?sn="+$("#searchText").val()+"&page="+pageIndex
+
+				},
+				function(data) {
+
+					console.log(JSON.stringify(data));
+
+					if(data)
+					{
+						var html="";
+
+						if(data.data.length>0)
+						{
+							for(var i=0;i<data.data.length;i++)
+							{
+								//console.log(JSON.stringify(data.data[i]));
+
+								html=html+'<li data-id="'+data.data[i].id+'"><div class="clearfix top">' +
+										'<div class="left">' +
+										'<div class="name">'+data.data[i].from_name+'</div>' +
+										'<p>'+data.data[i].from_province+data.data[i].from_city+data.data[i].from_area+data.data[i].from_detail+'</p>' +
+										'</div>' +
+										'<img class="middle-img" src="../images/secondPage/express_22.jpg">' +
+										'<div class="right">' +
+										'<div class="name">'+data.data[i].to_name+'</div>' +
+										'<p>'+data.data[i].to_province+data.data[i].to_city+data.data[i].to_area+data.data[i].to_detail+'</p>' +
+										'</div>' +
+										'</div>' +
+										'<div class="middle">' +
+										'<span class="first"><span></span>未签收</span>' +
+										'<span class="second">'+data.data[i].to_company_name+'</span>' +
+										'</div>' +
+										'<div class="bottom">' +
+										'<img src="../images/secondPage/express_27.jpg"/>' +
+										'<span class="first">顺丰快递</span>' +
+										'<span>'+data.data[i].express_sn+'</span>' +
+										'</div>' +
+										'</li>';
+							}
+
+							page++;;
+
+							$(".express-list").append(html);
+						}
+						else
+						{
+							isEnd=1;
+						}
+
+
+						if(pageIndex==1&&data.data.length==0)
+						{
+							$(".empty_text").show();
+						}
+
+
+
+
+
+					}
+
+
+
+
+				},
+				function(err) {
+
+					console.log("err");
+
+				})
+	}
+
+	var page=1;
+	var isEnd=0;
+
+	mui(".express-list").on('tap', 'li ', function() {
+
+		var id=$(this).attr("data-id");
+
+		Global.openWindow({
+			url:"expressDetail.html?id="+id,
+			id: "expressDetail.html",
+			waiting: {
+				autoShow: false
+			}
+		})
+
+	})
+
+
+</script>
+</body>
+
+</html>
