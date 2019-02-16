@@ -12,7 +12,7 @@
 	<style>
 		body,.mui-content{background: #fff!important;}
 		
-		.express-list{padding:0 0.1rem;}
+		.express-list{padding:0 0.1rem; background: #fff;}
 		.express-list li{border-bottom:1px solid rgba(243, 243, 243, 1);
 		    box-sizing: border-box; color:#666;font-size:0.14rem; padding: 0.1rem 0rem;}
 		
@@ -37,6 +37,16 @@
 		.time{
 			font-size: 0.18rem;
 		}
+		
+		.content{
+			text-overflow: -o-ellipsis-lastline;
+			  overflow: hidden;
+			  text-overflow: ellipsis;
+			  display: -webkit-box;
+			  -webkit-line-clamp: 2;
+			  line-clamp: 2;
+			  -webkit-box-orient: vertical;
+		}
 
 	</style>
 
@@ -53,12 +63,12 @@
 
 
 <!--下拉刷新容器-->
-<div id="pullrefresh" class="mui-content mui-scroll-wrapper express-col express-search">
+<div id="pullrefresh" class="mui-content mui-scroll-wrapper ">
 	<div class="mui-scroll">
 		<!--数据列表-->
 		<ul class="express-list">
 
-			<li class="row_between item">
+			<!-- <li class="row_between item">
 				<img src="../images/app.png" >
 				<div class="content_wrap">
 					<span class="title">标题</span>
@@ -66,37 +76,7 @@
 				</div>
 				<span class="flex_one"></span>
 				<span class="time">2019.1.30</span>
-			</li>
-			
-			<li class="row_between item">
-				<img src="../images/app.png" >
-				<div class="content_wrap">
-					<span class="title">标题</span>
-					<span>内容内容内容内容内容内容内容内容内容内容内容内容内容</span>
-				</div>
-				<span class="flex_one"></span>
-				<span class="time">2019.1.30</span>
-			</li>
-			
-			<li class="row_between item">
-				<img src="../images/app.png" >
-				<div class="content_wrap">
-					<span class="title">标题</span>
-					<span>内容内容内容内容内容内容内容内容内容内容内容内容内容</span>
-				</div>
-				<span class="flex_one"></span>
-				<span class="time">2019.1.30</span>
-			</li>
-			
-			<li class="row_between item">
-				<img src="../images/app.png" >
-				<div class="content_wrap">
-					<span class="title">标题</span>
-					<span>内容内容内容内容内容内容内容内容内容内容内容内容内容</span>
-				</div>
-				<span class="flex_one"></span>
-				<span class="time">2019.1.30</span>
-			</li>
+			</li> -->
 
 		</ul>
 	</div>
@@ -125,15 +105,21 @@
 			}
 		}
 	});
+// 	mui.plusReady(function() {
+// 		mui('#pullrefresh').pullRefresh().pullupLoading();
+// 		getData(page);
+// 	});
 	/**
 	 * 下拉刷新具体业务实现
 	 */
 	function pulldownRefresh() {
 		setTimeout(function() {
-
-			page=1;
-			//getData(page);
 			mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+			
+			$(".express-list").html("");
+			page=1;
+			getData(page);
+			
 		}, 1500);
 	}
 	var count = 0;
@@ -143,7 +129,7 @@
 	function pullupRefresh() {
 		setTimeout(function() {
 			mui('#pullrefresh').pullRefresh().endPullupToRefresh(isEnd); //参数为true代表没有更多数据了。
-			//getData(page);
+			getData(page);
 		}, 1500);
 	}
 	if (mui.os.plus) {
@@ -152,13 +138,8 @@
 			setTimeout(function() {
 				mui('#pullrefresh').pullRefresh().pullupLoading();
 			}, 1000);
-
-			commonEvent();
+			
 			getData(page);
-
-
-
-
 		});
 	} else {
 		mui.ready(function() {
@@ -169,7 +150,7 @@
 	function getData(pageIndex)
 	{
 		Global.commonAjax({
-					url: "express/search?sn="+$("#searchText").val()+"&page="+pageIndex
+					url: "notifications?page="+pageIndex
 
 				},
 				function(data) {
@@ -179,37 +160,25 @@
 					if(data)
 					{
 						var html="";
-
+						data = data.data;
 						if(data.data.length>0)
 						{
+							console.log("000-----111")
 							for(var i=0;i<data.data.length;i++)
 							{
-								//console.log(JSON.stringify(data.data[i]));
-
-								html=html+'<li data-id="'+data.data[i].id+'"><div class="clearfix top">' +
-										'<div class="left">' +
-										'<div class="name">'+data.data[i].from_name+'</div>' +
-										'<p>'+data.data[i].from_province+data.data[i].from_city+data.data[i].from_area+data.data[i].from_detail+'</p>' +
-										'</div>' +
-										'<img class="middle-img" src="../images/secondPage/express_22.jpg">' +
-										'<div class="right">' +
-										'<div class="name">'+data.data[i].to_name+'</div>' +
-										'<p>'+data.data[i].to_province+data.data[i].to_city+data.data[i].to_area+data.data[i].to_detail+'</p>' +
-										'</div>' +
-										'</div>' +
-										'<div class="middle">' +
-										'<span class="first"><span></span>未签收</span>' +
-										'<span class="second">'+data.data[i].to_company_name+'</span>' +
-										'</div>' +
-										'<div class="bottom">' +
-										'<img src="../images/secondPage/express_27.jpg"/>' +
-										'<span class="first">顺丰快递</span>' +
-										'<span>'+data.data[i].express_sn+'</span>' +
-										'</div>' +
-										'</li>';
+								console.log("000-----222")
+								html += '<li class="row_between item" data-id="'+data.data[i].id+'">'+
+										'<img src="'+data.data[i].icon+'" >'+
+										'<div class="content_wrap">'+
+											'<span class="title">'+data.data[i].title+'</span>'+
+											'<span class="content">'+data.data[i].content+'</span>'+
+										'</div>'+
+										'<span class="flex_one"></span>'+
+										'<span class="time">'+data.data[i].created_at+'</span>'+
+									'</li>';
 							}
 
-							page++;;
+							page++;
 
 							$(".express-list").append(html);
 						}
@@ -227,7 +196,7 @@
 				},
 				function(err) {
 
-					console.log("err");
+					console.log(err);
 
 				})
 	}
@@ -240,8 +209,8 @@
 		var id=$(this).attr("data-id");
 
 		Global.openWindow({
-			url:"message_detail.html",
-			id: "message_detail.html.html",
+			url:"message_detail.html?id="+id,
+			id: "message_detail.html",
 			waiting: {
 				autoShow: false
 			}

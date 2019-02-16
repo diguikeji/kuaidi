@@ -145,7 +145,6 @@ var Global = {};
 
                 },
                 success: function(data) {
-                    console.log("00000--");
 					if (data.success) {
                         callback(data.data ? data.data : "");
                     } else{
