@@ -163,6 +163,9 @@ var Global = {};
                     xhr.setRequestHeader("Accept", "application/json");
                     var token = myStorage.getItem("token");
                     
+                    console.log("参数token");
+					console.log(token);
+                    
                     if (token) {
                         xhr.setRequestHeader("Authorization", "Bearer " + token);
                     };
@@ -402,6 +405,22 @@ function updateLouyuName()
 	    $("#louyuText").find("span").attr("data-id",louyuObj.id);
 	}
     
+}
+
+//通过快递公司id找快递公司
+function findExpressCompany(cId)
+{
+	var returnObj={};
+	var expressCompanies=myStorage.getItem("expressCompanies");
+	for(var i=0;i<expressCompanies.length;i++)
+	{
+		if(expressCompanies[i].id==cId)
+		{
+			returnObj=expressCompanies[i];
+			break;
+		}
+	}
+	return returnObj;
 }
 
 //绑定企业

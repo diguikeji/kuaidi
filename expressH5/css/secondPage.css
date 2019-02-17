@@ -172,6 +172,12 @@
 .express-detail-list li .right{float:right;font-size:0.13rem;color:#666;}
 .bottom-btn{padding:0.1rem 0.25rem 0.25rem 0.25rem;}
 .bottom-btn button{border:1px solid #107EFF;color:#107EFF;padding:0;line-height: 0.49rem;box-sizing: border-box;display: block;width:100%;font-size:0.15rem;}
+.bottom-btn-list button{width:48%;float:left;margin:0 1%;}
+.bottom-btn-list button.one{width:100%;}
+
+.bottom-btn-list .blue-bg{background: #107EFF;color:#fff;}
+.bottom-btn-list button{display: none;}
+.bottom-btn-list .yellow-bg{background: #F39800;color:#fff;border:1px solid #F39800;}
 
 .qianshou-col{padding:0 7px;box-sizing: border-box;margin-top:-0.12rem;}
 .qianshou-col .qianshou-btn{width:50%;float:left;padding:0 0.07rem;}

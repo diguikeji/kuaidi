@@ -108,9 +108,7 @@
         "LivePusher" : {
             "description" : "直播推流"
         },
-        "Push" : {
-					"description": "管理推送消息插件"
-				}
+        "Payment":{}
     },
     "plus" : {
         "statusbar" : {
@@ -252,31 +250,7 @@
                 //Android应用打包使用密钥库中证书的密码
                 "aliasname" : "",
                 //Android应用打包使用密钥库中证书的别名
-                "permissions" : [
-                    "<uses-feature android:name=\"android.hardware.camera\"/>",
-                    "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
-                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
-                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
-                    "<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
-                    "<uses-permission android:name=\"android.permission.CAMERA\"/>",
-                    "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
-                    "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
-                    "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
-                    "<uses-permission android:name=\"android.permission.INTERNET\"/>",
-                    "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
-                    "<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
-                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
-                    "<uses-permission android:name=\"android.permission.READ_SMS\"/>",
-                    "<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>",
-                    "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
-                    "<uses-permission android:name=\"android.permission.SEND_SMS\"/>",
-                    "<uses-permission android:name=\"android.permission.SYSTEM_ALERT_WINDOW\"/>",
-                    "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
-                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
-                    "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
-                    "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
-                    "<uses-permission android:name=\"android.permission.WRITE_SMS\"/>"
-                ]
+                "permissions" : ["<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>","<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.SEND_SMS\"/>","<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>","<uses-permission android:name=\"android.permission.INTERNET\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>","<uses-feature android:name=\"android.hardware.camera.autofocus\"/>","<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.WRITE_SMS\"/>","<uses-permission android:name=\"android.permission.READ_SMS\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>"]
             },
             "orientation" : [ "portrait-primary" ],
             "icons" : {
@@ -392,21 +366,17 @@
                 "statics" : {},
                 "maps" : {},
                 "push" : {
-                    "igexin" : {
-                        "appid" : "KvNIs2LBnR6Sd26Pk5YiK6",
-                        "appkey" : "BhWPBGvIi0AdTqyUwqU92",
-                        "appsecret" : "yQE2jkjSy08Q59ii3cVOx6"
-                    }
+                    
                 },
                 "share" : {},
                 //配置应用使用分享功能，参考http://ask.dcloud.net.cn/article/27
-                "payment" : {},
+                "payment" : {"alipay":{"description":"阿里支付","scheme":""},"weixin":{"description":"微信支付","appid":"wxe8ac481b75871f3d"}},
                 //配置应用使用支付功能，参考http://ask.dcloud.net.cn/article/71
                 "oauth" : {
                     //配置应用使用登录功能，参考http://ask.dcloud.net.cn/article/192
                     "weixin" : {
                         //微信登录SDK配置
-                        "appid" : "wx2b2b0d853a3a028b",
+                        "appid" : "wxe8ac481b75871f3d",
                         //微信开放平台申请应用的AppID值
                         "appsecret" : "f72c5a802671e43087b93698298ab0af",
                         //微信开放平台申请应用的AppSecret值

@@ -8,6 +8,7 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<link rel="stylesheet" href="../css/app.css">
+		<link rel="stylesheet" href="../css/pay.css">
 		<link rel="stylesheet" href="../css/page.css">
 		<link rel="stylesheet" href="../css/mui.min.css">
 		<link rel="stylesheet" href="../css/secondPage.css">
@@ -39,9 +40,9 @@
 			<div class="yunfei-top-detail">
 
 			<div class="middle">
-				<img src="../images/yunfei/zhuizong_03.png">
+				<img class="expressLogo">
 				<div class="clearfix">
-					<span class="left">顺风快递</span>
+					<span class="left expressName"></span>
 					<span class="right"><span class="yuandian"></span> 运输中</span>
 				</div>
 				<div class="danhao">单号:<span class="sn"></span></div>
@@ -106,8 +107,8 @@
 					</div>
 
 					<div class="bottom">
-						<img src="../images/secondPage/express_27.jpg"/>
-						<span class="first">顺丰快递</span>
+						<img class="expressLogo" />
+						<span class="first expressName"></span>
 						<span class="sn"></span>
 					</div>
 
@@ -153,8 +154,15 @@
 				</li>
 			</ul>
 
-			<div class="bottom-btn">
-			<button type="button" id="cancelBtn">取消订单</button>
+			<div class="bottom-btn bottom-btn-list clearfix">
+				
+				
+				<button type="button" class="yellow-bg xiadan hide" id="cancelBtn">取消订单</button>
+				
+				<button type="button" class="blue-bg xiadan" onclick="payCaozuo()"> 立即支付</button>
+				
+				<button type="button" class="one delete-order hide" ontouchstart="deleteOrder()"> 删除订单</button>
+				
 			</div>
 
 		</div>
@@ -211,6 +219,7 @@
 	    <script src="../js/jquery-2.1.1.min.js"></script>
 		<script src="../js/myStorage.js"></script>
 		<script src="../js/app.js"></script>
+	   <script src="../js/pay.js"></script>
 		<script>
 
 			$(".middle-tab-col span").click(function()
@@ -229,12 +238,50 @@
 				$(this).addClass("active");
 			});
 
-			$("#cancelBtn").click(function()
+			$("#cancelBtn").on("touchstart",function()
 			{
 
 				var btnArray = ['否', '是'];
 
 				mui.confirm('是否取消订单？', '提示', btnArray, function(e) {
+
+					if (e.index == 1) {
+
+						//订单详情
+						Global.commonAjax({
+									url: "express/orders/"+id+"/cancel",
+									method:"POST"
+
+								},
+								function(data) {
+									console.log("订单删除");
+									console.log(JSON.stringify(data));
+									mui.toast("取消成功");
+									wo.evalJS("pulldownRefresh();");
+									mui.back();
+								},
+								function(err) {
+									console.log("订单取消失败");
+								});
+
+
+					} else {
+
+
+
+					}
+				})
+
+
+				
+			});
+			
+			function deleteOrder()
+			{
+
+				var btnArray = ['否', '是'];
+
+				mui.confirm('是否删除订单？', '提示', btnArray, function(e) {
 
 					if (e.index == 1) {
 
@@ -247,7 +294,8 @@
 								function(data) {
 									console.log("订单删除");
 									console.log(JSON.stringify(data));
-									mui.toast("取消成功");
+									mui.toast("删除成功");
+									wo.evalJS("pulldownRefresh();");
 									mui.back();
 								},
 								function(err) {
@@ -264,20 +312,45 @@
 
 
 				
-			});
+			}
 
 
+			var channel;
+            var channels;
+            
+            var wo;
+            
 			mui.plusReady(function() {
 				commonEvent();
 				httpRequest();
+				 plus.payment.getChannels(function(cs) {
+                    channels = cs;
+                    console.log(JSON.stringify(channels));
+                   
+                },
+                function(e) {
+                    //alert("获取支付通道失败：" + e.message);
+                });
+                
+                // 获取窗口对象
+				wo=plus.webview.currentWebview().opener();
+				
+                
+				
 			});
+
+			function payCaozuo()
+			{
+				payModal($("#price").text());
+			}
+
+
 
 			var id=GetQueryString("id");
 
+			
 			function  httpRequest()
 			{
-
-
 
 				//订单详情
 				Global.commonAjax({
@@ -286,7 +359,21 @@
 						},
 						function(data) {
 							console.log("订单详情");
-							console.log(JSON.stringify(data));
+							console.log(data.status);
+
+							if(data.status==1)
+							{
+								$(".xiadan").show();
+							}
+							else if(data.status==0)
+							{
+								$(".delete-order").show();
+							}
+							
+							var expressObj=findExpressCompany(data.express_company_id);
+							console.log(JSON.stringify(expressObj));
+							$(".expressLogo").attr("src",expressObj.logo_url);
+							$(".expressName").text(expressObj.name);
 							
 							$(".sn").text(data.sn);
 							$("#package").text(data.package);
