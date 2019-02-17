@@ -117,6 +117,20 @@ var Global = {};
 					
 				});
        },
+	   
+	   registerGePush: function(id){
+			Global.commonAjax({
+				url: 'clientid',
+				method: 'PUT',
+				data: {
+					client_id: id
+				}
+			}, function(data){
+				console.log(JSON.stringify(data));
+			}, function(err){
+				
+			});
+	   },
         //网络请求
         commonAjax: function(params,callback, errorback) {
            var baseUrl = "https://lfb.kai-dian.com/api/";
