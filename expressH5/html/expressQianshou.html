@@ -143,7 +143,7 @@
 			function scaned(t, r, f)
 			{
 				$("#searchText").val(r);
-				getData(page);
+				getData();
 			}
 
 			function scanQrCode()
@@ -228,7 +228,7 @@
         console.log(imgBase64);
     }.bind(this), false);*/
 
-	var  id=23;
+	var  id;
 
 	$("#submitBtn").click(function()
 	{
@@ -297,11 +297,10 @@
 
 			});
 
-			var page=1;
-			function getData(page)
+			function getData()
 			{
 				Global.commonAjax({
-							url: "express/search?sn="+$("#searchText").val()+"&page="+page
+							url: "express/received/orders/"+$("#searchText").val()
 
 						},
 						function(data) {
@@ -313,8 +312,7 @@
 							{
 
 								data=data.data[0];
-
-								console.log(JSON.stringify(data));
+								id=data.id;
 
 								$(".express-search").addClass("active");
 								$("#qrCode").hide();
@@ -324,7 +322,7 @@
 								$("#from_address").text(data.from_province+data.from_city+data.from_area);
 								$("#to_address").text(data.to_province+data.to_city+data.to_area);
 
-								$("#second_address").text(data.to_detail+data.to_company_name);
+								$("#second_address").text(data.to_detail);
 								$("#sn").text(data.express_sn);
 
 							}

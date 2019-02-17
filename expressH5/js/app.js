@@ -104,6 +104,19 @@ var Global = {};
             console.log($('.global-modal').length)
             return !isClose;
         },
+        refreshUser:function()
+        {
+				Global.commonAjax({
+					url: 'profile'
+				}, function(data){
+					console.log(JSON.stringify(data));
+					myStorage.setItem("user", data);
+					$("#qiye").text(data.company_id);
+					
+				}, function(err){
+					
+				});
+       },
         //网络请求
         commonAjax: function(params,callback, errorback) {
            var baseUrl = "https://lfb.kai-dian.com/api/";
@@ -384,6 +397,76 @@ function updateLouyuName()
     
 }
 
+//绑定企业
+function  bindQiye()
+{
+    var btnArray = ['确定', '取消'];
+    mui.prompt('企业号是企业统一支付服务费用的结算账户代码。请联系公司前台或行政负责人获取企业号,也可咨询楼服宝工作人员。', '请输入企业号', '企业号', btnArray, function(e) {
+        if (e.index == 0) {
+            var inputValue=e.value;
+            //alert(inputValue);
+            
+            	if(inputValue=="")
+            	{
+            		mui.toast("企业号不能为空");
+            		return;
+            	}
+            
+            	//绑定
+				Global.commonAjax({
+	                    url: "user/company",
+	                    method:"POST",
+	                    data:{
+	                    	code:inputValue
+	                    }
+						
+	            },
+				function(data) {
+					console.log("绑定");
+					mui.toast("绑定成功");
+					Global.refreshUser();
+					console.log(JSON.stringify(data));
+				},
+				function(err) {
+				    console.log("绑定报错"+JSON.stringify(err));
+				});
+						
+            
+            
+            
+        } else {
+            
+        }
+    })
+}
+
+function  unBindQiye()
+{
+    var btnArray = ['是', '否'];
+    mui.confirm('是否解除绑定企业？', '企业号', btnArray, function(e) {
+        if (e.index == 0) {
+
+            //绑定
+            Global.commonAjax({
+                    url: "user/company",
+                    method:"delete"
+                },
+                function(data) {
+                    console.log("解除绑定");
+                    mui.toast("解除绑定成功");
+                    $("#qiye").text("未设置");
+                    Global.refreshUser();
+                    console.log(JSON.stringify(data));
+                },
+                function(err) {
+                    console.log("解除绑定报错"+JSON.stringify(err));
+                });
+
+        } else {
+
+        }
+    })
+}
 
 
 

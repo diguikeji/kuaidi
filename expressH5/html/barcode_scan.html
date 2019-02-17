@@ -21,7 +21,7 @@ function plusReady(){
 	wo=ws.opener();
 	// 开始扫描
 	ws.addEventListener('show',function(){
-		scan=new plus.barcode.Barcode('bcid',[plus.barcode.QR,plus.barcode.EAN8,plus.barcode.EAN13],{frameColor:'#00FF00',scanbarColor:'#00FF00'});
+		scan=new plus.barcode.Barcode('bcid',[plus.barcode.QR,plus.barcode.CODE128,plus.barcode.EAN8,plus.barcode.EAN13],{frameColor:'#00FF00',scanbarColor:'#00FF00'});
 	    scan.onmarked=onmarked;
 	    scan.start();
 	});
@@ -44,6 +44,9 @@ function onmarked(type, result, file){
     switch(type){
     	case plus.barcode.QR:
     	type = 'QR';
+    	break;
+    	case plus.barcode.CODE128:
+    	type = 'CODE128';
     	break;
     	case plus.barcode.EAN13:
     	type = 'EAN13';

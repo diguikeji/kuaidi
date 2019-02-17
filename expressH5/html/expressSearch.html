@@ -82,10 +82,12 @@
 	 */
 	function pulldownRefresh() {
 		setTimeout(function() {
-
+			
 			page=1;
+			$(".express-list").empty();
 			getData(page);
 			mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+
 		}, 1500);
 	}
 	var count = 0;
@@ -140,7 +142,6 @@
 	}
 
 
-
 	if(GetQueryString("sn"))
 	{
 		$("#searchText").val(GetQueryString("sn"))
@@ -169,17 +170,17 @@
 								html=html+'<li data-id="'+data.data[i].id+'"><div class="clearfix top">' +
 										'<div class="left">' +
 										'<div class="name">'+data.data[i].from_name+'</div>' +
-										'<p>'+data.data[i].from_province+data.data[i].from_city+data.data[i].from_area+data.data[i].from_detail+'</p>' +
+										'<p>'+data.data[i].from_province+data.data[i].from_city+data.data[i].from_area+'</p>' +
 										'</div>' +
 										'<img class="middle-img" src="../images/secondPage/express_22.jpg">' +
 										'<div class="right">' +
 										'<div class="name">'+data.data[i].to_name+'</div>' +
-										'<p>'+data.data[i].to_province+data.data[i].to_city+data.data[i].to_area+data.data[i].to_detail+'</p>' +
+										'<p>'+data.data[i].to_province+data.data[i].to_city+data.data[i].to_area+'</p>' +
 										'</div>' +
 										'</div>' +
 										'<div class="middle">' +
-										'<span class="first"><span></span>未签收</span>' +
-										'<span class="second">'+data.data[i].to_company_name+'</span>' +
+										'<span class="first" style='+data.data[i].status_text.color+'><span style='+data.data[i].status_text.color+'></span>'+data.data[i].status_text.text+'</span>' +
+										'<span class="second">'+data.data[i].to_detail+'</span>' +
 										'</div>' +
 										'<div class="bottom">' +
 										'<img src="../images/secondPage/express_27.jpg"/>' +
@@ -189,7 +190,7 @@
 										'</li>';
 							}
 
-							page++;;
+							page++;
 
 							$(".express-list").append(html);
 						}

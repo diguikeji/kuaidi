@@ -126,6 +126,7 @@
 			</div>
 			
 			<div class="col item_wrap">
+
 				<div class="row_between item">
 					<span>手机号</span>
 					<div class="row_center">
@@ -134,6 +135,17 @@
 					</div>
 				</div>
 				
+			</div>
+
+			<div class="col item_wrap" id="bind">
+				<div class="row_between item">
+					<span>企业号</span>
+					<div class="row_center">
+						<span id="qiye"></span>
+						<span class="arraw"></span>
+					</div>
+				</div>
+
 			</div>
 			
 			<div class="col item_wrap" style="margin-top: 8px;" onclick="weixinAuth();">
@@ -199,7 +211,34 @@
 			realname: "",
 			mobile: ""
 		};
-		
+
+
+		var user=myStorage.getItem("user");
+
+
+		if (!user.company_id) {
+			$("#qiye").text("未设置");
+		}
+		else {
+			$("#qiye").text(user.company_id);
+		}
+
+		$("#bind").click(function()
+		{
+			user=myStorage.getItem("user");
+			console.log(JSON.stringify(user));
+			if(!user.company_id)
+			{
+				bindQiye();
+			}
+			else {
+				unBindQiye();
+			}
+
+		});
+
+
+
 		mui.plusReady(function() {
 			user = myStorage.getItem("user");
 			if(!user){
