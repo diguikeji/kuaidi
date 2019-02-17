@@ -550,17 +550,17 @@
 				});
 				
 				mui.plusReady(function() {
-					var info = plus.push.getClientInfo();
-					console.log(info.clientid);
-					Global.registerGePush(info.clientid);
-					//监听个推	
-					plus.push.addEventListener("receive", function (msg) {
-						mui.toast(msg);
-					})
-					//个推点击
-					plus.push.addEventListener("click", function (msg) {  
-						mui.alert(msg);
-					})
+// 					var info = plus.push.getClientInfo();
+// 					console.log(info.clientid);
+// 					Global.registerGePush(info.clientid);
+// 					//监听个推	
+// 					plus.push.addEventListener("receive", function (msg) {
+// 						mui.toast(msg);
+// 					})
+// 					//个推点击
+// 					plus.push.addEventListener("click", function (msg) {  
+// 						mui.alert(msg);
+// 					})
 					//注册个推
 					
 					
