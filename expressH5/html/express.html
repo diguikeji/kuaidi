@@ -208,6 +208,8 @@
 									for (var i = 0; i < data.length; i++) {
 										//console.log(JSON.stringify(data.data[i]));
 
+										var expressObj=findExpressCompany(data[i].express_company_id);
+
 										html = html + '<li data-id="' + data[i].id + '"><div class="clearfix top">' +
 												'<div class="left">' +
 												'<div class="name">' + data[i].from_name + '</div>' +
@@ -224,8 +226,8 @@
 												'<span class="second">' + data[i].to_detail + '</span>' +
 												'</div>' +
 												'<div class="bottom">' +
-												'<img src="../images/secondPage/express_27.jpg"/>' +
-												'<span class="first">顺丰快递</span>' +
+												'<img src="'+expressObj.logo_url+'"/>' +
+												'<span class="first">'+expressObj.name+'</span>' +
 												'<span>' + data[i].express_sn + '</span>' +
 												'</div>' +
 												'</li>';
@@ -286,9 +288,6 @@
 								myStorage.setItem("expressCompanies",data);
 
 							}
-
-
-
 
 						},
 						function(err) {

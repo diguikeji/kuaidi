@@ -182,8 +182,24 @@
             $("#pullrefresh").show();
 			//mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 			
+			console.log("进入页面："+myStorage.getItem("storageSelectAddressValue"));
+			
+			var typeValue=myStorage.getItem("storageSelectAddressValue");
+			var url=searchKey ? "addresses/search?q="+searchKey : "addresses";
+			if(typeValue>0)
+			{
+				if(typeValue==1)
+				{
+					url=searchKey ? "addresses/search?type=1&q="+searchKey : "addresses?type=1";
+				}
+				else
+				{
+					url=searchKey ? "addresses/search?type=2&q="+searchKey : "addresses?type=2";
+				}
+			}
+			
             Global.commonAjax({
-                    url: searchKey ? "addresses/search?q="+searchKey : "addresses",
+                    url: url
 					
                 },
 				function(data) {
