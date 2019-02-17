@@ -475,9 +475,9 @@
 				
 				
 				
-				mui.openWindow({
-					url: 'html/question.html',
-					id: 'question.html',
+				Global.openWindow({
+					url: 'html/message.html',
+					id: 'message.html',
 					waiting: {
 						autoShow: false
 					}
@@ -550,6 +550,16 @@
 				});
 				
 				mui.plusReady(function() {
+					var info = plus.push.getClientInfo();
+					console.log(info.clientid);
+					//监听个推	
+					plus.push.addEventListener("receive", function (msg) {
+						mui.toast(msg);
+					})
+					//个推点击
+					plus.push.addEventListener("click", function (msg) {  
+						mui.alert(msg);
+					})
 					
 					httpRequest();
 					commonEvent();
@@ -678,8 +688,8 @@
 					
 					
 				}
-				
-				
+		
+		
 
 			
 		</script>

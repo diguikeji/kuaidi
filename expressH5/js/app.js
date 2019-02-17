@@ -158,7 +158,6 @@ var Global = {};
 
                 },
                 success: function(data) {
-                    // console.log(JSON.stringify(data));
 					if (data.success) {
                         callback(data.data ? data.data : "");
                     } else{
@@ -167,7 +166,7 @@ var Global = {};
 
                 },
                 error: function(data) {
-					
+					errorback(data.msg ? data.msg : "");
 
                 },
                 complete: function(xhr, status) {
@@ -175,12 +174,6 @@ var Global = {};
 					waiting.close();
 					if(xhr.status == 401){
 						//重新登录
-// 						if(params.url.indexOf("profile") != -1){
-// 							
-// 							errorback("");
-// 						}else{
-// 							Global.goToLogin();
-// 						}
 						Global.goToLogin();
 						
 					}else if(xhr.status == 200){
