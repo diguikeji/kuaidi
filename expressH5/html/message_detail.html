@@ -23,7 +23,7 @@
 		}
 		
 		.content{
-			padding: 0rem 0.2rem;
+			padding: 0.1rem 0.2rem;
 			font-size: 0.16rem;
 		}
 
@@ -41,8 +41,8 @@
 		</header>
 		
 		<div class="mui-content">
-			<div class="row_between title_wrap">
-				<img src="../images/app.png" class="icon">
+			<div class="row_between title_wrap hideClass">
+				<img src="" class="icon">
 				<span class="time">2018.02.18</span>
 			</div>
 			<div class="content">
@@ -72,10 +72,15 @@
 				function(data) {
 
 					console.log(JSON.stringify(data));
-					$(".mui-title").text(data.data[0].title);
-					$(".icon").attr("src", data.data[0].icon);
-					$(".time").text(data.data[0].created_at);
-					$(".content").text(data.data[0].content);
+					$(".mui-title").text(data.title);
+					if(!data.icon){
+						$(".icon").addClass("hideClass");
+					}else{
+						$(".icon").attr("src", data.icon);
+					}
+					
+					$(".time").text(data.created_at);
+					$(".content").text(data.content);
 				},
 				function(err) {
 

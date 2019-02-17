@@ -167,14 +167,20 @@
 							for(var i=0;i<data.data.length;i++)
 							{
 								console.log("000-----222")
-								html += '<li class="row_between item" data-id="'+data.data[i].id+'">'+
-										'<img src="'+data.data[i].icon+'" >'+
+								html += '<li class="row_between item" data-id="'+data.data[i].id+'">';
+								 if(data.data[i].icon){
+									 html += '<img src="'+data.data[i].icon+'" >';
+								 }
+										html += 
 										'<div class="content_wrap">'+
 											'<span class="title">'+data.data[i].title+'</span>'+
 											'<span class="content">'+data.data[i].content+'</span>'+
 										'</div>'+
-										'<span class="flex_one"></span>'+
-										'<span class="time">'+data.data[i].created_at+'</span>'+
+										'<span class="flex_one"></span>';
+								if(data.data[i].created_at)	{
+									html += '<span class="time">'+data.data[i].created_at+'</span>';
+								}	
+									html += 
 									'</li>';
 							}
 

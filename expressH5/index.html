@@ -555,11 +555,11 @@
 					//监听个推	
 					plus.push.addEventListener("receive", function (msg) {
 						mui.toast(msg);
-					})
+					}, { passive: true })
 					//个推点击
 					plus.push.addEventListener("click", function (msg) {  
 						mui.alert(msg);
-					})
+					}, { passive: true })
 					
 					httpRequest();
 					commonEvent();
