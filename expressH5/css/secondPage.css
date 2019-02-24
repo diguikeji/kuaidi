@@ -91,13 +91,13 @@
 .yunfei-img-list .swiper-slide{border:1px solid rgba(243, 243, 243, 1);
     box-shadow:0px 2px 6px 0px rgba(126,125,125,0.14);text-align: center;padding:0.16rem 0.15rem 0.05rem 0.15rem;position: relative;background: #fff;border-radius:4px;}
 .yunfei-img-list .swiper-slide p{font-size:0.12rem;margin-bottom:0;}
-.yunfei-img-list .swiper-slide .bottom{color:#666666;font-size:0.11rem;}
+.yunfei-img-list .swiper-slide .bottom{color:#666666;font-size:0.14rem;}
 .yunfei-img-list .swiper-slide .bottom .second{font-size:0.08rem;color:#999;position: relative;margin-left:0.05rem;}
 .yunfei-img-list .swiper-slide .bottom .second:after{width:100%;height:1px;background: #999;content: " ";left:0;top:50%;position: absolute;}
 .yunfei-img-list .swiper-slide.active{border:1px solid #107EFF;}
 .yunfei-img-list .swiper-slide.active:after{width:0.16rem;height:0.16rem;position: absolute;right:-0.02rem;top:-0.01rem;content:" ";background: url("../images/yunfei/yunfei_21.png");background-size:100% 100%;}
 
-.yunfei-bottom{height:0.72rem;position: fixed;bottom:0;width:100%;left:0;width:100%;box-shadow:-1px -7px 11px 0px rgba(126,125,125,0.08);box-sizing: border-box;padding-top:0.13rem;background: #fff;z-index:2000;}
+.yunfei-bottom{height:0.72rem;position: fixed;bottom:0;width:100%;left:0;width:100%;box-shadow:-1px -7px 11px 0px rgba(126,125,125,0.08);box-sizing: border-box;padding-top:0.13rem;background: #fff;z-index:900;}
 .yunfei-bottom button{background: #107EFF;line-height: 0.44rem;font-size:0.13rem;color:#fff;padding:0;width:1.82rem;text-align: center;float:right;margin-right:15px;}
 .yunfei-bottom .left{font-size:0.15rem;display: inline-block;margin-left:15px;color:#666;padding-top:0.12rem;text-align: center;}
 .yunfei-bottom .left .tip{font-size:0.12rem;color:#999999;}

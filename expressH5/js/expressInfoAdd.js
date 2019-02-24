@@ -59,6 +59,8 @@ mui.plusReady(function() {
                 '<div class="middle-value-bottom">'+addressObj.province+addressObj.city+addressObj.area+addressObj.detail+'</div>');
         }
 
+        countFeiyong();
+
 
     }, false);
 
@@ -74,13 +76,14 @@ $("#wupinSelect").click(function()
 });
 
 
-
 $("#payWay .tag-list span").click(function()
 {
     $("#payWay .tag-list span").removeClass("active");
     $(this).addClass("active");
     $("#payWaySelect .text").text( $("#payWay .tag-list .active").text());
     hideBottomModal();
+    countFeiyong();
+
 })
 
 $("#beizhuWenzi").click(function()
@@ -93,6 +96,7 @@ $("#payWaySelect").click(function()
 {
     $(".beizhu-col").show();
     $("#payWay").show();
+
 });
 
 $("#fapiaoSelect").click(function()
@@ -149,7 +153,7 @@ function  httpRequest()
 
                     html=html+'<div class="swiper-slide" data-id="'+data[i].id+'">' +
                         '<div><img src="'+data[i].logo_url+'"/></div>' +
-                        '<p>'+data[i].name+'</p>' +
+                        '<p>'+data[i].name+'</p><div class="bottom express-jiage'+data[i].id+'"></div>' +
                         '</div>';
                 }
 
@@ -195,6 +199,8 @@ function initExpressList()
         }
     });
 
+     $(".yunfei-img-list .swiper-slide:first-child").addClass("active");
+
 
         $(".yunfei-img-list .swiper-slide").click(function()
         {
@@ -232,6 +238,9 @@ function countFeiyong()
         create_type=$("#kuaidiType .tag-list .active").attr("data-type");
     }
 
+    var is_freight_collect = $("#payWaySelect .text").val();
+    is_freight_collect = is_freight_collect == "到付" ? 1 : 0;
+
 
     var insured_value=0;
 
@@ -240,9 +249,10 @@ function countFeiyong()
         to_address_id:to_address_id,
         express_company_id:express_company_id,
         package:package,
-        type:type,
-        create_type:create_type,
         weight:weight,
+        create_type:create_type,
+        type:type,
+        is_freight_collect:is_freight_collect,
         insured_value:insured_value,
     };
 
@@ -255,7 +265,23 @@ function countFeiyong()
         function(data) {
             console.log("运费计算");
             console.log(JSON.stringify(data));
-            $("#priceText").text(data);
+
+
+            for(var i in data) {
+
+                $(".express-jiage"+i).text("￥"+data[i]);
+
+            }
+            if(is_freight_collect==0)
+            {
+                $("#priceText").text("0.0");
+            }
+            else {
+                var dataId=$(".yunfei-img-list .swiper-slide.active").attr("data-id");
+                $("#priceText").text(data[dataId]);
+            }
+
+
 
 
         },

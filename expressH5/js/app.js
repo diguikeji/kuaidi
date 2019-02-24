@@ -173,8 +173,9 @@ var Global = {};
 
                 },
                 success: function(data) {
+                	console.log(JSON.stringify(data.data));
 					if (data.success) {
-                        callback(data.data ? data.data : "");
+                        callback(data.data);
                     } else{
 						errorback(data.msg ? data.msg : "");
 					}
@@ -354,6 +355,12 @@ mui("body").on('tap','.add-value',function(event){
     value++;
     $(this).prev().text(value);
 
+    if(window.location.href.indexOf("expressInfoAdd")>-1)
+    {
+        countFeiyong();
+    }
+
+
 });
 mui("body").on('tap','.sub-value',function(event){
 
@@ -366,6 +373,10 @@ mui("body").on('tap','.sub-value',function(event){
     }
     value--;
     $(this).next().text(value);
+    if(window.location.href.indexOf("expressInfoAdd")>-1)
+    {
+        countFeiyong();
+    }
 
 });
 
@@ -492,13 +503,12 @@ function  unBindQiye()
 }
 
 
+mui("body").on('tap','.shadow-col',function(event){
 
-$(".shadow-col").on("click",function()
-{
-	
     hideBottomModal();
 
 });
+
 
 $(".beizhu-col .right-close").click(function()
 {
@@ -507,8 +517,8 @@ $(".beizhu-col .right-close").click(function()
 
 function  hideBottomModal()
 {
-    $(".beizhu-col").addClass("hideClass");
-    // $(".beizhu-col .beizhu-text").addClass("hideClass");
+    $(".beizhu-col").hide();
+    $(".beizhu-col .beizhu-text").hide();
 }
 
 $("#louyuText").click(function()
