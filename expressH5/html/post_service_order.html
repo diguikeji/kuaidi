@@ -110,7 +110,7 @@
 				background-color: #107EFF!important;
 				color: #FFFFFF;
 			  }
-			  
+			  /* 
 			  [data-type="date"] [data-id="picker-d"] {
 			      display: none;
 			  }
@@ -125,7 +125,7 @@
 			  
 			  [data-type="date"] [data-id="title-d"] {
 			      display: none!important;
-			  }
+			  } */
 			  
 			
 		</style>
@@ -218,8 +218,11 @@
 	
 	<script type="text/javascript">
 		mui.init();
+		var type = 0;
 		mui.plusReady(function() {
-			
+			var self = plus.webview.currentWebview();
+			type = self.type;
+			getServiceType();
 		});
 		
 		$("#topTitle").text("企业"+myStorage.getItem("localServiceName"));
@@ -239,7 +242,7 @@
 		function lookTime(){
 			timePicker.show(function(SelectedItem) {
 		        console.log(SelectedItem.text);
-				from_time = SelectedItem.text.substring(0,7);
+				from_time = SelectedItem.text;
 		        $(".service_time").html(from_time)
 		        lookEndTime();
 		    })
@@ -248,7 +251,7 @@
 		function lookEndTime(){
 			endTimePicker.show(function(SelectedItem) {
 		        console.log(SelectedItem.text);
-				to_time = SelectedItem.text.substring(0,7);
+				to_time = SelectedItem.text;
 		        $(".service_time").html(from_time+" ~ "+to_time)
 		        
 		    })
@@ -263,32 +266,37 @@
 		  $(this).parent().css("border-bottom","1px solid #E3E3E3");
 		});
 		
-		var complainPicker = new mui.PopPicker();
-		complainPicker.setData([{
-			value: '1',
-			text: '桶装水'
-		}, {
-			value: '2',
-			text: '保洁服务'
-		}, {
-			value: '3', 
-			text: '绿植服务'
-		}, {
-			value: '4', 
-			text: '商务场地'
-		}]
-		);
-		
+		var produce_id = 0;
 		function showTypeAction(){
 			complainPicker.show(function(item){
 				console.log(item)
 				mui('.content')[0].innerHTML = item[0].text;
-				type = item[0].value;
+				produce_id = item[0].value;
 			})
 		}
 		
+		var complainPicker = new mui.PopPicker();
 		
-		var type = 1;
+		function getServiceType(){
+			//得到服务类型
+			Global.commonAjax({
+				url: 'service/products?type='+type
+			}, function(data){
+				console.log(JSON.stringify(data))
+				var pickData = [];
+				data.map(function(item){
+					pickData.push({
+						value: item.id,
+						text: item.name
+					})
+				})
+				complainPicker.setData(pickData);
+				
+			}, function(err){
+				mui.toast(err);
+			});
+		}
+		
 		//企业饮水服务
 		function goToServiceOrderSure(){
 			var name = $(".name").val();
@@ -338,6 +346,7 @@
 				mobile: mobile,
 				company_name: company_name,
 				type: type,
+				product_id: produce_id,
 				requirements: requirements,
 				amounts: number,
 				from: from_time,
@@ -350,17 +359,8 @@
 				data: params
 			}, function(data){
 				mui.toast("提交成功");
-				alert(JSON.stringify(data));
-				Global.openWindow({
-				    url: 'service_order_sure.html',
-				    id: 'service_order_sure.html',
-				    waiting: {
-				        autoShow: false
-				    },
-					extras:{
-						postServiceItem: params
-					}
-				})
+				plus.webview.currentWebview().close();
+				return;
 				
 			}, function(err){
 				mui.toast(err);

@@ -144,7 +144,7 @@ var Global = {};
             }
 			
 			//没有网络
-			console.log("params+"+params.url);
+			console.log(JSON.stringify(params));
             if (plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE) {
                 Global.errorNet();
                 return;
@@ -163,9 +163,6 @@ var Global = {};
                     xhr.setRequestHeader("Content-Type", "application/json");
                     xhr.setRequestHeader("Accept", "application/json");
                     var token = myStorage.getItem("token");
-                    
-                    console.log("参数token");
-					console.log(token);
                     
                     if (token) {
                         xhr.setRequestHeader("Authorization", "Bearer " + token);
@@ -510,8 +507,8 @@ $(".beizhu-col .right-close").click(function()
 
 function  hideBottomModal()
 {
-    $(".beizhu-col").hide();
-    $(".beizhu-col .beizhu-text").hide();
+    $(".beizhu-col").addClass("hideClass");
+    // $(".beizhu-col .beizhu-text").addClass("hideClass");
 }
 
 $("#louyuText").click(function()
