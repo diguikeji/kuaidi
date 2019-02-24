@@ -7,10 +7,22 @@
 		<link rel="stylesheet" href="../css/mui.min.css">
 		<link rel="stylesheet" href="../css/app.css">
 		<style type="text/css">
-			body{
-				background: url(../images/login/loginBg.png) no-repeat 0px 0px;
-				background-size: cover;
+			body,html{
+				width: 100%;
+				height: 100%;
+				background: url(../images/login/loginBg.png) no-repeat;
+				background-size: 100% 100%;
+				background-attachment: fixed;
 			}
+			
+			.mui-content{
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background: url(../images/login/loginBg.png) no-repeat;
+				background-size: 100% 100%;
+			}
+	
 			.head_wrap{
 				padding: 16px 16px 0px;
 			}
@@ -87,7 +99,7 @@
 			
 		</style>
 	</head>
-	<body>
+	<body class="mui-content">
 		<div class="row_between head_wrap">
 			<img src="../images/login/login_close.png" onclick="closeLogin();">
 			<!-- <img src="../images/login/shengluehao.png" > -->
@@ -129,7 +141,13 @@
 		mui.init();
 		
 		mui.plusReady(function() {
-			
+			var height1 = plus.android.invoke(plus.android.currentWebview(), "getHeight");//高度物理分辨率
+				var height2 = plus.screen.resolutionHeight;//高度逻辑分辨率
+				var top = plus.navigator.getStatusbarHeight();//状态栏高度
+				document.getElementsByClassName("mui-content")[0].style.height = (height2) + "px";
+				console.log(height1);//1920
+				console.log(height2);//640
+				console.log(top);//22
 		});
 		
 		$("input").focus(function(){
