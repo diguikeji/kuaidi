@@ -143,8 +143,6 @@
 
 					},
 					function(data) {
-						console.log("服务类型");
-						console.log(JSON.stringify(data));
 						for(var i=0;i<data.length;i++)
 						{
 							$("#list").append('<div class="row_between-col" data-id="'+data[i].id+'" data-title="'+data[i].title+'">'+
@@ -178,27 +176,20 @@
 		}
 		
 		//企业饮水服务
-		function goToServiceOrderSure(){
-			Global.openWindow({
-			    url: 'post_service_order.html',
-			    id: 'post_service_order.html',
-			    waiting: {
-			        autoShow: false
-			    }
-			})
-		}
-		
 	 mui("#list").on('tap', '.row_between-col ', function() {
 
 		var id=$(this).attr("data-id");
 		var name=myStorage.setItem("localServiceName",$(this).attr("data-title"));
 
 		Global.openWindow({
-			    url: 'post_service_order.html?id='+id,
+			    url: 'post_service_order.html',
 			    id: 'post_service_order.html',
 			    waiting: {
 			        autoShow: false
-			    }
+			    },
+				extras: {
+					type: id
+				}
 			})
 
 	})

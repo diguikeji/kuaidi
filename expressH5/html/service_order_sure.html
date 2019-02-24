@@ -210,17 +210,26 @@
 	<script type="text/javascript">
 		
 		mui.init();
-		var item;
+		var orderId;
 
 		$("#topTitle").text("企业"+myStorage.getItem("localServiceName"));
 
 		mui.plusReady(function() {
 			var self = plus.webview.currentWebview();
-			item = self.postServiceItem;
-			console.log(item);
-			if(item){
+			orderId = self.orderId;
+			console.log(orderId);
+			getOrderDetail();
+		});
+		
+		//订单详情
+		function getOrderDetail(){
+			Global.commonAjax({
+				url: 'service/orders/'+orderId
+			}, function(data){
+				
+				var item = data;
 				if(item.amounts){
-					$(".service_content").html("由楼服宝提供"+item.amounts+"桶桶装水，并且送水上门");
+					$(".service_content").html("由楼服宝提供 "+item.product.name);
 				}
 				
 				if(item.name){
@@ -242,15 +251,18 @@
 				if(item.from){
 					$(".service_time").html(item.from+" ~ "+item.to);
 				}
-			}
-		});
+				
+				
+			}, function(err){
+				mui.toast(err);
+			});
+		}
 	
 		function confirmHetong(){
 			
 			Global.commonAjax({
-				url: 'api/service/orders/16/confirm',
-				method: "PUT",
-				data: ""
+				url: "service/orders/"+orderId+"/confirm",
+				method: "POST"
 			}, function(data){
 				mui.toast("提交成功");
 				Global.openWindow({
@@ -260,7 +272,7 @@
 				        autoShow: false
 				    },
 					extras:{
-						postServiceItem: item
+						orderId: orderId
 					}
 				})
 				

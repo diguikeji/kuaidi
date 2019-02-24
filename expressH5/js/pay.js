@@ -52,6 +52,7 @@ function modalPay()
     pay($('input:radio[name="radio1"]:checked').val());
 }
 
+var payType;
 // 2. 发起支付请求
 function pay(payWay) {
     // 从服务器请求支付订单
@@ -74,9 +75,16 @@ function pay(payWay) {
             channel = channels[i];
         }
     }
+	
+	var url = "express/orders/"+id+"/pay";
+	if(!payType){
+		url = "express/orders/"+id+"/pay";
+	}else{
+		url = "service/orders/"+id+"/pay";
+	}
 
     Global.commonAjax({
-        url: "express/orders/"+id+"/pay",
+        url: url,
         method: 'POST',
         data:{
             pay_method:PAYSERVER

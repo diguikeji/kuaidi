@@ -10,9 +10,12 @@
 		<style type="text/css">
 			body, html{
 				width: 100%;
-				height: 90%;
-				background: #F2F2F2;
+				height: 100%;
+				background: #EDECF2;
 			}
+			.express-list{padding:0 0.1rem; }
+			.express-list li{border-bottom:1px solid rgba(243, 243, 243, 1);
+			    box-sizing: border-box; color:#666;font-size:0.14rem;}
 			
 			.select_type{
 				height: 45px;
@@ -21,10 +24,11 @@
 				background: #ffffff;
 				color: #666666;
 				font-size: 16px;
-				position: fixed;
+				position: relative;
 				width: 100%;
 				box-sizing: border-box;
 				padding: 0rem 1rem;
+				z-index: 3;
 			}
 			
 			.active{
@@ -68,6 +72,151 @@
 				height: 47px;
 				position: relative;
 			}
+			
+			.list_wrap {
+			    padding: 0px;
+			    box-sizing: border-box;
+				background-color: #EDECF2;
+				
+			}
+			
+			.item_wrap {
+			    height: 220px;
+			    width: 100%;
+				background-color: #FFFFFF;
+				border-radius: 4px;
+				box-shadow: 0px 0px 10px 0px #EAEAEA;
+				/* box-shadow: 2px 2px 50px 20px #FDFDFD; */
+			}
+			.title_wrap{
+				padding: 15px;
+				font-size: 14px;
+				color: #666666;
+				height: 44rpx;
+				border-bottom: 1px solid #E3E3E3;
+				width: 100%;
+				box-sizing: border-box;
+			}
+			
+			.title_wrap .item_status{
+				color: #FF5269;
+				font-size: 14px;
+			}
+			
+			.title_wrap .item_status .dian{
+				font-weight: bold;
+				font-size: 25px;
+				position: relative;
+				top: -2px;
+			}
+			
+			.content_wrap{
+				width: 100%;
+				box-sizing: border-box;
+				padding: 15px 15px 0px;
+				
+			}
+			
+			.content_wrap .border{
+				height: 122px;
+				width: 100%;
+				border-bottom: 1px solid #E3E3E3;
+			}
+			
+			.content_up{
+				height: 122px;
+				width: 100%;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+			}
+			
+			.content_up img{
+				width: 70px;
+				height: 70px;
+				border-radius: 4px;
+			}
+			
+			.content_center{
+				width:168px;
+				max-height:57px;
+				position: relative;
+				line-height: 20px;
+				overflow: hidden;
+				font-size: 14px;
+				color: #666666;
+				flex: 1;
+				padding: 0px 16px;
+			}
+			
+			.content_end{
+				color: #666666;
+				font-size: 14px;
+				display: flex;
+				flex-direction: column;
+			}
+			
+			.content_end .number{
+				text-align: right;
+			}
+			
+			.content_down{
+				width: 100%;
+				text-align: right;
+				margin-bottom: 10px;
+			}
+			
+			.first_txt{
+				color: #999999;
+				font-size: 14px;
+			}
+			
+			.first_txt .num{
+				color: #333333;
+			}
+			
+			.sencod_txt{
+				font-size: 14px;
+				color: #333333;
+			}
+			
+			.sencod_txt .money{
+				font-size: 12px;
+			}
+			
+			.sencod_txt .money_num{
+				font-size: 18px;
+			}
+			
+			.sencod_txt .num_float{
+				font-size: 12px;
+			}
+			
+			.item_down{
+				height: 60px;
+				font-size: 12px;
+				justify-content: flex-end;
+				width: 100%;
+				padding-right: 15px;
+			}
+			
+			.item_down span{
+				border-radius: 12px;
+				padding: 0px 11px;
+				margin-left: 10px;
+			}
+			
+			.warn_tag{
+				color: #FFFFFF;
+				background-color: #107EFF;
+			}
+			
+			.normal_tag{
+				color: #666666;
+				background-color: #FFFFFF;
+				border: 1px solid #999999;
+			}
+			
 
 		</style>
 	</head>
@@ -92,20 +241,318 @@
 				
 			</div>
 		</div>
-		<script src="../js/mui.min.js"></script>
+		
+		<!--下拉刷新容器-->
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper express-col express-search" style="margin-top:0.45rem;">
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<ul class="express-list">
+		
+					<!-- <li class=" mui-table-view-cell-item item_wrap col_between">
+						<div class="row_between title_wrap">
+							<span>2017-06-24</span>
+							<div class="row_center item_status"> 
+								<span class="dian">·</span>  
+								<span>&nbsp;待发货</span>
+							</div>
+						</div>
+						
+						<div class=" content_wrap">
+							<div class="col_between border">
+								<div class="content_up">
+									<img src="../images/firstPageLive/homeBottom_03.jpg" />
+									<span class="content_center">农夫山泉饮用水饮用天然水5L*4桶整箱装桶装水</span>
+									<div class="content_end">
+										<span>￥169.00</span>
+										<span class="number">x2</span>
+									</div>
+								</div>
+								<div class="content_down">
+									<span class="first_txt">共 <span class="num">8</span> 件</span>
+									<span class="sencod_txt">应付金额:
+										<span class="money">￥</span><span class="money_num">169</span>
+										<span class="num_float">.00</span>
+									</span>
+								</div>
+							</div>
+							
+							
+						</div>
+						
+						<div class="row item_down">
+							<span class="warn_tag">提醒发货</span>
+							<span class="normal_tag">提醒发货</span>
+							<span class="normal_tag">提醒发货</span>
+						</div>
+						
+					</li> -->
+		
+				</ul>
+			
+				
+				<div class="empty_text">
+					数据为空
+				</div>
+				
+			</div>
+		</div>
+		
+		
+		
+		<script src="../js/mui.js"></script>
 		<script src="../js/jquery-2.1.1.min.js"></script>
-		<!-- <script src="../js/app.js"></script> -->
+		<script src="../js/myStorage.js"></script>
+		<script src="../js/app.js"></script>
+		
 		<script type="text/javascript">
+			var h5pullDown = true;
 			mui.init({
-				subpages:[{
-					url:'my_order_sub.html',
-					id:'my_order_sub.html',
-					styles:{
-						top: '100px',
-						bottom: '0px'
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
 					}
-				}]
-			}); 
+				}
+			});
+			
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				setTimeout(function() {
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+					
+					$(".express-list").html("");
+					page=1;
+					getData(page);
+					
+				}, 1500);
+			}
+			var count = 0;
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				setTimeout(function() {
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh(isEnd); //参数为true代表没有更多数据了。
+					getData(page);
+				}, 1500);
+			}
+			if (mui.os.plus) {
+				mui.plusReady(function() {
+			
+					setTimeout(function() {
+						mui('#pullrefresh').pullRefresh().pullupLoading();
+					}, 1000);
+					
+					getData(page);
+				});
+			} else {
+				mui.ready(function() {
+					mui('#pullrefresh').pullRefresh().pullupLoading();
+				});
+			}
+			
+			var page=1;
+			var isEnd=0;
+			var type = -1; 
+			function getData(pageIndex){
+				var url;
+				if(type == -1){
+					url = "service/orders?page="+pageIndex;
+				}else{
+					//待支付
+					url = "service/orders?page="+pageIndex+"&status=3"
+				}
+				Global.commonAjax({
+							url: url
+			
+						},
+						function(data) {
+							// data = data.data.product;
+							console.log(JSON.stringify(data));
+							
+							if(data)
+							{
+								var html="";
+								if(data.data.length>0){
+									
+									for(var i=0;i<data.data.length;i++){
+										var item = data.data[i];
+										var product = item.product;
+										html += '<li class=" mui-table-view-cell-item item_wrap col_between" data-id="'+item.id+'">'+
+													'<div class="row_between title_wrap">'+
+														'<span>'+ item.created_at.split(" ")[0]+'</span>'+
+														'<div class="row_center item_status" style="color:'+item.status_text.color+'">'+
+																'<span class="dian">·</span>'+ 
+																'<span>&nbsp;'+item.status_text.text+'</span>'+
+																'</div></div>'+
+													'<div class=" content_wrap">'+
+														'<div class="col_between border">'+
+															'<div class="content_up">'+
+																'<img src="'+product.img+'" />'+
+																'<span class="content_center">'+product.name+'</span>'+
+																'<div class="content_end">'+
+																	'<span>￥'+product.price+'</span>'+
+																	'<span class="number">x'+item.amounts+'</span>'+
+																'</div>'+
+															'</div>'+
+															'<div class="content_down">'+
+																'<span class="first_txt">共 <span class="num">'+item.amounts+'</span> 件</span>'+
+																'<span class="sencod_txt">应付金额:'+
+																	'<span class="money">￥</span><span class="money_num">'+product.price*item.amounts+'</span>'+
+																	'<span class="num_float">.00</span>'+
+																'</span></div></div></div>'+
+													
+													'<div class="row item_down">';
+													if(item.can_confirm){
+														//可以取消
+														html += '<span class="warn_tag sure">确认订单</span>';
+														
+														
+													}else if(item.can_pay){
+														html += '<span class="warn_tag pay">支付订单</span>';
+														
+														
+													}else if(item.can_delete){
+														html += '<span class="normal_tag del">删除订单</span>';
+													}else{
+														html += '<span class="normal_tag cancle">取消订单</span>';
+													}
+													html += '</div></li>';
+									}
+			
+									page++;
+			
+									$(".express-list").append(html);
+								}
+								else
+								{
+									isEnd=1;
+								}
+			
+			
+								if(pageIndex==1&&data.data.length==0)
+								{
+									$(".empty_text").removeClass("hideClass");
+									$(".express-list").addClass("hideClass");
+									
+								}else{
+									$(".empty_text").addClass("hideClass");
+									$(".express-list").removeClass("hideClass");
+								}
+							}
+						},
+						function(err) {
+			
+							console.log(err);
+			
+						})
+			}
+			//确认订单
+			mui(".express-list").on('tap', 'li .item_down .confirm', function() {
+				var id=$(this).parent().parent().attr("data-id");
+				console.log(id);
+				
+				Global.openWindow({
+					url:"service_order_sure.html",
+					id: "service_order_sure.html",
+					waiting: {
+						autoShow: false
+					},
+					extras: {
+						orderId: id
+					}
+				})
+				
+				//阻止冒泡
+				return false;
+			})
+			
+			//取消订单
+			mui(".express-list").on('tap', 'li .item_down .cancle', function() {
+				var id=$(this).parent().parent().attr("data-id");
+				console.log(id);
+				actionOrder(id, "cancle");
+				//阻止冒泡
+				return false;
+			})
+			
+			//删除订单
+			mui(".express-list").on('tap', 'li .item_down .del', function() {
+				var id=$(this).parent().parent().attr("data-id");
+				console.log(id);
+				actionOrder(id, "");
+				//阻止冒泡
+				return false;
+			})
+			
+			//支付订单
+			mui(".express-list").on('tap', 'li .item_down .pay', function() {
+				var id=$(this).parent().parent().attr("data-id");
+				console.log(id);
+				
+				Global.openWindow({
+					url:"submitOrder.html",
+					id: "submitOrder.html",
+					waiting: {
+						autoShow: false
+					},
+					extras: {
+						orderId: id
+					}
+				})
+				
+				//阻止冒泡
+				return false;
+			})
+			
+			
+			
+			//订单详情
+			mui(".express-list").on('tap', 'li ', function() {
+			
+				var id=$(this).attr("data-id");
+			
+				Global.openWindow({
+					url:"submitOrder.html",
+					id: "submitOrder.html",
+					waiting: {
+						autoShow: false
+					},
+					extras: {
+						orderId: id
+					}
+				})
+			
+			})
+			
+			
+			//操作订单
+			function actionOrder(id, action){
+				var url = "";
+				if(action != ""){
+					url = "/"+action
+				}
+				Global.commonAjax({
+					url: 'service/orders/'+id+url,
+					method: "POST"
+				}, function(data){
+					mui.toast("操作成功");
+					//刷新页面
+					$(".express-list").html("");
+					page=1;
+					getData(page);
+					
+				}, function(err){
+					mui.toast(err);
+				});
+			}
+			
 			
 			function changeType(index){
 				$(".titleType").each(function(ind){
@@ -117,15 +564,18 @@
 						$(this).addClass("active");
 						$(this).next().addClass("active_line");
 						//sendClickType(index);
+						
+						if(index == 0){
+							type = -1;
+						}else{
+							type = 3;
+						}
+						$(".express-list").html("");
+						page=1;
+						getData(page);
 					}
 				})
 			}
-				
-				function sendClickType(index){
-					console.log("发送事件"+index);
-					var h = plus.webview.getWebviewById("recommand_sub.html");
-					mui.fire(h,'updatePreType',{currentType: currentType, isDesc: isDesc});
-				}
 			
 		</script>
 	</body>

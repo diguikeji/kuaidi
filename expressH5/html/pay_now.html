@@ -6,7 +6,10 @@
 		<title>企业饮水服务</title>
 		<link rel="stylesheet" href="../css/mui.min.css">
 		<link rel="stylesheet" href="../css/mui.picker.min.css" />
+		<link rel="stylesheet" href="../css/page.css">
 		<link rel="stylesheet" href="../css/app.css">
+		<link rel="stylesheet" href="../css/pay.css">
+		<link rel="stylesheet" href="../css/secondPage.css">
 		<style type="text/css">
 			.header{
 				background-color: #FFFFFF;
@@ -205,13 +208,17 @@
 				<div class="money_info">
 					<span>总价:</span>
 					<span class="money_num" style="font-size: 0.16rem;">¥</span>
-					<span class="money_num">1033.0</span>
+					<span class="money_num pay_money">1033.0</span>
 				</div>
 				
 				<span class="btn">立即付款</span>
 			</div>
 			
+			
+		
 		</div>
+		
+		
 		
 		
 	</body>
@@ -220,16 +227,43 @@
 	<script src="../js/jquery-2.1.1.min.js"></script>
 	<script src="../js/app.js"></script>
 	<script src="../js/myStorage.js"></script>
+	<script src="../js/pay.js"></script>
 	<script type="text/javascript">
 		mui.init();
-		var item;
+		var orderId;
 		mui.plusReady(function() {
 			var self = plus.webview.currentWebview();
-			item = self.postServiceItem;
-			console.log(item);
-			if(item){
+			orderId = self.orderId;
+			console.log(orderId);
+			getOrderDetail();
+			
+			plus.payment.getChannels(function(cs) {
+			    channels = cs;
+			    console.log(JSON.stringify(channels));
+			   
+			},
+			function(e) {
+			    //alert("获取支付通道失败：" + e.message);
+			});
+			
+		});
+		
+		var id;
+		mui(".bottom_wrap").on('tap', '.btn', function() {
+			//立即支付
+			id = orderId;
+			payModal($(".pay_money").text());
+		})
+		
+		//订单详情
+		function getOrderDetail(){
+			Global.commonAjax({
+				url: 'service/orders/'+orderId
+			}, function(data){
+				
+				var item = data;
 				if(item.amounts){
-					$(".service_content").html("由楼服宝提供"+item.amounts+"桶桶装水，并且送水上门");
+					$(".service_content").html("由楼服宝提供 "+item.product.name);
 				}
 				
 				if(item.name){
@@ -251,8 +285,28 @@
 				if(item.from){
 					$(".service_time").html(item.from+" ~ "+item.to);
 				}
-			}
+				
+				$(".pay_money").html(item.amounts*item.product.price);
+				
+				
+			}, function(err){
+				mui.toast(err);
+			});
+		}
+		
+		$(".address-list input").click(function()
+		{
+			$(".address-list input").removeAttr("checked");
+			$(this).prop("checked","checked");
 		});
+		
+		$(".payway-list input").click(function()
+		{
+			$(".payway-list input").removeAttr("checked");
+			$(this).prop("checked","checked");
+		});
+		
+		
 		
 		
 		
