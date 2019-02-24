@@ -82,14 +82,18 @@ function pay(payWay) {
 	}else{
 		url = "service/orders/"+id+"/pay";
 	}
+	
+	var params = {
+		pay_method:PAYSERVER
+	}
+	if(payType){
+		params.address_id: address_id
+	}
 
     Global.commonAjax({
         url: url,
         method: 'POST',
-        data:{
-            pay_method:PAYSERVER,
-			address_id: address_id
-        }
+        data:params
     }, function(data){
 
         console.log("支付接口");

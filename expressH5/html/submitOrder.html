@@ -213,6 +213,13 @@
 					}else{
 						$(".addressInfo").text("请选择地址")
 					}
+					
+					if(data.can_pay){
+						$(".bottom-col").removeClass("hideClass");
+					}else{
+						$(".bottom-col").addClass("hideClass");
+					}
+					
 				}, function(err){
 					mui.toast(err);
 				});
