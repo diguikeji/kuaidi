@@ -151,7 +151,7 @@ function  httpRequest()
 
                     //console.log(JSON.stringify(data[i]));
 
-                    html=html+'<div class="swiper-slide" data-id="'+data[i].id+'">' +
+                    html=html+'<div class="swiper-slide express-com-'+data[i].id+'" data-id="'+data[i].id+'">' +
                         '<div><img src="'+data[i].logo_url+'"/></div>' +
                         '<p>'+data[i].name+'</p><div class="bottom express-jiage'+data[i].id+'"></div>' +
                         '</div>';
@@ -227,7 +227,7 @@ function countFeiyong()
     var express_company_id=$(".yunfei-img-list .active").attr("data-id");
     var package=$("#wupinSelect .text").text();
 
-    var weight=parseInt($(".sub-value").next().text());
+    var weight=parseInt($(".weight-value").text());
 
     var type=myStorage.getItem("storageExpressType");
 
@@ -268,30 +268,30 @@ function countFeiyong()
 
 
             for(var i in data) {
-
-                $(".express-jiage"+i).text("￥"+data[i]);
-
-            }
+                if ((data[i] == 0) || (data[i] > 10000)) {
+                    $(".express-com-"+i).hide();
+                    $(".express-jiage"+i).text("无");
+                } else {
+                    $(".express-com-"+i).show();
+                    $(".express-jiage"+i).text("￥"+data[i]);
+                }
+            } 
 
             console.log("is_freight_collect:"+is_freight_collect);
-
+                
             if(is_freight_collect==1)
             {
-                $("#priceText").text("0.0");
+                $("#priceText").text("到付");
             }
             else {
                 var dataId=$(".yunfei-img-list .swiper-slide.active").attr("data-id");
                 console.log("dataId:"+dataId);
-                $("#priceText").text(data[dataId]);
+                if (data[dataId] > 10000) {
+                    $("#priceText").text("请与工作人员联系").addClass("small");
+                } else {
+                    $("#priceText").text(data[dataId]).removeClass("small");
+                }
             }
-
-            if($("#priceText").text()>1000)
-            {
-                mui.toast("10000");
-            }
-
-
-
 
         },
         function(err) {
@@ -319,7 +319,8 @@ function baojiaHttp()
         var express_company_id=$(".yunfei-img-list .active").attr("data-id");
         var package=$("#wupinSelect .text").text();
 
-        var weight=parseInt($(".sub-value").next().text());
+        var weight=parseInt($(".sub-value").next().text(), 10);
+        console.log($(".sub-value").next())
 
         var type=myStorage.getItem("storageExpressType");
         var create_type=myStorage.getItem("storageExpressCreateType");

@@ -102,6 +102,7 @@
 .yunfei-bottom .left{font-size:0.15rem;display: inline-block;margin-left:15px;color:#666;padding-top:0.12rem;text-align: center;}
 .yunfei-bottom .left .tip{font-size:0.12rem;color:#999999;}
 .yunfei-bottom .left span{font-size:0.22rem;color:#FF5269;}
+.yunfei-bottom .left span.small{font-size:0.12rem;color:#FF5269;}
 .yunfei-bottom .left.has-tip{position: relative;top:-0.08rem;}
 
 .genzong-list li{position: relative;padding:0 15px 0 1rem;height:0.8rem;box-sizing: border-box;}
