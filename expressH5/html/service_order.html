@@ -51,10 +51,9 @@
 				height: 400px; 
 				line-height: 400px; 
 				text-align: center;
-				background: #f4f4f4; 
+				background: #EDECF2; 
 				border: none; 
 				z-index: 10;
-				background: #f2f2f2;
 			}
 			
 			.active_line{
@@ -290,14 +289,13 @@
 		
 				</ul>
 			
-				
-				<div class="empty_text">
-					数据为空
-				</div>
-				
 			</div>
+			
 		</div>
 		
+		<div class="empty_text">
+			数据为空
+		</div>
 		
 		
 		<script src="../js/mui.js"></script>
@@ -413,22 +411,17 @@
 													if(item.can_confirm){
 														//可以取消
 														html += '<span class="warn_tag sure">确认订单</span>';
-														
-														
 													}
 													if(item.can_pay){
 														html += '<span class="warn_tag pay">支付订单</span>';
-														
-														
 													}
 													if(item.can_delete){
 														html += '<span class="normal_tag del">删除订单</span>';
 													}
 													
-													if(item.can_cancle){
+													if(item.can_cancel){
 														html += '<span class="normal_tag cancle">取消订单</span>';
 													}
-													html += '<span class="normal_tag cancle">取消订单</span>';
 													html += '</div></li>';
 									}
 			
@@ -445,11 +438,11 @@
 								if(pageIndex==1&&data.data.length==0)
 								{
 									$(".empty_text").removeClass("hideClass");
-									$(".express-list").addClass("hideClass");
+									$("#pullrefresh").addClass("hideClass");
 									
 								}else{
 									$(".empty_text").addClass("hideClass");
-									$(".express-list").removeClass("hideClass");
+									$("#pullrefresh").removeClass("hideClass");
 								}
 							}
 						},
@@ -483,7 +476,7 @@
 			mui(".express-list").on('tap', 'li .item_down .cancle', function() {
 				var id=$(this).parent().parent().attr("data-id");
 				console.log(id);
-				actionOrder(id, "cancle");
+				actionOrder(id, "cancel");
 				//阻止冒泡
 				return false;
 			})
@@ -492,7 +485,19 @@
 			mui(".express-list").on('tap', 'li .item_down .del', function() {
 				var id=$(this).parent().parent().attr("data-id");
 				console.log(id);
-				actionOrder(id, "");
+				Global.commonAjax({
+					url: 'service/orders/'+id,
+					method: "DELETE"
+				}, function(data){
+					mui.toast("操作成功");
+					//刷新页面
+					$(".express-list").html("");
+					page=1;
+					getData(page);
+					
+				}, function(err){
+					mui.toast(err);
+				});
 				//阻止冒泡
 				return false;
 			})
@@ -521,7 +526,7 @@
 			
 			//订单详情
 			mui(".express-list").on('tap', 'li ', function() {
-			
+				return;
 				var id=$(this).attr("data-id");
 			
 				Global.openWindow({

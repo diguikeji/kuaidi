@@ -315,6 +315,17 @@
             $(this).addClass("clicked");
             var item = findList[index];
 			console.log(JSON.stringify(item));
+			
+			if(myStorage.getItem("serviceOrderAddress")){
+				console.log("000009999")
+				myStorage.setItem("serviceOrderAddress",item);
+				var list = plus.webview.getWebviewById("submitOrder.html");
+				mui.fire(list, 'serviceOrderAddress');
+				mui.back();
+				
+				return false;
+				
+			}
 
 			
             if(myStorage.getItem("storageSelectAddressValue")>0)
@@ -324,15 +335,8 @@
                 mui.fire(list, 'storageAddressValue');
                 mui.back();
                 return false;
-            }else if(myStorage.getItem("serviceOrderAddress")){
-				myStorage.setItem("serviceOrderAddress",item);
-				var list = plus.webview.getWebviewById("submitOrder.html");
-				mui.fire(list, 'serviceOrderAddress');
-				mui.back();
-				
-				return false;
-				
-			}else{
+            }
+			else{
 
                myStorage.setItem("addressItem", item);
 				Global.openWindow({
