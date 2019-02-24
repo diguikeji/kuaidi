@@ -285,6 +285,11 @@ function countFeiyong()
                 $("#priceText").text(data[dataId]);
             }
 
+            if($("#priceText").text()>1000)
+            {
+                mui.toast("10000");
+            }
+
 
 
 
