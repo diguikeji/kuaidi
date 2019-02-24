@@ -87,7 +87,7 @@ function pay(payWay) {
 		pay_method:PAYSERVER
 	}
 	if(payType){
-		params.address_id: address_id
+		params.address_id=address_id;
 	}
 
     Global.commonAjax({

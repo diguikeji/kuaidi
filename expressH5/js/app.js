@@ -215,24 +215,18 @@ var Global = {};
 			    }
 			}
 			console.log("ddddddddddddddd")
-			if(path && path.__view_array__[0] && 
-					path.__view_array__[0].id.indexOf("html/") != -1){
-				//包含
-				Global.openWindow({
-				    url: 'html/login.html',
-				    id: 'html/login.html',
-				    waiting: {
-				        autoShow: false
-				    }
-				})
+
+            var options = {
+                styles:{
+                	popGesture: "none"
+                }
+            };
+			if(window.location.href.indexOf("index")>-1){
+
+                mui.openWindow('html/login.html','login.html',options);
+
 			}else{
-				Global.openWindow({
-				    url: 'login.html',
-				    id: 'login.html',
-				    waiting: {
-				        autoShow: false
-				    }
-				})
+                mui.openWindow('login.html','login.html',options);
 			}
 			
 		},
@@ -436,7 +430,7 @@ function findExpressCompany(cId)
 function  bindQiye()
 {
     var btnArray = ['确定', '取消'];
-    mui.prompt('企业号是企业统一支付服务费用的结算账户代码。请联系公司前台或行政负责人获取企业号,也可咨询楼服宝工作人员。', '请输入企业号', '企业号', btnArray, function(e) {
+    mui.prompt('企业号请联系公司前台或行政负责人获取，也可以咨询楼服宝工作人员。若要发送个人快递，请移步至个人快递界面。', '请输入企业号', '企业号', btnArray, function(e) {
         if (e.index == 0) {
             var inputValue=e.value;
             //alert(inputValue);

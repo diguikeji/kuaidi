@@ -311,7 +311,7 @@
 
 				if($(this).attr("data-type")==2)
 				{
-					if(!user.companies)
+					if(user.companies.length==0)
 					{
 						bindQiye();
 						return;

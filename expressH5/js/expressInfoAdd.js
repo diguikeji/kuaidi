@@ -272,12 +272,16 @@ function countFeiyong()
                 $(".express-jiage"+i).text("￥"+data[i]);
 
             }
-            if(is_freight_collect==0)
+
+            console.log("is_freight_collect:"+is_freight_collect);
+
+            if(is_freight_collect==1)
             {
                 $("#priceText").text("0.0");
             }
             else {
                 var dataId=$(".yunfei-img-list .swiper-slide.active").attr("data-id");
+                console.log("dataId:"+dataId);
                 $("#priceText").text(data[dataId]);
             }
 

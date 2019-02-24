@@ -276,7 +276,7 @@
 							'</span>'+
 							'<span class="address">'+item.province+item.city+item.area+item.detail+'</span>'+
 						'</div>'+
-						'<img src="../images/address/edit_address_icon.png" >'+
+						'<img class="edit-img" src="../images/address/edit_address_icon.png" >'+
 					'</div>';
 
                 
@@ -285,6 +285,13 @@
                 table.appendChild(li);
 
                 index += 1;
+                
+                if(myStorage.getItem("storageSelectAddressValue")>0)
+                {
+                	$(".edit-img").hide();
+                }
+                
+                
 
             }
 
@@ -309,6 +316,7 @@
             var item = findList[index];
 			console.log(JSON.stringify(item));
 
+			
             if(myStorage.getItem("storageSelectAddressValue")>0)
             {
                 myStorage.setItem("storageAddressValue",item);

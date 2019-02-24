@@ -216,7 +216,8 @@
 		var user=myStorage.getItem("user");
 
 
-		if (!user.companies) {
+		if(user.companies.length==0)
+		{
 			$("#qiye").text("未设置");
 		}
 		else {
@@ -227,7 +228,7 @@
 		{
 			user=myStorage.getItem("user");
 			console.log(JSON.stringify(user));
-			if(!user.company_id)
+			if(user.companies.length==0)
 			{
 				bindQiye();
 			}
