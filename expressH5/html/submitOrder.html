@@ -50,9 +50,9 @@
 				</div>
 			</li>
 			<li>
-				<div class="order-list-col">
+				<div class="order-list-col add_address">
 					<label>收货地址:</label>
-					<div class="text" style="padding-top: 0.14rem;">上海市湖滨路222号企业天地1号楼18楼</div>
+					<div class="text addressInfo" style="padding-top: 0.14rem;">上海市湖滨路222号企业天地1号楼18楼</div>
 					<span class="mui-icon mui-icon-arrowright" style="padding-top: 0.15rem;"></span>
 				</div>
 			</li>
@@ -120,6 +120,7 @@
 		<script>
 			mui.init();
 			var orderId = 0;
+			var address_id = 0;
 			mui.plusReady(function() {
 				var self = plus.webview.currentWebview();
 				orderId = self.orderId;
@@ -134,6 +135,29 @@
 				    //alert("获取支付通道失败：" + e.message);
 				});
 				
+				
+				window.addEventListener('serviceOrderAddress', function(event) {
+				    var addressObj=myStorage.getItem("serviceOrderAddress");
+				    console.log(JSON.stringify(addressObj));
+				    
+					$(".addressInfo").text(addressObj.province+addressObj.city+addressObj.area+addressObj.detail);
+					address_id = addressObj.id;
+				}, false);
+				
+				
+			});
+			
+			//增加地址
+			mui(".submit-order-list").on('tap', '.add_address', function() {
+				myStorage.setItem("serviceOrderAddress", "serviceOrderAddress");
+				Global.openWindow({
+					url:"my_address.html",
+					id: "my_address.html",
+					waiting: {
+						autoShow: false
+					}
+				})
+				
 			});
 			
 			var id;
@@ -141,6 +165,11 @@
 				var isAgress = $("#agress").prop("checked");
 				console.log(isAgress);
 				if(isAgress){
+					var address = $(".addressInfo").text();
+					if(address == "请选择地址"){
+						mui.toast("请选择地址");
+						return;
+					}
 					//立即支付
 					payType = "service";
 					id = orderId;
@@ -149,7 +178,7 @@
 					mui.toast("请同意协议");
 				}
 				
-			})
+			});
 			
 			
 			function getOrderDetail(){
@@ -177,6 +206,13 @@
 						
 					$(".order-goods-list").append(html);
 					$(".pay_money").text(data.amounts*data.product.price);
+					
+					if(data.address){
+						var addressObj = data.address;
+						$(".addressInfo").text(addressObj.province+addressObj.city+addressObj.area+addressObj.detail)
+					}else{
+						$(".addressInfo").text("请选择地址")
+					}
 				}, function(err){
 					mui.toast(err);
 				});

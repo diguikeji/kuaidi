@@ -52,7 +52,7 @@ function modalPay()
     pay($('input:radio[name="radio1"]:checked').val());
 }
 
-var payType;
+var payType, address_id;
 // 2. 发起支付请求
 function pay(payWay) {
     // 从服务器请求支付订单
@@ -87,7 +87,8 @@ function pay(payWay) {
         url: url,
         method: 'POST',
         data:{
-            pay_method:PAYSERVER
+            pay_method:PAYSERVER,
+			address_id: address_id
         }
     }, function(data){
 

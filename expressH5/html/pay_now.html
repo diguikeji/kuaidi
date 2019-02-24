@@ -251,8 +251,20 @@
 		var id;
 		mui(".bottom_wrap").on('tap', '.btn', function() {
 			//立即支付
-			id = orderId;
-			payModal($(".pay_money").text());
+// 			id = orderId;
+// 			payModal($(".pay_money").text());
+			
+			Global.openWindow({
+				url:"submitOrder.html",
+				id: "submitOrder.html",
+				waiting: {
+					autoShow: false
+				},
+				extras: {
+					orderId: orderId
+				}
+			})
+			
 		})
 		
 		//订单详情
