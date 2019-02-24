@@ -1,0 +1,9 @@
+±¨Ãû:
+org.qldc.xianghq.jsb.qiye
+
+ÃÜÂë
+123
+
+keyAlias: baobaoloufu
+keyPassword: bbs0906
+storePassword: bblf090717

@@ -86,6 +86,7 @@
 				background-color: #FFFFFF;
 				border-radius: 4px;
 				box-shadow: 0px 0px 10px 0px #EAEAEA;
+				margin-bottom: 0.1rem;
 				/* box-shadow: 2px 2px 50px 20px #FDFDFD; */
 			}
 			.title_wrap{
@@ -202,7 +203,7 @@
 			
 			.item_down span{
 				border-radius: 12px;
-				padding: 0px 11px;
+				padding: 2px 11px 0px;
 				margin-left: 10px;
 			}
 			
@@ -403,7 +404,7 @@
 															'</div>'+
 															'<div class="content_down">'+
 																'<span class="first_txt">共 <span class="num">'+item.amounts+'</span> 件</span>'+
-																'<span class="sencod_txt">应付金额:'+
+																'<span class="sencod_txt"> 应付金额:'+
 																	'<span class="money">￥</span><span class="money_num">'+product.price*item.amounts+'</span>'+
 																	'<span class="num_float">.00</span>'+
 																'</span></div></div></div>'+
@@ -414,15 +415,20 @@
 														html += '<span class="warn_tag sure">确认订单</span>';
 														
 														
-													}else if(item.can_pay){
+													}
+													if(item.can_pay){
 														html += '<span class="warn_tag pay">支付订单</span>';
 														
 														
-													}else if(item.can_delete){
+													}
+													if(item.can_delete){
 														html += '<span class="normal_tag del">删除订单</span>';
-													}else{
+													}
+													
+													if(item.can_cancle){
 														html += '<span class="normal_tag cancle">取消订单</span>';
 													}
+													html += '<span class="normal_tag cancle">取消订单</span>';
 													html += '</div></li>';
 									}
 			

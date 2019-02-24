@@ -316,8 +316,14 @@
                 mui.fire(list, 'storageAddressValue');
                 mui.back();
                 return false;
-            }
-            else{
+            }else if(myStorage.getItem("serviceOrderAddress")){
+				myStorage.setItem("serviceOrderAddress",item);
+				var list = plus.webview.getWebviewById("submitOrder.html");
+				mui.fire(list, 'serviceOrderAddress');
+				mui.back();
+				return false;
+				
+			}else{
 
                myStorage.setItem("addressItem", item);
 				Global.openWindow({

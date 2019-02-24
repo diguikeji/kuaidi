@@ -52,7 +52,7 @@ function modalPay()
     pay($('input:radio[name="radio1"]:checked').val());
 }
 
-var payType;
+var payType, address_id;
 // 2. 发起支付请求
 function pay(payWay) {
     // 从服务器请求支付订单
@@ -82,13 +82,18 @@ function pay(payWay) {
 	}else{
 		url = "service/orders/"+id+"/pay";
 	}
+	
+	var params = {
+		pay_method:PAYSERVER
+	}
+	if(payType){
+		params.address_id: address_id
+	}
 
     Global.commonAjax({
         url: url,
         method: 'POST',
-        data:{
-            pay_method:PAYSERVER
-        }
+        data:params
     }, function(data){
 
         console.log("支付接口");
