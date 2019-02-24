@@ -177,6 +177,7 @@
 		Global.commonAjax({
 			url: 'profile'
 		}, function(data){
+			console.log("个人信息");
 			console.log(JSON.stringify(data));
 			myStorage.setItem("user", data);
 			$(".money_num").html(data.total_balance);

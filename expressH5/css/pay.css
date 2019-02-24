@@ -215,7 +215,7 @@
     left: 0;
     background: rgba(0, 0, 0, 0.4);
     overflow: hidden;
-    z-index: 10;
+    z-index: 20000;
     color: #fff;
     justify-content: center;
     align-items: center;

@@ -203,6 +203,9 @@
 					
                 },
 				function(data) {
+					console.log("地址");
+					console.log(JSON.stringify(data));
+					
 					if(!data){
 						$(".empty_text").show();
 						$("#pullrefresh").hide();

@@ -87,7 +87,7 @@
 .yunfei-col .yunfei-list li .middle input{background:transparent;border:0;padding:0 0.2rem 0 0.7rem;position:relative;top:-0.02rem;box-sizing: border-box;font-size:0.14rem;}
 
 .yunfei-img-list{padding:0 0 0 15px;box-sizing: border-box;}
-.yunfei-img-list .swiper-slide img{width:0.47rem;}
+.yunfei-img-list .swiper-slide img{width:0.47rem;height:0.47rem;}
 .yunfei-img-list .swiper-slide{border:1px solid rgba(243, 243, 243, 1);
     box-shadow:0px 2px 6px 0px rgba(126,125,125,0.14);text-align: center;padding:0.16rem 0.15rem 0.05rem 0.15rem;position: relative;background: #fff;border-radius:4px;}
 .yunfei-img-list .swiper-slide p{font-size:0.12rem;margin-bottom:0;}

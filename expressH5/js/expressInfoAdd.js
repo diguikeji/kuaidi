@@ -17,9 +17,22 @@ $(".address-tab .address-col").click(function()
 
 });
 
+var channel;
+var channels;
+var id;
+
 mui.plusReady(function() {
     commonEvent();
     httpRequest();
+
+    plus.payment.getChannels(function(cs) {
+            channels = cs;
+            console.log(JSON.stringify(channels));
+
+        },
+        function(e) {
+            //alert("获取支付通道失败：" + e.message);
+        });
 
     window.addEventListener('storageAddressValue', function(event) {
         var addressObj=myStorage.getItem("storageAddressValue");
@@ -548,6 +561,7 @@ function submitData() {
 
     console.log(JSON.stringify(paramObj));
 
+
     Global.commonAjax({
             url: "express/orders",
             method:"POST",
@@ -556,7 +570,20 @@ function submitData() {
         function(data) {
             console.log("提交订单");
             mui.toast("提交成功");
-            mui.back();
+
+            id=data.id;
+
+            if(myStorage.getItem("storageExpressType")==2)
+            {
+                mui.back();
+
+            }
+            else {
+                payModal($("#priceText").text());
+            }
+
+
+
             console.log(JSON.stringify(data));
         },
         function(err) {

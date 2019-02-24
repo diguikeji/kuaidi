@@ -109,6 +109,7 @@ var Global = {};
 				Global.commonAjax({
 					url: 'profile'
 				}, function(data){
+					console.log("用户数据");
 					console.log(JSON.stringify(data));
 					myStorage.setItem("user", data);
 					$("#qiye").text(data.company_id);
@@ -437,7 +438,6 @@ function  bindQiye()
             		mui.toast("企业号不能为空");
             		return;
             	}
-            
             	//绑定
 				Global.commonAjax({
 	                    url: "user/company",
@@ -445,10 +445,10 @@ function  bindQiye()
 	                    data:{
 	                    	code:inputValue
 	                    }
-						
 	            },
 				function(data) {
 					console.log("绑定");
+					console.log(JSON.stringify(data));
 					mui.toast("绑定成功");
 					Global.refreshUser();
 					console.log(JSON.stringify(data));

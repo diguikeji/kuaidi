@@ -216,11 +216,11 @@
 		var user=myStorage.getItem("user");
 
 
-		if (!user.company_id) {
+		if (!user.companies) {
 			$("#qiye").text("未设置");
 		}
 		else {
-			$("#qiye").text(user.company_id);
+			$("#qiye").text(user.companies[0].code);
 		}
 
 		$("#bind").click(function()
