@@ -315,10 +315,15 @@ function countFeiyong()
             else {
                 var dataPrice=$(".yunfei-img-list .swiper-slide.active").attr("data-price");
                 console.log("dataPrice:"+dataPrice);
+                
                 if (dataPrice > 10000) {
                     $("#priceText").text("￥请与工作人员联系").addClass("small");
                     $("#priceText").attr("data-price",0);
                 } else {
+                	if(!dataPrice)
+                	{
+                		dataPrice="--";
+                	}
                     $("#priceText").text("￥"+dataPrice).removeClass("small");
                     $("#priceText").attr("data-price",dataPrice);
                 }
