@@ -217,14 +217,17 @@ mui(".yunfei-img-list").on('tap','.swiper-slide',function(event)
     if(is_freight_collect==1)
     {
         $("#priceText").text("到付");
+        $("#priceText").attr("data-price",0);
     }
     else {
         var dataPrice=$(".yunfei-img-list .swiper-slide.active").attr("data-price");
         console.log("dataPrice:"+dataPrice);
         if (dataPrice > 10000) {
-            $("#priceText").text("请与工作人员联系").addClass("small");
+            $("#priceText").text("￥请与工作人员联系").addClass("small");
+            $("#priceText").attr("data-price",0);
         } else {
-            $("#priceText").text(dataPrice).removeClass("small");
+            $("#priceText").text("￥"+dataPrice).removeClass("small");
+            $("#priceText").attr("data-price",dataPrice);
         }
     }
 
@@ -289,10 +292,10 @@ function countFeiyong()
 
                 for(var i=0;i<data.length;i++)
                 {
-
+                    var priceValue=data[i].price>=1000?'--':data[i].price;
                     html=html+'<div class="swiper-slide express-com-'+data[i].company.id+'" data-price="'+data[i].price+'" data-id="'+data[i].company.id+'">' +
                         '<div><img src="'+data[i].company.logo_url+'"/></div>' +
-                        '<p>'+data[i].company.name+'</p><div class="bottom express-jiage'+data[i].company.id+'">￥'+data[i].price+'</div>' +
+                        '<p>'+data[i].company.name+'</p><div class="bottom express-jiage'+data[i].company.id+'">￥'+priceValue+'</div>' +
                         '</div>';
                 }
 
@@ -306,15 +309,18 @@ function countFeiyong()
                 
             if(is_freight_collect==1)
             {
-                $("#priceText").text("到付");
+                $("#priceText").text("￥到付");
+                $("#priceText").attr("data-price",0);
             }
             else {
                 var dataPrice=$(".yunfei-img-list .swiper-slide.active").attr("data-price");
                 console.log("dataPrice:"+dataPrice);
                 if (dataPrice > 10000) {
-                    $("#priceText").text("请与工作人员联系").addClass("small");
+                    $("#priceText").text("￥请与工作人员联系").addClass("small");
+                    $("#priceText").attr("data-price",0);
                 } else {
-                    $("#priceText").text(dataPrice).removeClass("small");
+                    $("#priceText").text("￥"+dataPrice).removeClass("small");
+                    $("#priceText").attr("data-price",dataPrice);
                 }
             }
 
@@ -640,7 +646,7 @@ function submitData() {
 
             }
             else {
-                payModal($("#priceText").text());
+                payModal($("#priceText").attr("data-price"));
             }
 
 
