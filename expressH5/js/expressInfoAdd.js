@@ -186,11 +186,15 @@ function  httpRequest()
 
 }
 
-
+var swiper;
 function initExpressList()
 {
+    if(swiper)
+    {
+        swiper.destroy();
+    }
 
-    var swiper = new Swiper('.swiper-container', {
+    swiper = new Swiper('.swiper-container', {
         slidesPerView: 3.6,
         spaceBetween: 15,
         pagination: {
@@ -201,21 +205,32 @@ function initExpressList()
 
      $(".yunfei-img-list .swiper-slide:first-child").addClass("active");
 
-
-        $(".yunfei-img-list .swiper-slide").click(function()
-        {
-            $(".yunfei-img-list .swiper-slide").removeClass("active");
-            $(this).addClass("active");
-
-            if(window.location.href.indexOf("expressInfoAdd")>-1)
-            {
-                countFeiyong();
-            }
-
-        });
-
-
 }
+
+mui(".yunfei-img-list").on('tap','.swiper-slide',function(event)
+{
+    $(".yunfei-img-list .swiper-slide").removeClass("active");
+    $(this).addClass("active");
+    var is_freight_collect = $("#payWaySelect .text").text();
+    console.log("is_freight_collect:"+is_freight_collect);
+    is_freight_collect = is_freight_collect == "到付" ? 1 : 0;
+    if(is_freight_collect==1)
+    {
+        $("#priceText").text("到付");
+    }
+    else {
+        var dataPrice=$(".yunfei-img-list .swiper-slide.active").attr("data-price");
+        console.log("dataPrice:"+dataPrice);
+        if (dataPrice > 10000) {
+            $("#priceText").text("请与工作人员联系").addClass("small");
+        } else {
+            $("#priceText").text(dataPrice).removeClass("small");
+        }
+    }
+
+
+});
+
 
 function countFeiyong()
 {
@@ -238,7 +253,7 @@ function countFeiyong()
         create_type=$("#kuaidiType .tag-list .active").attr("data-type");
     }
 
-    var is_freight_collect = $("#payWaySelect .text").val();
+    var is_freight_collect = $("#payWaySelect .text").text();
     is_freight_collect = is_freight_collect == "到付" ? 1 : 0;
 
 
@@ -267,15 +282,25 @@ function countFeiyong()
             console.log(JSON.stringify(data));
 
 
-            for(var i in data) {
-                if ((data[i] == 0) || (data[i] > 10000)) {
-                    $(".express-com-"+i).hide();
-                    $(".express-jiage"+i).text("无");
-                } else {
-                    $(".express-com-"+i).show();
-                    $(".express-jiage"+i).text("￥"+data[i]);
+            if(data)
+            {
+                var html="";
+                $(".swiper-wrapper").empty();
+
+                for(var i=0;i<data.length;i++)
+                {
+
+                    html=html+'<div class="swiper-slide express-com-'+data[i].company.id+'" data-price="'+data[i].price+'" data-id="'+data[i].company.id+'">' +
+                        '<div><img src="'+data[i].company.logo_url+'"/></div>' +
+                        '<p>'+data[i].company.name+'</p><div class="bottom express-jiage'+data[i].company.id+'">￥'+data[i].price+'</div>' +
+                        '</div>';
                 }
-            } 
+
+                $(".swiper-wrapper").append(html);
+
+                initExpressList();
+
+            }
 
             console.log("is_freight_collect:"+is_freight_collect);
                 
@@ -284,12 +309,12 @@ function countFeiyong()
                 $("#priceText").text("到付");
             }
             else {
-                var dataId=$(".yunfei-img-list .swiper-slide.active").attr("data-id");
-                console.log("dataId:"+dataId);
-                if (data[dataId] > 10000) {
+                var dataPrice=$(".yunfei-img-list .swiper-slide.active").attr("data-price");
+                console.log("dataPrice:"+dataPrice);
+                if (dataPrice > 10000) {
                     $("#priceText").text("请与工作人员联系").addClass("small");
                 } else {
-                    $("#priceText").text(data[dataId]).removeClass("small");
+                    $("#priceText").text(dataPrice).removeClass("small");
                 }
             }
 
@@ -527,7 +552,7 @@ function submitData() {
     }
 
 
-    var is_freight_collect = $("#payWaySelect .text").val();
+    var is_freight_collect = $("#payWaySelect .text").text();
     is_freight_collect = is_freight_collect == "到付" ? 1 : 0;
 
     var is_print = $("#is_print").hasClass("mui-active");
