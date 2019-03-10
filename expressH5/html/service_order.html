@@ -400,9 +400,10 @@
 							for (var i = 0; i < data.data.length; i++) {
 								var item = data.data[i];
 								var product = item.product;
+								var created_at = item.created_at?item.created_at.split(" ")[0]:'';
 								html += '<li class=" mui-table-view-cell-item item_wrap col_between" data-id="' + item.id + '">' +
 									'<div class="row_between title_wrap">' +
-									'<span>' + item.created_at.split(" ")[0] + '</span>' +
+									'<span>' + created_at + '</span>' +
 									'<div class="row_center item_status" style="color:' + item.status_text.color + '">' +
 									'<span class="dian">·</span>' +
 									'<span>&nbsp;' + item.status_text.text + '</span>' +
