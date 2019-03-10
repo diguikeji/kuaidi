@@ -355,8 +355,8 @@ function baojiaHttp()
         var express_company_id=$(".yunfei-img-list .active").attr("data-id");
         var package=$("#wupinSelect .text").text();
 
-        var weight=parseInt($(".sub-value").next().text(), 10);
-        console.log($(".sub-value").next())
+        var weight=parseInt($(".weight-value").text());
+        console.log($(".weight-value").next())
 
         var type=myStorage.getItem("storageExpressType");
         var create_type=myStorage.getItem("storageExpressCreateType");
@@ -373,7 +373,7 @@ function baojiaHttp()
             weight:weight,
             insured_value:insured_value,
         };
-
+        
         Global.commonAjax({
                 url: "express/insurance/calculate",
                 method:"POST",
@@ -554,7 +554,8 @@ function submitData() {
     var express_company_id = $(".yunfei-img-list .active").attr("data-id");
     var package = $("#wupinSelect .text").text();
 
-    var weight = parseInt($(".sub-value").next().text());
+    var weight = parseInt($(".weight-value").text());
+    
 
     var comment = $("#beizhuWenzi .beizhu").text();
 

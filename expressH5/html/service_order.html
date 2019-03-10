@@ -383,9 +383,14 @@
 									for(var i=0;i<data.data.length;i++){
 										var item = data.data[i];
 										var product = item.product;
+										var created_at=item.created_at?item.created_at.split(" ")[0]:"";
+										var proImg=product?product.img:"";
+										var proName=product?product.name:"";
+										var proPrice=product?product.price:"";
+										
 										html += '<li class=" mui-table-view-cell-item item_wrap col_between" data-id="'+item.id+'">'+
 													'<div class="row_between title_wrap">'+
-														'<span>'+ item.created_at.split(" ")[0]+'</span>'+
+														'<span>'+created_at+'</span>'+
 														'<div class="row_center item_status" style="color:'+item.status_text.color+'">'+
 																'<span class="dian">·</span>'+ 
 																'<span>&nbsp;'+item.status_text.text+'</span>'+
@@ -393,20 +398,19 @@
 													'<div class=" content_wrap">'+
 														'<div class="col_between border">'+
 															'<div class="content_up">'+
-																'<img src="'+product.img+'" />'+
-																'<span class="content_center">'+product.name+'</span>'+
+																'<img src="'+proImg+'" />'+
+																'<span class="content_center">'+proName+'</span>'+
 																'<div class="content_end">'+
-																	'<span>￥'+product.price+'</span>'+
+																	'<span>￥'+proPrice+'</span>'+
 																	'<span class="number">x'+item.amounts+'</span>'+
 																'</div>'+
 															'</div>'+
 															'<div class="content_down">'+
 																'<span class="first_txt">共 <span class="num">'+item.amounts+'</span> 件</span>'+
 																'<span class="sencod_txt"> 应付金额:'+
-																	'<span class="money">￥</span><span class="money_num">'+product.price*item.amounts+'</span>'+
+																	'<span class="money">￥</span><span class="money_num">'+proPrice*item.amounts+'</span>'+
 																	'<span class="num_float">.00</span>'+
 																'</span></div></div></div>'+
-													
 													'<div class="row item_down">';
 													if(item.can_confirm){
 														//可以取消
