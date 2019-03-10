@@ -94,8 +94,8 @@
 			</li>
 			<li onclick="goToLogin();">
 				<div class="badge_wrap">
-				<img src="../images/wode/wode_16.jpg">
-				<p>活动</p>
+				<img src="../images/wode/wode_22_2.png">
+				<p>地址</p>
 				<span class="badge events_count hideClass">1</span>
 				</div>
 			</li>
@@ -110,15 +110,6 @@
 
 
 		<ul class="my-dianji">
-			<li onclick="goToAddress();">
-				<span class="icon">
-				<img src="../images/wode/wode_29.jpg">
-				</span>
-				<span class="text">我的地址</span>
-				<span class="right">
-					<span class="right-text addresses_count">2</span> <span class="mui-icon mui-icon-forward"></span>
-				</span>
-			</li>
 			<li>
 				<span class="icon">
 				<img src="../images/wode/wode_32.jpg">
@@ -269,7 +260,6 @@
 	//地址
 	function goToAddress(){
 		myStorage.setItem("storageSelectAddressValue",0);
-		myStorage.setItem("serviceOrderAddress","");
 		Global.openWindow({
 		    url: 'my_address.html',
 		    id: 'my_address.html',

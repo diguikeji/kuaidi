@@ -1,365 +1,347 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="utf-8">
-		<title>快递</title>
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<link rel="stylesheet" href="../css/app.css">
-		<link rel="stylesheet" href="../css/page.css">
-		<link rel="stylesheet" href="../css/mui.min.css">
-		<link rel="stylesheet" href="../css/secondPage.css">
-		<style>
-			body,.mui-content{background: #fff!important;}
-			#pullrefresh{margin-top:3.95rem;}
-
-		</style>
-		
-		
-		
-	</head>
-
-	<body>
-
-
-	<div class="header-bar">
-
-		<div class="header-left" onclick="mui.back();">
-			<img src="../images/back.png"/>
-		</div>
-
-		<div class="header-title color">上海歌斐中心</div>
-
-
-	</div>
-
-
-
-	<div class="has-header express-col">
-
-		<div class="top-col clearfix">
-			<span class="left"><span class="blue">快递</span>服务</span>
-
-			<span class="right" onclick="openWindowPage('expressSearch.html')">
-				<img src="../images/firstPageLive/icon2.png"/>
-				单号搜索
-			</span>
-		</div>
-
-
-		<div class="express-img hide">
-			<div class="express-img-list clearfix">
-			<div data-url='personExpress.html' data-type="2">
-				<img src="../images/secondPage/express_10.jpg"/>
-			</div>
-			<div data-url='personExpress.html' data-type="1">
-				<img src="../images/secondPage/express_11.jpg"/>
-			</div>
-			<div data-url='expressSearch.html'>
-				<img src="../images/secondPage/express_14.jpg"/>
-			</div>
-			<div data-url='expressQianshou.html'>
-				<img src="../images/secondPage/express_15.jpg"/>
-			</div>
-		</div>
-		</div>
-
-		<div class="main-tab-col">
-			<span class="middle-tab-col">
-			<span class="active" data-type="1">寄件记录</span>
-			<span data-type="2">收件记录</span>
-			</span>
-		</div>
-
-
-		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
-
-			<div class="mui-scroll">
-
-		
-		<div class="tab-col-detail-list">
-
-			<div class="tab-col-detail">
-			<ul class="express-list" id="expressList1">
-
-
-			</ul>
-
-				<div class="empty_text hideClass" id="empty_text1">
-					数据为空
-				</div>
-			</div>
-
-			<div class="tab-col-detail hide">
-				<ul class="express-list" id="expressList2">
-
-
-				</ul>
-
-				<div class="empty_text hideClass" id="empty_text2">
-					数据为空
-				</div>
-			</div>
-
-
-		</div>
-
-		</div>
-
-		</div>
-
-
-
-	</div>
-
-		<script src="../js/mui.min.js"></script>
-	    <script src="../js/jquery-2.1.1.min.js"></script>
-	   <script src="../js/myStorage.js"></script>
-		<script src="../js/app.js"></script>
-		<script>
-
-			var isHome=GetQueryString("home");
-			if(!isHome)
-			{
-				$(".express-img").show();
-			}
-			else {
-				$("#pullrefresh").css("margin-top","1.8rem");
-			}
-			
-	var page1=1;
-	var isEnd1=0;
-
-	var page2=1;
-	var isEnd2=0;
-			
-	var h5pullDown = true;
-	mui.init({
-		pullRefresh: {
-			container: '#pullrefresh',
-			down: {
-				callback: pulldownRefresh
-			},
-			up: {
-				contentrefresh: '正在加载...',
-				callback: pullupRefresh
-			}
-		}
-	});
-	/**
-	 * 下拉刷新具体业务实现
-	 */
-	function pulldownRefresh() {
-		setTimeout(function() {
-			
-			if($(".middle-tab-col .active").attr("data-type")==1)
-			{
-				page1=1;
-				$("#expressList1").empty();
-				getData(page1,1);
-			}
-			else {
-				page2=1;
-				$("#expressList2").empty();
-				getData(page2,2);
-			}
-
-			mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
-
-		}, 1500);
-	}
-	var count = 0;
-	/**
-	 * 上拉加载具体业务实现
-	 */
-	function pullupRefresh() {
-		setTimeout(function() {
-			 //参数为true代表没有更多数据了。
-
-			if($(".middle-tab-col .active").attr("data-type")==1)
-			{
-				getData(page1,1);
-				mui('#pullrefresh').pullRefresh().endPullupToRefresh(isEnd1);
-			}
-			else {
-				getData(page2,2);
-				mui('#pullrefresh').pullRefresh().endPullupToRefresh(isEnd2);
-			}
-
-		}, 1500);
-	}
-
-
-			function getData(page,type)
-			{
-				Global.commonAjax({
-							url: "express/orders?type="+type+"&page="+page
-
-						},
-						function(data) {
-
-							console.log("订单列表");
-							console.log(JSON.stringify(data));
-
-							if(data)
-							{
-								var html="";
-								data=data.data;
-								if(data.length>0) {
-
-									for (var i = 0; i < data.length; i++) {
-										//console.log(JSON.stringify(data.data[i]));
-
-										var expressObj=findExpressCompany(data[i].express_company_id);
-
-										html = html + '<li data-id="' + data[i].id + '"><div class="clearfix top">' +
-												'<div class="left">' +
-												'<div class="name">' + data[i].from_name + '</div>' +
-												'<p>' + data[i].from_province + data[i].from_city + data[i].from_area + '</p>' +
-												'</div>' +
-												'<img class="middle-img" src="../images/secondPage/express_22.jpg">' +
-												'<div class="right">' +
-												'<div class="name">' + data[i].to_name + '</div>' +
-												'<p>' + data[i].to_province + data[i].to_city + data[i].to_area + '</p>' +
-												'</div>' +
-												'</div>' +
-												'<div class="middle">' +
-												'<span class="first" style=' + data[i].status_text.color + '><span style=' + data[i].status_text.color + '></span>' + data[i].status_text.text + '</span>' +
-												'<span class="second">' + data[i].to_detail + '</span>' +
-												'</div>' +
-												'<div class="bottom">' +
-												'<img src="'+expressObj.logo_url+'"/>' +
-												'<span class="first">'+expressObj.name+'</span>' +
-												'<span>' + data[i].express_sn + '</span>' +
-												'</div>' +
-												'</li>';
-									}
-
-									$("#expressList" + type).append(html);
-
-									if($(".middle-tab-col .active").attr("data-type")==1) {
-										page1++;
-									}
-									else {
-										page2++;
-									}
-
-								}
-								else {
-
-									if($(".middle-tab-col .active").attr("data-type")==1) {
-										isEnd1=1;
-									}
-									else {
-										isEnd2=1;
-									}
-
-								}
-
-							}
-
-						},
-						function(err) {
-
-							console.log("err");
-
-						})
-			}
-
-
-			mui.plusReady(function() {
-				commonEvent();
-				getData(page1,1);
-				getData(page2,2);
-				getAllExpressCompany();
-			});
-
-			function  getAllExpressCompany()
-			{
-				Global.commonAjax({
-							url: "express/companies"
-
-						},
-						function(data) {
-
-							console.log("获取所有快递公司")
-							console.log(JSON.stringify(data));
-
-							if(data)
-							{
-								myStorage.setItem("expressCompanies",data);
-
-							}
-
-						},
-						function(err) {
-							console.log("获取所有快递公司"+JSON.stringify(err));
-						})
-			}
-
-
-
-			
-			mui("body").on('tap','.express-img-list div',function(event){
-				
-				var user=myStorage.getItem("user");
-				console.log(JSON.stringify(user));
-				
-				var url=$(this).attr("data-url");
-
-				if($(this).attr("data-type")==2)
-				{
-					if(user.companies.length==0)
-					{
-						bindQiye();
-						return;
-					}
-
-				}
-
-				myStorage.setItem("storageExpressType",parseInt($(this).attr("data-type")));
-				//alert(myStorage.getItem("storageExpressType"));
-				openWindowPage(url);
-
-
-			});
-
-			
-			
-			mui("body").on('tap','.middle-tab-col span',function(event){
-
-			    
-			    $(".middle-tab-col span").removeClass("active");
-				$(this).addClass("active");
-
-				$(".tab-col-detail-list .tab-col-detail").hide();
-				$(".tab-col-detail-list .tab-col-detail").eq($(this).index()).show();
-			
-			});
-
-
-
-
-			
-			mui('.express-list').on('tap','li',function(){
-
-				var id=$(this).attr("data-id");
-
-				Global.openWindow({
-					url:"expressDetail.html?id="+id,
-					id: "expressDetail.html",
-					waiting: {
-						autoShow: false
-					}
-				})
-				
-				
-			});
-			
-
-		</script>
-	</body>
+<head>
+    <meta charset="utf-8">
+    <title>快递</title>
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/page.css">
+    <link rel="stylesheet" href="../css/mui.min.css">
+    <link rel="stylesheet" href="../css/secondPage.css">
+    <style>
+        body,
+        .mui-content {
+            background: #fff !important;
+        }
+        #pullrefresh {
+            margin-top: 3.95rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-bar">
+        <div class="header-left" onclick="mui.back();">
+            <img src="../images/back.png" />
+        </div>
+        <div class="header-title color">上海歌斐中心</div>
+    </div>
+    <div class="has-header express-col">
+        <div class="top-col clearfix">
+            <span class="left"><span class="blue">快递</span>服务</span>
+            <span class="right" onclick="openWindowPage('expressSearch.html')">
+                <img src="../images/firstPageLive/icon2.png" />
+                单号搜索
+            </span>
+        </div>
+        <div class="express-img hide">
+            <div class="express-img-list clearfix">
+                <div data-url='personExpress.html' data-type="2">
+                    <img src="../images/secondPage/express_10.jpg" />
+                </div>
+                <div data-url='personExpress.html' data-type="1">
+                    <img src="../images/secondPage/express_11.jpg" />
+                </div>
+                <div data-url='expressSearch.html'>
+                    <img src="../images/secondPage/express_14.jpg" />
+                </div>
+                <div data-url='expressQianshou.html'>
+                    <img src="../images/secondPage/express_15.jpg" />
+                </div>
+            </div>
+        </div>
+        <div class="main-tab-col">
+            <span class="middle-tab-col">
+                <span class="active" data-type="1">寄件记录</span>
+                <span data-type="2">收件记录</span>
+            </span>
+        </div>
+        <div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+            <div class="mui-scroll">
+                <div class="tab-col-detail-list">
+                    <div class="tab-col-detail">
+                        <ul class="express-list" id="expressList1">
+                        </ul>
+                        <div class="empty_text hideClass" id="empty_text1">
+                            数据为空
+                        </div>
+                    </div>
+                    <div class="tab-col-detail hide">
+                        <ul class="express-list" id="expressList2">
+                        </ul>
+                        <div class="empty_text hideClass" id="empty_text2">
+                            数据为空
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/html" id="orderList">
+        {{each data as order j}}
+        <li data-id="{{order}}">
+        <div class="clearfix top">
+            <div class="left">
+                <div class="name"> {{order.from_name}} </div>
+                <p> {{order.from_province}} {{order.from_city}} {{order.from_area}}</p>
+            </div>
+            <img class="middle-img" src="../images/secondPage/express_22.jpg">
+            <div class="right">
+                <div class="name"> {{order.to_name}} </div>
+                <p> {{order.to_province}} {{order.to_city}} {{order.to_area}}</p>
+            </div>
+            </div>
+            <div class="middle">
+            <span class="first" style="color:{{order.status_text.color}}"><span style="color: {{order.status_text.color}};"></span> {{order.status_text.text}}</span>
+            <span class="second"> {{order.to_detail}}</span>
+            </div>
+            <div class="bottom">
+                <img src="{{order.express_company.logo_url}}"/>
+                <span class="first">{{ order.express_company.name }}</span>
+                <span>{{order.express_sn}}</span>
+            </div>
+            </li>
+        {{/each}}
+    </script>
+
+    <script src="../js/mui.min.js"></script>
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="../lib/artTemplate.js"></script>
+    <script src="../js/myStorage.js"></script>
+    <script src="../js/app.js"></script>
+    <script>
+
+        var isHome = GetQueryString("home");
+        if (!isHome) {
+            $(".express-img").show();
+        }
+        else {
+            $("#pullrefresh").css("margin-top", "1.8rem");
+        }
+
+        var page1 = 1;
+        var isEnd1 = 0;
+
+        var page2 = 1;
+        var isEnd2 = 0;
+
+        var h5pullDown = true;
+        mui.init({
+            pullRefresh: {
+                container: '#pullrefresh',
+                down: {
+                    callback: pulldownRefresh
+                },
+                up: {
+                    contentrefresh: '正在加载...',
+                    callback: pullupRefresh
+                }
+            }
+        });
+        /**
+         * 下拉刷新具体业务实现
+         */
+        function pulldownRefresh() {
+            setTimeout(function () {
+
+                if ($(".middle-tab-col .active").attr("data-type") == 1) {
+                    page1 = 1;
+                    $("#expressList1").empty();
+                    getData(page1, 1);
+                }
+                else {
+                    page2 = 1;
+                    $("#expressList2").empty();
+                    getData(page2, 2);
+                }
+
+                mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+
+            }, 1500);
+        }
+        var count = 0;
+        /**
+         * 上拉加载具体业务实现
+         */
+        function pullupRefresh() {
+            setTimeout(function () {
+                //参数为true代表没有更多数据了。
+
+                if ($(".middle-tab-col .active").attr("data-type") == 1) {
+                    getData(page1, 1);
+                    mui('#pullrefresh').pullRefresh().endPullupToRefresh(isEnd1);
+                }
+                else {
+                    getData(page2, 2);
+                    mui('#pullrefresh').pullRefresh().endPullupToRefresh(isEnd2);
+                }
+
+            }, 1500);
+        }
+
+
+        function getData(page, type) {
+            Global.commonAjax({
+                url: "express/orders?type=" + type + "&page=" + page
+            },
+                function (data) {
+
+                    console.log("订单列表");
+                    console.log(JSON.stringify(data.data));
+
+                    if (data) {
+                        var html = "";
+                        data = data.data;
+                        if (data.length > 0) {
+
+                            // for (var i = 0; i < data.length; i++) {
+                            //     //console.log(JSON.stringify(data.data[i]));
+
+                            //     var expressObj = findExpressCompany(data[i].express_company_id);
+
+                            //     html = html + '<li data-id="' + data[i].id + '"><div class="clearfix top">' +
+                            //         '<div class="left">' +
+                            //         '<div class="name">' + data[i].from_name + '</div>' +
+                            //         '<p>' + data[i].from_province + data[i].from_city + data[i].from_area + '</p>' +
+                            //         '</div>' +
+                            //         '<img class="middle-img" src="../images/secondPage/express_22.jpg">' +
+                            //         '<div class="right">' +
+                            //         '<div class="name">' + data[i].to_name + '</div>' +
+                            //         '<p>' + data[i].to_province + data[i].to_city + data[i].to_area + '</p>' +
+                            //         '</div>' +
+                            //         '</div>' +
+                            //         '<div class="middle">' +
+                            //         '<span class="first" style=' + data[i].status_text.color + '><span style=' + data[i].status_text.color + '></span>' + data[i].status_text.text + '</span>' +
+                            //         '<span class="second">' + data[i].to_detail + '</span>' +
+                            //         '</div>' +
+                            //         '<div class="bottom">' +
+                            //         '<img src="' + expressObj.logo_url + '"/>' +
+                            //         '<span class="first">' + expressObj.name + '</span>' +
+                            //         '<span>' + data[i].express_sn + '</span>' +
+                            //         '</div>' +
+                            //         '</li>';
+                            // }
+
+                            // $("#expressList" + type).append(html);
+                            render('#expressList1', 'orderList', {data: data}, true) 
+
+                            if ($(".middle-tab-col .active").attr("data-type") == 1) {
+                                page1++;
+                            }
+                            else {
+                                page2++;
+                            }
+                        }
+                        else {
+
+                            if ($(".middle-tab-col .active").attr("data-type") == 1) {
+                                isEnd1 = 1;
+                            }
+                            else {
+                                isEnd2 = 1;
+                            }
+
+                        }
+
+                    }
+                },
+                function (err) {
+                    console.log("err");
+                })
+        }
+
+
+        mui.plusReady(function () {
+            commonEvent();
+            getData(page1, 1);
+            getData(page2, 2);
+            getAllExpressCompany();
+        });
+
+        function getAllExpressCompany() {
+            Global.commonAjax({
+                url: "express/companies"
+
+            },
+                function (data) {
+
+                    console.log("获取所有快递公司")
+                    console.log(JSON.stringify(data));
+
+                    if (data) {
+                        myStorage.setItem("expressCompanies", data);
+
+                    }
+
+                },
+                function (err) {
+                    console.log("获取所有快递公司" + JSON.stringify(err));
+                })
+        }
+
+
+
+
+        mui("body").on('tap', '.express-img-list div', function (event) {
+
+            var user = myStorage.getItem("user");
+            console.log(JSON.stringify(user));
+
+            var url = $(this).attr("data-url");
+
+            if ($(this).attr("data-type") == 2) {
+                if (user.companies.length == 0) {
+                    bindQiye();
+                    return;
+                }
+
+            }
+
+            myStorage.setItem("storageExpressType", parseInt($(this).attr("data-type")));
+            //alert(myStorage.getItem("storageExpressType"));
+            openWindowPage(url);
+
+
+        });
+
+
+
+        mui("body").on('tap', '.middle-tab-col span', function (event) {
+
+
+            $(".middle-tab-col span").removeClass("active");
+            $(this).addClass("active");
+
+            $(".tab-col-detail-list .tab-col-detail").hide();
+            $(".tab-col-detail-list .tab-col-detail").eq($(this).index()).show();
+
+        });
+
+
+
+
+
+        mui('.express-list').on('tap', 'li', function () {
+
+            var id = $(this).attr("data-id");
+
+            Global.openWindow({
+                url: "expressDetail.html?id=" + id,
+                id: "expressDetail.html",
+                waiting: {
+                    autoShow: false
+                }
+            })
+
+
+        });
+
+
+    </script>
+</body>
 
 </html>

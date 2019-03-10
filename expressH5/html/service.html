@@ -1,55 +1,200 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-	<meta charset="utf-8">
-	<title>服务</title>
-	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<link rel="stylesheet" href="../css/app.css">
-	<link rel="stylesheet" href="../css/firstPage.css">
-	<link rel="stylesheet" href="../css/page.css">
-	<link rel="stylesheet" href="../css/mui.min.css">
-	<style>
-		body{background: #fff!important;}
-		.mui-content{background: #fff;}
-		.top-col{position: relative;box-sizing: border-box;}
-		.top-col .main-img{display: block;width:100%;box-sizing: border-box;}
-		.top-col .text{font-size:17px;position: absolute;width:100%;top:0.30rem;color:#fff;text-align: center;}
-		.top-col .img{width:18px;position: relative;top:0.03rem;margin-left:4px;}
-		.sosuo{padding:0 15px;position: relative;top:-0.24rem;}
-		.sosuo span{position: relative;}
-		.sosuo span img{width:0.16rem;position: absolute;top:0.04rem;left:0.2rem;opacity: 0.6;}
-		.sosuo span input{border:1px solid rgba(221, 221, 221, 1);
-			box-shadow:0px 2px 4px 0px rgba(126,125,125,0.06);
-			border-radius:24px;height:0.49rem;padding-left:0.5rem;font-size:0.16rem;background: #fff;}
-		.imc-col .left{width:32.5%;float:left;}
-		.imc-col .right{width:67.5%;float:right;box-sizing: border-box;padding-left:2px;}
-		.imc-col .right div{width:50%;float:left;box-sizing: border-box;padding:0 2px;}
-		.imc-col .right img{width:100%;}
+    <meta charset="utf-8">
+    <title>服务</title>
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/firstPage.css">
+    <link rel="stylesheet" href="../css/page.css">
+    <link rel="stylesheet" href="../css/mui.min.css">
+    <style>
+        body {
+            background: #fff !important;
+        }
 
-		.bottom-col{position: relative;}
-		.bottom-col .bottom-col-detail p{color:#666666;}
-		.bottom-col .bottom-col-detail{width:100%;top:20%;position: absolute;left:0;text-align: center;}
-		.bottom-col .bottom-col-detail button{border:1px solid #277EFF;color:#277EFF;border-radius: 20px;padding:0.06rem 0.2rem;}
+        .mui-content {
+            background: #fff;
+        }
 
-		.fuwu-first-col .left{height:1.23rem;}
-		.fuwu-first-col .right img{height:0.6rem;}
+        .top-col {
+            position: relative;
+            box-sizing: border-box;
+        }
 
-		.imc-col .right .waimai-col{width:100%;box-shadow: #ddd 0px 0px 2px;margin-top:0.02rem;height:0.76rem;border-radius: 0.02rem;}
-		.imc-col .right .waimai-main{box-sizing: border-box;padding-left:0.03rem;float: none;width:100%;padding-right:0.02rem;}
+        .top-col .main-img {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .top-col .text {
+            font-size: 17px;
+            position: absolute;
+            width: 100%;
+            top: 0.30rem;
+            color: #fff;
+            text-align: center;
+        }
+
+        .top-col .img {
+            width: 18px;
+            position: relative;
+            top: 0.03rem;
+            margin-left: 4px;
+        }
+
+        .sosuo {
+            padding: 0 15px;
+            position: relative;
+            top: -0.24rem;
+        }
+
+        .sosuo span {
+            position: relative;
+        }
+
+        .sosuo span img {
+            width: 0.16rem;
+            position: absolute;
+            top: 0.04rem;
+            left: 0.2rem;
+            opacity: 0.6;
+        }
+
+        .sosuo span input {
+            border: 1px solid rgba(221, 221, 221, 1);
+            box-shadow: 0px 2px 4px 0px rgba(126, 125, 125, 0.06);
+            border-radius: 24px;
+            height: 0.49rem;
+            padding-left: 0.5rem;
+            font-size: 0.16rem;
+            background: #fff;
+        }
+
+        .imc-col .left {
+            width: 32.5%;
+            float: left;
+        }
+
+        .imc-col .right {
+            width: 67.5%;
+            float: right;
+            box-sizing: border-box;
+            padding-left: 2px;
+        }
+
+        .imc-col .right div {
+            width: 50%;
+            float: left;
+            box-sizing: border-box;
+            padding: 0 2px;
+        }
+
+        .imc-col .right img {
+            width: 100%;
+        }
+
+        .bottom-col {
+            position: relative;
+        }
+
+        .bottom-col .bottom-col-detail p {
+            color: #666666;
+        }
+
+        .bottom-col .bottom-col-detail {
+            width: 100%;
+            top: 20%;
+            position: absolute;
+            left: 0;
+            text-align: center;
+        }
+
+        .bottom-col .bottom-col-detail button {
+            border: 1px solid #277EFF;
+            color: #277EFF;
+            border-radius: 20px;
+            padding: 0.06rem 0.2rem;
+        }
+
+        .fuwu-first-col .left {
+            height: 1.23rem;
+        }
+
+        .fuwu-first-col .right img {
+            height: 0.6rem;
+        }
+
+        .imc-col .right .waimai-col {
+            width: 100%;
+            box-shadow: #ddd 0px 0px 2px;
+            margin-top: 0.02rem;
+            height: 0.76rem;
+            border-radius: 0.02rem;
+        }
+
+        .imc-col .right .waimai-main {
+            box-sizing: border-box;
+            padding-left: 0.03rem;
+            float: none;
+            width: 100%;
+            padding-right: 0.02rem;
+        }
 
 
-		.imc-col .right .waimai-col .top-col{position: relative;padding-left:0.42rem;box-sizing: border-box;float:none;width:100%;}
-		.waimai-col .top-col .top-col-left{width:0.29rem;height:0.29rem;border-radius: 50%;float:none;position:absolute;left:0.1rem;top:0.12rem;}
-		.waimai-col .top-col .top-col-right{float:none;width:100%;padding-top:0.08rem;}
-		.waimai-col .top-col .top-col-right p span{color:#666;}
-		.waimai-col .top-col .top-col-right div{float:none;font-size:0.14rem;color:#999;width:100%;}
-		.waimai-col .top-col .top-col-right p{font-size:0.12rem;margin-top:-0.02rem;margin-bottom:0;}
-		.imc-col .right .waimai-col .detail-col{float:none;width:100%;font-size:0.13rem;color:#000;padding-left:0.1rem;}
+        .imc-col .right .waimai-col .top-col {
+            position: relative;
+            padding-left: 0.42rem;
+            box-sizing: border-box;
+            float: none;
+            width: 100%;
+        }
 
-	</style>
+        .waimai-col .top-col .top-col-left {
+            width: 0.29rem;
+            height: 0.29rem;
+            border-radius: 50%;
+            float: none;
+            position: absolute;
+            left: 0.1rem;
+            top: 0.12rem;
+        }
+
+        .waimai-col .top-col .top-col-right {
+            float: none;
+            width: 100%;
+            padding-top: 0.08rem;
+        }
+
+        .waimai-col .top-col .top-col-right p span {
+            color: #666;
+        }
+
+        .waimai-col .top-col .top-col-right div {
+            float: none;
+            font-size: 0.14rem;
+            color: #999;
+            width: 100%;
+        }
+
+        .waimai-col .top-col .top-col-right p {
+            font-size: 0.12rem;
+            margin-top: -0.02rem;
+            margin-bottom: 0;
+        }
+
+        .imc-col .right .waimai-col .detail-col {
+            float: none;
+            width: 100%;
+            font-size: 0.13rem;
+            color: #000;
+            padding-left: 0.1rem;
+        }
+    </style>
 
 
 
@@ -57,286 +202,297 @@
 
 <body>
 
-<div class="mui-content">
-
-	<div class="top-col">
-		<img class="main-img" src="../images/service/fuwu_01.jpg"/>
-
-		<div class="text" id="louyuText"><span>请选择楼宇</span><img class="img" src="../images/firstPageLive/icon1.png" /></div>
-
-	</div>
-
-	<form class="sosuo">
-		<span>
-			<img src="../images/firstPageLive/icon2.png">
-			<input placeholder="请输入您要搜索的单号" id="searchText" type="search" />
-		</span>
-	</form>
-
-
-	<div class="pd">
-
-	<div class="imc-col fuwu-first-col clearfix" >
-
-		<img class="left" onclick="expressPage();" src="../images/service/fuwu_06.jpg"/>
-		<div class="right clearfix">
-			<div onclick="openExpressPage(0)">
-				<img src="../images/service/fuwu_08.jpg">
-			</div>
-			<div onclick="openExpressPage(1)">
-				<img src="../images/service/fuwu_03.jpg">
-			</div>
-			<div onclick="openExpressPage(2)">
-				<img src="../images/service/fuwu_12.jpg">
-			</div>
-			<div onclick="openExpressPage(3)">
-				<img src="../images/service/fuwu_13.jpg">
-			</div>
-
-		</div>
-
-	</div>
-
-	</div>
-
-	<div class="pd" onclick="goToTakeout();">
-
-		<div class="imc-col clearfix" style="margin-bottom:0.1rem;">
-
-			<img class="left" src="../images/service/fuwu_17.jpg"/>
-
-			<div class="right clearfix">
-
-				<img class="hideClass" id="emptyImg" src="../images/service/serviceKong.jpg"/>
-
-				<div class="waimai-main">
-					<div class="waimai-col">
-
-
-
-					</div>
-				</div>
-
-
-
-			</div>
-
-		</div>
-
-	</div>
-
-	<div class="pd">
-
-		<div class="imc-col clearfix" onclick="goToServiceOrder();">
-
-			<img class="left" src="../images/service/fuwu_19.jpg"/>
-
-			<div class="right clearfix">
-				<div>
-					<img src="../images/service/fuwu_21.jpg">
-				</div>
-				<div>
-					<img src="../images/service/fuwu_22.jpg">
-				</div>
-				<div>
-					<img src="../images/service/fuwu_25.jpg">
-				</div>
-				<div>
-					<img src="../images/service/fuwu_26.jpg">
-				</div>
-
-			</div>
-
-		</div>
-
-
-		<div class="bottom-col">
-			<img class="full-img" src="../images/service/bottom.jpg"/>
-			<div class="bottom-col-detail">
-
-				<p>需要更多企业服务?</p>
-
-				<button type="button" onclick="openWindowPage('customize.html')">按需定制服务</button>
-
-			</div>
-
-		</div>
-
-	</div>
-
-
-</div>
-
-<script src="../js/mui.min.js"></script>
-<script src="../js/jquery-2.1.1.min.js"></script>
-<script src="../js/myStorage.js"></script>
-<script src="../js/app.js"></script>
-<script>
-	mui.init();
-	mui.plusReady(function() {
-
-		commonEvent();
-		getData();
-
-	});
-
-	var page=1;
-	function getData(page)
-	{
-		//外卖列表
-		Global.commonAjax({
-					url: "deliveries?page="+page
-
-				},
-				function(data) {
-					console.log("外卖");
-					console.log(JSON.stringify(data));
-					var html="";
-					for(var i=0;i<data.data.length;i++)
-					{
-						html='<div class="top-col">'+
-								'<img class="top-col-left" src="'+data.data[i].logo+'" />'+
-								'<div class="top-col-right">'+
-								'<div>'+data.data[i].resturant_name+'</div>'+
-								'<p>单号：<span>'+data.data[i].sn+'</span></p>'+
-								'</div>'+
-								'</div>'+
-								'<div class="detail-col">'+data.data[i].foods+'</div>';
-
-
-					}
-					$(".waimai-col").html(html);
-
-					if(page==1&&data.data.length==0)
-					{
-						$("#emptyImg").show();
-						$(".waimai-col").hide();
-					}
-
-
-				},
-				function(err) {
-					console.log("外卖失败"+JSON.stringify(err));
-				});
-	}
-
-
-	document.getElementById("searchText").addEventListener("keypress",function(event) {
-		if(event.keyCode == "13") {
-			document.activeElement.blur();//收起虚拟键盘
-
-			Global.openWindow({
-				url: 'expressSearch.html?sn='+$("#searchText").val(),
-				id: 'expressSearch.html',
-				waiting: {
-					autoShow: false
-				}
-			})
-
-			event.preventDefault(); // 阻止默认事件---阻止页面刷新
-		}
-	});
-
-
-function openExpressPage(str)
-{
-	if(str==0)
-	{
-		
-			Global.openWindow({
-					url: 'expressSearch.html',
-					id: 'expressSearch.html',
-					waiting: {
-						autoShow: false
-					}
-				})
-	}
-	else if(str==1)
-	{
-		
-		
-		Global.openWindow({
-					url: 'personExpress.html',
-					id: 'personExpress.html',
-					waiting: {
-						autoShow: false
-					}
-				})
-		
-	}
-	else if(str==2)
-	{
-		
-		Global.openWindow({
-					url: 'expressSearch.html',
-					id: 'expressSearch.html',
-					waiting: {
-						autoShow: false
-					}
-				})
-		
-	}
-	else if(str==3)
-	{
-
-		Global.openWindow({
-					url: 'expressQianshou.html',
-					id: 'expressQianshou.html',
-					waiting: {
-						autoShow: false
-					}
-				})
-		
-	}
-}
-
-
-function expressPage()
-{
-	
-	Global.openWindow({
-		    url: 'express.html',
-		    id: 'express.html',
-		    waiting: {
-		        autoShow: false
-		    }
-		})
-}
-
-	
-	//外卖服务
-	function goToTakeout(){
-		Global.openWindow({
-		    url: 'take_out_order.html',
-		    id: 'take_out_order.html',
-		    waiting: {
-		        autoShow: false
-		    }
-		})
-	} 
-	
-	//企业服务
-	function goToServiceOrder(){
-		Global.openWindow({
-		    url: 'company_service.html',
-		    id: 'company_service.html',
-		    waiting: {
-		        autoShow: false
-		    }
-		})
-	}
-
-	function pulldownRefresh()
-	{
-
-	}
-
-	function pullupRefresh()
-	{
-
-	}
-
-</script>
+    <div class="mui-content">
+
+        <div class="top-col">
+            <img class="main-img" src="../images/service/fuwu_01.jpg" />
+
+            <div class="text" id="louyuText"><span>请选择楼宇</span><img class="img" src="../images/firstPageLive/icon1.png" /></div>
+
+        </div>
+
+        <form class="sosuo">
+            <span>
+                <img src="../images/firstPageLive/icon2.png">
+                <input placeholder="请输入您要搜索的单号" id="searchText" type="search" />
+            </span>
+        </form>
+        <div class="pd">
+            <div class="imc-col fuwu-first-col clearfix">
+                <img class="left" onclick="expressPage();" src="../images/service/fuwu_06.jpg" />
+                <div class="right clearfix">
+                    <div onclick="openExpressPage(0)">
+                        <img src="../images/service/fuwu_08.jpg">
+                    </div>
+                    <div onclick="openExpressPage(1)">
+                        <img src="../images/service/fuwu_03.jpg">
+                    </div>
+                    <div onclick="openExpressPage(2)">
+                        <img src="../images/service/fuwu_12.jpg">
+                    </div>
+                    <div onclick="openExpressPage(3)">
+                        <img src="../images/service/fuwu_13.jpg">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- <div class="pd" onclick="goToTakeout();">
+            <div class="imc-col clearfix" style="margin-bottom:0.1rem;">
+                <img class="left" src="../images/service/fuwu_17.jpg" />
+                <div class="right clearfix">
+                    <img class="hideClass" id="emptyImg" src="../images/service/serviceKong.jpg" />
+                    <div class="waimai-main">
+                        <div class="waimai-col">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="pd">
+
+            <div class="imc-col clearfix">
+
+                <img class="left" src="../images/service/fuwu_19.jpg" onclick="goToServiceOrder();" />
+
+                <div class="right clearfix" id="company_services">
+                    <div onclick="goToServiceOrder(1);">
+                        <img src="../images/service/fuwu_21.jpg">
+                    </div>
+                    <div onclick="goToServiceOrder(2);">
+                        <img src="../images/service/fuwu_22.jpg">
+                    </div>
+                    <div onclick="goToServiceOrder(3);">
+                        <img src="../images/service/fuwu_25.jpg">
+                    </div>
+                    <div onclick="goToServiceOrder(4);">
+                        <img src="../images/service/fuwu_26.jpg">
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-col">
+                <img class="full-img" src="../images/service/bottom.jpg" />
+                <div class="bottom-col-detail">
+                    <p>需要更多企业服务?</p>
+                    <button type="button" onclick="openWindowPage('customize.html')">按需定制服务</button>
+                </div>
+            </div>
+
+        </div>
+
+    <script type="text/html" id="serviceList">
+        {{each data as datum j}}
+            <div>
+                <img src="{{datum.icon}}">
+            </div>
+        {{/each}}
+    </script>
+
+    </div>
+
+    <script src="../js/mui.min.js"></script>
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="../lib/artTemplate.js"></script>
+    <script src="../js/myStorage.js"></script>
+    <script src="../js/app.js"></script>
+    <script>
+        mui.init();
+        mui.plusReady(function () {
+
+            commonEvent();
+            getData();
+
+        });
+
+        var page = 1;
+        function getData(page) {
+            Global.commonAjax({
+                url: "service/types"
+            }, function (data) {
+                // render('#company_services', 'serviceList', { data: data });
+            }, function (err) {
+                console.log("服务类型失败");
+            });
+        
+            Global.commonAjax({
+                url: "deliveries?page=" + page
+
+            },
+                function (data) {
+                    console.log("外卖");
+                    console.log(JSON.stringify(data));
+                    var html = "";
+                    for (var i = 0; i < data.data.length; i++) {
+                        html = '<div class="top-col">' +
+                            '<img class="top-col-left" src="' + data.data[i].logo + '" />' +
+                            '<div class="top-col-right">' +
+                            '<div>' + data.data[i].resturant_name + '</div>' +
+                            '<p>单号：<span>' + data.data[i].sn + '</span></p>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="detail-col">' + data.data[i].foods + '</div>';
+                    }
+                    $(".waimai-col").html(html);
+
+                    if (page == 1 && data.data.length == 0) {
+                        $("#emptyImg").show();
+                        $(".waimai-col").hide();
+                    }
+
+
+                },
+                function (err) {
+                    console.log("外卖失败" + JSON.stringify(err));
+                });
+        }
+
+        document.getElementById("searchText").addEventListener("keypress", function (event) {
+            if (event.keyCode == "13") {
+                document.activeElement.blur();//收起虚拟键盘
+
+                Global.openWindow({
+                    url: 'expressSearch.html?sn=' + $("#searchText").val(),
+                    id: 'expressSearch.html',
+                    waiting: {
+                        autoShow: false
+                    }
+                })
+
+                event.preventDefault(); // 阻止默认事件---阻止页面刷新
+            }
+        });
+
+
+        function openExpressPage(str) {
+            if (str == 0) {
+
+                Global.openWindow({
+                    url: 'personExpress.html',
+                    id: 'personExpress.html',
+                    extras: {
+                        type: 1
+                    },
+                    waiting: {
+                        autoShow: false
+                    }
+                })
+            }
+            else if (str == 1) {
+                Global.openWindow({
+                    url: 'personExpress.html',
+                    id: 'personExpress.html',
+                    extras: {
+                        type: 2
+                    },
+                    waiting: {
+                        autoShow: false
+                    }
+                })
+
+            }
+            else if (str == 2) {
+
+                Global.openWindow({
+                    url: 'expressSearch.html',
+                    id: 'expressSearch.html',
+                    waiting: {
+                        autoShow: false
+                    }
+                })
+
+            }
+            else if (str == 3) {
+
+                Global.openWindow({
+                    url: 'expressQianshou.html',
+                    id: 'expressQianshou.html',
+                    waiting: {
+                        autoShow: false
+                    }
+                })
+
+            }
+        }
+
+
+        function expressPage() {
+
+            Global.openWindow({
+                url: 'express.html',
+                id: 'express.html',
+                waiting: {
+                    autoShow: false
+                }
+            })
+        }
+
+        //外卖服务
+        function goToTakeout() {
+            Global.openWindow({
+                url: 'take_out_order.html',
+                id: 'take_out_order.html',
+                waiting: {
+                    autoShow: false
+                }
+            })
+        }
+
+        //企业服务
+        function goToServiceOrder(type) {
+            if (typeof type !== 'undefined') {
+                switch (type) {
+                    case 1:
+                        name = '饮水服务';
+                        break;
+                    case 2:
+                        name = '保洁服务';
+                        break;
+                    case 3:
+                        name = '商务场地';
+                        break;
+                    case 4:
+                        name = '绿植服务';
+                        break;
+                
+                    default:
+                        break;
+                }
+                myStorage.setItem("localServiceName", name);
+                Global.openWindow({
+                    url: 'post_service_order.html',
+                    id: 'post_service_order.html',
+                    extras: {
+                        type: type
+                    },
+                    waiting: {
+                        autoShow: false
+                    }
+                })
+            } else {
+                Global.openWindow({
+                    url: 'company_service.html',
+                    id: 'company_service.html',
+                    waiting: {
+                        autoShow: false
+                    }
+                })
+            }
+        }
+
+        function pulldownRefresh() {
+
+        }
+
+        function pullupRefresh() {
+
+        }
+
+    </script>
 </body>
 
 </html>

@@ -1,126 +1,147 @@
 <!doctype html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<link href="../css/mui.min.css" rel="stylesheet" />
-		<link href="../css/app.css" rel="stylesheet" />
-		<style type="text/css">
-			body, html{
-				width: 100%;
-				height: 90%;
-				background: #FFFFFF;
-			}
-			
-			::-webkit-input-placeholder{
-				color: #CCCCCC;
-				font-size: 12px;
-			}
-			
-			.empty_text{
-				width: 100%; 
-				height: 400px; 
-				line-height: 400px; 
-				text-align: center;
-				background: #f4f4f4; 
-				border: none; 
-				z-index: 10;
-				background: #f2f2f2;
-			}
-			
-			.input_wrap{
-				width: 90%;
-				height: 0.36rem;
-				margin: 0.15rem 5% 0rem;
-				background-color: #FAFAFA;
-				box-sizing: border-box;
-				border-radius: 0.18rem;
-				padding: 0px 0.15rem;
-				border: 1px solid #E3E3E3;
-			}
-			
-			.input_wrap img{
-				width: 14px;
-				height: 14px;
-				margin-right: 10px;
-			}
-			
-			.input_wrap input{
-				border: none;
-				background-color: transparent;
-				margin: 0px;
-				padding: 0px;
-				text-align: left;
-			}
-			
-			.menu_add{
-				font-size: 14px;
-				color: #107EFF;
-				position: absolute;
-				right: 20px;
-				top: 12px;
-			}
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="../css/mui.min.css" rel="stylesheet" />
+    <link href="../css/app.css" rel="stylesheet" />
+    <style type="text/css">
+        body,
+        html {
+            width: 100%;
+            height: 90%;
+            background: #FFFFFF;
+        }
 
-		</style>
-	</head>
+        ::-webkit-input-placeholder {
+            color: #CCCCCC;
+            font-size: 12px;
+        }
 
-	<body>
-		<header class="mui-bar mui-bar-nav" >
-		    <img src="../images/back.png" class="mui-action-back">
-		    <h1 class="mui-title">我的地址</h1>
-			<span class="menu_add" onclick="goToAddAddr();">新增</span>
-		</header>
-		
-		<div class="mui-content" style="background-color: #FFFFFF;">
-			<div class="row input_wrap">
-				<img src="../images/address/search.png">
-				<input type="search" placeholder="请输入地址" id="searchInput" onkeyup="enterSearch(event)">
-			</div>
-		</div>
-		<script src="../js/mui.min.js"></script>
-		<script src="../js/jquery-2.1.1.min.js"></script>
-		 <script src="../js/app.js"></script>
-		<script type="text/javascript">
-			mui.init({
-				subpages:[{
-					url:'my_address_sub.html',
-					id:'my_address_sub.html',
-					styles:{
-						top: '100px',
-						bottom: '0px'
-					}
-				}]
-			}); 
-			
-			function enterSearch(e){
-				if(e.keyCode == 13){
-					$("#searchInput").blur();
-					sendSearchType($("#searchInput").val());
-				}
-			}
-				
-				function sendSearchType(search){
-					console.log(search)
-					var h = plus.webview.getWebviewById("my_address_sub.html");
-					mui.fire(h,'searchType',{search: search});
-				}
-				
-				function goToAddAddr(){
-					Global.openWindow({
-					    url: 'add_address.html',
-					    id: 'add_address.html',
-					    waiting: {
-					        autoShow: false
-					    },
-					    extras: {
-					        isStep: true
-					    }
-					})
-				}
-			
-		</script>
-	</body>
+        .empty_text {
+            width: 100%;
+            height: 400px;
+            line-height: 400px;
+            text-align: center;
+            background: #f4f4f4;
+            border: none;
+            z-index: 10;
+            background: #f2f2f2;
+        }
+
+        .input_wrap {
+            width: 90%;
+            height: 0.36rem;
+            margin: 0.15rem 5% 0rem;
+            background-color: #FAFAFA;
+            box-sizing: border-box;
+            border-radius: 0.18rem;
+            padding: 0px 0.15rem;
+            border: 1px solid #E3E3E3;
+        }
+
+        .input_wrap img {
+            width: 14px;
+            height: 14px;
+            margin-right: 10px;
+        }
+
+        .input_wrap input {
+            border: none;
+            background-color: transparent;
+            margin: 0px;
+            padding: 0px;
+            text-align: left;
+        }
+
+        .input_wrap input.address_search {
+            font-size: 14px;
+        }
+
+        .menu_add {
+            font-size: 14px;
+            color: #107EFF;
+            position: absolute;
+            right: 20px;
+            top: 12px;
+        }
+        
+        .mui-bar-nav {
+            box-shadow: none;
+            border-bottom: 1px solid #E1E1E1;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="mui-bar mui-bar-nav">
+        <img src="../images/back.png" class="mui-action-back">
+        <h1 class="mui-title">我的地址</h1>
+        <span class="menu_add" onclick="goToAddAddr();">新增</span>
+    </header>
+
+    <div class="mui-content" style="background-color: #FFFFFF;">
+        <div class="row input_wrap">
+            <img src="../images/address/search.png">
+            <input type="search" placeholder="请输入地址" id="searchInput" class="address_search" onkeyup="enterSearch(event)">
+        </div>
+    </div>
+    <script src="../js/mui.min.js"></script>
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="../js/app.js"></script>
+    <script type="text/javascript">
+        mui.init({
+            subpages: [{
+                url: 'my_address_sub.html',
+                id: 'my_address_sub.html',
+                styles: {
+                    top: '100px',
+                    bottom: '0px'
+                }
+            }]
+        });
+                setTimeout(function () {
+                    mui.focus(document.getElementById('searchInput'));
+                    $('#searchInput').focus()
+                }, 150);
+
+        mui.plusReady(function () {
+            setTimeout(function () {
+                mui.focus(document.getElementById('searchInput'));
+                $('#searchInput').focus()
+            }, 150);
+        })
+
+        function enterSearch(e) {
+            if (e.keyCode == 13) {
+                $("#searchInput").blur();
+                sendSearchType($("#searchInput").val());
+            }
+        }
+
+        function sendSearchType(search) {
+            console.log(search)
+            var h = plus.webview.getWebviewById("my_address_sub.html");
+            mui.fire(h, 'searchType', { search: search });
+        }
+
+        function goToAddAddr() {
+            Global.openWindow({
+                url: 'add_address.html',
+                id: 'add_address.html',
+                waiting: {
+                    autoShow: false
+                },
+                extras: {
+                    isStep: true
+                }
+            })
+        }
+
+    </script>
+</body>
 
 </html>

@@ -195,7 +195,7 @@ var Global = {};
 					}else if(xhr.status == 200){
 						
 					}else{
-						errorback("请求出错");
+						errorback(xhr.data.msg);
 					}
 
                 }
@@ -560,6 +560,17 @@ function GetQueryString(name)
 
 
 
+function render(selector, tpl, data, type) {
+	type = arguments[3] || false;
+		// console.log('Render:[D:' + selector + '|M:' + tpl + '|T:' + type + '|D:' + JSON.stringify(data).length)
+	var elem = document.querySelector(selector);
+	var html = template(tpl, data);
+	if(type) {
+		elem.innerHTML += html;
+	} else {
+		elem.innerHTML = html;
+	}
+}
 
 
 	

@@ -75,6 +75,67 @@
 		.swiper-tab-col{overflow:visible!important;}
 		.tab-col{width:100%;overflow: hidden;}
 
+
+			.modal-mask {
+			    width: 100%;
+			    height: 100%;
+			    position: fixed;
+			    top: 0;
+			    left: 0;
+			    background: rgba(0, 0, 0, 0.4);
+			    overflow: hidden;
+			    z-index: 10;
+			    color: #fff;
+			    justify-content: center;
+			    align-items: center;
+			}
+			
+			.modal-dialog {
+			    width: 80%;
+			    height: 2.18rem;
+			    overflow: auto;
+			    border-radius: 0.18rem;
+			    position: relative;
+			    border-radius: 0.04rem;
+				background-color: #FFFFFF;
+			}
+			
+			.close_style {
+			    position: absolute;
+			    top: 0.15rem;
+			    right: 0.15rem;
+			    width: 0.12rem;
+			    height: 0.12rem;
+			    z-index: 100000;
+			}
+			
+			.modal-content {
+			    font-size: 0.12rem;
+			    position: relative;
+			    z-index: 10000;
+			    color: #333333;
+			    background: #ffffff;
+			    padding: 0px;
+			}
+			
+			.modal-content .title{
+				color: #FF5269;
+				font-size: 0.18rem;
+				text-align: center;
+				width: 100%;
+				margin-top: 0.4rem;
+			}
+			
+			.modal-content .img{
+				text-align: center;
+				margin: 0.2rem auto 0.3rem;
+				
+			}
+			
+			.modal-content .img img{
+				width: 2.4rem;
+				height: 0.6rem;
+			}
 	</style>
 
 </head>
@@ -273,6 +334,18 @@
 
 		</div>
 
+		<div class="modal-mask row hideClass">
+		    <div class="modal-dialog">
+		        <img src="../images/login/login_close.png" class="close_style" onclick="closeDialg();" />
+		        <div class="modal-content">
+		            <div class="title">恭喜您获得奖品</div>
+					<div class="img">
+						<img src="../images/fuli/fuliImg.png" onclick="goToCoupon();">
+					</div>
+					<div class="btn" onclick="closeDialg();">确认</div>
+		        </div>
+		    </div>
+		</div>
 
 	</div>
 
@@ -346,20 +419,14 @@
 
 	$(".fuli-temai-list li").click(function()
 	{
-
-		
-		
-		Global.openWindow({
-		    url: 'mallTemai.html',
-		    id: 'mallTemai.html',
-		    waiting: {
-		        autoShow: false
-		    }
-		})
-		
+			$(".modal-mask").removeClass("hideClass");
 
 	});
-
+		
+		function closeDialg(){
+			$(".modal-mask").addClass("hideClass");
+		}
+		
 mui.init();
 mui.plusReady(function() {
 		var topHeight=plus.navigator.getStatusbarHeight();
