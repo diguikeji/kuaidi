@@ -221,21 +221,7 @@
 		
 		
 		<button type="button" class="mui-btn mui-btn-primary button" onclick="post();">提交</button>
-		<!--弹窗-->
-		<div class="modal-mask row hideClass">
-		    <div class="modal-dialog">
-		        <img src="../images/login/login_close.png" class="close_style" onclick="closeDialg();" />
-		        <div class="modal-content">
-		            <div class="title">恭喜您获得奖品</div>
-					<div class="img">
-						<img src="../images/fuli/fuliImg.png" onclick="goToCoupon();">
-					</div>
-					<div class="btn" onclick="closeDialg();">确认</div>
-		        </div>
-		    </div>
-		</div>
-		
-		
+		<!--弹窗-->		
 		
 	</body>
 	<script type="text/javascript" src="../js/mui.min.js"></script>
@@ -252,14 +238,7 @@
 		  $(this).parent().css("border-bottom","1px solid #E3E3E3");
 		});
 		
-		function post(){
-			$(".modal-mask").removeClass("hideClass");
-		}
-		
-		function closeDialg(){
-			$(".modal-mask").addClass("hideClass");
-		}
-		
+
 		function goToCoupon(){
 			Global.openWindow({
 				url: 'coupon.html',

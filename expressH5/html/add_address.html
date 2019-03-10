@@ -1,462 +1,470 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
-		<title>新增地址</title>
-		<link rel="stylesheet" href="../css/mui.min.css">
-		<link rel="stylesheet" href="../css/mui.picker.min.css" />
-		<link rel="stylesheet" href="../css/app.css">
-		<style type="text/css">
-			body{
-				background-color: #F8F8F8;
-			}
-			.head_wrap{
-				padding: 14px;
-				width: 100%;
-				text-align: left;
-				color: #666666;
-				font-size: 12px;
-			}
-			
-			::-webkit-input-placeholder{
-				color: #CCCCCC;
-				font-size: 14px;
-			}
-			
-			.item_wrap{
-				width: 100%;
-				background-color: #FFFFFF;
-				padding-left: 14px;
-				
-			}
-			.item{
-				height: 50px;
-				width: 100%;
-				border-bottom: 1px solid #E3E3E3;
-				color: #333333;
-				font-size: 14px;
-				padding-right: 15px;
-			}
-			
-			.item .content{
-				flex: 1;
-				text-align: right;
-				font-size: 14px;
-				color: #666666;
-				height: 50px;
-				line-height: 50px;
-				
-			}
-			
-			.button{
-				border-radius: 3px;
-				width: 90%;
-				margin: 0.1rem 5% 0px;
-				box-sizing: border-box;
-				background-color: #107EFF;
-				color: #FFFFFF;
-				font-size: 16px;
-				height: 0.44rem;
-			}
-			
-			.arraw{
-				width: 10px;
-				height: 10px;
-				border-top: 2px solid #999999;
-				border-right: 2px solid #999999;
-				transform: rotate(45deg);
-				margin-left: 2px;
-			  }
-			  
-			.item input{
-				margin: 0px;
-				border: none;
-				background: transparent;
-				flex: 1;
-				text-align: left;
-				padding: 0px 0px 0px 8px;
-			}
-			
-			.item .item_span{
-				width: 1rem;
-				color: #333333;
-				font-size: 14px;
-			}
-			
-			.upload_wrap{
-				padding: 18px 15px;
-				background: #FFFFFF;
-				color: #333333;
-				font-size: 14px;
-			}
-			  
-			.img_wrap{
-				flex-flow: wrap;
-				margin-top: 18px;
-			}
-			
-			textarea{
-				padding: 9px 11px;
-				height: 0.6rem;
-				background-color: #F9F9F9;
-				margin-top: 0.2rem;
-				margin-left: 5%;
-				width: 90%;
-				margin-bottom: 0.05rem;
-				font-size: 0.12rem;
-			}
-			
-			textarea::-webkit-input-placeholder{
-				color: #999999;
-				font-size: 12px;
-			}
-			
-		</style>
-	</head>
-	<body>
-		<header class="mui-bar mui-bar-nav" >
-		    <!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
-			<img src="../images/back.png" class="mui-action-back">
-			
-		    <h1 class="mui-title">新增地址</h1>
-			
-		</header>
-		
-		<div class="mui-content">
-			<div class="head_wrap">
-				<span>联系人</span>
-			</div>
-			
-			<div class="row item_wrap">
-				<div class="row_between item">
-					<span class="item_span">姓名</span>
-					<input type="text"  placeholder="请填写收件人姓名" class="name">
-				</div>
-			</div>
-			
-			<div class="row item_wrap">
-				<div class="row_between item">
-					<span class="item_span">手机号</span>
-					<input type="tel" maxlength="11" placeholder="请输入手机号码" class="mobile">
-				</div>
-			</div>
-			
-			<div class="head_wrap">
-				<span>收货地址</span>
-			</div>
-			
-			<div class="row item_wrap" onclick="showReason();">
-				<div class="row_between item">
-					<span>所在地区</span>
-					<span class="content">请选择</span>
-					<!-- <span class="content city">市</span>
-					<span class="content region">区</span> -->
-					<span class="arraw"></span>
-				</div>
-			</div>
-			
-			<div class="row item_wrap">
-				<div class="row_between item">
-					<span class="item_span">详细地址</span>
-					<input type="text" placeholder="请填写详细地址" class="detail">
-				</div>
-			</div>
-			
-			<div class="row item_wrap">
-				<div class="row_between item">
-					<span class="item_span">设为默认地址</span>
-					<div class="mui-switch mui-switch-blue mui-switch-mini">
-						<div class="mui-switch-handle"></div>
-					</div>
-				</div>
-			</div>
-			
-			
-			<!-- <textarea  placeholder="请输入地址" class="parse_address"></textarea>
-				
-			<button type="button" class="mui-btn mui-btn-primary button"
-			onclick="parseAddress();">解析地址</button> -->
-			
-			<button type="button" class="mui-btn mui-btn-primary button" onclick="saveAddress();">保存</button>
-			<button type="button" class="mui-btn mui-btn-primary button" onclick="delAddress();">删除</button>
-			
-		</div> 
-		
-		
-	</body>
-	<script src="../js/mui.min.js"></script>
-	<script src="../js/mui.picker.min.js"></script>
-	<script src="../js/jquery-2.1.1.min.js"></script>
-	<script src="../js/app.js"></script>
-	<script src="../js/myStorage.js"></script>
-	<script type="text/javascript">
-		mui.init();
-		var isEdit = false, address_id = 0;
-		mui.plusReady(function() {
-			//上页中的 传递的值
-			var self = plus.webview.currentWebview();
-			isEdit = self.isEdit;
-			address_id = self.address_id;
-			console.log("address_id:"+address_id);
-			if(isEdit){
-				$(".mui-title").html("修改地址");
-				
-				var addressItem = myStorage.getItem("addressItem");
-				if(addressItem){
-					if(addressItem.name){
-						$(".name").val(addressItem.name);
-					}
-					
-					if(addressItem.mobile){
-						$(".mobile").val(addressItem.mobile);
-					}
-					
-					if(addressItem.detail){
-						$(".detail").val(addressItem.detail);
-					}
-					
-					if(addressItem.is_default == 1){
-						is_default = 1;
-						$(".mui-switch").addClass("mui-active");
-					}else{
-						$(".mui-switch").removeClass("mui-active");
-					}
-					
-					province = addressItem.province;
-					province_id = addressItem.province_id;
-					city = addressItem.city;
-					city_id = addressItem.city_id;
-					region = addressItem.area;
-					area_id = addressItem.area_id;
-					$(".content").html(addressItem.province+addressItem.city+addressItem.area);
-					
-				}
-				
-			}else{
-				$(".mui-title").html("新增地址");
-			}
-			
-			
-			
-			
-			mui('.mui-content .mui-switch').each(function() { //循环所有toggle
-				
-				this.addEventListener('toggle', function(event) {
-					//event.detail.isActive 可直接获取当前状态
-					console.log(event.detail.isActive)
-					is_default = event.detail.isActive;
-				});
-			});
-			
-			getProvince();
-		});
-		var is_default = 0;
-		var complainPicker = new mui.PopPicker();
-		var cityPicker = new mui.PopPicker();
-		var regionPicker = new mui.PopPicker();
-		
-		var province = "", city = "", region="";
-		var province_id = 0, city_id = 0, area_id = 0;
-		
-		function showReason(){
-			complainPicker.show(function(item){
-				console.log(item)
-				province = item[0].text;
-				city = "";
-				region = "";
-				mui('.content')[0].innerHTML = item[0].text;
-				province_id = item[0].value;
-				getCity(item[0].value)
-			})
-		}
-		
-		function showCity(){
-			cityPicker.show(function(item){
-				console.log(item)
-				city = item[0].text;
-				region = "";
-				mui('.content')[0].innerHTML = province +"-"+ item[0].text;
-				city_id = item[0].value;
-				getRegions(item[0].value);
-			})
-		}
-		
-		function showRegion(){
-			regionPicker.show(function(item){
-				console.log(item)
-				region = item[0].text;
-				area_id = item[0].value;
-				mui('.content')[0].innerHTML = province +"-"+ city +"-"+ item[0].text;
-			})
-		}
-		
-		function getProvince(){
-			Global.commonAjax({
-				url: 'regions?pid=1'
-			}, function(data){
-				//console.log(JSON.stringify(data));
-				var areaList = [];
-				data.map(function(item){
-					var areaItem = {
-						value: item.id,
-						text: item.name,
-						children: []
-					};
-					areaList.push(areaItem);
-					complainPicker.setData(areaList);
-					
-				})
-				
-				
-			}, function(err){
-				mui.toast(err);
-			});
-		}
-		
-		function getCity(id){
-			Global.commonAjax({
-				url: 'regions?pid='+id
-			}, function(data){
-				//console.log(JSON.stringify(data));
-				var areaList = [];
-				data.map(function(item){
-					var areaItem = {
-						value: item.id,
-						text: item.name
-					};
-					areaList.push(areaItem);
-				})
-				cityPicker.setData(areaList);
-				showCity();
-			}, function(err){
-				mui.toast(err);
-			});
-		}
-		
-		function getRegions(id){
-			Global.commonAjax({
-				url: 'regions?pid='+id
-			}, function(data){
-				//console.log(JSON.stringify(data));
-				var areaList = [];
-				data.map(function(item){
-					var areaItem = {
-						value: item.id,
-						text: item.name
-					}
-					areaList.push(areaItem);
-				})
-				regionPicker.setData(areaList);
-				showRegion();
-				
-			}, function(err){
-				mui.toast(err);
-			});
-		}
-		
-		function saveAddress(){
 
-			var addAddressType=1;
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+    content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+  <title>新增地址</title>
+  <link rel="stylesheet" href="../css/mui.min.css">
+  <link rel="stylesheet" href="../css/mui.picker.min.css" />
+  <link rel="stylesheet" href="../css/app.css">
+  <style type="text/css">
+    body {
+      background-color: #F8F8F8;
+    }
 
-			var typeValue=myStorage.getItem("storageSelectAddressValue");
-			if(typeValue==2)
-			{
-				addAddressType=2;
-			}
-			
-			console.log("addAddressType:"+addAddressType);
+    .head_wrap {
+      padding: 14px;
+      width: 100%;
+      text-align: left;
+      color: #666666;
+      font-size: 12px;
+    }
 
-			var params = {
-				province_id: province_id,
-				city_id: city_id,
-				area_id: area_id,
-				detail: $(".detail").val(),
-				mobile: $(".mobile").val(),
-				name: $(".name").val(),
-				is_default: is_default,
-				type: addAddressType
-			};
-			var url, method;
-			if(isEdit){
-				url = "addresses/"+address_id;
-				method = "PUT";
-			}else{
-				url = "addresses";
-				method = "POST";
-			}
-			
-			Global.commonAjax({
-				url: url,
-				method: method,
-				data: params
-			}, function(data){
-				console.log(JSON.stringify(data));
-				mui.toast("更新成功");
-				sendSearchType("");
-				plus.webview.currentWebview().close();
-				
-			}, function(err){
-				mui.toast(err);
-			});
-		}
-		
-		//解析地址
-		function parseAddress(){
-			var addre = $(".parse_address").val();
-			if(!addre){
-				mui.toast("请输入要解析的地址");
-				return;
-			}
-			Global.commonAjax({
-				url: 'addresses/parse',
-				method: "POST",
-				data: {address: addre}
-			}, function(data){
-				console.log(JSON.stringify(data));
-				mui.toast("解析成功");
-				var result = data.data;
-				if(result.name){
-					$(".name").val(result.name);
-				}
-				
-				if(result.mobile){
-					$(".mobile").val(result.mobile);
-				}
-				
-				if(result.detail){
-					$(".detail").val(result.detail);
-				}
-				
-				$(".content").val(result.province+result.city+result.area);
-				
-			}, function(err){
-				mui.toast(err);
-			});
-			
-		}
-		
-		//删除地址
-		function delAddress(){
-			Global.commonAjax({
-				url: "addresses/"+address_id,
-				method: "DELETE"
-			}, function(data){
-				console.log(JSON.stringify(data));
-				mui.toast("删除成功");
-				sendSearchType("");
-				plus.webview.currentWebview().close();
-				
-			}, function(err){
-				mui.toast(err);
-			});
-		}
-		
-		function sendSearchType(search){
-			console.log(search)
-			var h = plus.webview.getWebviewById("my_address_sub.html");
-			mui.fire(h,'searchType',{search: search});
-		}
-		
-	</script>
+    ::-webkit-input-placeholder {
+      color: #CCCCCC;
+      font-size: 14px;
+    }
+
+    .item_wrap {
+      width: 100%;
+      background-color: #FFFFFF;
+      padding-left: 14px;
+
+    }
+
+    .item {
+      height: 50px;
+      width: 100%;
+      border-bottom: 1px solid #E3E3E3;
+      color: #333333;
+      font-size: 14px;
+      padding-right: 15px;
+    }
+
+    .item .content {
+      flex: 1;
+      text-align: right;
+      font-size: 14px;
+      color: #666666;
+      height: 50px;
+      line-height: 50px;
+
+    }
+
+    .button {
+      border-radius: 3px;
+      width: 90%;
+      margin: 0.1rem 5% 0px;
+      box-sizing: border-box;
+      background-color: #107EFF;
+      color: #FFFFFF;
+      font-size: 16px;
+      height: 0.44rem;
+    }
+
+    .arraw {
+      width: 10px;
+      height: 10px;
+      border-top: 2px solid #999999;
+      border-right: 2px solid #999999;
+      transform: rotate(45deg);
+      margin-left: 2px;
+    }
+
+    .item input {
+      margin: 0px;
+      border: none;
+      background: transparent;
+      flex: 1;
+      text-align: left;
+      padding: 0px 0px 0px 8px;
+    }
+
+    .item .item_span {
+      width: 1rem;
+      color: #333333;
+      font-size: 14px;
+    }
+
+    .upload_wrap {
+      padding: 18px 15px;
+      background: #FFFFFF;
+      color: #333333;
+      font-size: 14px;
+    }
+
+    .img_wrap {
+      flex-flow: wrap;
+      margin-top: 18px;
+    }
+
+    textarea {
+      padding: 9px 11px;
+      height: 0.6rem;
+      background-color: #F9F9F9;
+      margin-top: 0.2rem;
+      margin-left: 5%;
+      width: 90%;
+      margin-bottom: 0.05rem;
+      font-size: 0.12rem;
+    }
+
+    textarea::-webkit-input-placeholder {
+      color: #999999;
+      font-size: 12px;
+    }
+
+    .mui-bar-nav {
+      box-shadow: none;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="mui-bar mui-bar-nav">
+    <!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
+    <img src="../images/back.png" class="mui-action-back">
+
+    <h1 class="mui-title">新增地址</h1>
+
+  </header>
+
+  <div class="mui-content">
+    <div class="head_wrap">
+      <span>联系人</span>
+    </div>
+
+    <div class="row item_wrap">
+      <div class="row_between item">
+        <span class="item_span">姓名</span>
+        <input type="text" placeholder="请填写收件人姓名" class="name">
+      </div>
+    </div>
+
+    <div class="row item_wrap">
+      <div class="row_between item">
+        <span class="item_span">手机号</span>
+        <input type="tel" maxlength="11" placeholder="请输入手机号码" class="mobile">
+      </div>
+    </div>
+
+    <div class="head_wrap">
+      <span>收货地址</span>
+    </div>
+
+    <div class="row item_wrap" onclick="showReason();">
+      <div class="row_between item">
+        <span>所在地区</span>
+        <span class="content">请选择</span>
+        <!-- <span class="content city">市</span>
+          <span class="content region">区</span> -->
+        <span class="arraw"></span>
+      </div>
+    </div>
+
+    <div class="row item_wrap">
+      <div class="row_between item">
+        <span class="item_span">详细地址</span>
+        <input type="text" placeholder="请填写详细地址" class="detail">
+      </div>
+    </div>
+
+    <div class="row item_wrap">
+      <div class="row_between item">
+        <span class="item_span">设为默认地址</span>
+        <div class="mui-switch mui-switch-blue mui-switch-mini">
+          <div class="mui-switch-handle"></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- <textarea  placeholder="请输入地址" class="parse_address"></textarea>
+        
+      <button type="button" class="mui-btn mui-btn-primary button"
+      onclick="parseAddress();">解析地址</button> -->
+
+    <button type="button" class="mui-btn mui-btn-primary button" onclick="saveAddress();">保存</button>
+    <button type="button" class="mui-btn mui-btn-primary button" onclick="delAddress();">删除</button>
+
+  </div>
+
+
+</body>
+<script src="../js/mui.min.js"></script>
+<script src="../js/mui.picker.min.js"></script>
+<script src="../js/jquery-2.1.1.min.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/myStorage.js"></script>
+<script type="text/javascript">
+  mui.init();
+  var isEdit = false, address_id = 0;
+  mui.plusReady(function () {
+    //上页中的 传递的值
+    var self = plus.webview.currentWebview();
+    isEdit = self.isEdit;
+    address_id = self.address_id;
+    console.log("address_id:" + address_id);
+    if (isEdit) {
+      $(".mui-title").html("修改地址");
+
+      var addressItem = myStorage.getItem("addressItem");
+      if (addressItem) {
+        if (addressItem.name) {
+          $(".name").val(addressItem.name);
+        }
+
+        if (addressItem.mobile) {
+          $(".mobile").val(addressItem.mobile);
+        }
+
+        if (addressItem.detail) {
+          $(".detail").val(addressItem.detail);
+        }
+
+        if (addressItem.is_default == 1) {
+          is_default = 1;
+          $(".mui-switch").addClass("mui-active");
+        } else {
+          $(".mui-switch").removeClass("mui-active");
+        }
+
+        province = addressItem.province;
+        province_id = addressItem.province_id;
+        city = addressItem.city;
+        city_id = addressItem.city_id;
+        region = addressItem.area;
+        area_id = addressItem.area_id;
+        $(".content").html(addressItem.province + addressItem.city + addressItem.area);
+
+      }
+
+    } else {
+      $(".mui-title").html("新增地址");
+    }
+
+
+
+
+    mui('.mui-content .mui-switch').each(function () { //循环所有toggle
+
+      this.addEventListener('toggle', function (event) {
+        //event.detail.isActive 可直接获取当前状态
+        console.log(event.detail.isActive)
+        is_default = event.detail.isActive;
+      });
+    });
+
+    getProvince();
+  });
+  var is_default = 0;
+  var complainPicker = new mui.PopPicker();
+  var cityPicker = new mui.PopPicker();
+  var regionPicker = new mui.PopPicker();
+
+  var province = "", city = "", region = "";
+  var province_id = 0, city_id = 0, area_id = 0;
+
+  function showReason() {
+    complainPicker.show(function (item) {
+      console.log(item)
+      province = item[0].text;
+      city = "";
+      region = "";
+      mui('.content')[0].innerHTML = item[0].text;
+      province_id = item[0].value;
+      getCity(item[0].value)
+    })
+  }
+
+  function showCity() {
+    cityPicker.show(function (item) {
+      console.log(item)
+      city = item[0].text;
+      region = "";
+      mui('.content')[0].innerHTML = province + "-" + item[0].text;
+      city_id = item[0].value;
+      getRegions(item[0].value);
+    })
+  }
+
+  function showRegion() {
+    regionPicker.show(function (item) {
+      console.log(item)
+      region = item[0].text;
+      area_id = item[0].value;
+      mui('.content')[0].innerHTML = province + "-" + city + "-" + item[0].text;
+    })
+  }
+
+  function getProvince() {
+    Global.commonAjax({
+      url: 'regions?pid=1'
+    }, function (data) {
+      //console.log(JSON.stringify(data));
+      var areaList = [];
+      data.map(function (item) {
+        var areaItem = {
+          value: item.id,
+          text: item.name,
+          children: []
+        };
+        areaList.push(areaItem);
+        complainPicker.setData(areaList);
+
+      })
+
+
+    }, function (err) {
+      mui.toast(err);
+    });
+  }
+
+  function getCity(id) {
+    Global.commonAjax({
+      url: 'regions?pid=' + id
+    }, function (data) {
+      //console.log(JSON.stringify(data));
+      var areaList = [];
+      data.map(function (item) {
+        var areaItem = {
+          value: item.id,
+          text: item.name
+        };
+        areaList.push(areaItem);
+      })
+      cityPicker.setData(areaList);
+      showCity();
+    }, function (err) {
+      mui.toast(err);
+    });
+  }
+
+  function getRegions(id) {
+    Global.commonAjax({
+      url: 'regions?pid=' + id
+    }, function (data) {
+      //console.log(JSON.stringify(data));
+      var areaList = [];
+      data.map(function (item) {
+        var areaItem = {
+          value: item.id,
+          text: item.name
+        }
+        areaList.push(areaItem);
+      })
+      regionPicker.setData(areaList);
+      showRegion();
+
+    }, function (err) {
+      mui.toast(err);
+    });
+  }
+
+  function saveAddress() {
+
+    var addAddressType = 1;
+
+    var typeValue = myStorage.getItem("storageSelectAddressValue");
+    if (typeValue == 2) {
+      addAddressType = 2;
+    }
+
+    console.log("addAddressType:" + addAddressType);
+
+    var params = {
+      province_id: province_id,
+      city_id: city_id,
+      area_id: area_id,
+      detail: $(".detail").val(),
+      mobile: $(".mobile").val(),
+      name: $(".name").val(),
+      is_default: is_default,
+      type: addAddressType
+    };
+    var url, method;
+    if (isEdit) {
+      url = "addresses/" + address_id;
+      method = "PUT";
+    } else {
+      url = "addresses";
+      method = "POST";
+    }
+
+    Global.commonAjax({
+      url: url,
+      method: method,
+      data: params
+    }, function (data) {
+      console.log(JSON.stringify(data));
+      mui.toast("更新成功");
+      sendSearchType("");
+      plus.webview.currentWebview().close();
+
+    }, function (err) {
+      mui.toast(err);
+    });
+  }
+
+  //解析地址
+  function parseAddress() {
+    var addre = $(".parse_address").val();
+    if (!addre) {
+      mui.toast("请输入要解析的地址");
+      return;
+    }
+    Global.commonAjax({
+      url: 'addresses/parse',
+      method: "POST",
+      data: { address: addre }
+    }, function (data) {
+      console.log(JSON.stringify(data));
+      mui.toast("解析成功");
+      var result = data.data;
+      if (result.name) {
+        $(".name").val(result.name);
+      }
+
+      if (result.mobile) {
+        $(".mobile").val(result.mobile);
+      }
+
+      if (result.detail) {
+        $(".detail").val(result.detail);
+      }
+
+      $(".content").val(result.province + result.city + result.area);
+
+    }, function (err) {
+      mui.toast(err);
+    });
+
+  }
+
+  //删除地址
+  function delAddress() {
+    Global.commonAjax({
+      url: "addresses/" + address_id,
+      method: "DELETE"
+    }, function (data) {
+      console.log(JSON.stringify(data));
+      mui.toast("删除成功");
+      sendSearchType("");
+      plus.webview.currentWebview().close();
+
+    }, function (err) {
+      mui.toast(err);
+    });
+  }
+
+  function sendSearchType(search) {
+    console.log(search)
+    var h = plus.webview.getWebviewById("my_address_sub.html");
+    mui.fire(h, 'searchType', { search: search });
+  }
+
+</script>
+
 </html>

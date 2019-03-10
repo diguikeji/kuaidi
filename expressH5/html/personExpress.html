@@ -1,155 +1,150 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="utf-8">
-		<title>个人快递</title>
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<link rel="stylesheet" href="../css/app.css">
-		<link rel="stylesheet" href="../css/page.css">
-		<link rel="stylesheet" href="../css/mui.min.css">
-		<link rel="stylesheet" href="../css/secondPage.css">
-		<style>
-			body,.mui-content{background: #fff!important;}
+<head>
+    <meta charset="utf-8">
+    <title>个人快递</title>
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/page.css">
+    <link rel="stylesheet" href="../css/mui.min.css">
+    <link rel="stylesheet" href="../css/secondPage.css">
+    <style>
+        body,
+        .mui-content {
+            background: #fff !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-bar">
+        <div class="header-left" onclick="mui.back();">
+            <img src="../images/back.png" />
+        </div>
+        <div class="header-title color" id="titleCol"></div>
+        <span class="header-right">
+            <img src="../images/secondPage/dianIcon.jpg" />
+        </span>
+    </div>
+
+    <div class="mui-content has-header person-express-col">
+        <div class="pd">
+            <ul class="person-express-list">
+                <li data-type="1">
+                    <div class="person-express-detail">
+                        <img src="../images/secondPage/personExpress_17.png">
+                        <div class="text">
+                            <div>国内快递</div>
+                            <p>价格实惠、速度快，江浙沪次日达</p>
+                        </div>
+                        <span class="right-col">
+                            <span class="mui-icon mui-icon-arrowright"></span>
+                        </span>
+                    </div>
+                </li>
+                <li data-type="2">
+                    <div class="person-express-detail">
+                        <img src="../images/secondPage/personExpress_31.png">
+                        <div class="text">
+                            <div>国际快递</div>
+                            <p>优秀的服务，更便捷的选择</p>
+                        </div>
+                        <span class="right-col">
+                            <span class="mui-icon mui-icon-arrowright"></span>
+                        </span>
+                    </div>
+                </li>
+                <li data-type="3">
+                    <div class="person-express-detail">
+                        <img src="../images/secondPage/personExpress_45.png">
+                        <div class="text">
+                            <div>同城快递</div>
+                            <p>今天送，今天达哦～！</p>
+                        </div>
+                        <span class="right-col">
+                            <span class="mui-icon mui-icon-arrowright"></span>
+                        </span>
+                    </div>
+                </li>
+                <li data-type="4">
+                    <div class="person-express-detail">
+                        <img src="../images/secondPage/personExpress_59.png">
+                        <div class="text">
+                            <div>物流大件</div>
+                            <p>哪怕重如泰山我们也能轻松抬走</p>
+                        </div>
+                        <span class="right-col">
+                            <span class="mui-icon mui-icon-arrowright"></span>
+                        </span>
+                    </div>
+                </li>
+            </ul>
 
 
 
-		</style>
-		
-		
-		
-	</head>
+        </div>
 
-	<body>
-
-
-	<div class="header-bar">
-
-		<div class="header-left" onclick="mui.back();">
-			<img src="../images/back.png"/>
-		</div>
-
-		<div class="header-title color" id="titleCol"></div>
-
-		<span class="header-right">
-			<img src="../images/secondPage/dianIcon.jpg"/>
-		</span>
+        <div class="person-express-bottom clearfix">
+            <div class="person-express-col">
+                <div class="person-express-detail" onclick="openWindowPage('yunfei.html')">
+                    <img src="../images/secondPage/personExpress_72.png">
+                    <div>运费计算</div>
+                </div>
+            </div>
+            <div class="person-express-col">
+                <div class="person-express-detail" onclick="openWindowPage('forbid.html')">
+                    <img src="../images/secondPage/personExpress_75.png">
+                    <div>违禁品信息</div>
+                </div>
+            </div>
+        </div>
 
 
-	</div>
+    </div>
 
-	<div class="mui-content has-header person-express-col">
+    <script src="../js/mui.min.js"></script>
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="../js/myStorage.js"></script>
+    <script src="../js/app.js"></script>
+    <script>
+        mui.plusReady(function () {
 
-		<div class="pd">
-			<ul class="person-express-list">
-				<li data-type="1">
-					<div class="person-express-detail">
-					<img src="../images/secondPage/personExpress_17.png">
-					<div class="text">
-					<div>国内快递</div>
-					<p>价格实惠、速度快，江浙沪次日达</p>
-					</div>
-					<span class="right-col">
-					<span class="mui-icon mui-icon-arrowright"></span>
-					</span>
-						</div>
-				</li>
-				<li data-type="2">
-					<div class="person-express-detail">
-					<img src="../images/secondPage/personExpress_31.png">
-					<div class="text">
-						<div>国际快递</div>
-						<p>优秀的服务，更便捷的选择</p>
-					</div>
-					<span class="right-col">
-					<span class="mui-icon mui-icon-arrowright"></span>
-					</span>
-						</div>
-				</li>
-				<li data-type="3">
-					<div class="person-express-detail">
-					<img src="../images/secondPage/personExpress_45.png">
-					<div class="text">
-						<div>同城快递</div>
-						<p>今天送，今天达哦～！</p>
-					</div>
-					<span class="right-col">
-					<span class="mui-icon mui-icon-arrowright"></span>
-					</span>
-						</div>
-				</li>
-				<li data-type="4">
-					<div class="person-express-detail">
-					<img src="../images/secondPage/personExpress_59.png">
-					<div class="text">
-						<div>物流大件</div>
-						<p>哪怕重如泰山我们也能轻松抬走</p>
-					</div>
-					<span class="right-col">
-					<span class="mui-icon mui-icon-arrowright"></span>
-					</span>
-						</div>
-				</li>
-			</ul>
+            var self = plus.webview.currentWebview();
 
+            if (typeof self.type == 'undefined') {
+                if (myStorage.getItem("storageExpressType") == 2) {
+                    $("#titleCol").text("企业快递");
+                }
+                else {
+                    $("#titleCol").text("个人快递");
+                }
+            } else {
+                if (self.type == 1) {
+                    $("#titleCol").text("企业快递");
+                } else {
+                    $("#titleCol").text("个人快递");
+                }
 
+            }
 
-		</div>
+            $(".person-express-list li").click(function () {
 
-		<div class="person-express-bottom clearfix">
-			<div class="person-express-col">
-				<div class="person-express-detail" onclick="openWindowPage('yunfei.html')">
-					<img src="../images/secondPage/personExpress_72.png">
-					<div>运费计算</div>
-				</div>
-			</div>
-			<div class="person-express-col">
-				<div class="person-express-detail" onclick="openWindowPage('forbid.html')">
-					<img src="../images/secondPage/personExpress_75.png">
-					<div>违禁品信息</div>
-				</div>
-			</div>
-		</div>
+                myStorage.setItem("storageExpressCreateType", parseInt($(this).attr("data-type")));
 
-
-	</div>
-
-		<script src="../js/mui.min.js"></script>
-	    <script src="../js/jquery-2.1.1.min.js"></script>
-		<script src="../js/myStorage.js"></script>
-		<script src="../js/app.js"></script>
-		<script>
-
-
-			if(myStorage.getItem("storageExpressType")==2)
-			{
-				$("#titleCol").text("企业快递");
-			}
-			else
-			{
-				$("#titleCol").text("个人快递");
-			}
-
-			$(".person-express-list li").click(function()
-			{
-
-				myStorage.setItem("storageExpressCreateType",parseInt($(this).attr("data-type")));
-
-				Global.openWindow({
-					url:"expressInfoAdd.html",
-					id: "expressInfoAdd.html",
-					waiting: {
-						autoShow: false
-					}
-				})
-			});
-
-
-
-
-		</script>
-	</body>
+                Global.openWindow({
+                    url: "expressInfoAdd.html",
+                    id: "expressInfoAdd.html",
+                    waiting: {
+                        autoShow: false
+                    }
+                })
+            });
+        });
+    </script>
+</body>
 
 </html>

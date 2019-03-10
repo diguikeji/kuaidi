@@ -1,199 +1,221 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<title>企业服务</title>
-		<link rel="stylesheet" href="../css/mui.min.css">
-		<link rel="stylesheet" href="../css/app.css">
-		<style type="text/css">
-			body,html{
-				height: 100%;
-				background-color: #FFFFFF;
-			}
-			.head_wrap{
-				background: url(../images/service/companyBanner.jpg) no-repeat;
-				background-size: 100% 1.9rem;
-				height: 1.9rem;
-				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
-				color: #FFFFFF;
-			}
-			.head_wrap{
-				padding: 0.16rem;
-				font-size: 0.14rem;
-			}
-			
-			.head_wrap img{
-				width: 0.34rem;
-				height:0.34rem;
-				padding: 0.1rem;
-			}
-			
-			.login_wrap{
-				border-radius: 0.04rem;
-				background-color: #FFFFFF;
-				width: 100%;
-				box-sizing: border-box;
-				padding: 0.08rem 0.1rem;
-			}
-			
-			.item_wrap{
-			  height: 0.9rem;
-			  background-color: #FFFFFF;
-			  padding: 0px 0.05rem 0 0.05rem;
-			  color: #333333;
-			  font-size: 0.16rem;
-			  flex: 1;
-			  box-shadow: 0px 0px 0.1rem 0px #EAEAEA;
-			  margin: 0.05rem;
-			  font-weight: bold;
-			}
-			
-			.item_wrap img{
-				width: 0.36rem;
-				margin-right: 0.1rem;
-			}
-			
-			.item_wrap .info{
-				color: #999999;
-				font-size: 0.11rem;
-			}
-			
-			.btn{
-				border-top: 1px solid #E3E3E3;
-				text-align: center;
-				padding-top: 0.1rem;
-			}
-			
-			.bottom-col{position: relative;}
-			.bottom-col .bottom-col-detail p{color:#666666;}
-			.bottom-col .bottom-col-detail{width:100%;top:20%;position: absolute;left:0;text-align: center;}
-			.bottom-col .bottom-col-detail button{border:1px solid #277EFF;color:#FFFFFF;border-radius: 20px;padding:0.06rem 0.2rem;background-color: #277EFF}
-			.full-img{display: block;width:100%;}
-			.row_between{flex-flow:row wrap;}
-			.row_between-col{width:50%;}
 
-			
-		</style>
-	</head>
-	<body>
-		<div class=" head_wrap">
-			<div class="row_between">
-				<img src="../images/back_white.png" class="mui-action-back">
-				<span style="font-size: 0.14rem;" onclick="openWindowPage('service_order.html')">服务订单</span>
-			</div>
-			
-			<div>
-				<span style="font-size: 0.22rem;">企业服务</span>
-				<span style="font-size: 0.12rem;">企业高端服务定制</span>
-			</div>
-			
-		</div>
-		
-		<div class="login_wrap">
-			
-			<div class="row_between" id="list">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>企业服务</title>
+    <link rel="stylesheet" href="../css/mui.min.css">
+    <link rel="stylesheet" href="../css/app.css">
+    <style type="text/css">
+        body,
+        html {
+            height: 100%;
+            background-color: #FFFFFF;
+        }
+
+        .head_wrap {
+            background: url(../images/service/companyBanner.jpg) no-repeat;
+            background-size: 100% 1.9rem;
+            height: 1.9rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #FFFFFF;
+        }
+
+        .head_wrap {
+            padding: 0.16rem;
+            font-size: 0.14rem;
+        }
+
+        .head_wrap img {
+            width: 0.34rem;
+            height: 0.34rem;
+            padding: 0.1rem;
+        }
+
+        .login_wrap {
+            border-radius: 0.04rem;
+            background-color: #FFFFFF;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.08rem 0.1rem;
+        }
+
+        .item_wrap {
+            height: 0.9rem;
+            background-color: #FFFFFF;
+            padding: 0px 0.05rem 0 0.05rem;
+            color: #333333;
+            font-size: 0.16rem;
+            flex: 1;
+            box-shadow: 0px 0px 0.1rem 0px #EAEAEA;
+            margin: 0.05rem;
+            font-weight: bold;
+        }
+
+        .item_wrap img {
+            width: 0.36rem;
+            margin-right: 0.1rem;
+        }
+
+        .item_wrap .info {
+            color: #999999;
+            font-size: 0.11rem;
+        }
+
+        .btn {
+            border-top: 1px solid #E3E3E3;
+            text-align: center;
+            padding-top: 0.1rem;
+        }
+
+        .bottom-col {
+            position: relative;
+        }
+
+        .bottom-col .bottom-col-detail p {
+            color: #666666;
+        }
+
+        .bottom-col .bottom-col-detail {
+            width: 100%;
+            top: 20%;
+            position: absolute;
+            left: 0;
+            text-align: center;
+        }
+
+        .bottom-col .bottom-col-detail button {
+            border: 1px solid #277EFF;
+            color: #FFFFFF;
+            border-radius: 20px;
+            padding: 0.06rem 0.2rem;
+            background-color: #277EFF
+        }
+
+        .full-img {
+            display: block;
+            width: 100%;
+        }
+
+        .row_between {
+            flex-flow: row wrap;
+        }
+
+        .row_between-col {
+            width: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class=" head_wrap">
+        <div class="row_between">
+            <img src="../images/back_white.png" class="mui-action-back">
+            <span style="font-size: 0.14rem;" onclick="openWindowPage('service_order.html')">服务订单</span>
+        </div>
+
+        <div>
+            <span style="font-size: 0.22rem;">企业服务</span>
+            <span style="font-size: 0.12rem;">企业高端服务定制</span>
+        </div>
+
+    </div>
+
+    <div class="login_wrap">
+
+        <div class="row_between" id="list">
+        </div>
+
+        <div class="bottom-col" onclick="goToService();">
+            <img class="full-img" src="../images/service/bottom.jpg" />
+            <div class="bottom-col-detail">
+                <p>需要更多企业服务?</p>
+                <button type="button">按需定制服务</button>
+            </div>
+        </div>
+
+    </div>
+    <script type="text/html" id="serviceList">
+        {{each data as datum j}}
+        <div class="row_between-col" data-id="{{datum.id}}" data-title="{{datum.title}}">
+            <div class="row_center item_wrap">
+                <img src="{{datum.icon}}">
+                <div class="col">
+                    <span>{{datum.title}}</span>
+                    <span class="info">{{datum.subtitle}}</span>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </script>
+
+</body>
+<script type="text/javascript" src="../js/mui.min.js"></script>
+<script src="../js/jquery-2.1.1.min.js"></script>
+<script src="../lib/artTemplate.js"></script>
+<script src="../js/myStorage.js"></script>
+<script src="../js/app.js"></script>
+<script type="text/javascript">
 
 
-
-			</div>
-
-			<div class="bottom-col" onclick="goToService();">
-				<img class="full-img" src="../images/service/bottom.jpg"/>
-				<div class="bottom-col-detail">
-
-					<p>需要更多企业服务?</p>
-
-					<button type="button">按需定制服务</button>
-			
-				</div>
-			
-			</div>
-			
-		</div>
-		
-	
-		
-	</body>
-	<script type="text/javascript" src="../js/mui.min.js"></script>
-	<script src="../js/jquery-2.1.1.min.js"></script>
-	<script src="../js/myStorage.js"></script>
-	<script src="../js/app.js"></script>
-	<script type="text/javascript">
+    mui.plusReady(function () {
+        commonEvent();
+        httpRequest();
+    });
 
 
-		mui.plusReady(function() {
-			commonEvent();
-			httpRequest();
-		});
+    function httpRequest() {
+        //服务类型
+        Global.commonAjax({
+            url: "service/types"
+        },
+            function (data) {
+                render('#list', 'serviceList', { data: data }, true) 
+            },
+            function (err) {
+                console.log("服务类型失败");
+            });
+
+    }
 
 
-		function  httpRequest()
-		{
+    //企业服务
+    function goToService() {
+        Global.openWindow({
+            url: 'customize.html',
+            id: 'customize.html',
+            waiting: {
+                autoShow: false
+            }
+        })
+    }
+
+    //企业饮水服务
+    mui("#list").on('tap', '.row_between-col ', function () {
+
+        var id = $(this).attr("data-id");
+        var name = myStorage.setItem("localServiceName", $(this).attr("data-title"));
+
+        Global.openWindow({
+            url: 'post_service_order.html',
+            id: 'post_service_order.html',
+            waiting: {
+                autoShow: false
+            },
+            extras: {
+                type: id
+            }
+        })
+
+    })
 
 
+</script>
 
-			//服务类型
-			Global.commonAjax({
-						url: "service/types"
-
-					},
-					function(data) {
-						for(var i=0;i<data.length;i++)
-						{
-							$("#list").append('<div class="row_between-col" data-id="'+data[i].id+'" data-title="'+data[i].title+'">'+
-									'<div class="row_center item_wrap">'+
-									'<img src="'+data[i].icon+'" >'+
-									'<div class="col">'+
-									'<span>'+data[i].title+'</span>'+
-									'<span class="info">'+data[i].subtitle+'</span>'+
-									'</div>'+
-									'</div>'+
-									'</div>');
-						}
-
-					},
-					function(err) {
-						console.log("服务类型失败");
-					});
-
-		}
-
-		
-		//企业服务
-		function goToService(){
-			Global.openWindow({
-			    url: 'customize.html',
-			    id: 'customize.html',
-			    waiting: {
-			        autoShow: false
-			    }
-			})
-		}
-		
-		//企业饮水服务
-	 mui("#list").on('tap', '.row_between-col ', function() {
-
-		var id=$(this).attr("data-id");
-		var name=myStorage.setItem("localServiceName",$(this).attr("data-title"));
-
-		Global.openWindow({
-			    url: 'post_service_order.html',
-			    id: 'post_service_order.html',
-			    waiting: {
-			        autoShow: false
-			    },
-				extras: {
-					type: id
-				}
-			})
-
-	})
-		
-		
-	</script>
 </html>

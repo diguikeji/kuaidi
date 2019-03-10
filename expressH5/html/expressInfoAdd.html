@@ -1,394 +1,423 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="utf-8">
-		<title>国内快递</title>
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<link rel="stylesheet" href="../css/app.css">
-		<link rel="stylesheet" href="../css/swiper.min.css">
-		<link rel="stylesheet" href="../css/page.css">
-		<link rel="stylesheet" href="../css/pay.css">
-		<link rel="stylesheet" href="../css/mui.min.css">
-		<link rel="stylesheet" href="../css/secondPage.css">
-		<style>
-
-			body,.mui-content{background: #f9f9f9!important;}
-			.address-tab{padding:0 0.05rem;box-sizing: border-box;}
-			.address-tab>.address-col{width:33.3%;float:left;text-align: center;padding:0.1rem 0.1rem;font-size:0.12rem;}
-			.address-tab>.address-col .address-detail{border-radius: 4px;border:1px solid #eee;background: #fff;padding:0.08rem 0;line-height: normal;}
-			.address-tab>.address-col.active .address-detail{background: #107EFF;color:#fff;}
-		</style>
-		
-		
-		
-	</head>
-
-	<body>
-
-
-	<div class="header-bar">
-
-		<div class="header-left" onclick="mui.back();">
-			<img src="../images/back.png"/>
-		</div>
-
-		<div class="header-title" id="titleCol"></div>
-
-	</div>
-
-	<div class="mui-content has-header yunfei-col">
-
-		<div class="address-tab hide clearfix tongcheng-col">
-			<div class="address-col active" data-id="1">
-				<div class="address-detail">
-				单程件
-				<div>A -> B</div>
-				</div>
-			</div>
-			<div class="address-col" data-id="2">
-				<div class="address-detail">
-				来回件
-					<div>A -> B -> A</div>
-				</div>
-			</div>
-			
-			<div class="address-col" data-id="3">
-				<div class="address-detail">
-				联程件
-					<div>A -> B -> C</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="express-info">
-			<div class="express-info-col">
-				<img src="../images/secondPage/expressInfoAdd_03.png">
-
-				<div class="middle-text" id="chufa">
-					<div class="placeholder">从哪里寄</div>
-					<div class="middle-value">
-						
-					</div>
-				</div>
-
-				<span class="right" onclick="selectAddress(1)">地址簿</span>
-
-			</div>
-			<div class="express-info-col">
-				<img src="../images/secondPage/expressInfoAdd_06.png">
-				<div class="middle-text" id="daoda">
-					<div class="placeholder">寄到哪里</div>
-					<div class="middle-value">
-
-					</div>
-				</div>
-				<span class="right" onclick="selectAddress(2)">地址簿</span>
-
-			</div>
-
-			<div class="express-info-col hide liancheng-col" style="border-top: 1px solid #e3e3e3;">
-				<img src="../images/secondPage/expressInfoAdd_06.png">
-				<div class="middle-text" id="daoda1">
-					<div class="placeholder">再寄到哪里</div>
-					<div class="middle-value">
-
-					</div>
-				</div>
-				<span class="right" onclick="selectAddress(3)">地址簿</span>
-
-			</div>
-
-
-		</div>
-
-		<ul class="yunfei-list">
-			<li id="wupinSelect">
-				<div>
-				<span class="left">物品类型</span>
-				<span class="right">
-					<span class="text">文件</span>
-					<span class="mui-icon mui-icon-arrowright"></span>
-				</span>
-				</div>
-			</li>
-			<li class="middle-col">
-				<div>
-					<span class="left">重量</span>
-
-					<span class="middle">
-						<img class="sub-value" src="../images/yunfei/yunfei_09.png"/>
-						<span class="weight-value active">1</span>
-						<img class="add-value" src="../images/yunfei/yunfei_12.png"/>
-					</span>
-
-				<span class="right no-arrow">
-					<span class="text">千克</span>
-				</span>
-				</div>
-			</li>
-			<li id="payWaySelect" class="guoji-col hide">
-				<div>
-					<span class="left">付款方式</span>
-				<span class="right">
-					<span class="text">寄付</span>
-					<span class="mui-icon mui-icon-arrowright"></span>
-				</span>
-				</div>
-			</li>
-
-			<li id="fapiaoSelect" class="baoguo-col hide">
-				<div>
-					<span class="left">发票类型</span>
-				<span class="right">
-					<span class="text" data-value="1">商业发票</span>
-					<span class="mui-icon mui-icon-arrowright"></span>
-				</span>
-				</div>
-			</li>
-
-			<li id="baoguoCol" class="hide baoguo-col">
-				<div>
-					<span class="left">包裹详情</span>
-				<span class="right">
-					<span class="mui-icon mui-icon-plus"></span>
-				</span>
-				</div>
-			</li>
-
-			<li id="baoguoDetailCol">
-
-			</li>
-
-			<li class="guoji-col hide">
-				<div>
-					<span class="left">是否保价</span>
-				<span class="right">
-					<span class="mui-switch mui-switch-mini mui-switch-blue " id="baojiaSwitch">
-						<div class="mui-switch-handle"></div>
-					</span>
-				</span>
-				</div>
-			</li>
-			<li class="liancheng-col hide">
-				<div>
-					<span class="left">是否加急</span>
-				<span class="right">
-					<span class="mui-switch mui-switch-mini mui-switch-blue" id="jiajiSwitch">
-						<div class="mui-switch-handle"></div>
-					</span>
-				</span>
-				</div>
-			</li>
-			<li id="baojiaCol" class="hide">
-				<div>
-					<span class="left">保价金额</span>
-					<span class="middle">
-						<input type="number" id="baojiaColInput"  placeholder="请输入保价金额"/>
-					</span>
-				<span class="right">
-					<span>保费:<span class="baofei">0</span>元</span>
-				</span>
-				</div>
-			</li>
-			<li id="beizhuWenzi">
-				<div>
-					<span class="left">备注</span>
-					<span class="middle">
-						<span class="beizhu">请输入备注信息</span>
-					</span>
-				<span class="right">
-					<span class="mui-icon mui-icon-arrowright"></span>
-				</span>
-				</div>
-			</li>
-		</ul>
-
-		<div class="select-company">
-
-		<div class="yunfei-img-title">
-			请选择快递公司
-		</div>
-
-		<div class="yunfei-img-list">
-
-			<div class="swiper-container">
-
-				<div class="swiper-wrapper">
-
-
-
-				</div>
-
-			</div>
-		</div>
-
-		<div class="pd guoji-col hide" style="padding-right:0;">
-		<div class="miandan clearfix">
-
-			<div class="left">是否打印电子面单</div>
-
-			<div class="mui-switch mui-switch-mini mui-switch-blue " id="is_print">
-						<div class="mui-switch-handle"></div>
-			</div>
-
-		</div>
-		</div>
-
-		</div>
-
-
-		<div class="bottom-space"></div>
-
-		<div class="yunfei-bottom">
-
-			<div class="left has-tip">运费: <span><span id="priceText" data-price="0">¥0.0</span></span>
-
-				<div class="tip">（含保费)<label class="baofei">0</label>元</div>
-
-			</div>
-
-			<button type="button"  id="submitBtn" onclick="submitData()">提交订单</button>
-
-		</div>
-
-	</div>
-
-
-		<div class="beizhu-col hide">
-
-			<div class="shadow-col" onclick="hideBottomModal();"></div>
-
-			<div class="beizhu-text hide" id="beizhuText">
-				<div class="clearfix">
-					<span class="fl">填写备注</span>
-
-					<span class="fr" id="confirmBtn">确定</span>
-				</div>
-
-				<textarea placeholder="请填写备注信息"></textarea>
-
-			</div>
-
-			<div class="beizhu-text hide" id="payWay">
-				<div class="clearfix">
-					<span class="fl">付款方式</span>
-
-					<span class="fr right-close" onclick="hideBottomModal();">
-						<span class="mui-icon mui-icon-closeempty"></span>
-					</span>
-				</div>
-
-				<div class="tag-list">
-					<span class="active">寄付</span>
-					<span>到付</span>
-				</div>
-
-			</div>
-
-			<div class="beizhu-text hide" id="baoguoAdd">
-				<div class="clearfix">
-					<span class="fl">添加包裹详情</span>
-
-					<span class="fr right-close" onclick="hideBottomModal();">
-						<span class="mui-icon mui-icon-closeempty"></span>
-					</span>
-				</div>
-
-				<div class="add-list">
-
-					<div class="mui-input-group">
-						<div class="mui-input-row">
-							<label>内件品名</label>
-							<input type="text" id="rowValue1" placeholder="请输入内件品名">
-						</div>
-
-						<div class="mui-input-row jianshu-col">
-							<label>件数</label>
-							<span class="middle">
-							<img class="sub-value" src="../images/yunfei/yunfei_09.png">
-							<span class="value active" id="rowValue2">1</span>
-							<img class="add-value" src="../images/yunfei/yunfei_12.png">
-							</span>
-						</div>
-
-						<div class="mui-input-row">
-							<label>重量</label>
-							<input type="number" id="rowValue3" placeholder="请输入重量">
-						</div>
-						<div class="mui-input-row">
-							<label style="font-size: 0.12rem;">单件价值(USD)</label>
-							<input type="number" id="rowValue4" placeholder="请输入单件价值">
-						</div>
-						<div class="mui-input-row">
-							<label>原产地</label>
-							<input type="text" id="rowValue5" placeholder="请输入原产地">
-						</div>
-
-
-
-						<div  style="padding:20px 0 20px 15px;box-sizing: border-box;">
-							<div  class="mui-btn mui-btn-primary btn" style="display: block;" onclick="addBaoguoRow()">保存</div>
-						</div>
-					</div>
-
-				</div>
-
-			</div>
-
-			<div class="beizhu-text hide" id="fapiaoType">
-				<div class="clearfix">
-					<span class="fl">发票类型</span>
-
-					<span class="fr right-close" onclick="hideBottomModal();">
-						<span class="mui-icon mui-icon-closeempty"></span>
-					</span>
-				</div>
-
-				<div class="tag-list">
-					<span class="active" data-value="1">商业发票</span>
-					<span data-value="2">形式发票</span>
-				</div>
-
-			</div>
-
-
-			<div class="beizhu-text hide" id="goodsType">
-				<div class="clearfix">
-					<span class="fl">物品类型</span>
-
-					<span class="fr right-close" onclick="hideBottomModal();">
-						<span class="mui-icon mui-icon-closeempty"></span>
-					</span>
-				</div>
-
-				<div class="tag-list">
-					<span class="active">文件</span>
-					<span>日用品</span>
-					<span>食品</span>
-
-					<span>数码产品</span>
-					<span>衣物</span>
-					<span>其他</span>
-
-				</div>
-
-			</div>
-
-
-		</div>
-
-		<script src="../js/mui.min.js"></script>
-	    <script src="../js/jquery-2.1.1.min.js"></script>
-	    <script src="../js/app.js"></script>
-		<script src="../js/pay.js"></script>
-	    <script src="../js/myStorage.js"></script>
-		<script src="../lib/swiper.min.js"></script>
-
-	    <script src="../js/expressInfoAdd.js"></script>
-
-	</body>
+<head>
+    <meta charset="utf-8">
+    <title>国内快递</title>
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/swiper.min.css">
+    <link rel="stylesheet" href="../css/page.css">
+    <link rel="stylesheet" href="../css/pay.css">
+    <link rel="stylesheet" href="../css/mui.min.css">
+    <link rel="stylesheet" href="../css/secondPage.css">
+    <style>
+        body,
+        .mui-content {
+            background: #f9f9f9 !important;
+        }
+
+        .address-tab {
+            padding: 0 0.05rem;
+            box-sizing: border-box;
+        }
+
+        .address-tab>.address-col {
+            width: 33.3%;
+            float: left;
+            text-align: center;
+            padding: 0.1rem 0.1rem;
+            font-size: 0.12rem;
+        }
+
+        .address-tab>.address-col .address-detail {
+            border-radius: 4px;
+            border: 1px solid #eee;
+            background: #fff;
+            padding: 0.08rem 0;
+            line-height: normal;
+        }
+
+        .address-tab>.address-col.active .address-detail {
+            background: #107EFF;
+            color: #fff;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+
+
+    <div class="header-bar">
+
+        <div class="header-left" onclick="mui.back();">
+            <img src="../images/back.png" />
+        </div>
+
+        <div class="header-title" id="titleCol"></div>
+
+    </div>
+
+    <div class="mui-content has-header yunfei-col">
+
+        <div class="address-tab hide clearfix tongcheng-col">
+            <div class="address-col active" data-id="1">
+                <div class="address-detail">
+                    单程件
+                    <div>A -> B</div>
+                </div>
+            </div>
+            <div class="address-col" data-id="2">
+                <div class="address-detail">
+                    来回件
+                    <div>A -> B -> A</div>
+                </div>
+            </div>
+
+            <div class="address-col" data-id="3">
+                <div class="address-detail">
+                    联程件
+                    <div>A -> B -> C</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="express-info">
+            <div class="express-info-col">
+                <img src="../images/secondPage/expressInfoAdd_03.png">
+
+                <div class="middle-text" id="chufa" onclick="selectAddress(1, true)">
+                    <div class="placeholder">从哪里寄</div>
+                    <div class="middle-value">
+
+                    </div>
+                </div>
+
+                <span class="right" onclick="selectAddress(1)">地址簿</span>
+
+            </div>
+            <div class="express-info-col">
+                <img src="../images/secondPage/expressInfoAdd_06.png">
+                <div class="middle-text" id="daoda" onclick="selectAddress(2, true)">
+                    <div class="placeholder">寄到哪里</div>
+                    <div class="middle-value">
+                    </div>
+                </div>
+                <span class="right" onclick="selectAddress(2)">地址簿</span>
+
+            </div>
+
+            <div class="express-info-col hide liancheng-col" style="border-top: 1px solid #e3e3e3;">
+                <img src="../images/secondPage/expressInfoAdd_06.png">
+                <div class="middle-text" id="daoda1">
+                    <div class="placeholder">再寄到哪里</div>
+                    <div class="middle-value">
+
+                    </div>
+                </div>
+                <span class="right" onclick="selectAddress(3)">地址簿</span>
+
+            </div>
+
+
+        </div>
+
+        <ul class="yunfei-list">
+            <li id="wupinSelect">
+                <div>
+                    <span class="left">物品类型</span>
+                    <span class="right">
+                        <span class="text">文件</span>
+                        <span class="mui-icon mui-icon-arrowright"></span>
+                    </span>
+                </div>
+            </li>
+            <li class="middle-col">
+                <div>
+                    <span class="left">重量</span>
+
+                    <span class="middle">
+                        <img class="sub-value" src="../images/yunfei/yunfei_09.png" />
+                        <span class="weight-value active">1</span>
+                        <img class="add-value" src="../images/yunfei/yunfei_12.png" />
+                    </span>
+
+                    <span class="right no-arrow">
+                        <span class="text">千克</span>
+                    </span>
+                </div>
+            </li>
+            <li id="payWaySelect" class="guoji-col hide">
+                <div>
+                    <span class="left">付款方式</span>
+                    <span class="right">
+                        <span class="text">寄付</span>
+                        <span class="mui-icon mui-icon-arrowright"></span>
+                    </span>
+                </div>
+            </li>
+
+            <li id="fapiaoSelect" class="baoguo-col hide">
+                <div>
+                    <span class="left">发票类型</span>
+                    <span class="right">
+                        <span class="text" data-value="1">商业发票</span>
+                        <span class="mui-icon mui-icon-arrowright"></span>
+                    </span>
+                </div>
+            </li>
+
+            <li id="baoguoCol" class="hide baoguo-col">
+                <div>
+                    <span class="left">包裹详情</span>
+                    <span class="right">
+                        <span class="mui-icon mui-icon-plus"></span>
+                    </span>
+                </div>
+            </li>
+
+            <li id="baoguoDetailCol">
+
+            </li>
+
+            <li class="guoji-col hide">
+                <div>
+                    <span class="left">是否保价</span>
+                    <span class="right">
+                        <span class="mui-switch mui-switch-mini mui-switch-blue " id="baojiaSwitch">
+                            <div class="mui-switch-handle"></div>
+                        </span>
+                    </span>
+                </div>
+            </li>
+            <li class="liancheng-col hide">
+                <div>
+                    <span class="left">是否加急</span>
+                    <span class="right">
+                        <span class="mui-switch mui-switch-mini mui-switch-blue" id="jiajiSwitch">
+                            <div class="mui-switch-handle"></div>
+                        </span>
+                    </span>
+                </div>
+            </li>
+            <li id="baojiaCol" class="hide">
+                <div>
+                    <span class="left">保价金额</span>
+                    <span class="middle">
+                        <input type="number" id="baojiaColInput" placeholder="请输入保价金额" />
+                    </span>
+                    <span class="right">
+                        <span>保费:<span class="baofei">0</span>元</span>
+                    </span>
+                </div>
+            </li>
+            <li id="beizhuWenzi">
+                <div>
+                    <span class="left">备注</span>
+                    <span class="middle">
+                        <span class="beizhu">请输入备注信息</span>
+                    </span>
+                    <span class="right">
+                        <span class="mui-icon mui-icon-arrowright"></span>
+                    </span>
+                </div>
+            </li>
+        </ul>
+
+        <div class="select-company">
+            <div class="yunfei-img-title">
+                请选择快递公司
+            </div>
+            <div class="yunfei-img-list">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div class="pd guoji-col hide" style="padding-right:0;">
+                <div class="miandan clearfix">
+
+                    <div class="left">是否打印电子面单</div>
+
+                    <div class="mui-switch mui-switch-mini mui-switch-blue " id="is_print">
+                        <div class="mui-switch-handle"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="bottom-space"></div>
+
+        <div class="yunfei-bottom">
+
+            <div class="left has-tip">运费: <span><span id="priceText">0.0</span></span>
+
+                <div class="tip">（含保费)<label class="baofei">0</label>元</div>
+
+            </div>
+
+            <button type="button" id="submitBtn" onclick="submitData()">提交订单</button>
+
+        </div>
+
+    </div>
+
+
+    <div class="beizhu-col hide">
+
+        <div class="shadow-col" onclick="hideBottomModal();"></div>
+
+        <div class="beizhu-text hide" id="beizhuText">
+            <div class="clearfix">
+                <span class="fl">填写备注</span>
+
+                <span class="fr" id="confirmBtn">确定</span>
+            </div>
+
+            <textarea placeholder="请填写备注信息"></textarea>
+
+        </div>
+
+        <div class="beizhu-text hide" id="payWay">
+            <div class="clearfix">
+                <span class="fl">付款方式</span>
+
+                <span class="fr right-close" onclick="hideBottomModal();">
+                    <span class="mui-icon mui-icon-closeempty"></span>
+                </span>
+            </div>
+
+            <div class="tag-list">
+                <span class="active">寄付</span>
+                <span>到付</span>
+            </div>
+
+        </div>
+
+        <div class="beizhu-text hide" id="baoguoAdd">
+            <div class="clearfix">
+                <span class="fl">添加包裹详情</span>
+
+                <span class="fr right-close" onclick="hideBottomModal();">
+                    <span class="mui-icon mui-icon-closeempty"></span>
+                </span>
+            </div>
+
+            <div class="add-list">
+
+                <div class="mui-input-group">
+                    <div class="mui-input-row">
+                        <label>内件品名</label>
+                        <input type="text" id="rowValue1" placeholder="请输入内件品名">
+                    </div>
+
+                    <div class="mui-input-row jianshu-col">
+                        <label>件数</label>
+                        <span class="middle">
+                            <img class="sub-value" src="../images/yunfei/yunfei_09.png">
+                            <span class="value active" id="rowValue2">1</span>
+                            <img class="add-value" src="../images/yunfei/yunfei_12.png">
+                        </span>
+                    </div>
+
+                    <div class="mui-input-row">
+                        <label>重量</label>
+                        <input type="number" id="rowValue3" placeholder="请输入重量">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>单件价值(USD)</label>
+                        <input type="number" id="rowValue4" placeholder="请输入单件价值">
+                    </div>
+                    <div class="mui-input-row">
+                        <label>原产地</label>
+                        <input type="text" id="rowValue5" placeholder="请输入原产地">
+                    </div>
+
+
+
+                    <div style="padding:20px 0 20px 15px;box-sizing: border-box;">
+                        <div class="mui-btn mui-btn-primary btn" style="display: block;" onclick="addBaoguoRow()">保存
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="beizhu-text hide" id="fapiaoType">
+            <div class="clearfix">
+                <span class="fl">发票类型</span>
+
+                <span class="fr right-close" onclick="hideBottomModal();">
+                    <span class="mui-icon mui-icon-closeempty"></span>
+                </span>
+            </div>
+
+            <div class="tag-list">
+                <span class="active" data-value="1">商业发票</span>
+                <span data-value="2">形式发票</span>
+            </div>
+
+        </div>
+
+
+        <div class="beizhu-text hide" id="goodsType">
+            <div class="clearfix">
+                <span class="fl">物品类型</span>
+
+                <span class="fr right-close" onclick="hideBottomModal();">
+                    <span class="mui-icon mui-icon-closeempty"></span>
+                </span>
+            </div>
+
+            <div class="tag-list">
+                <span class="active">文件</span>
+                <span>日用品</span>
+                <span>食品</span>
+                <span>数码产品</span>
+                <span>衣物</span>
+                <span>其他</span>
+            </div>
+        </div>
+    </div>
+    <script type="text/html" id="expressCompanyList">
+        {{each data as com i}}
+        <div class="swiper-slide express-com-{{com.id}}" data-id="{{com.id}}">
+            <div><img src="{{com.logo_url}}"/></div>
+            <p>{{com.name}}</p><div class="bottom express-jiage{{com.id}}"></div>
+        </div>
+        {{/each}}
+    </script>
+    <script type="text/html" id="expressCompanyPirceList">
+        {{each data as com i}}
+        <div class="swiper-slide express-com-{{com.company.id}}" data-id="{{com.company.id}}">
+            <div><img src="{{com.company.logo_url}}"/></div>
+            <p>{{com.company.name}}</p><div class="bottom express-jiage{{com.company.id}}">￥{{com.price}}</div>
+        </div>
+        {{/each}}
+    </script>
+
+<!-- expressCompanyList -->
+    <script src="../js/mui.min.js"></script>
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="../lib/artTemplate.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/pay.js"></script>
+    <script src="../js/myStorage.js"></script>
+    <script src="../lib/swiper.min.js"></script>
+
+    <script src="../js/expressInfoAdd.js"></script>
+
+</body>
 
 </html>

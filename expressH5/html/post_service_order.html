@@ -1,376 +1,386 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
-		<title>企业饮水服务</title>
-		<link rel="stylesheet" href="../css/mui.min.css">
-		<link rel="stylesheet" href="../css/mui.picker.min.css" />
-		<link rel="stylesheet" href="../css/app.css">
-		<style type="text/css">
-			body{
-				background-color: #FFFFFF;
-			}
-			
-			.title_txt{
-				color: #666666;
-				font-size: 0.12rem;
-				padding: 16px 15px;
-				background-color: #F9F9F9;
-			}
-			
-			.item_wrap{
-			  height: 0.5rem;
-			  background-color: #FFFFFF;
-			  padding: 0px 0.16rem;
-			}
-			
-			.item{
-			  height: 0.5rem;
-			  width: 100%;
-			  border-bottom: 1px solid #E3E3E3;
-			}
-			
-			.item span:nth-child(1){
-				color: #333333;
-				font-size: 14px;
-				width: 80px;
-			}
-			
-			.item input{
-				margin-bottom: 0px;
-				border: none;
-				background: transparent;
-				color: #666666;
-				font-size: 14px;
-			}
-			
-			::-webkit-input-placeholder{
-				color: #cccccc;
-				font-size: 0.14rem;
-			}
-			
-			.pick_item{
-				height: 0.5rem;
-				width: 100%;
-				border-bottom: 1px solid #E3E3E3;
-				color: #333333;
-				font-size: 0.14rem;
-				padding-right: 0.15rem;
-			}
-			
-			.pick_item .content{
-				flex: 1;
-				text-align: right;
-				font-size: 0.14rem;
-				color: #666666;
-				height: 0.5rem;
-				line-height: 0.5rem;
-				
-			}
-			
-			.arraw{
-				width: 10px;
-				height: 10px;
-				border-top: 2px solid #999999;
-				border-right: 2px solid #999999;
-				transform: rotate(45deg);
-				margin-left: 2px;
-			  }
-			
-			
-			.text_wrap{
-				padding: 18px 16px;
-				background-color: #FFFFFF;
-				color: #33333;
-				font-size: 0.14rem;
-			}
-			
-			textarea{
-				padding: 9px 11px;
-				height: 0.69rem;
-				background-color: #F9F9F9;
-				margin-bottom: 0rem;
-			}
-			
-			textarea::-webkit-input-placeholder{
-				color: #999999;
-				font-size: 12px;
-			}
-			  
-			  .button{
-			  	border-radius: 3px;
-			  	width: 100%;
-			  	margin: 0.25rem 5% 0.73rem;
-			  	box-sizing: border-box;
-			  	font-size: 16px;
-			  	width: 90%;
-			  	height: 0.4rem;
-				padding: 0px;
-				background-color: #107EFF!important;
-				color: #FFFFFF;
-			  }
-			  /* 
-			  [data-type="date"] [data-id="picker-d"] {
-			      display: none;
-			  }
-			  
-			  [data-type="date"] .mui-picker {
-			      width: 50%;
-			  }
-			  
-			  [data-type="date"] .mui-dtpicker-title h5 {
-			      width: 50%;
-			  }
-			  
-			  [data-type="date"] [data-id="title-d"] {
-			      display: none!important;
-			  } */
-			  
-			
-		</style>
-	</head>
-	<body>
-		<header class="mui-bar mui-bar-nav" >
-		    <!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
-			<img src="../images/back.png" class="mui-action-back">
-			
-		    <h1 class="mui-title" id="topTitle"></h1>
-		</header>
-		
-		<div class="mui-content">
-			<div class="title_txt">
-				联系人
-			</div>
-			
-			<div class="col item_wrap">
-				<div class="row_between item" style="border-top: transparent;">
-					<span>姓名</span>
-					<input type="text" placeholder="请填写收件人姓名" class="name"/>
-				</div>
-				
-			</div>
-			
-			
-			
-			<div class="col item_wrap">
-				<div class="row_between item">
-					<span>手机号</span>
-					<input type="tel" placeholder="请填写收件人手机号" maxlength="11" class="mobile"/>
-				</div>
-				
-			</div>
-			
-			<div class="col item_wrap">
-				<div class="row_between item">
-					<span>公司名称</span>
-					<input type="text" placeholder="请填写公司姓名" class="company_name"/>
-				</div>
-				
-			</div>
-			
-			<div class="title_txt">
-				需求明细
-			</div>
-			
-			<div class="row item_wrap" onclick="showTypeAction();">
-				<div class="row_between pick_item">
-					<span>类型</span>
-					<span class="content">请选择</span>
-					<span class="arraw"></span>
-				</div>
-			</div>
-			
-			<div class="col item_wrap">
-				<div class="row_between item">
-					<span>数量</span>
-					<input type="tel" placeholder="请填写数量" class="number"/>
-				</div>
-				
-			</div>
-			
-			<div class="row item_wrap" onclick="lookTime();">
-				<div class="row_between pick_item">
-					<span>服务时间</span>
-					<span class="content service_time">请选择</span>
-					<span class="arraw"></span>
-				</div>
-				
-			</div>
-			
-			<div class="text_wrap">
-				<div style="margin-bottom: 18px;">需求明细</div>
-				<textarea  placeholder="请填写需求明细" class="requirements"></textarea>
-				
-			</div>
-			
-			<button class="mui-btn mui-btn-primary button" onclick="goToServiceOrderSure();">提交需求</button>
-			
-		</div>
-		
-	</body>
-	<script type="text/javascript" src="../js/mui.min.js"></script>
-	<script src="../js/mui.picker.min.js"></script>
-	<script type="text/javascript" src="../js/mui.dtpicker.js"></script>
-	<script src="../js/jquery-2.1.1.min.js"></script>
-	<script src="../js/app.js"></script>
-	<script src="../js/myStorage.js"></script>
-	
-	<script type="text/javascript">
-		mui.init();
-		var type = 0;
-		mui.plusReady(function() {
-			var self = plus.webview.currentWebview();
-			type = self.type;
-			getServiceType();
-		});
-		
-		$("#topTitle").text("企业"+myStorage.getItem("localServiceName"));
-		
-		//有效期
-		var timePicker = new mui.DtPicker({
-					type: "date", //设置日历初始视图模式
-					beginYear: "1970",
-					endYear: "2070"
-				});
-		var endTimePicker = new mui.DtPicker({
-					type: "date", //设置日历初始视图模式
-					beginYear: "1970",
-					endYear: "2070"
-				});
-		var from_time="", to_time="";		
-		function lookTime(){
-			timePicker.show(function(SelectedItem) {
-		        console.log(SelectedItem.text);
-				from_time = SelectedItem.text;
-		        $(".service_time").html(from_time)
-		        lookEndTime();
-		    })
-		}
-		
-		function lookEndTime(){
-			endTimePicker.show(function(SelectedItem) {
-		        console.log(SelectedItem.text);
-				to_time = SelectedItem.text;
-		        $(".service_time").html(from_time+" ~ "+to_time)
-		        
-		    })
-		}
-		
-		
-		$("input").focus(function(){
-		  $(this).parent().css("border-bottom","1px solid #107EFF");
-		});
-		
-		$("input").blur(function(){
-		  $(this).parent().css("border-bottom","1px solid #E3E3E3");
-		});
-		
-		var produce_id = 0;
-		function showTypeAction(){
-			complainPicker.show(function(item){
-				console.log(item)
-				mui('.content')[0].innerHTML = item[0].text;
-				produce_id = item[0].value;
-			})
-		}
-		
-		var complainPicker = new mui.PopPicker();
-		
-		function getServiceType(){
-			//得到服务类型
-			Global.commonAjax({
-				url: 'service/products?type='+type
-			}, function(data){
-				console.log(JSON.stringify(data))
-				var pickData = [];
-				data.map(function(item){
-					pickData.push({
-						value: item.id,
-						text: item.name
-					})
-				})
-				complainPicker.setData(pickData);
-				
-			}, function(err){
-				mui.toast(err);
-			});
-		}
-		
-		//企业饮水服务
-		function goToServiceOrderSure(){
-			var name = $(".name").val();
-			if(!name){
-				mui.toast("请填写名字");
-				return;
-			}
-			
-			var mobile = $(".mobile").val();
-			if(!mobile){
-				mui.toast("请填写电话");
-				return;
-			}
-			
-			var company_name = $(".company_name").val();
-			if(!company_name){
-				mui.toast("请填写公司名称");
-				return;
-			}
-			
-			var requirements = $(".requirements").val();
-			if(!requirements){
-				mui.toast("请填写需求明细");
-				return;
-			}
-			
-			var typeText = $(".content").html();
-			if(typeText == "请选择"){
-				mui.toast("请选择类型");
-				return;
-			}
-			
-			var number = $(".number").val();
-			if(!number){
-				mui.toast("请输入数量");
-				return;
-			}
-			
-			var service_time = $(".service_time").html();
-			if(service_time == "请选择"){
-				mui.toast("请输入服务时间");
-				return;
-			}
-			
-			var params = {
-				name: name,
-				mobile: mobile,
-				company_name: company_name,
-				type: type,
-				product_id: produce_id,
-				requirements: requirements,
-				amounts: number,
-				from: from_time,
-				to: to_time
-			}
-			
-			Global.commonAjax({
-				url: 'service/orders',
-				method: "POST",
-				data: params
-			}, function(data){
-				mui.toast("提交成功");
-				plus.webview.currentWebview().close();
-				return;
-				
-			}, function(err){
-				mui.toast(err);
-			});
-			
-			
-		}
-		
-		
-		
-		
-	</script>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+    content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+  <title>企业饮水服务</title>
+  <link rel="stylesheet" href="../css/mui.min.css">
+  <link rel="stylesheet" href="../css/mui.picker.min.css" />
+  <link rel="stylesheet" href="../css/app.css">
+  <style type="text/css">
+    body {
+      background-color: #FFFFFF;
+    }
+
+    .title_txt {
+      color: #666666;
+      font-size: 0.12rem;
+      padding: 16px 15px;
+      background-color: #F9F9F9;
+    }
+
+    .item_wrap {
+      height: 0.5rem;
+      background-color: #FFFFFF;
+      padding: 0px 0.16rem;
+    }
+
+    .item {
+      height: 0.5rem;
+      width: 100%;
+      border-bottom: 1px solid #E3E3E3;
+    }
+
+    .item span:nth-child(1) {
+      color: #333333;
+      font-size: 14px;
+      width: 80px;
+    }
+
+    .item input {
+      margin-bottom: 0px;
+      border: none;
+      background: transparent;
+      color: #666666;
+      font-size: 14px;
+    }
+
+    ::-webkit-input-placeholder {
+      color: #cccccc;
+      font-size: 0.14rem;
+    }
+
+    .pick_item {
+      height: 0.5rem;
+      width: 100%;
+      border-bottom: 1px solid #E3E3E3;
+      color: #333333;
+      font-size: 0.14rem;
+      padding-right: 0.15rem;
+    }
+
+    .pick_item .content {
+      flex: 1;
+      text-align: right;
+      font-size: 0.14rem;
+      color: #666666;
+      height: 0.5rem;
+      line-height: 0.5rem;
+
+    }
+
+    .arraw {
+      width: 10px;
+      height: 10px;
+      border-top: 2px solid #999999;
+      border-right: 2px solid #999999;
+      transform: rotate(45deg);
+      margin-left: 2px;
+    }
+
+
+    .text_wrap {
+      padding: 18px 16px;
+      background-color: #FFFFFF;
+      color: #33333;
+      font-size: 0.14rem;
+    }
+
+    textarea {
+      padding: 9px 11px;
+      height: 0.69rem;
+      background-color: #F9F9F9;
+      margin-bottom: 0rem;
+    }
+
+    textarea::-webkit-input-placeholder {
+      color: #999999;
+      font-size: 12px;
+    }
+
+    .button {
+      border-radius: 3px;
+      width: 100%;
+      margin: 0.25rem 5% 0.73rem;
+      box-sizing: border-box;
+      font-size: 16px;
+      width: 90%;
+      height: 0.4rem;
+      padding: 0px;
+      background-color: #107EFF !important;
+      color: #FFFFFF;
+    }
+
+    /* 
+        [data-type="date"] [data-id="picker-d"] {
+            display: none;
+        }
+        
+        [data-type="date"] .mui-picker {
+            width: 50%;
+        }
+        
+        [data-type="date"] .mui-dtpicker-title h5 {
+            width: 50%;
+        }
+        
+        [data-type="date"] [data-id="title-d"] {
+            display: none!important;
+        } */
+
+    .mui-bar-nav {
+      box-shadow: none;
+      border-bottom: 1px solid #ECECEC;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="mui-bar mui-bar-nav">
+    <!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
+    <img src="../images/back.png" class="mui-action-back">
+
+    <h1 class="mui-title" id="topTitle"></h1>
+  </header>
+
+  <div class="mui-content">
+    <div class="title_txt">
+      联系人
+    </div>
+
+    <div class="col item_wrap">
+      <div class="row_between item" style="border-top: transparent;">
+        <span>姓名</span>
+        <input type="text" placeholder="请填写收件人姓名" class="name" />
+      </div>
+
+    </div>
+
+
+
+    <div class="col item_wrap">
+      <div class="row_between item">
+        <span>手机号</span>
+        <input type="tel" placeholder="请填写收件人手机号" maxlength="11" class="mobile" />
+      </div>
+
+    </div>
+
+    <div class="col item_wrap">
+      <div class="row_between item">
+        <span>公司名称</span>
+        <input type="text" placeholder="请填写公司姓名" class="company_name" />
+      </div>
+
+    </div>
+
+    <div class="title_txt">
+      需求明细
+    </div>
+
+    <div class="row item_wrap" onclick="showTypeAction();">
+      <div class="row_between pick_item">
+        <span>类型</span>
+        <span class="content">请选择</span>
+        <span class="arraw"></span>
+      </div>
+    </div>
+
+    <div class="col item_wrap">
+      <div class="row_between item">
+        <span>数量</span>
+        <input type="tel" placeholder="请填写数量" class="number" />
+      </div>
+
+    </div>
+
+    <div class="row item_wrap" onclick="lookTime();">
+      <div class="row_between pick_item">
+        <span>服务时间</span>
+        <span class="content service_time">请选择</span>
+        <span class="arraw"></span>
+      </div>
+
+    </div>
+
+    <div class="text_wrap">
+      <div style="margin-bottom: 18px;">需求明细</div>
+      <textarea placeholder="请填写需求明细" class="requirements"></textarea>
+
+    </div>
+
+    <button class="mui-btn mui-btn-primary button" onclick="goToServiceOrderSure();">提交需求</button>
+
+  </div>
+
+</body>
+<script type="text/javascript" src="../js/mui.min.js"></script>
+<script src="../js/mui.picker.min.js"></script>
+<script type="text/javascript" src="../js/mui.dtpicker.js"></script>
+<script src="../lib/artTemplate.js"></script>
+<script src="../js/jquery-2.1.1.min.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/myStorage.js"></script>
+
+<script type="text/javascript">
+  mui.init();
+  var type = 0;
+  mui.plusReady(function () {
+    var self = plus.webview.currentWebview();
+    type = self.type;
+
+    getServiceType();
+  });
+
+  $("#topTitle").text("企业" + myStorage.getItem("localServiceName"));
+
+  //有效期
+  var timePicker = new mui.DtPicker({
+    type: "date", //设置日历初始视图模式
+    beginYear: "1970",
+    endYear: "2070"
+  });
+  var endTimePicker = new mui.DtPicker({
+    type: "date", //设置日历初始视图模式
+    beginYear: "1970",
+    endYear: "2070"
+  });
+  var from_time = "", to_time = "";
+  function lookTime() {
+    timePicker.show(function (SelectedItem) {
+      console.log(SelectedItem.text);
+      from_time = SelectedItem.text;
+      $(".service_time").html(from_time)
+      lookEndTime();
+    })
+  }
+
+  function lookEndTime() {
+    endTimePicker.show(function (SelectedItem) {
+      console.log(SelectedItem.text);
+      to_time = SelectedItem.text;
+      $(".service_time").html(from_time + " ~ " + to_time)
+
+    })
+  }
+
+
+  $("input").focus(function () {
+    $(this).parent().css("border-bottom", "1px solid #107EFF");
+  });
+
+  $("input").blur(function () {
+    $(this).parent().css("border-bottom", "1px solid #E3E3E3");
+  });
+
+  var produce_id = 0;
+  function showTypeAction() {
+    complainPicker.show(function (item) {
+      console.log(item)
+      mui('.content')[0].innerHTML = item[0].text;
+      produce_id = item[0].value;
+    })
+  }
+
+  var complainPicker = new mui.PopPicker();
+
+  function getServiceType() {
+    //得到服务类型
+    Global.commonAjax({
+      url: 'service/products?type=' + type
+    }, function (data) {
+      console.log(JSON.stringify(data))
+      var pickData = [];
+      data.map(function (item) {
+        pickData.push({
+          value: item.id,
+          text: item.name
+        })
+      })
+      complainPicker.setData(pickData);
+
+    }, function (err) {
+      mui.toast(err);
+    });
+  }
+
+  //企业饮水服务
+  function goToServiceOrderSure() {
+    var name = $(".name").val();
+    if (!name) {
+      mui.toast("请填写名字");
+      return;
+    }
+
+    var mobile = $(".mobile").val();
+    if (!mobile) {
+      mui.toast("请填写电话");
+      return;
+    }
+
+    var company_name = $(".company_name").val();
+    if (!company_name) {
+      mui.toast("请填写公司名称");
+      return;
+    }
+
+    var requirements = $(".requirements").val();
+    if (!requirements) {
+      mui.toast("请填写需求明细");
+      return;
+    }
+
+    var typeText = $(".content").html();
+    if (typeText == "请选择") {
+      mui.toast("请选择类型");
+      return;
+    }
+
+    var number = $(".number").val();
+    if (!number) {
+      mui.toast("请输入数量");
+      return;
+    }
+
+    var service_time = $(".service_time").html();
+    if (service_time == "请选择") {
+      mui.toast("请输入服务时间");
+      return;
+    }
+
+    var params = {
+      name: name,
+      mobile: mobile,
+      company_name: company_name,
+      type: type,
+      product_id: produce_id,
+      requirements: requirements,
+      amounts: number,
+      from: from_time,
+      to: to_time
+    }
+
+    Global.commonAjax({
+      url: 'service/orders',
+      method: "POST",
+      data: params
+    }, function (data) {
+      mui.toast("提交成功");
+      plus.webview.currentWebview().close();
+      return;
+
+    }, function (err) {
+      mui.toast(err);
+    });
+
+
+  }
+
+
+
+
+</script>
+
 </html>
