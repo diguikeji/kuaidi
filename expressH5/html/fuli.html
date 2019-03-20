@@ -188,45 +188,11 @@
 			</div>
 
 
-			<div class="swiper-container swiper-tab-col">
+			<div class="swiper-container swiper-tab-col buzhou-list">
 
-				<div class="buzhou-list swiper-wrapper clearfix">
+				<div class=" swiper-wrapper clearfix time_wrap">
 
-				<div class="swiper-slide disabled">
-					<span>10:00</span>
-					<div>活动结束</div>
 				</div>
-
-				<div class="swiper-slide disabled">
-					<span>10:00</span>
-					<div>活动结束</div>
-				</div>
-
-				<div class="swiper-slide active">
-					<span>10:00</span>
-					<div>活动结束</div>
-				</div>
-
-				<div class="swiper-slide">
-					<span>10:00</span>
-					<div>即将开始</div>
-				</div>
-
-				<div class="swiper-slide">
-					<span>10:00</span>
-					<div>即将开始</div>
-				</div>
-
-				<div class="swiper-slide">
-					<span>10:00</span>
-					<div>即将开始</div>
-				</div>
-
-				<div class="swiper-slide">
-					<span>10:00</span>
-					<div>即将开始</div>
-				</div>
-			</div>
 
 		    </div>
 
@@ -300,36 +266,7 @@
 		<div class="tab-col hide">
 
 			<ul class="fuli-temai-list">
-				<li>
-					<img src="../images/fuli/temai_08.jpg">
-					<p>景德镇优质青花瓷碗</p>
-					<div><span>¥</span>928.00</div>
-					<button type="button">立即抢购</button>
-				</li>
-				<li>
-					<img src="../images/fuli/temai_14.jpg">
-					<p>景德镇优质青花瓷碗</p>
-					<div><span>¥</span>928.00</div>
-					<button type="button">立即抢购</button>
-				</li>
-				<li>
-					<img src="../images/fuli/temai_08.jpg">
-					<p>景德镇优质青花瓷碗</p>
-					<div><span>¥</span>928.00</div>
-					<button type="button">立即抢购</button>
-				</li>
-				<li>
-					<img src="../images/fuli/temai_08.jpg">
-					<p>景德镇优质青花瓷碗</p>
-					<div><span>¥</span>928.00</div>
-					<button type="button">立即抢购</button>
-				</li>
-				<li>
-					<img src="../images/fuli/temai_08.jpg">
-					<p>景德镇优质青花瓷碗</p>
-					<div><span>¥</span>928.00</div>
-					<button type="button">立即抢购</button>
-				</li>
+				
 			</ul>
 
 		</div>
@@ -349,13 +286,79 @@
 
 	</div>
 
+<script type="text/html" id="timeList">
+	{{each data as item i}}
+	{{if item.status==0}}
+		<div class="swiper-slide disabled">
+	{{else if item.status==1}}
+		<div class="swiper-slide active">
+	{{else}}
+		<div class="swiper-slide">
+	{{/if}}
+			<span>{{item.label}}</span>
+			<div>{{item.text}}</div>
+		</div>
+	{{/each}}
+</script>
 
+<script type="text/html" id="couponList">
+	{{each data as item i}}
+		<li>
+			<img src="../images/fuli/temai_08.jpg">
+			<p>景德镇优质青花瓷碗</p>
+			<div><span>¥</span>928.00</div>
+			<button type="button">立即抢购</button>
+		</li>
+	{{/each}}
+</script>
+	
 <script src="../js/mui.min.js"></script>
 <script src="../js/jquery-2.1.1.min.js"></script>
+<script src="../lib/artTemplate.js"></script>
 <script src="../lib/swiper.min.js"></script>
 <script src="../js/myStorage.js"></script>
 <script src="../js/app.js"></script>
 <script>
+	
+	mui.plusReady(function () {
+		httpRequest();
+	});	
+	
+	var curTime = 12;
+	function httpRequest() {
+	    Global.commonAjax({
+	        url: "welfare/coupons/today"
+	    }, function (data) {
+	        if (data) {
+				render('.time_wrap', 'timeList', { data: data }, true);
+				data.map(function(item){
+					if(item.status == 1){
+						curTime = item.time;
+						getCoupon();
+						return;
+					}
+				});
+	        }
+	    }, function (err) {
+	        console.log("获取快递公司" + JSON.stringify(err));
+	    })
+	}
+	
+	function getCoupon() {
+	    Global.commonAjax({
+	        url: "welfare/coupons?time="+curTime
+	    }, function (data) {
+	        if (data) {
+				var list = data.data;
+				console.log(list);
+				render('.fuli-temai-list', 'couponList', { data: list }, true);
+				
+	        }
+	    }, function (err) {
+	        console.log("getCoupon" + JSON.stringify(err));
+	    })
+	}
+	
 
 	var swiper = new Swiper('.swiper-banner', {
 		pagination: {

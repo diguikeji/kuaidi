@@ -195,7 +195,7 @@ var Global = {};
 					}else if(xhr.status == 200){
 						
 					}else{
-						errorback(xhr.data.msg);
+						errorback(xhr.data?xhr.data.msg:'');
 					}
 
                 }
