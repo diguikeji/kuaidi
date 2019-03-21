@@ -136,6 +136,10 @@
 				width: 2.4rem;
 				height: 0.6rem;
 			}
+			
+			.fuli-list-empty{
+				margin-top: 1rem;
+			}
 	</style>
 
 </head>
@@ -214,51 +218,10 @@
 
 					</li>
 
-					<li>
-						<img class="img" src="../images/fuli/fuli_15.jpg">
-						<div>
-							<div class="biaoti">GUCCI 八折优惠券</div>
-							<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
-							<div class="riqi">2018-01-01 至 2018-12-31</div>
-						</div>
-
-						<div class="lingqu">
-							<div>立即</div>
-							<div>领取</div>
-						</div>
-
-					</li>
-
-					<li>
-						<img class="img" src="../images/fuli/fuli_15.jpg">
-						<div>
-							<div class="biaoti">GUCCI 八折优惠券</div>
-							<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
-							<div class="riqi">2018-01-01 至 2018-12-31</div>
-						</div>
-
-						<div class="lingqu">
-							<div>立即</div>
-							<div>领取</div>
-						</div>
-
-					</li>
-
-					<li>
-						<img class="img" src="../images/fuli/fuli_15.jpg">
-						<div>
-							<div class="biaoti">GUCCI 八折优惠券</div>
-							<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
-							<div class="riqi">2018-01-01 至 2018-12-31</div>
-						</div>
-
-						<div class="lingqu">
-							<div>立即</div>
-							<div>领取</div>
-						</div>
-
-					</li>
+					
 				</ul>
+				
+				<div class="row_center fuli-list-empty">暂无数据</div>
 
 			</div>
 		</div>
@@ -266,7 +229,12 @@
 		<div class="tab-col hide">
 
 			<ul class="fuli-temai-list">
-				
+				<li>
+					<img src="../images/fuli/temai_08.jpg">
+					<p>景德镇优质青花瓷碗</p>
+					<div><span>¥</span>928.00</div>
+					<button type="button">立即抢购</button>
+				</li>
 			</ul>
 
 		</div>
@@ -289,11 +257,11 @@
 <script type="text/html" id="timeList">
 	{{each data as item i}}
 	{{if item.status==0}}
-		<div class="swiper-slide disabled">
+		<div class="swiper-slide disabled" data-id="{{item.time}}">
 	{{else if item.status==1}}
-		<div class="swiper-slide active">
+		<div class="swiper-slide active" data-id="{{item.time}}">
 	{{else}}
-		<div class="swiper-slide">
+		<div class="swiper-slide" data-id="{{item.time}}">
 	{{/if}}
 			<span>{{item.label}}</span>
 			<div>{{item.text}}</div>
@@ -301,7 +269,28 @@
 	{{/each}}
 </script>
 
+
 <script type="text/html" id="couponList">
+	{{each data as item i}}
+		<li>
+			<img class="img" src="../images/fuli/fuli_15.jpg">
+			<div>
+				<div class="biaoti">GUCCI 八折优惠券</div>
+				<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
+				<div class="riqi">2018-01-01 至 2018-12-31</div>
+			</div>
+		
+			<div class="lingqu">
+				<div>立即</div>
+				<div>领取</div>
+			</div>
+		
+		</li>
+	{{/each}}
+</script>
+
+
+<!-- <script type="text/html" id="couponList">
 	{{each data as item i}}
 		<li>
 			<img src="../images/fuli/temai_08.jpg">
@@ -310,7 +299,7 @@
 			<button type="button">立即抢购</button>
 		</li>
 	{{/each}}
-</script>
+</script> -->
 	
 <script src="../js/mui.min.js"></script>
 <script src="../js/jquery-2.1.1.min.js"></script>
@@ -320,9 +309,17 @@
 <script src="../js/app.js"></script>
 <script>
 	
-	mui.plusReady(function () {
-		httpRequest();
-	});	
+	mui.init();
+	mui.plusReady(function() {
+			var topHeight=plus.navigator.getStatusbarHeight();
+			if(mui.os.android)
+			{
+				$("#statusBar").height(topHeight);
+			}
+		   commonEvent();
+		   httpRequest();
+			
+	});
 	
 	var curTime = 12;
 	function httpRequest() {
@@ -334,7 +331,7 @@
 				data.map(function(item){
 					if(item.status == 1){
 						curTime = item.time;
-						getCoupon();
+						// getCoupon();
 						return;
 					}
 				});
@@ -351,7 +348,16 @@
 	        if (data) {
 				var list = data.data;
 				console.log(list);
-				render('.fuli-temai-list', 'couponList', { data: list }, true);
+				if(list.length > 0){
+					$(".fuli-list").removeClass("hideClass");
+					$(".fuli-list-empty").addClass("hideClass");
+					render('.fuli-list', 'couponList', { data: list }, true);
+				}else{
+					$(".fuli-list").addClass("hideClass");
+					$(".fuli-list-empty").removeClass("hideClass");
+					
+				}
+				
 				
 	        }
 	    }, function (err) {
@@ -398,6 +404,15 @@
 		})
 
 	});
+	
+	mui(".time_wrap").on('tap','.swiper-slide',function(){
+	
+		$(".time_wrap .swiper-slide").removeClass("active");
+		$(this).addClass("active");
+		curTime = $(this).data("id");
+		getCoupon();
+	});
+	
 
 	$("#sosuo").click(function()
 	{
@@ -422,7 +437,7 @@
 
 	$(".fuli-temai-list li").click(function()
 	{
-			$(".modal-mask").removeClass("hideClass");
+			//$(".modal-mask").removeClass("hideClass");
 
 	});
 		
@@ -430,16 +445,7 @@
 			$(".modal-mask").addClass("hideClass");
 		}
 		
-mui.init();
-mui.plusReady(function() {
-		var topHeight=plus.navigator.getStatusbarHeight();
-		if(mui.os.android)
-		{
-			$("#statusBar").height(topHeight);
-		}
-	   commonEvent();
-		
-});
+
 
 	
 
