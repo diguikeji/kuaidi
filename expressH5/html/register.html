@@ -97,9 +97,15 @@
 				color: #107EFF;
 			}
 			
+			.mui-content{
+				position: absolute!important;
+				-webkit-overflow-scrolling: touch!important;
+				z-index: 1!important;
+			}
+			
 		</style>
 	</head>
-	<body>
+	<body class="mui-content">
 		<div class="row_between head_wrap">
 			<img src="../images/login/login_close.png" onclick="goToBack();">
 			<!-- <img src="../images/login/shengluehao.png" > -->
@@ -123,7 +129,7 @@
 			
 			<div class="row">
 				<img src="../images/login/login_pwd.png" style="width:14px; margin-right: 4px;">
-				<input type="password" placeholder="请输入密码" class="password">
+				<input type="password" placeholder="请输入密码" class="password" @blur="watchInput">
 			</div>
 			
 		</div>
@@ -147,7 +153,13 @@
 		mui.init();
 		
 		mui.plusReady(function() {
-			
+			var height1 = plus.android.invoke(plus.android.currentWebview(), "getHeight");//高度物理分辨率
+				var height2 = plus.screen.resolutionHeight;//高度逻辑分辨率
+				var top = plus.navigator.getStatusbarHeight();//状态栏高度
+				document.getElementsByClassName("mui-content")[0].style.height = (height2) + "px";
+				console.log(height1);//1920
+				console.log(height2);//640
+				console.log(top);//22
 		});
 		
 		$("input").focus(function(){
@@ -156,7 +168,16 @@
 		
 		$("input").blur(function(){
 		  $(this).parent().css("border-bottom","1px solid #E3E3E3");
+		  
+		  if($(this).attr("class") == "password"){
+			  window.scrollTo(0,500);
+		  }
 		});
+		
+		
+// 		document.body.addEventListener('focusout', function () {
+//                 window.scrollTo(0,500);
+//             })
 		
 		//获取验证码
 		function getCodeAction(){
