@@ -191,6 +191,7 @@
                 function (data) {
 
                     console.log("订单列表");
+                    console.log(data);
                     console.log(JSON.stringify(data.data));
 
                     if (data) {
@@ -198,35 +199,36 @@
                         data = data.data;
                         if (data.length > 0) {
 
-                            // for (var i = 0; i < data.length; i++) {
-                            //     //console.log(JSON.stringify(data.data[i]));
-
-                            //     var expressObj = findExpressCompany(data[i].express_company_id);
-
-                            //     html = html + '<li data-id="' + data[i].id + '"><div class="clearfix top">' +
-                            //         '<div class="left">' +
-                            //         '<div class="name">' + data[i].from_name + '</div>' +
-                            //         '<p>' + data[i].from_province + data[i].from_city + data[i].from_area + '</p>' +
-                            //         '</div>' +
-                            //         '<img class="middle-img" src="../images/secondPage/express_22.jpg">' +
-                            //         '<div class="right">' +
-                            //         '<div class="name">' + data[i].to_name + '</div>' +
-                            //         '<p>' + data[i].to_province + data[i].to_city + data[i].to_area + '</p>' +
-                            //         '</div>' +
-                            //         '</div>' +
-                            //         '<div class="middle">' +
-                            //         '<span class="first" style=' + data[i].status_text.color + '><span style=' + data[i].status_text.color + '></span>' + data[i].status_text.text + '</span>' +
-                            //         '<span class="second">' + data[i].to_detail + '</span>' +
-                            //         '</div>' +
-                            //         '<div class="bottom">' +
-                            //         '<img src="' + expressObj.logo_url + '"/>' +
-                            //         '<span class="first">' + expressObj.name + '</span>' +
-                            //         '<span>' + data[i].express_sn + '</span>' +
-                            //         '</div>' +
-                            //         '</li>';
-                            // }
-
-                            // $("#expressList" + type).append(html);
+//                              for (var i = 0; i < data.length; i++) {
+//                                  //console.log(JSON.stringify(data.data[i]));
+// 
+//                                  var expressObj = findExpressCompany(data[i].express_company_id);
+// 
+//                                  html = html + '<li data-id="' + data[i].id + '"><div class="clearfix top">' +
+//                                      '<div class="left">' +
+//                                      '<div class="name">' + data[i].from_name + '</div>' +
+//                                      '<p>' + data[i].from_province + data[i].from_city + data[i].from_area + '</p>' +
+//                                      '</div>' +
+//                                      '<img class="middle-img" src="../images/secondPage/express_22.jpg">' +
+//                                      '<div class="right">' +
+//                                      '<div class="name">' + data[i].to_name + '</div>' +
+//                                      '<p>' + data[i].to_province + data[i].to_city + data[i].to_area + '</p>' +
+//                                      '</div>' +
+//                                      '</div>' +
+//                                      '<div class="middle">' +
+//                                      '<span class="first" style=' + data[i].status_text.color + '><span style=' + data[i].status_text.color + '></span>' + data[i].status_text.text + '</span>' +
+//                                      '<span class="second">' + data[i].to_detail + '</span>' +
+//                                      '</div>' +
+//                                      '<div class="bottom">' +
+//                                      '<img src="' + expressObj.logo_url + '"/>' +
+//                                      '<span class="first">' + expressObj.name + '</span>' +
+//                                      '<span>' + data[i].express_sn + '</span>' +
+//                                      '</div>' +
+//                                      '</li>';
+//                              }
+// 
+//                              $("#expressList" + type).append(html);
+							
                             render('#expressList1', 'orderList', {data: data}, true) 
 
                             if ($(".middle-tab-col .active").attr("data-type") == 1) {

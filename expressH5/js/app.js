@@ -1,5 +1,5 @@
 var Global = {};
-
+var isOpenLogin = false;
 (function() {
 
     Global = {
@@ -173,8 +173,9 @@ var Global = {};
 
                 },
                 success: function(data) {
-                	console.log(JSON.stringify(data.data));
+                	console.log(JSON.stringify(data));
 					if (data.success) {
+						console.log(JSON.stringify(data));
                         callback(data.data);
                     } else{
 						errorback(data.msg ? data.msg : "");
@@ -187,6 +188,10 @@ var Global = {};
                 },
                 complete: function(xhr, status) {
                     console.log(xhr.status);
+					console.log(xhr.responseText);
+					var res = JSON.parse(xhr.responseText);
+					
+                    console.log(JSON.parse(xhr.responseText).msg);
 					waiting.close();
 					if(xhr.status == 401){
 						//重新登录
@@ -194,6 +199,8 @@ var Global = {};
 						
 					}else if(xhr.status == 200){
 						
+					}else if(res && !res.success){
+						errorback(JSON.parse(xhr.responseText)?JSON.parse(xhr.responseText).msg:'请求出错');
 					}else{
 						errorback(xhr.data?xhr.data.msg:'');
 					}
@@ -222,12 +229,23 @@ var Global = {};
                 }
             };
 			if(window.location.href.indexOf("index")>-1){
-
-                mui.openWindow('html/login.html','login.html',options);
+				if(!isOpenLogin){
+					isOpenLogin = true;
+					mui.openWindow('html/login.html','login.html',options);
+				}
+                
 
 			}else{
-                mui.openWindow('login.html','login.html',options);
+				if(!isOpenLogin){
+					isOpenLogin = true;
+					mui.openWindow('login.html','login.html',options);
+				}
+                
 			}
+			
+			setTimeout(function(){
+				isOpenLogin = false;
+			}, 10000);
 			
 		},
 
