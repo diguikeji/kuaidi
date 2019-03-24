@@ -16,7 +16,14 @@
 			}
 			
 			.head_wrap{
-				padding: 16px 16px 0px;
+				/* padding: 16px 16px 0px; */
+				position: absolute;
+				top: 0.16rem;
+				left: 0.16rem;
+			}
+			
+			.head_wrap_active{
+				top: 0.3rem!important;
 			}
 			
 			.head_wrap img{
@@ -164,13 +171,15 @@
 		
 		$("input").focus(function(){
 		  $(this).parent().css("border-bottom","1px solid #107EFF");
+		  
 		});
 		
 		$("input").blur(function(){
 		  $(this).parent().css("border-bottom","1px solid #E3E3E3");
 		  
 		  if($(this).attr("class") == "password"){
-			  window.scrollTo(0,500);
+			  window.scrollTo(0,1000);
+			  $(".head_wrap").addClass("head_wrap_active");
 		  }
 		});
 		
