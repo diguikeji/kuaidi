@@ -91,12 +91,47 @@
 				margin-top: 18px;
 			}
 			
-			.img_wrap img{
+			/* .img_wrap img{
 				width: 100px;
 				height: 75px;
 				margin-right: 10px;
 				margin-bottom: 10px;
-			}  
+			} */
+			 
+			.upload_img_wrap{
+				width: 32%;
+				position: relative;
+				margin-right: 1%;
+				padding: 1%;
+				box-sizing: border-box;
+			} 
+			
+			.upload_img_wrap .img_btn{
+				width: 100%;
+				max-height: 0.8rem;
+			}
+			
+			.upload_img_wrap .del_btn{
+				position: absolute;
+				top: -0.05rem;
+				right: -0rem;
+				width: 0.2rem;
+				height: 0.2rem;
+				z-index: 10;
+			}
+			
+			textarea {
+			  padding: 9px 11px;
+			  height: 0.9rem;
+			  background-color: #F9F9F9;
+			  margin-bottom: 0rem;
+			  
+			}
+			
+			textarea::-webkit-input-placeholder {
+			  color: #999999;
+			  font-size: 12px;
+			}
 			
 		</style>
 	</head>
@@ -113,18 +148,18 @@
 				<span>感谢您对我们提出宝贵的投诉建议</span>
 			</div>
 			
-			<div class="row item_wrap" onclick="showReason();">
-				<div class="row_between item">
-					<span>投诉原因</span>
-					<span class="content"></span>
-					<span class="arraw"></span>
+			<div class="row item_wrap" >
+				<div class=" item" style="height: 1.3rem; padding-top: 0.1rem;">
+					<div>投诉原因</div>
+					<textarea placeholder="请填写投诉原因" class="content_reason"></textarea>
 				</div>
+				
 			</div>
 			
 			<div class="row item_wrap">
 				<div class="row_between item">
 					<span>手机号</span>
-					<input type="tel" maxlength="11" placeholder="请输入手机号码">
+					<input type="tel" maxlength="11" placeholder="请输入手机号码" class="mobile">
 				</div>
 			</div>
 			
@@ -145,34 +180,179 @@
 	<script src="../js/mui.picker.min.js"></script>
 	<script src="../js/jquery-2.1.1.min.js"></script>
 	<script src="../js/app.js"></script>
+	<script src="../js/myStorage.js"></script>
 	<script type="text/javascript">
-		var complainPicker = new mui.PopPicker();
-		complainPicker.setData([{
-			value: 'ywj',
-			text: '董事长 叶文洁'
-		}, {
-			value: 'aaa',
-			text: '总经理 艾AA'
-		}, {
-			value: 'gezh', 
-			text: '歌者'
-		}]);
 		
-		function showReason(){
-			complainPicker.show(function(item){
-				console.log(item)
-				mui('.content')[0].innerHTML = item[0].text;
-			})
-		}
+		mui.init();
+		var images = [];
+		mui.plusReady(function() {
+			
+			addImage();
+			mui(".img_wrap").on('tap', '.add_btn', function() {
+				
+				updateFile();
+			});
+			
+			mui(".mui-content").on('tap', '.button', function() {
+				console.log("11111");
+				document.activeElement.blur();
+				feedbacks();
+			});
+			
+		});
 		
-		addImage();
+		//addImage();
 		function addImage(){
 			var html = '';
-			for(var i=0; i<10; i++){
-				html += '<img src="../images/firstPageLive/homeBottom_03.jpg" >';
-			}
+			$(".img_wrap").html(""); 
+			images.map(function(item, index){
+				html += '<div class="upload_img_wrap">'+
+							'<img src="'+item+'" class="img_btn">'+
+							'<img src="../images/wode/upload_del_icon.jpg" class="del_btn" data-index="'+index+'">'+
+						'</div>';
+			});
+			
+			html += '<div class="upload_img_wrap add_btn">'+
+						'<img src="../images/wode/upload_icon.jpg" class="img_btn">'+
+					'</div>';
 			
 			$(".img_wrap").append(html);
+			
+			mui(".upload_img_wrap").on('tap', '.del_btn', function() {
+				console.log("000")
+				var index = $(this).data("index");
+				images.splice(index, 1);
+				addImage();
+			});
+			
+		}
+		
+		var fileName = "temp.jpg";
+		//修改头像
+		function updateFile() {
+		    plus.nativeUI.actionSheet({
+		        cancel: "取消",
+		        buttons: [{
+		            title: "拍照"
+		        }, {
+		            title: "从相册中选择"
+		        }]
+		    }, function(e) { //1 是拍照  2 从相册中选择
+		        switch (e.index) {
+		            case 1:
+		                appendByCamera();
+		                break;
+		            case 2:
+		                appendByGallery();
+		                break;
+		        }
+		    });
+		}
+		
+		
+		// 拍照添加文件
+		function appendByCamera() {
+		    plus.camera.getCamera().captureImage(function(e) {
+		        console.log("e is" + e);
+		        plus.io.resolveLocalFileSystemURL(e, function(entry) {
+		            var path = entry.toLocalURL();
+		            console.log(path);
+		            $('.top-img').attr('src', path);
+		            var pathList = path.split("/");
+		            fileName = pathList[pathList.length-1];
+		            console.log(fileName);
+					
+		            Global.getCanvasBase64(path)
+		                .then(function(base64) {
+		                    console.log(base64);
+		                    uploadFile(base64);
+		                }, function(err) {
+		                    console.log(err);
+		                })
+		
+		        }, function(e) {
+		            mui.toast("读取拍照文件错误：" + e.message);
+		        });
+		
+		    });
+		}
+		// 从相册添加文件
+		function appendByGallery() {
+		    plus.gallery.pick(function(path) {
+				var pathList = path.split("/");
+				fileName = pathList[pathList.length-1];
+				console.log(fileName);
+				
+		        // $('.top-img').attr('src', path);
+		        
+		        Global.getCanvasBase64(path)
+		            .then(function(base64) {
+		                console.log(base64);
+		                uploadFile(base64);
+		            }, function(err) {
+		                console.log(err);
+		            })
+		
+		    });
+		}
+		
+		//上传图片
+		function uploadFile(base64) {
+		    var params = {
+		        file: base64,
+				name: fileName
+		    };
+		    Global.commonAjax({
+		            url: "upload/post",
+		            method: "POST",
+		            data: params
+		        },
+		        function(data) {
+		            // updateParams.avatar = data.url;
+		            mui.toast("上传成功");
+		            // $('.top-img').attr("src", data.url);
+					images.push(data.url);
+					addImage();
+		        },
+		        function(err) {
+		            mui.toast("上传失败");
+		            // $('.top-img').attr('src', "../images/wode/wmtyou_icon.png");
+		        }
+		    );
+		}
+		
+		
+		function feedbacks(){
+			var mobile = $(".mobile").val();
+			if(!mobile || mobile.length != 11){
+				mui.toast("请输入正确的手机号");
+				return;
+			}
+			
+			var content = $(".content_reason").val();
+			if(!content){
+				mui.toast("请输入投诉原因");
+				return;
+			}
+			
+			var params = {
+				content: content,
+				images: images,
+				mobile: mobile
+			};
+			Global.commonAjax({
+				url: 'feedbacks',
+				method: "POST",
+				data: params
+			}, function(data){
+				mui.toast("上传成功");
+				
+				plus.webview.currentWebview().close();
+				
+			}, function(error){
+				mui.toast(error);
+			});
+			
 		}
 		
 	</script>
