@@ -188,10 +188,13 @@ var isOpenLogin = false;
                 },
                 complete: function(xhr, status) {
                     console.log(xhr.status);
-					console.log(xhr.responseText);
-					var res = JSON.parse(xhr.responseText);
+					if(xhr.status != 200){
+						console.log(xhr.responseText);
+						var res = JSON.parse(xhr.responseText);
+						
+						console.log(JSON.parse(xhr.responseText).msg);
+					}
 					
-                    console.log(JSON.parse(xhr.responseText).msg);
 					waiting.close();
 					if(xhr.status == 401){
 						//重新登录

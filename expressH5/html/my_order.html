@@ -101,20 +101,98 @@
 				
 			</div>
 		</div>
-		<script src="../js/mui.min.js"></script>
+		
+		
+		<div id="pullrefresh" class=" mui-scroll-wrapper" 
+					style="margin-top:0.9rem; border-top: 1px solid #E3E3E3;">
+		    <div class="mui-scroll" >
+		        <!--数据列表-->
+		        <ul class="mui-table-view-condensed list_wrap" >
+					
+		        </ul>
+		    </div>
+		
+		</div>
+		<div class="empty_text hideClass">
+		    数据为空
+		</div>
+		
+		
+		<script src="../js/mui.js"></script>
 		<script src="../js/jquery-2.1.1.min.js"></script>
 		 <script src="../js/app.js"></script> 
+		 <script src="../js/myStorage.js"></script>
 		<script type="text/javascript">
+			var h5pullDown = true;
+			
 			mui.init({
-				subpages:[{
-					url:'my_order_sub.html',
-					id:'my_order_sub.html',
-					styles:{
-						top: '100px',
-						bottom: '0px'
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
 					}
-				}]
-			}); 
+				}
+			});
+			
+			if (mui.os.plus) {
+				mui.plusReady(function() {
+					setTimeout(function () {
+					    mui.focus(document.getElementById('searchInput'));
+					    $('#searchInput').focus()
+					}, 150);
+			
+					getMsglist();
+					
+					window.addEventListener('searchType', function(event) {
+					    console.log("收到事件" + event.detail.search);
+					    pulldownRefresh();
+					}, false);
+			
+				});
+			} else {
+				mui.ready(function() {
+					
+					mui.focus(document.getElementById('searchInput'));
+					$('#searchInput').focus();
+					getMsglist();
+					
+					window.addEventListener('searchType', function(event) {
+					    console.log("收到事件" + event.detail.search);
+					    pulldownRefresh();
+					}, false);
+					
+				});
+			}
+			
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				current=1;
+				mui('#pullrefresh').pullRefresh().refresh(true);
+				$(".list_wrap").empty();
+				findList = [];
+				getMsglist();
+				mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+			}
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				setTimeout(function() {
+					getMsglist();
+				}, 500);
+			}
+			
+			
+			//当前查询  页数
+			var current = 1;
+			var isEnd = 0;
+			var findList = [];
 			
 			function changeType(index){
 				$(".titleType").each(function(ind){
@@ -129,11 +207,90 @@
 				})
 			}
 				
-				function sendClickType(index){
-					console.log("发送事件"+index);
-					var h = plus.webview.getWebviewById("my_order_sub.html");
-					mui.fire(h,'updateOrderType',{index: index});
+			function sendClickType(index){
+				console.log("发送事件"+index);
+				var h = plus.webview.getWebviewById("my_order_sub.html");
+				mui.fire(h,'updateOrderType',{index: index});
+			}
+			
+			
+			function getMsglist() {
+				var searchKey = $("#searchInput").val();
+				var params = {
+					"q": searchKey
+				};
+	
+				$(".empty_text").hide();
+				$("#pullrefresh").show();
+				//mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+				
+				console.log("进入页面："+myStorage.getItem("storageSelectAddressValue"));
+				
+				var typeValue=myStorage.getItem("storageSelectAddressValue");
+				var url=searchKey ? "addresses/search?q="+searchKey+"&page="+current : "addresses?type=1&page="+current;
+				if(typeValue>0)
+				{
+					if(typeValue==1)
+					{
+						url=searchKey ? "addresses/search?type=1&q="+searchKey+"&page="+current : "addresses?type=1&page="+current;
+					}
+					else
+					{
+						url=searchKey ? "addresses/search?type=2&q="+searchKey+"&page="+current : "addresses?type=2&page="+current;
+					}
 				}
+				
+				Global.commonAjax({
+						url: url
+						
+					},
+					function(data) {
+						if(data){
+							var html = "";
+							var res = data;
+							if(searchKey){
+								res = data;
+							}else{
+								res = data.data;
+							}
+							console.log(res);
+							
+							if(res.length > 0){
+								for(var i=0;i<res.length;i++){
+									var item = res[i];
+									findList = findList.concat(item);
+									html += '<li class="mui-table-view-cell-item item_wrap col_between" data-index="'+i+'">'+
+											'<div class="row_between wrap">'+
+											'<span class="sex">'+item.name.substring(0,1)+'</span>'+
+											'<div class="content_wrap">'+
+												'<span class="name">'+item.name+
+													' &nbsp;&nbsp;<span class="tel">'+item.mobile+'</span>'+
+												'</span>'+
+												'<span class="address">'+item.province+item.city+item.area+item.detail+'</span>'+
+											'</div>'+
+											'<img class="edit-img" src="../images/address/edit_address_icon.png" >'+
+										'</div></li>';
+								}
+								current ++;
+								$(".list_wrap").append(html);
+								mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
+							}else{
+								mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+							}
+							if(current==1&&res.length==0)
+							{
+								$(".empty_text").removeClass("hideClass");
+							}
+						}
+					},
+					function(err) {
+						mui.toast(err);
+// 							isEnd=1;
+// 						    mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					})
+					
+			}
+	
 			
 		</script>
 	</body>

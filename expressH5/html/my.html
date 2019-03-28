@@ -92,7 +92,7 @@
 				<span class="badge orders_count hideClass">1</span>
 				</div>
 			</li>
-			<li onclick="goToLogin();">
+			<li onclick="goToAddress();">
 				<div class="badge_wrap">
 				<img src="../images/wode/wode_22_2.png">
 				<p>地址</p>
@@ -259,14 +259,27 @@
 	
 	//地址
 	function goToAddress(){
-		myStorage.setItem("storageSelectAddressValue",0);
-		Global.openWindow({
-		    url: 'my_address.html',
-		    id: 'my_address.html',
-		    waiting: {
-		        autoShow: false
-		    }
-		})
+		token = myStorage.getItem("token");
+		if(token){
+			myStorage.setItem("storageSelectAddressValue",0);
+			Global.openWindow({
+			    url: 'my_address.html',
+			    id: 'my_address.html',
+			    waiting: {
+			        autoShow: false
+			    }
+			})
+		}else{
+			Global.openWindow({
+			    url: 'login.html',
+			    id: 'login.html',
+			    waiting: {
+			        autoShow: false
+			    }
+			})
+		}
+		
+		
 	}
 	
 	//订单

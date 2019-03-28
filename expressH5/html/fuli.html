@@ -221,7 +221,7 @@
 					
 				</ul>
 				
-				<div class="row_center fuli-list-empty">暂无数据</div>
+				<div class="row_center fuli-list-empty hideClass">暂无数据</div>
 
 			</div>
 		</div>
@@ -236,6 +236,8 @@
 					<button type="button">立即抢购</button>
 				</li>
 			</ul>
+			
+			<div class="row_center temai-list-empty hideClass">暂无数据</div>
 
 		</div>
 
@@ -290,7 +292,7 @@
 </script>
 
 
-<!-- <script type="text/html" id="couponList">
+<script type="text/html" id="promotionsList">
 	{{each data as item i}}
 		<li>
 			<img src="../images/fuli/temai_08.jpg">
@@ -299,7 +301,7 @@
 			<button type="button">立即抢购</button>
 		</li>
 	{{/each}}
-</script> -->
+</script>
 	
 <script src="../js/mui.min.js"></script>
 <script src="../js/jquery-2.1.1.min.js"></script>
@@ -341,6 +343,7 @@
 	    })
 	}
 	
+	//福利列表
 	function getCoupon() {
 	    Global.commonAjax({
 	        url: "welfare/coupons?time="+curTime
@@ -362,7 +365,34 @@
 	        }
 	    }, function (err) {
 	        console.log("getCoupon" + JSON.stringify(err));
+			mui.toast(err);
 	    })
+	}
+	
+	//线上特卖会 列表
+	function promotionsList(){
+		Global.commonAjax({
+		    url: "shop/goods/promotions"
+		}, function (data) {
+		    if (data) {
+				var list = data.data;
+				console.log(list);
+				if(list.length > 0){
+					$(".fuli-temai-list").removeClass("hideClass");
+					$(".temai-list-empty").addClass("hideClass");
+					render('.fuli-temai-list', 'promotionsList', { data: list }, true);
+				}else{
+					$(".fuli-temai-list").addClass("hideClass");
+					$(".temai-list-empty").removeClass("hideClass");
+					
+				}
+				
+				
+		    }
+		}, function (err) {
+		    console.log("promotionsList" + JSON.stringify(err));
+			mui.toast(err);
+		})
 	}
 	
 
@@ -392,7 +422,7 @@
 
 	});
 
-
+	//会员福利 点击事件
 	mui(".fuli-list").on('tap','li',function(){
 
 		Global.openWindow({
@@ -405,6 +435,20 @@
 
 	});
 	
+	//线上特卖 点击事件
+	mui(".fuli-temai-list").on('tap','li',function(){
+		mui.alert("点击了")
+	
+// 		Global.openWindow({
+// 			url: 'fuliShiyong.html',
+// 			id: 'fuliShiyong.html',
+// 			waiting: {
+// 				autoShow: false
+// 			}
+// 		})
+	
+	});
+	
 	mui(".time_wrap").on('tap','.swiper-slide',function(){
 	
 		$(".time_wrap .swiper-slide").removeClass("active");
@@ -413,17 +457,19 @@
 		getCoupon();
 	});
 	
-
-	$("#sosuo").click(function()
-	{
+	//点击右上角 搜索
+	mui(".fuli-top").on('tap','#sosuo',function(){
+	
 		Global.openWindow({
-			url: 'take_out_detail_copy.html',
-			id: 'take_out_detail_copy.html',
+			url: 'mall_order.html',
+			id: 'mall_order.html',
 			waiting: {
 				autoShow: false
 			}
 		})
 	});
+	
+
 
 
 	$(".middle-col span").click(function()
