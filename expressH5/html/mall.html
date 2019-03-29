@@ -77,13 +77,13 @@
 		</span>
 
 		<span class="input-col"><input type="text" placeholder="搜索关键字">
-			<img src="../images/firstPageLive/icon2.png" />
+			<img src="../images/firstPageLive/icon2.png" style="top: 0.04rem;"/>
 		</span>
 
 		<span class="right-img"><img src="../images/firstPageLive/live_03.png"/><span class="dian"></span></span>
 
 	</div>
-
+	
 	<div id="slider" class="mui-slider" >
 		<div class="mui-slider-group mui-slider-loop">
 			<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
@@ -119,92 +119,206 @@
 			<div class="mui-indicator"></div>
 			<div class="mui-indicator"></div>
 		</div>
-
+	
 		<div class="mall-info">
 			<img src="../images/mall/mallIcon_07.png">
 			<span>波司登官方旗舰店</span>
 		</div>
-
+	
 	</div>
-
-	<div class="ad-img-col">
-		<img src="../images/mall/mall_04.png"、>
+	
+	<div id="pullrefresh" class=" mui-scroll-wrapper" style="margin-top: 1.9rem;">
+	    <div class="mui-scroll" >
+			<div class="mui-table-view-condensed list_wrap">
+				
+			</div>
+	        <!--数据列表-->
+	        <!-- <ul class="mui-table-view-condensed list_wrap" >
+				
+	        </ul> -->
+			
+			
+			
+			
+			<!-- <div class="ad-img-col">
+				<img src="../images/mall/mall_04.png">
+			</div>
+			
+			<div class="list-col">
+				<ul class="img-list clearfix" id="grid">
+					<li class="grid-item">
+						<div class="grid-item-col">
+						<img class="img" src="../images/mall/mall_08.png"/>
+						<p>深层补水保湿舒缓滋润拯救你的肌肤，滋润你的冬天...</p>
+						<div class="clearfix bottom-text">
+							<span class="fl"><span>¥</span> 518.00</span>
+						</div>
+						</div>
+					</li>
+					<li class="grid-item">
+						<div class="grid-item-col">
+							<img class="img" src="../images/mall/mall_10.png"/>
+							<p>治愈系双十二必买清单，理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天</p>
+							<div class="clearfix bottom-text">
+								<span class="fl"><span>¥</span> 518.00</span>
+							</div>
+						</div>
+					</li>
+				
+				</ul>
+			</div> -->
+			
+			
+	    </div>
+	
 	</div>
-
-	<div class="list-col">
-	<ul class="img-list clearfix" id="grid">
-		<li class="grid-item">
-			<div class="grid-item-col">
-			<img class="img" src="../images/mall/mall_08.png"/>
-			<p>深层补水保湿舒缓滋润拯救你的肌肤，滋润你的冬天...</p>
-			<div class="clearfix bottom-text">
-				<span class="fl"><span>¥</span> 518.00</span>
-			</div>
-			</div>
-		</li>
-		<li class="grid-item">
-			<div class="grid-item-col">
-				<img class="img" src="../images/mall/mall_10.png"/>
-				<p>治愈系双十二必买清单，理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天</p>
-				<div class="clearfix bottom-text">
-					<span class="fl"><span>¥</span> 518.00</span>
-				</div>
-			</div>
-		</li>
-
-		<li class="grid-item">
-			<div class="grid-item-col">
-				<img class="img" src="../images/mall/mall_13.png"/>
-				<p>治愈系双十二必买清单，理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天</p>
-				<div class="clearfix bottom-text">
-					<span class="fl"><span>¥</span> 518.00</span>
-				</div>
-			</div>
-		</li>
-
-		<li class="grid-item">
-			<div class="grid-item-col">
-				<img class="img" src="../images/mall/mall_15.png"/>
-				<p>治愈系双十二必买清单，理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天</p>
-				<div class="clearfix bottom-text">
-					<span class="fl"><span>¥</span> 518.00</span>
-				</div>
-			</div>
-		</li>
-
-		<li class="grid-item">
-			<div class="grid-item-col">
-				<img class="img" src="../images/mall/mall_19.png"/>
-				<p>治愈系双十二必买清单，理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天</p>
-				<div class="clearfix bottom-text">
-					<span class="fl"><span>¥</span> 518.00</span>
-				</div>
-			</div>
-		</li>
-
-		<li class="grid-item">
-			<div class="grid-item-col">
-				<img class="img" src="../images/mall/mall_13.png"/>
-				<p>治愈系双十二必买清单，理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天</p>
-				<div class="clearfix bottom-text">
-					<span class="fl"><span>¥</span> 518.00</span>
-				</div>
-			</div>
-		</li>
-
-
-
-
-
-	</ul>
+	<div class="empty_text hideClass">
+	    数据为空
 	</div>
+	
 
-		<script src="../js/mui.min.js"></script>
+	
+
+		<script src="../js/mui.js"></script>
 	    <script src="../js/jquery-2.1.1.min.js"></script>
 		<script src="../lib/jquery.waterfall.js"></script>
+		<script src="../js/myStorage.js"></script>
 		<script src="../js/app.js"></script>
-		<script>
-
+		<script type="text/javascript">
+			var h5pullDown = true;
+			
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			
+			mui.plusReady(function() {
+				// pulldownRefresh();
+			});
+			
+			getMsglist();
+			
+			//当前查询  页数
+			var current = 1;
+			var isEnd = 0;
+			var findList = [];
+			var tabIndex = 0;
+			
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				current=1;
+				mui('#pullrefresh').pullRefresh().refresh(true);
+				$(".list_wrap").empty();
+				findList = [];
+				getMsglist();
+				mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+			}
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				getMsglist();
+			}
+			
+			function getMsglist() {
+				$(".empty_text").hide();
+				$("#pullrefresh").show();
+				
+				setTimeout(function(){
+					setHtmlData([1,2,3,4,5,6])
+				}, 50);
+				
+				return;
+					
+			}
+			
+			function setHtmlData(data){
+				var res = data;
+				console.log(res);
+				var html = "";
+				if(current == 1){
+					html = '<div class="ad-img-col">'+
+								'<img src="../images/mall/mall_04.png">'+
+							'</div><div class="list-col"><ul class="img-list clearfix mui-table-view-condensed " id="grid">';
+					
+				}
+				
+				if(res.length > 0){
+					for(var i=0;i<res.length;i++){
+						var item = res[i];
+						findList = findList.concat(item);
+						html += '<li class="grid-item" data-index="'+i+'">'+
+									'<div class="grid-item-col">'+
+										'<img class="img" src="../images/mall/mall_10.png"/>'+
+										'<p>治愈系双十二必买清单，理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天</p>'+
+										'<div class="clearfix bottom-text">'+
+											'<span class="fl"><span>¥</span> 518.00</span>'+
+										'</div></div></li>';
+					}
+					
+					html += '</ul></div>';
+					
+					if(current != 1){
+						var oldHtml = $(".list_wrap").html();
+						oldHtml.substring(0, oldHtml.length-11);
+						$(".list_wrap").html(oldHtml);
+					}
+					current ++;
+					
+					$(".list_wrap").append(html);
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
+				}else{
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+				}
+				if(current==1&&res.length==0)
+				{
+					$(".empty_text").removeClass("hideClass");
+				}
+			}
+			
+			//店铺商品列表
+			function getShopList() {
+			    Global.commonAjax({
+			        url: "shop/shops/{shopid}/goods?page=?"
+			    }, function (data) {
+					
+			    }, function (err) {
+					mui.toast(err);
+			    })
+			}
+			
+			//商品搜索
+			function searchShopList() {
+			    Global.commonAjax({
+			        url: "shop/shops/{shopid}/goods/search?query=?"
+			    }, function (data) {
+					
+			    }, function (err) {
+					mui.toast(err);
+			    })
+			}
+			
+			//店铺详情
+			function shopDetail() {
+			    Global.commonAjax({
+			        url: "shop/shops/{shopid}"
+			    }, function (data) {
+					
+			    }, function (err) {
+					mui.toast(err);
+			    })
+			}
+			
 
 			$("#grid").waterfall({
 				itemClass: ".grid-item",
@@ -230,30 +344,7 @@
 			});
 
 
-			mui.init({
-				swipeBack: false,
-				pullRefresh: {
-					container: '#pullrefresh',
-					down: {
-						style:'circle',
-						callback: pulldownRefresh
-					},
-					up: {
-						contentrefresh: '正在加载...',
-						callback: pullupRefresh
-					}
-				}
-			});
 			
-			function pulldownRefresh()
-			{
-				
-			}
-
-			function pullupRefresh()
-			{
-
-			}
 
 		</script>
 	</body>

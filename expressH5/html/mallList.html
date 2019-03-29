@@ -16,12 +16,15 @@
 			body,.mui-content{background: #fff!important;}
 			.mall-list-header{padding-left:1.6rem;box-sizing: border-box;padding-right:15px;}
 			.mall-list-header .left-col{font-size:0.12rem;position: absolute;left:0.5rem;}
-			.mall-list-header .left-col img{width:0.16rem;position: relative;top:0.05rem;}
+			.mall-list-header .left-col img{width:0.16rem;position: relative;t}
 			.mall-list-header input{background:rgba(247,247,247,0.75);
 				border:1px solid rgba(227,227,227,1);
 				border-radius:18px;padding-left:0.4rem;font-size:0.13rem;}
 			.mall-list-header .input-col{position: relative;}
 			.mall-list-header .input-col img{position: absolute;left:0.1rem;top:0.03rem;width:0.15rem;}
+			.mall-list-header .input-col input{height: 0.32rem; margin-bottom: 0rem;}
+			#louyuText{max-width: 0.9rem;}
+			#louyuText span{max-width: 0.7rem; overflow: hidden;white-space: nowrap;text-overflow:ellipsis; display: inline-block;}
 		</style>
 		
 		
@@ -38,10 +41,17 @@
 		</div>
 
 		<div class="header-title">
-
-			<span class="left-col">上海歌斐中心
+			
+			<div class="left-col">
+				<div  id="louyuText" class="row_center">
+					<span>请选择楼宇</span>
+					<img src="../images/fuli/fuli_03.jpg"/>
+				</div>
+			</div>
+			
+			<!-- <span class="left-col" id="louyuText"><div  id="louyuText"><span>请选择楼宇</span></div>
 			<img src="../images/fuli/fuli_03.jpg"/>
-			</span>
+			</span> -->
 
 			<span class="input-col">
 				<img src="../images/firstPageLive/icon2.png">
@@ -125,6 +135,30 @@
 						<img src="../images/mallList/1 (6).png">
 						<p>相机</p>
 					</li>
+					<li>
+						<img src="../images/mallList/1 (1).png">
+						<p>相机</p>
+					</li>
+					<li>
+						<img src="../images/mallList/1 (2).png">
+						<p>相机</p>
+					</li>
+					<li>
+						<img src="../images/mallList/1 (3).png">
+						<p>相机</p>
+					</li>
+					<li>
+						<img src="../images/mallList/1 (4).png">
+						<p>相机</p>
+					</li>
+					<li>
+						<img src="../images/mallList/1 (5).png">
+						<p>相机</p>
+					</li>
+					<li>
+						<img src="../images/mallList/1 (6).png">
+						<p>相机</p>
+					</li>
 				</ul>
 
 			</div>
@@ -138,15 +172,30 @@
 
 		<script src="../js/mui.min.js"></script>
 	    <script src="../js/jquery-2.1.1.min.js"></script>
+	    <script src="../js/myStorage.js"></script>
 	    <script src="../js/app.js"></script>
 		<script>
-
+			mui.init();
+			mui.plusReady(function() {
+				   commonEvent();
+				   // httpRequest();
+					
+			});
+			
+			mui(".left-col").on('tap','li',function(){
+			
+				$(".left-col li").removeClass("active");
+				$(this).addClass("active");
+			
+			});
+			
+			//商品 详情
 			$(".right-col-list li").click(function()
 			{
 				
 				
 				Global.openWindow({
-					url: 'mallPage.html',
+					url: 'mallPage.html?id='+1,
 					id: 'mallPage.html',
 					waiting: {
 						autoShow: false

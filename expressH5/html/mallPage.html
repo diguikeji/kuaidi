@@ -100,10 +100,10 @@
 		<div class="dianpu-col">
 
 			<div class="clearfix">
-		<span class="left">
-		<img src="../images/mall/mallIcon_07.png">
-		<span>波司登官方旗舰店</span>
-		</span>
+				<span class="left">
+					<img src="../images/mall/mallIcon_07.png">
+					<span>波司登官方旗舰店</span>
+				</span>
 
 				<span class="right" id="goStore">进店逛</span>
 			</div>
@@ -164,7 +164,7 @@
 
 	<div style="height:0.5rem"></div>
 
-	<div class="beizhu-col hide" id="modalCol">
+	<div class="beizhu-col hideClass" id="modalCol">
 
 		<div class="shadow-col"></div>
 
@@ -184,7 +184,7 @@
 			<div class="guige-row">
 
 			<div class="title-col">颜色</div>
-			<ul class="guige-list row_around">
+			<ul class="guige-list row_around" id="color_list">
 				<li class="active">
 					黑色
 				</li>
@@ -201,7 +201,7 @@
 			<div class="guige-row">
 
 				<div class="title-col">规格</div>
-				<ul class="guige-list row_around">
+				<ul class="guige-list row_around" id="guige_list">
 					<li class="active">
 						S
 					</li>
@@ -248,11 +248,11 @@
 
 	<div class="mall-temai-col">
 		<div class="first">
-			<div>
+			<div id="shoucang">
 				<img src="../images/mall/tmBottom_07.png"/>
 				<div>收藏</div>
 			</div>
-			<div>
+			<div id="kefu">
 				<img src="../images/mall/tmBottom_09.png"/>
 				<div>客服</div>
 			</div>
@@ -263,9 +263,78 @@
 
 		<script src="../js/mui.min.js"></script>
 	    <script src="../js/jquery-2.1.1.min.js"></script>
+		<script src="../js/myStorage.js"></script>
 		<script src="../js/app.js"></script>
 		<script>
-
+			
+			mui.init();
+			mui.plusReady(function() {
+				   commonEvent();
+				   // getDetail();
+					
+			});
+			
+			var goodsId = GetQueryString("id");
+			//商品详情
+			function getDetail() {
+			    Global.commonAjax({
+			        url: "shop/goods/"+goodsId
+			    }, function (data) {
+					
+			    }, function (err) {
+					mui.toast(err);
+			    })
+			}
+			
+			//商品收藏
+			function wishlist() {
+			    Global.commonAjax({
+			        url: "shop/wishlist",
+					method: "POST",
+					data: {goods_id: goodsId}
+			    }, function (data) {
+					mui.toast("收藏成功");
+			    }, function (err) {
+					mui.toast(err);
+			    })
+			}
+			
+			//加入购物车
+			function addCard() {
+			    Global.commonAjax({
+			        url: "shop/cart/goods"+goodsId+"/add",
+					method: "POST"
+			    }, function (data) {
+					
+					mui.toast("加入购物车成功");
+					
+			    }, function (err) {
+					mui.toast(err);
+			    })
+			}
+			
+			//店铺里产品详情
+			function shopDetail() {
+			    Global.commonAjax({
+			        url: "shop/shops/"+shopid+"/goods/"+goodsId,
+			    }, function (data) {
+					
+			    }, function (err) {
+					mui.toast(err);
+			    })
+			}
+			
+			//店铺推荐产品
+			function recommendgoods() {
+			    Global.commonAjax({
+			        url: "shop/shops/"+shopid+"/recommendgoods",
+			    }, function (data) {
+					
+			    }, function (err) {
+					mui.toast(err);
+			    })
+			}
+			
 
 			$(".middle-tab-col span").click(function()
 			{
@@ -277,18 +346,14 @@
 
 			});
 
-			$("#buyBtn").click(function()
-			{
-				$("#modalCol").show();
-			});
-
 			$("#modalCol .right-close").click(function()
 			{
-				$("#modalCol").hide();
+				$(".beizhu-col").hide();
+				$(".beizhu-col .beizhu-text").hide();
 			});
 
-			$("#goStore").click(function()
-			{
+			//逛店铺
+			mui(".dianpu-col").on('tap','#goStore',function(){
 				Global.openWindow({
 					url: 'mall.html',
 					id: 'mall.html',
@@ -298,14 +363,9 @@
 				})
 			});
 
-
-			$(".header-right").click(function()
-			{
-				mui.toast("加入购物车成功");
-			});
-
-			$("#addCart").click(function()
-			{
+			//打开购物车
+			mui(".transparent-header").on('tap','.header-right',function(){
+				
 				Global.openWindow({
 					url: 'shopping_card.html',
 					id: 'shopping_card.html',
@@ -313,11 +373,51 @@
 						autoShow: false
 					}
 				})
+			
+			});
+			
+			//立即购买
+			mui(".mall-temai-col").on('tap','#buyBtn',function(){
+				$(".beizhu-col").show();
+				$(".beizhu-col .beizhu-text").show();
+			});
+			
+			
+			//加入购物车
+			mui(".mall-temai-col").on('tap','#addCart',function(){
+				addCard();
 			});
 
+			//收藏
+			mui(".mall-temai-col").on('tap','#shoucang',function(){
+				wishlist();
+			});
+			
+			
+			//SKU
+			function skus() {
+			    Global.commonAjax({
+			        url: "shop/shops/"+shopid+"/goods/"+goodsId+"/skus",
+			    }, function (data) {
+					
+			    }, function (err) {
+					mui.toast(err);
+			    })
+			}
+			
+			//规格点击
+			mui("#guige_list").on('tap','li',function(){
+				$("#guige_list li").removeClass("active");
+				$(this).addClass("active");
+			});
+			
+			//颜色点击
+			mui("#color_list").on('tap','li',function(){
+				$("#color_list li").removeClass("active");
+				$(this).addClass("active");
+			});
 
-
-
+			
 
 
 		</script>

@@ -443,10 +443,10 @@
 										'</span></div></div></div>'+
 							
 							'<div class="row item_down">'+
-								'<span class="normal_tag">&nbsp;&nbsp;删除&nbsp;&nbsp;</span>'+
-								'<span class="warn_tag">提醒发货</span>'+
-								'<span class="normal_tag">提醒发货</span>'+
-								'<span class="normal_tag">提醒发货</span>'+
+								'<span class="normal_tag pay_order">&nbsp;&nbsp;付款&nbsp;&nbsp;</span>'+
+								'<span class="warn_tag look_order">查看物流</span>'+
+								'<span class="normal_tag cancle_order">取消订单</span>'+
+								'<span class="normal_tag del_order">&nbsp;&nbsp;删除&nbsp;&nbsp;</span>'+
 							'</div></li>';
 					}
 					current ++;
@@ -461,15 +461,66 @@
 				}
 			}
 	
-			//列表点击
-			mui(".mui-table-view-condensed").on('tap', 'li ', function() {
+			//列表点击 付款
+			mui(".mui-table-view-condensed").on('tap', 'li .pay_order', function() {
 				
+				var index = $(this).data("index");
+				var item = findList[index];
+				Global.commonAjax({
+					url: 'shop/orders/'+item.id+'/pay',
+					method: "POST"
+				}, function(data){
+					mui.toast("操作成功");
+					pulldownRefresh();
+				}, function(err){
+					mui.toast(err);
+				});
+			});
+			
+			//列表点击 取消订单
+			mui(".mui-table-view-condensed").on('tap', 'li .cancle_order', function() {
+				var index = $(this).data("index");
+				var item = findList[index];
+				Global.commonAjax({
+					url: 'shop/orders/'+item.id+'/cancle',
+					method: "POST"
+				}, function(data){
+					mui.toast("操作成功");
+					pulldownRefresh();
+				}, function(err){
+					mui.toast(err);
+				});
 				
 			});
 			
-			//列表点击
-			mui(".mui-table-view-condensed").on('tap', 'li ', function() {
+			//列表点击 删除订单
+			mui(".mui-table-view-condensed").on('tap', 'li .del_order', function() {
+				var index = $(this).data("index");
+				var item = findList[index];
+				Global.commonAjax({
+					url: 'shop/orders/'+item.id,
+					method: "DELETE"
+				}, function(data){
+					mui.toast("操作成功");
+					pulldownRefresh();
+				}, function(err){
+					mui.toast(err);
+				});
 				
+			});
+			
+			//列表点击 查看物流
+			mui(".mui-table-view-condensed").on('tap', 'li .look_order', function() {
+				var index = $(this).data("index");
+				var item = findList[index];
+				Global.commonAjax({
+					url: 'shop/orders/'+item.id+"/logistics"
+				}, function(data){
+					mui.toast("操作成功");
+					pulldownRefresh();
+				}, function(err){
+					mui.toast(err);
+				});
 				
 			});
 			

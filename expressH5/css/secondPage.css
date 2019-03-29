@@ -206,7 +206,7 @@
 .guige-row{padding:0.1rem 0;}
 .guige-row .title-col{font-size:0.16rem;padding:0 0 0.05rem 0;}
 .guige-list{width:100%;padding:0 0;}
-.guige-list li{text-align: center;font-size:0.13rem;padding:0.02rem 0;}
+.guige-list li{text-align: center;font-size:0.13rem;padding:0.02rem 0.2rem;}
 .guige-list li.active{color:#107EFF;}
 .beizhu-col .shadow-col{background: rgba(0,0,0,0.6);left:0;top:0;position: absolute;height:100%;width:100%;z-index:10;}
 .beizhu-text{
