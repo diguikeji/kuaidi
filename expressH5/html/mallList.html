@@ -48,14 +48,10 @@
 					<img src="../images/fuli/fuli_03.jpg"/>
 				</div>
 			</div>
-			
-			<!-- <span class="left-col" id="louyuText"><div  id="louyuText"><span>请选择楼宇</span></div>
-			<img src="../images/fuli/fuli_03.jpg"/>
-			</span> -->
 
 			<span class="input-col">
 				<img src="../images/firstPageLive/icon2.png">
-			<input type="text" placeholder="搜索关键字">
+				<input type="text" placeholder="搜索关键字">
 			</span>
 
 		</div>
@@ -66,11 +62,11 @@
 
 		<div class="left-col">
 			<ul>
-				<li class="active">推荐</li>
-				<li>服饰</li>
-				<li>食品</li>
-				<li>家具日用</li>
-				<li>美妆护肤</li>
+				<li data-index="0" class="active">推荐</li>
+				<li data-index="1">服饰</li>
+				<li data-index="2">食品</li>
+				<li data-index="3">家具日用</li>
+				<li data-index="4">美妆护肤</li>
 			</ul>
 		</div>
 
@@ -80,99 +76,40 @@
 
 				<div class="top-title">热门分类</div>
 
-				<ul class="clearfix">
-					<li>
+				<ul class="clearfix" id="recommandList">
+					<!-- <li>
 						<img src="../images/mallList/mallList_09.png">
 						<p>相机</p>
-					</li>
-					<li>
-						<img src="../images/mallList/mallList_11.png">
-						<p>相机</p>
-					</li>
-					<li>
-						<img src="../images/mallList/mallList_23.png">
-						<p>相机</p>
-					</li>
-					<li>
-						<img src="../images/mallList/mallList_25.png">
-						<p>相机</p>
-					</li>
-					<li>
-						<img src="../images/mallList/mallList_27.png">
-						<p>相机</p>
-					</li>
-					<li>
-						<img src="../images/mallList/1 (5).png">
-						<p>相机</p>
-					</li>
+					</li> -->
 				</ul>
 
 
 				<div class="top-title">猜你喜欢</div>
 
-				<ul class="clearfix">
-					<li>
+				<ul class="clearfix" id="likeList">
+					<!-- <li>
 						<img src="../images/mallList/1 (1).png">
 						<p>相机</p>
-					</li>
-					<li>
-						<img src="../images/mallList/1 (2).png">
-						<p>相机</p>
-					</li>
-					<li>
-						<img src="../images/mallList/1 (3).png">
-						<p>相机</p>
-					</li>
-					<li>
-						<img src="../images/mallList/1 (4).png">
-						<p>相机</p>
-					</li>
-					<li>
-						<img src="../images/mallList/1 (5).png">
-						<p>相机</p>
-					</li>
-					<li>
-						<img src="../images/mallList/1 (6).png">
-						<p>相机</p>
-					</li>
-					<li>
-						<img src="../images/mallList/1 (1).png">
-						<p>相机</p>
-					</li>
-					<li>
-						<img src="../images/mallList/1 (2).png">
-						<p>相机</p>
-					</li>
-					<li>
-						<img src="../images/mallList/1 (3).png">
-						<p>相机</p>
-					</li>
-					<li>
-						<img src="../images/mallList/1 (4).png">
-						<p>相机</p>
-					</li>
-					<li>
-						<img src="../images/mallList/1 (5).png">
-						<p>相机</p>
-					</li>
-					<li>
-						<img src="../images/mallList/1 (6).png">
-						<p>相机</p>
-					</li>
+					</li> -->
 				</ul>
 
 			</div>
-
-
 		</div>
-
-
-
 	</div>
+	
+	<script type="text/html" id="list">
+	    {{each data as datum}}
+	        <li data-id="{{datum.gc_id}}">
+	        	<img src="{{datum.goodscn_pic?datum.goodscn_pic:'../images/mallList/mallList_09.png'}}">
+	        	<p>{{datum.gc_name}}</p>
+	        </li>
+	    {{/each}}
+	</script>
 
 		<script src="../js/mui.min.js"></script>
 	    <script src="../js/jquery-2.1.1.min.js"></script>
 	    <script src="../js/myStorage.js"></script>
+		<script src="../lib/artTemplate.js"></script>
 	    <script src="../js/app.js"></script>
 		<script>
 			mui.init();
@@ -180,28 +117,80 @@
 				   commonEvent();
 				   // httpRequest();
 					
+					mallRecommend();
 			});
 			
+			//商品推荐
+			function mallRecommend() {
+			    Global.commonAjax({
+			        url: "shop/classes/recommend",
+					method: "POST"
+			    }, function (data) {
+					console.log(JSON.stringify(data)); 
+					render('#recommandList', 'list', { data: data.recommend});
+					render('#likeList', 'list', { data: data.like });
+					
+			    }, function (err) {
+					mui.toast(err);
+			    })
+			}
+			
+			//商品分类
+			function mallTypes(index) {
+			    Global.commonAjax({
+			        url: "shop/classes/index?pid="+index,
+					method: "POST"
+			    }, function (data) {
+					console.log(data);
+					render('#recommandList', 'list', { data: data });
+			    }, function (err) {
+					mui.toast(err);
+			    })
+			}
+			
+			//点击分类 切换数据
 			mui(".left-col").on('tap','li',function(){
 			
 				$(".left-col li").removeClass("active");
 				$(this).addClass("active");
-			
+				if($(this).html() == "推荐"){
+					console.log("推荐");
+					$(".top-title").show();
+				}else{
+					$(".top-title").hide();
+				}
+				var index = $(this).data("index");
+				if(index == 0){
+					mallRecommend();
+					$("#likeList").show();
+				}else{
+					mallTypes(index);
+					$("#likeList").hide();
+				}
+				
 			});
 			
-			//商品 详情
-			$(".right-col-list li").click(function()
-			{
-				
-				
+			//商品 详情 
+			mui("#recommandList").on('tap','li',function(){
+				var id = $(this).data("id");
 				Global.openWindow({
-					url: 'mallPage.html?id='+1,
+					url: 'mallPage.html?id='+id,
 					id: 'mallPage.html',
 					waiting: {
 						autoShow: false
 					}
 				})
-				
+			});
+			
+			mui("#likeList").on('tap','li',function(){
+				var id = $(this).data("id");
+				Global.openWindow({
+					url: 'mallPage.html?id='+id,
+					id: 'mallPage.html',
+					waiting: {
+						autoShow: false
+					}
+				})
 			});
 
 

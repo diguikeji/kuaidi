@@ -135,6 +135,10 @@ var isOpenLogin = false;
         //网络请求
         commonAjax: function(params,callback, errorback) {
            var baseUrl = "https://lfb.kai-dian.com/api/";
+		   if(params.url.indexOf("shop") != -1){
+			   //包含
+			   baseUrl = "http://kd.loufubao.com/shopapi/index.php/api/";
+		   }
 
             //默认 get请求
             if (!params.method) {
@@ -174,7 +178,7 @@ var isOpenLogin = false;
                 },
                 success: function(data) {
                 	console.log(JSON.stringify(data));
-					if (data.success) {
+					if (data.success || (data.result == 1)) {
 						console.log(JSON.stringify(data));
                         callback(data.data);
                     } else{

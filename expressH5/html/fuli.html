@@ -41,7 +41,7 @@
 		.buzhou-list .swiper-slide.active span{position: relative;z-index:10;}
 		.buzhou-list .swiper-slide.active:after{content:" ";display:block;height:0.55rem;top:0;left:0;position:absolute;width:100%;background: url("../images/fuli/fuli_08.png");background-size:100% 100%;}
 
-		.fuli-top{position: fixed;text-align: center;height:0.6rem;padding-top:10px;box-shadow:0px 3px 27px 0px rgba(221,221,221,0.41);width:100%;z-index:1000;
+		.fuli-top{position: fixed;text-align: center;height:0.6rem;top:24px;box-shadow:0px 3px 27px 0px rgba(221,221,221,0.41);width:100%;z-index:1000;
 		background: #fff;width:100%;left:0;
 		}
 		.fuli-top .left-col{position: absolute;left:15px;top:0;font-size:0.11rem;}
@@ -58,17 +58,18 @@
 		.fuli-top .middle-col span.active:after{content: " ";width:0.25rem;margin-left:-0.125rem;height:4px;background: #107EFF;bottom:2px;border-radius:3px;position:absolute;left:50%;display: block;}
 
 		.fuli-temai-list{padding:0.15rem 15px 0.2rem 15px;;}
-		.fuli-temai-list li{position: relative;height:2.17rem;
+		.fuli-temai-list li{position: relative;
 			background:rgba(255,255,255,1);
 			box-shadow:0px 2px 6px 0px rgba(126,125,125,0.16);
 			border-radius:3px;
 			margin-bottom:0.14rem;
 		}
 
-		.fuli-temai-list li p{font-size:0.14rem;color:#333333;margin:0;padding:0.1rem 0.1rem 0.02rem 0.1rem;}
-		.fuli-temai-list li div{color:#FF5269;padding-left:0.1rem;font-size: 0.16rem;}
+		.fuli-temai-list li p{font-size:0.14rem;color:#333333;margin:0;}
+		.fuli-temai-list li div{color:#FF5269;font-size: 0.16rem;}
 		.fuli-temai-list li div span{font-size:0.12rem;}
-		.fuli-temai-list li button{background: #F39800;color:#fff;border:0;width:0.89rem;line-height:0.36rem;padding:0;position: absolute;right:0.1rem;bottom:0.15rem;}
+		/* .fuli-temai-list li button{background: #F39800;color:#fff;border:0;width:0.89rem;line-height:0.36rem;padding:0;position: absolute;right:0.1rem;bottom:0.05rem;} */
+		.fuli-temai-list li button{background: #F39800;color:#fff;border:0;width:0.89rem;line-height:0.36rem;padding:0;}
 
 		.fuli-temai-list li img{display: block;width:100%;}
 		.swiper-banner img{display: block;width:100%;}
@@ -140,6 +141,10 @@
 			.fuli-list-empty{
 				margin-top: 1rem;
 			}
+			
+			.row_between{padding:0.1rem 0.1rem 0.02rem 0.1rem;}
+			#statusBar{background-color: #FFFFFF;position: fixed;z-index: 1001;}
+			.temai{position: fixed; top: 0.8rem;bottom:0;overflow-y:scroll;overflow-x:hidden;}
 	</style>
 
 </head>
@@ -147,7 +152,7 @@
 <body>
 
 
-<div class="status-bar" id="statusBar"></div>
+<!-- <div class="status-bar" id="statusBar"></div> -->
 
 <div class="fuli-top">
 
@@ -170,7 +175,7 @@
 
 <div style="height:0.6rem;"></div>
 
-<div class="tab-main">
+<div class="tab-main" >
 
 		<div class="tab-col">
 
@@ -226,15 +231,21 @@
 			</div>
 		</div>
 
-		<div class="tab-col hide">
+		<div class="tab-col hide temai">
 
 			<ul class="fuli-temai-list">
-				<li>
+				<!-- <li>
 					<img src="../images/fuli/temai_08.jpg">
-					<p>景德镇优质青花瓷碗</p>
-					<div><span>¥</span>928.00</div>
-					<button type="button">立即抢购</button>
-				</li>
+					<div class="row_between">
+						<div class="col" style="flex: 1;">
+							<p>{{'item.goods_name'}}</p>
+							<div><span>¥</span>{{item.goods_price}}</div>
+						</div>
+						<button type="button">立即抢购</button>
+					</div>
+				</li> -->
+
+				
 			</ul>
 			
 			<div class="row_center temai-list-empty hideClass">暂无数据</div>
@@ -291,14 +302,19 @@
 	{{/each}}
 </script>
 
-
+ <!-- <img src="{{item.goods_image?item.goods_image: '../images/fuli/temai_08.jpg'}}"> -->
+			
 <script type="text/html" id="promotionsList">
 	{{each data as item i}}
 		<li>
-			<img src="../images/fuli/temai_08.jpg">
-			<p>景德镇优质青花瓷碗</p>
-			<div><span>¥</span>928.00</div>
-			<button type="button">立即抢购</button>
+			<img src="{{'../images/fuli/temai_08.jpg'}}">
+			<div class="row_between">
+				<div class="col" style="flex: 1;">
+					<p>{{item.goods_name}}</p>
+					<div><span>¥</span>{{item.goods_price}}</div>
+				</div>
+				<button type="button">立即抢购</button>
+			</div>
 		</li>
 	{{/each}}
 </script>
@@ -320,7 +336,7 @@
 			}
 		   commonEvent();
 		   httpRequest();
-			
+			promotionsList();
 	});
 	
 	var curTime = 12;
@@ -333,7 +349,7 @@
 				data.map(function(item){
 					if(item.status == 1){
 						curTime = item.time;
-						// getCoupon();
+						getCoupon();
 						return;
 					}
 				});
@@ -372,10 +388,10 @@
 	//线上特卖会 列表
 	function promotionsList(){
 		Global.commonAjax({
-		    url: "shop/goods/promotions"
+		    url: "shop/goods/goodsPromotions"
 		}, function (data) {
 		    if (data) {
-				var list = data.data;
+				var list = data;
 				console.log(list);
 				if(list.length > 0){
 					$(".fuli-temai-list").removeClass("hideClass");

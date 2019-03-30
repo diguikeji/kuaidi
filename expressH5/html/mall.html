@@ -127,11 +127,15 @@
 	
 	</div>
 	
-	<div id="pullrefresh" class=" mui-scroll-wrapper" style="margin-top: 1.9rem;">
+	<div class="ad-img-col">
+		<img src="../images/mall/mall_04.png">
+	</div>
+	
+	<div id="pullrefresh" class=" mui-scroll-wrapper" style="margin-top: 3.1rem;">
 	    <div class="mui-scroll" >
-			<div class="mui-table-view-condensed list_wrap">
+			<ul class="mui-table-view-condensed img-list clearfix list_wrap" id="grid">
 				
-			</div>
+			</ul>
 	        <!--数据列表-->
 	        <!-- <ul class="mui-table-view-condensed list_wrap" >
 				
@@ -176,15 +180,42 @@
 	    数据为空
 	</div>
 	
-
+	<!-- <script type="text/html" id="gridItem">
+	    {{each list as item i}}
+	        <li class="grid-item">
+	        	<div class="grid-item-col">
+	        		<img class="img" src="../images/mall/mall_10.png"/>
+	        		<p>治愈系双十二必买清单，理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天</p>
+	        		<div class="clearfix bottom-text">
+	        			<span class="fl"><span>¥</span> 518.00</span>
+	        		</div>
+	        	</div>
+	        </li>
+	    {{/each}}
+	</script>
+	
+	<script type="text/html" id="pageTemplate">
+		{{each data as d index}}
+			<div class="ad-img-col">
+				<img src="../images/mall/mall_04.png">
+			</div>
+			<div>{{d.name}}</div>
+			<div class="list-col">
+				<ul class="img-list clearfix" id="grid">
+					{{include 'gridItem' d.list}}
+				</ul>
+			</div> 
+		{{/each}}
+	</script> -->
 	
 
-		<script src="../js/mui.js"></script>
-	    <script src="../js/jquery-2.1.1.min.js"></script>
-		<script src="../lib/jquery.waterfall.js"></script>
-		<script src="../js/myStorage.js"></script>
-		<script src="../js/app.js"></script>
-		<script type="text/javascript">
+	<script src="../js/mui.js"></script>
+	<script src="../js/jquery-2.1.1.min.js"></script>
+	<script src="../lib/jquery.waterfall.js"></script>
+	<script src="../js/myStorage.js"></script>
+	<script src="../lib/artTemplate.js"></script>
+	<script src="../js/app.js"></script>
+	<script type="text/javascript">
 			var h5pullDown = true;
 			
 			mui.init({
@@ -205,6 +236,7 @@
 			});
 			
 			getMsglist();
+			// render('.list_wrap', 'pageTemplate', { data: [{name: 'name', list: [1,2,3,4]}] });
 			
 			//当前查询  页数
 			var current = 1;
@@ -246,12 +278,12 @@
 				var res = data;
 				console.log(res);
 				var html = "";
-				if(current == 1){
-					html = '<div class="ad-img-col">'+
-								'<img src="../images/mall/mall_04.png">'+
-							'</div><div class="list-col"><ul class="img-list clearfix mui-table-view-condensed " id="grid">';
-					
-				}
+// 				if(current == 1){
+// 					html = '<div class="ad-img-col">'+
+// 								'<img src="../images/mall/mall_04.png">'+
+// 							'</div><div class="list-col"><ul class="img-list clearfix mui-table-view-condensed " id="grid">';
+// 					
+// 				}
 				
 				if(res.length > 0){
 					for(var i=0;i<res.length;i++){
@@ -266,13 +298,13 @@
 										'</div></div></li>';
 					}
 					
-					html += '</ul></div>';
+					// html += '</ul></div>';
 					
-					if(current != 1){
-						var oldHtml = $(".list_wrap").html();
-						oldHtml.substring(0, oldHtml.length-11);
-						$(".list_wrap").html(oldHtml);
-					}
+// 					if(current != 1){
+// 						var oldHtml = $(".list_wrap").html();
+// 						oldHtml.substring(0, oldHtml.length-11);
+// 						$(".list_wrap").html(oldHtml);
+// 					}
 					current ++;
 					
 					$(".list_wrap").append(html);

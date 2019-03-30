@@ -27,6 +27,29 @@
 			.mall-goods-tab span{font-size:0.14rem;}
 			.mall-goods-tab span{padding: 0.08rem 0.06rem;}
 
+			.mui-scroll-wrapper{  
+			}  
+			.mui-scroll{  
+				width: auto;  
+			} 
+			.shopItem li{
+				width: 1.18rem;
+				padding-left: 0.15rem;
+				box-sizing: border-box;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+			}
+			.shopItem img{
+				width: 1.03rem;
+			}
+			.shopItem li div{
+				width:0.8rem;font-size:0.13rem;
+				word-wrap: break-word;word-break: break-all; display: flex;
+				flex-wrap: wrap; 
+			}
+			.shopItem li p{color:#FF5269;font-size:0.16rem;text-align: left;}
+			.shopItem li p span{font-size:0.12rem;}
 
 		</style>
 		
@@ -83,9 +106,6 @@
 			<div class="mui-indicator"></div>
 			<div class="mui-indicator"></div>
 		</div>
-
-
-
 	</div>
 
 	<div class="mall-goods-info">
@@ -116,29 +136,33 @@
 			<div class="right">更多<span class="mui-icon mui-icon-arrowright"></span></div>
 
 		</div>
+		
+		<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted  " style="height: 1.8rem;">  
+			<div class="mui-scroll">  
+				<div class="row shopItem" style="flex-flow: nowrap;">  
+					<li >
+						<img src="../images/mall/pindan_20.png"/>
+						<div>优品波</div>
+						<p><span>¥</span>210.<span>00</span></p>
+					</li>
+					
+					
+					
+					
+            </div>  
+        </div>  
+    </div> 
+		
 
-		<ul class="tuijian-list-col clearfix">
+		<!-- <ul class="tuijian-list-col clearfix">
 			<li>
 				<img src="../images/mall/pindan_20.png"/>
 				<div>优品波司登冬季
 					羽绒服</div>
 				<p><span>¥</span>210.<span>00</span></p>
 			</li>
-			<li>
-				<img src="../images/mall/pindan_22.png"/>
-				<div>优品波司登冬季
-					羽绒服</div>
-				<p><span>¥</span>210.<span>00</span></p>
-			</li>
 
-			<li>
-				<img src="../images/mall/pindan_24.png"/>
-				<div>优品波司登冬季
-					羽绒服</div>
-				<p><span>¥</span>210.<span>00</span></p>
-			</li>
-
-		</ul>
+		</ul> -->
 
 	</div>
 
@@ -270,15 +294,30 @@
 			mui.init();
 			mui.plusReady(function() {
 				   commonEvent();
-				   // getDetail();
-					
+				   getDetail();
+					getShopList();
 			});
 			
 			var goodsId = GetQueryString("id");
 			//商品详情
 			function getDetail() {
 			    Global.commonAjax({
-			        url: "shop/goods/"+goodsId
+			        url: "shop/goods/goodsDetail",
+					method: "POST",
+					data: {goods_id: goodsId}
+			    }, function (data) {
+					
+			    }, function (err) {
+					mui.toast(err);
+			    })
+			}
+			
+			//商品列表 推荐商铺
+			function getShopList() {
+			    Global.commonAjax({
+			        url: "shop/goods/goodsDetailByShop",
+					method: "POST",
+					data: {goods_id: goodsId}
 			    }, function (data) {
 					
 			    }, function (err) {

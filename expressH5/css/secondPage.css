@@ -275,11 +275,11 @@
 .tuijian-list .pindan-title .left{font-size:0.14rem;float:left;}
 .tuijian-list .pindan-title .right{font-size:0.12rem;float:right;color:#999999;}
 .tuijian-list .pindan-title .right span{font-size:0.14rem;}
-.tuijian-list .tuijian-list-col{padding:0 7px;}
-.tuijian-list .tuijian-list-col li{float:left;padding:0 7px;width:33%;}
+/* .tuijian-list .tuijian-list-col{padding:0 7px;} */
+/* .tuijian-list .tuijian-list-col li{float:left;padding:0 7px;width:33%;} */
 .tuijian-list .tuijian-list-col li img{width:1.03rem;}
-.tuijian-list .tuijian-list-col li div{font-size:0.13rem;line-height: 0.18rem;}
-.tuijian-list .tuijian-list-col li p{color:#FF5269;font-size:0.16rem;}
+.tuijian-list .tuijian-list-col li span{width:1.03rem;font-size:0.13rem;word-wrap: break-word;word-break: break-all; display: inline-block;}
+.tuijian-list .tuijian-list-col li p{color:#FF5269;font-size:0.16rem;text-align: left;}
 .tuijian-list .tuijian-list-col li p span{font-size:0.12rem;}
 .tuijian-list .dianpu-col{padding:0 15px;border-top:6px solid #f9f9f9;}
 .tuijian-list .dianpu-col .clearfix{padding:0.16rem 0;border-bottom:1px solid #e3e3e3;}
