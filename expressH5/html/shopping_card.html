@@ -34,7 +34,6 @@
 				flex-direction: row;
 				align-items: center;
 				justify-content: space-between;
-				border-bottom: 1px solid #E3E3E3;
 				padding: 0.18rem 0.15rem;
 				color: #666666;
 				font-size: 0.14rem;
@@ -121,6 +120,25 @@
 				left: 0.1rem;
 			}
 			
+			.radio_all{
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: space-between;
+				color: #666666;
+				font-size: 0.14rem;
+			}
+			
+			.radio_all label{
+				padding-left: 0.4rem!important;
+				padding-right: 0.05rem!important;
+				text-align: right;
+			}
+			
+			.radio_all input{
+				left: 0.05rem!important;
+			}
+			
 		</style>
 	</head>
 	<body>
@@ -187,9 +205,15 @@
 			</div>
 			
 			<div class="row_between bottom_wrap">
-				<div class="mui-input-row mui-radio mui-left radio_item" style="height: 0.4rem!important; padding: 0rem;">
+				<!-- <div class="mui-input-row mui-radio mui-left radio_item" style="height: 0.4rem!important; padding: 0rem;">
 					<label >全选</label>
 					<input name="radio1" type="radio" style="left:0rem">
+				</div> -->
+				
+				<div class="mui-input-row mui-checkbox mui-left radio_all">
+					
+					<input  type="checkbox">
+					<label >全选</label>
 				</div>
 				
 				<div class="money_info">
@@ -208,8 +232,27 @@
 	<script src="../js/mui.min.js"></script>
 	<script src="../js/mui.picker.min.js"></script>
 	<script src="../js/jquery-2.1.1.min.js"></script>
+	<script src="../js/myStorage.js"></script>
 	<script src="../js/app.js"></script>
 	<script type="text/javascript">
+		mui.init();
+		mui.plusReady(function() {
+			getCardList();
+		});
+		
+		//购物车
+		function getCardList() {
+		    Global.commonAjax({
+		        url: "shop/cart/index",
+				method: "POST",
+				data: {buyer_id: myStorage.getItem("user").id}
+		    }, function (data) {
+				
+		    }, function (err) {
+				mui.toast(err);
+		    })
+		}
+		
 		var complainPicker = new mui.PopPicker();
 		complainPicker.setData([{
 			value: 'ywj',

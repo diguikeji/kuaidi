@@ -22,6 +22,7 @@
 			.mall-goods-info p{font-size:0.15rem;margin-bottom:0.04rem;}
 			.mall-goods-info .price{color:#FF5269;font-size:0.17rem;}
 			.mall-goods-info .price span{font-size:0.12rem;}
+			.mall-goods-info .price .price_num{font-size:0.17rem;}
 
 			.mall-goods-detail img{display: block;width:100%;}
 			.mall-goods-tab span{font-size:0.14rem;}
@@ -72,28 +73,22 @@
 	</div>
 
 	<div id="slider" class="mui-slider" >
-		<div class="mui-slider-group mui-slider-loop">
-			<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+		<!-- <div class="mui-slider-group mui-slider-loop">
 			<div class="mui-slider-item mui-slider-item-duplicate">
 					<img src="../images/mall/tm_01.png">
 			</div>
-			<!-- 第一张 -->
 			<div class="mui-slider-item">
 					<img src="../images/mall/tm_01.png">
 			</div>
-			<!-- 第二张 -->
 			<div class="mui-slider-item">
 				<img src="../images/mall/tm_01.png">
 			</div>
-			<!-- 第三张 -->
 			<div class="mui-slider-item">
 				<img src="../images/mall/tm_01.png">
 			</div>
-			<!-- 第四张 -->
 			<div class="mui-slider-item">
 				<img src="../images/mall/tm_01.png">
 			</div>
-			<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
 			<div class="mui-slider-item mui-slider-item-duplicate">
 				<a href="#">
 					<img src="../images/mall/tm_01.png">
@@ -105,12 +100,16 @@
 			<div class="mui-indicator"></div>
 			<div class="mui-indicator"></div>
 			<div class="mui-indicator"></div>
-		</div>
+		</div> -->
 	</div>
 
 	<div class="mall-goods-info">
-		<p>2019年最新优品波司登冬季羽绒服中长款新款韩版宽松连帽羽绒服</p>
-		<div class="price"><span>￥</span>259.<span>00</span></div>
+		<p id="goods_name">2019年最新优品波司登冬季羽绒服中长款新款韩版宽松连帽羽绒服</p>
+		<p class="price">
+			<span>￥</span>
+			<span class="price_num">258</span>
+			<span class="price_dot">.00</span>
+		</p>
 
 	</div>
 
@@ -121,8 +120,8 @@
 
 			<div class="clearfix">
 				<span class="left">
-					<img src="../images/mall/mallIcon_07.png">
-					<span>波司登官方旗舰店</span>
+					<img src="../images/mall/mallIcon_07.png" id="shop_logo">
+					<span id="shop_name">波司登官方旗舰店</span>
 				</span>
 
 				<span class="right" id="goStore">进店逛</span>
@@ -140,29 +139,14 @@
 		<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted  " style="height: 1.8rem;">  
 			<div class="mui-scroll">  
 				<div class="row shopItem" style="flex-flow: nowrap;">  
-					<li >
+					<!-- <li >
 						<img src="../images/mall/pindan_20.png"/>
 						<div>优品波</div>
 						<p><span>¥</span>210.<span>00</span></p>
-					</li>
-					
-					
-					
-					
-            </div>  
-        </div>  
-    </div> 
-		
-
-		<!-- <ul class="tuijian-list-col clearfix">
-			<li>
-				<img src="../images/mall/pindan_20.png"/>
-				<div>优品波司登冬季
-					羽绒服</div>
-				<p><span>¥</span>210.<span>00</span></p>
-			</li>
-
-		</ul> -->
+					</li> -->
+				</div>  
+			</div>  
+		</div> 
 
 	</div>
 
@@ -179,8 +163,8 @@
 
 		<div class="tab-detail-col">
 		<div class="mall-goods-detail">
-			<img src="../images/mall/tm_03.png"/>
-			<img src="../images/mall/tm_04.jpg"/>
+			<!-- <img src="../images/mall/tm_03.png"/>
+			<img src="../images/mall/tm_04.jpg"/> -->
 		</div>
 		</div>
 
@@ -284,65 +268,127 @@
 		<div class="second" id="addCart">加入购物车</div>
 		<div class="third" id="buyBtn">立即购买</div>
 	</div>
-
+		
+		
 		<script src="../js/mui.min.js"></script>
 	    <script src="../js/jquery-2.1.1.min.js"></script>
 		<script src="../js/myStorage.js"></script>
 		<script src="../js/app.js"></script>
 		<script>
-			
+			var goodsId, store_id;
 			mui.init();
 			mui.plusReady(function() {
-				   commonEvent();
-				   getDetail();
-					getShopList();
+				goodsId = GetQueryString("id");
+				commonEvent();
+				getDetail();
+				getShopList();
+				getGoodsSpec();
 			});
 			
-			var goodsId = GetQueryString("id");
-			//商品详情
-			function getDetail() {
+			//商品规格
+			function getGoodsSpec() {
 			    Global.commonAjax({
-			        url: "shop/goods/goodsDetail",
-					method: "POST",
-					data: {goods_id: goodsId}
+			        url: "shop/goods/goodsSpec?goods_id="+goodsId
 			    }, function (data) {
 					
 			    }, function (err) {
 					mui.toast(err);
 			    })
+			}
+			
+			
+			//商品详情
+			function getDetail() {
+			    Global.commonAjax({
+			        url: "shop/goods/goodsDetail?goods_id="+goodsId
+			    }, function (data) {
+					if(data.goods_images){
+						setLunBoHtml(data.goods_images);
+						$("#goods_name").html(data.goods_name);
+						var price = data.goods_price;
+						
+						$(".price_num").text(price.split(".")[0]);
+						$(".price_dot").text("."+price.split(".")[1]);
+						$(".mall-goods-detail").append(data.mobile_body);
+					}
+			    }, function (err) {
+					mui.toast(err);
+			    })
+			}
+			
+			
+			function setLunBoHtml(list){
+				var dotHtml = '<div class="mui-slider-indicator">';
+				var html = '<div class="mui-slider-group mui-slider-loop">'+
+								'<div class="mui-slider-item mui-slider-item-duplicate">'+
+										'<img src="'+list[list.length-1]+'">'+
+								'</div>';
+					for(var i=0; i<list.length; i++){
+						html += '<div class="mui-slider-item">'+
+										'<img src="'+list[i]+'">'+
+								'</div>';
+						dotHtml += '<div class="mui-indicator"></div>';		
+					}			
+					html += '<div class="mui-slider-item mui-slider-item-duplicate">'+
+									'<img src="'+list[0]+'">'+
+								'</div></div>';			
+					dotHtml += '</div>';		
+					
+					html += dotHtml;
+					$("#slider").append(html);
+				
 			}
 			
 			//商品列表 推荐商铺
 			function getShopList() {
 			    Global.commonAjax({
-			        url: "shop/goods/goodsDetailByShop",
-					method: "POST",
-					data: {goods_id: goodsId}
+			        url: "shop/goods/goodsDetailByShop?goods_id="+goodsId
 			    }, function (data) {
+					$("#shop_name").html(data.store.store_name);
+					$("#shop_logo").attr("src", data.store.store_logo);
+					
+					setShopListHtml(data.store.store_goods_commend);
+					store_id = data.store.store_id;
 					
 			    }, function (err) {
 					mui.toast(err);
 			    })
 			}
 			
+			function setShopListHtml(list){
+				var html = '';
+				for(var i=0; i<list.length; i++){
+					html += '<li >'+
+						'<img src="'+list[i].goods_images+'"/>'+
+						'<div>'+list[i].goods_name+'</div>'+
+						'<p><span>¥</span>'+list[i].goods_price.split(".")[0]+
+						'<span>.'+list[i].goods_price.split(".")[1]+'</span></p>'+
+					'</li>';
+				}
+				$(".shopItem").append(html);
+				
+			}
+			
 			//商品收藏
 			function wishlist() {
 			    Global.commonAjax({
-			        url: "shop/wishlist",
+			        url: "shop/goods/wishGoods",
 					method: "POST",
-					data: {goods_id: goodsId}
+					data: {goods_id: goodsId, store_id: store_id, member_id: myStorage.getItem("user").id}
 			    }, function (data) {
 					mui.toast("收藏成功");
 			    }, function (err) {
-					mui.toast(err);
+					mui.toast("收藏失败");
 			    })
 			}
 			
 			//加入购物车
 			function addCard() {
 			    Global.commonAjax({
-			        url: "shop/cart/goods"+goodsId+"/add",
-					method: "POST"
+			        url: "shop/cart/add",
+					method: "POST",
+					data: {goods_id: goodsId, store_id: store_id, goods_num: 1,
+							member_id: myStorage.getItem("user").id}
 			    }, function (data) {
 					
 					mui.toast("加入购物车成功");

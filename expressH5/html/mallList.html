@@ -61,12 +61,12 @@
 	<div class="mui-content has-header mall-list-col">
 
 		<div class="left-col">
-			<ul>
-				<li data-index="0" class="active">推荐</li>
+			<ul id="left_type">
+				<!-- <li data-index="0" class="active">推荐</li>
 				<li data-index="1">服饰</li>
 				<li data-index="2">食品</li>
 				<li data-index="3">家具日用</li>
-				<li data-index="4">美妆护肤</li>
+				<li data-index="4">美妆护肤</li> -->
 			</ul>
 		</div>
 
@@ -105,6 +105,13 @@
 	        </li>
 	    {{/each}}
 	</script>
+	
+	<script type="text/html" id="leftTypeLeft">
+		<li data-index="0" class="active">推荐</li>
+	    {{each data as item i}}
+	        <li data-index="{{item.gc_id}}">{{item.gc_name}}</li>
+	    {{/each}}
+	</script>
 
 		<script src="../js/mui.min.js"></script>
 	    <script src="../js/jquery-2.1.1.min.js"></script>
@@ -118,6 +125,7 @@
 				   // httpRequest();
 					
 					mallRecommend();
+					mallTypes(0);
 			});
 			
 			//商品推荐
@@ -138,11 +146,17 @@
 			//商品分类
 			function mallTypes(index) {
 			    Global.commonAjax({
-			        url: "shop/classes/index?pid="+index,
-					method: "POST"
+			        url: "shop/classes/index",
+					method: "POST",
+					data: {pid: index}
 			    }, function (data) {
 					console.log(data);
-					render('#recommandList', 'list', { data: data });
+					if(index == 0){
+						render('#left_type', 'leftTypeLeft', { data: data });
+					}else{
+						render('#recommandList', 'list', { data: data });
+					}
+					
 			    }, function (err) {
 					mui.toast(err);
 			    })

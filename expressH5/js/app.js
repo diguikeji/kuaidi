@@ -192,11 +192,9 @@ var isOpenLogin = false;
                 },
                 complete: function(xhr, status) {
                     console.log(xhr.status);
-					if(xhr.status != 200){
+					if((xhr.status != 200) && (xhr.status != 401)){
 						console.log(xhr.responseText);
 						var res = JSON.parse(xhr.responseText);
-						
-						console.log(JSON.parse(xhr.responseText).msg);
 					}
 					
 					waiting.close();
@@ -219,7 +217,7 @@ var isOpenLogin = false;
         },
 		
 		goToLogin: function(){
-			
+			console.log("goToLogin")
 			var path = plus.webview.currentWebview();
 			//获取所有已经打开的webview窗口
 			var wvs = plus.webview.all();
