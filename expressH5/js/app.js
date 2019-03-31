@@ -134,7 +134,7 @@ var isOpenLogin = false;
 	   },
         //网络请求
         commonAjax: function(params,callback, errorback) {
-           var baseUrl = "https://lfb.kai-dian.com/api/";
+           var baseUrl = "http://kd.loufubao.com/api/" ;
 		   if(params.url.indexOf("shop") != -1){
 			   //包含
 			   baseUrl = "http://kd.loufubao.com/shopapi/index.php/api/";
@@ -161,14 +161,15 @@ var isOpenLogin = false;
                 data: params.data,
                 timeout: 10000,
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 beforeSend: function(xhr) {
-                    xhr.setRequestHeader("Content-Type", "application/json");
-                    xhr.setRequestHeader("Accept", "application/json");
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xhr.setRequestHeader("Accept", "application/x-www-form-urlencoded");
                     var token = myStorage.getItem("token");
                     
                     if (token) {
+						console.log(token);
                         xhr.setRequestHeader("Authorization", "Bearer " + token);
                     };
 

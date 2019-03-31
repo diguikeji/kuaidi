@@ -51,6 +51,9 @@
 			}
 			.shopItem li p{color:#FF5269;font-size:0.16rem;text-align: left;}
 			.shopItem li p span{font-size:0.12rem;}
+			
+			.guige_price_wrap{position: absolute; left: 1.4rem; top: 0.52rem; color: #FF5269;}
+			.guige_price_wrap span{font-size: 0.2rem;}
 
 		</style>
 		
@@ -162,10 +165,10 @@
 	<div class="main-tab-detail">
 
 		<div class="tab-detail-col">
-		<div class="mall-goods-detail">
-			<!-- <img src="../images/mall/tm_03.png"/>
-			<img src="../images/mall/tm_04.jpg"/> -->
-		</div>
+			<div class="mall-goods-detail">
+				<!-- <img src="../images/mall/tm_03.png"/>
+				<img src="../images/mall/tm_04.jpg"/> -->
+			</div>
 		</div>
 
 	</div>
@@ -182,52 +185,51 @@
 			<div class="clearfix">
 				<span class="fl">
 					<img src="../images/mall/tm_01.png" />
+					<span class="guige_price_wrap">
+						￥<span class="guige_price">127</span>.00
+					</span>
 				</span>
 
 					<span class="fr right-close">
 						<span class="mui-icon mui-icon-closeempty"></span>
 					</span>
 			</div>
-
-			<div class="guige-row">
-
-			<div class="title-col">颜色</div>
-			<ul class="guige-list row_around" id="color_list">
-				<li class="active">
-					黑色
-				</li>
-				<li>
-					黑色
-				</li>
-				<li>
-					黑色
-				</li>
-			</ul>
-
+			<div id="guige_content">
+				
+				<!-- <div class="guige-row">
+					<div class="title-col">颜色</div>
+					<ul class="guige-list row_around" id="color_list">
+						<li class="active">
+							黑色
+						</li>
+						<li>
+							黑色
+						</li>
+						<li>
+							黑色
+						</li>
+					</ul>
+				</div> -->
+				
 			</div>
-
+			<!-- 
 			<div class="guige-row">
 
-				<div class="title-col">规格</div>
-				<ul class="guige-list row_around" id="guige_list">
+				<div class="title-col">颜色</div>
+				<ul class="guige-list row_around" id="color_list">
 					<li class="active">
-						S
+						黑色
 					</li>
 					<li>
-						M
+						黑色
 					</li>
 					<li>
-						L
-					</li>
-					<li>
-						XL
-					</li>
-					<li>
-						XXL
+						黑色
 					</li>
 				</ul>
 
 			</div>
+ -->
 
 			<div class="select-count">
 				<div class="left sub-value">
@@ -282,21 +284,55 @@
 				commonEvent();
 				getDetail();
 				getShopList();
-				getGoodsSpec();
 			});
 			
 			//商品规格
 			function getGoodsSpec() {
 			    Global.commonAjax({
-			        url: "shop/goods/goodsSpec?goods_id="+goodsId
+			        url: "shop/goods/goodsSpec",
+					method: "POST",
+					data: {goods_id: goodsId}
 			    }, function (data) {
+					$(".beizhu-col").show();
+					$(".beizhu-col .beizhu-text").show();
+					
+					setGuiGeHtml(data);
 					
 			    }, function (err) {
 					mui.toast(err);
 			    })
 			}
 			
+			var guiGeList = [];
+			function setGuiGeHtml(data){
+				var html = '';
+				data.map(function(item, ind){
+					html += '<div class="guige-row">'+
+								'<div class="title-col">'+item.name+'</div>'+
+								'<ul class="guige-list row_around">';
+					var content = [];
+					for(var temp in item.value){
+						var it = {name: item.value[temp], id: temp};
+						content.push(it);
+					}
+					var guiGeItem = {content: content, value: item};
+					guiGeList.push(guiGeItem);
+					
+					content.map(function(ite, index){
+						if(index == 0){
+							html += '<li class="active" data-id="'+(ind*10+index)+'">'+ite.name+'</li>';
+						}else{
+							html += '<li data-id="'+(ind*10+index)+'">'+ite.name+'</li>';
+						}
+					});			
+					
+					html += '</ul></div>';
+				});
+				
+				$("#guige_content").append(html);
+			}
 			
+			var detailData;
 			//商品详情
 			function getDetail() {
 			    Global.commonAjax({
@@ -309,7 +345,10 @@
 						
 						$(".price_num").text(price.split(".")[0]);
 						$(".price_dot").text("."+price.split(".")[1]);
+						detailData = data;
 						$(".mall-goods-detail").append(data.mobile_body);
+						
+						$(".guige_price").text(price.split(".")[0]);
 					}
 			    }, function (err) {
 					mui.toast(err);
@@ -374,7 +413,7 @@
 			    Global.commonAjax({
 			        url: "shop/goods/wishGoods",
 					method: "POST",
-					data: {goods_id: goodsId, store_id: store_id, member_id: myStorage.getItem("user").id}
+					data: {goods_id: goodsId, store_id: store_id}
 			    }, function (data) {
 					mui.toast("收藏成功");
 			    }, function (err) {
@@ -387,10 +426,8 @@
 			    Global.commonAjax({
 			        url: "shop/cart/add",
 					method: "POST",
-					data: {goods_id: goodsId, store_id: store_id, goods_num: 1,
-							member_id: myStorage.getItem("user").id}
+					data: {goods_id: goodsId, store_id: store_id, goods_num: 1}
 			    }, function (data) {
-					
 					mui.toast("加入购物车成功");
 					
 			    }, function (err) {
@@ -425,9 +462,19 @@
 			{
 				$(".middle-tab-col span").removeClass("active");
 				$(this).addClass("active");
-
-				$(".main-tab-detail .tab-detail-col").hide();
-				$(".main-tab-detail .tab-detail-col").eq($(this).index()).show();
+				
+				var index = $(this).index();
+				console.log(index);
+				if(detailData){
+					$(".mall-goods-detail").empty();
+					if(index == 0){
+						$(".mall-goods-detail").append(detailData.mobile_body);
+					}else if(index == 1){
+						$(".mall-goods-detail").append(detailData.mobile_body_2);
+					}else{
+						$(".mall-goods-detail").append(detailData.mobile_body_3);
+					}
+				}
 
 			});
 
@@ -463,13 +510,19 @@
 			
 			//立即购买
 			mui(".mall-temai-col").on('tap','#buyBtn',function(){
-				$(".beizhu-col").show();
-				$(".beizhu-col .beizhu-text").show();
+				
+				getGoodsSpec();
+				
+// 				$(".beizhu-col").show();
+// 				$(".beizhu-col .beizhu-text").show();
+				
 			});
+			
 			
 			
 			//加入购物车
 			mui(".mall-temai-col").on('tap','#addCart',function(){
+				console.log("addCart");
 				addCard();
 			});
 
@@ -491,14 +544,26 @@
 			}
 			
 			//规格点击
-			mui("#guige_list").on('tap','li',function(){
-				$("#guige_list li").removeClass("active");
-				$(this).addClass("active");
-			});
-			
-			//颜色点击
-			mui("#color_list").on('tap','li',function(){
-				$("#color_list li").removeClass("active");
+			mui("#guige_content").on('tap','li',function(){
+				
+				var dataIndex = $(this).data("id");
+				if(dataIndex < 10){
+					console.log(guiGeList[0].content.length);
+					for(var i=0; i< guiGeList[0].content.length; i++){
+						$("li[data-id='"+i+"']").removeClass("active");
+					}
+					
+				}else if((dataIndex >= 10) && (dataIndex < 20)){
+					dataIndex -= 10;
+					for(var i=0; i< guiGeList[1].content.length; i++){
+						$("li[data-id='"+(10+i)+"']").removeClass("active");
+					}
+				}else{
+					dataIndex -= 20;
+					for(var i=0; i< guiGeList[2].content.length; i++){
+						$("li[data-id='"+(20+i)+"']").removeClass("active");
+					}
+				}
 				$(this).addClass("active");
 			});
 

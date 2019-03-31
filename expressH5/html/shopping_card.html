@@ -9,6 +9,9 @@
 		<link rel="stylesheet" href="../fonts/iconfont.css">
 		<link rel="stylesheet" href="../css/app.css">
 		<style type="text/css">
+			html,body{
+				height: 100%;
+			}
 			.header{
 				background-color: #FFFFFF;
 				top: 0rem;
@@ -86,6 +89,7 @@
 				width: 100%;
 				box-sizing: border-box;
 				background-color: #FFFFFF;
+				box-shadow: 0px 0px 10px 0px #EAEAEA;
 			}
 			
 			.bottom_wrap .btn{
@@ -100,11 +104,11 @@
 			
 			.money_info{
 				color: #333333;
-				font-size: 0.16rem;
+				font-size: 0.14rem;
 			}
 			
 			.money_num{
-				color: #FF5269; font-size: 0.24rem;
+				color: #FF5269; font-size: 0.2rem;
 			}
 			
 			.all_info{
@@ -127,16 +131,125 @@
 				justify-content: space-between;
 				color: #666666;
 				font-size: 0.14rem;
+				left: -0.1rem;
 			}
 			
 			.radio_all label{
-				padding-left: 0.4rem!important;
+				padding-left: 0.35rem!important;
 				padding-right: 0.05rem!important;
+				padding-top: 0.15rem;
 				text-align: right;
 			}
 			
 			.radio_all input{
 				left: 0.05rem!important;
+			}
+			
+			.cal_bottom{padding-top: 0rem; margin-bottom: 0.75rem;}
+			
+			.modal-mask {
+			    width: 100%;
+			    height: 100%;
+			    position: fixed;
+			    top: 0;
+			    left: 0;
+			    background: rgba(0, 0, 0, 0.4);
+			    overflow: hidden;
+			    z-index: 10;
+			    color: #fff;
+			    justify-content: center;
+			    align-items: center;
+			}
+			
+			.modal-dialog {
+			    width: 100%;
+			    overflow: auto;
+			    position: relative;
+				bottom: 0rem;
+				background-color: #FFFFFF;
+				
+			}
+			
+			.close_style {
+			    width: 0.12rem;
+			    height: 0.12rem;
+			    z-index: 100000;
+			}
+			
+			.modal_title_wrap{
+				padding: 0.17rem 0.15rem;
+				font-size: 0.14rem;
+				color: #333333;
+				font-weight: bold;
+			}
+			
+			.modal-content {
+			    font-size: 0.12rem;
+			    position: relative;
+			    z-index: 10000;
+			    color: #333333;
+			    background: #ffffff;
+			    padding: 0px;
+			}
+			
+			label{
+				padding: 0.18rem 0rem;
+				height: 100%;
+				display: flex!important;
+				flex-direction: column;
+				justify-content: space-around;
+			}
+			
+			.radio_item .name{
+				color: #333333;
+				font-size: 0.16rem;
+			}
+			
+			.radio_item .phone{
+				color: #666666;
+				font-size: 0.14rem;
+			}
+			
+			.radio_item .address{
+				font-size: 0.14rem;
+				color: #333333;
+			}
+			
+			.button{
+				border-radius: 0.03rem;
+				width: 90%;
+				margin: 0.05rem 5% 0px;
+				box-sizing: border-box;
+				background-color: #107EFF;
+				color: #FEFEFE;
+				font-size: 0.16rem;
+				height: 0.44rem;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: center;
+			}
+			
+			.button .add{
+				margin-right: 0.04rem;
+				font-size: 0.3rem; font-weight: 10;
+			}
+			
+			.money_item{
+				height: 0.55rem;
+				font-size: 0.16rem;
+				color: #333333;
+				padding: 0rem 0.16rem;
+			}
+			
+			.pay_money{
+				color: #FF5269;
+				font-size: 0.16rem;
+			}
+			
+			.pay_warn{
+				color: #999999;
+				font-size: 0.12rem;
 			}
 			
 		</style>
@@ -148,84 +261,125 @@
 			
 		    <h1 class="mui-title">购物车</h1>
 			
-			<a class="menu_add" onclick="goToAddAddr();">删除</a>
+			<a class="menu_add">删除</a>
 		</header>
 		
 		<div class="mui-content">
 			
-			<form class="mui-input-group">
-				<div class="mui-input-row mui-checkbox mui-left radio_item">
-					<div class="checkbox-col">
-						<div class="row ">
-							<img src="../images/firstPageLive/homeBottom_03.jpg" alt="">
-							<div class="col_between" style="height: 0.7rem;">
-								<span class="name">农夫山泉饮用水饮用天然水5L*4桶整箱装桶装水</span>
-								<div class="row_between money_wrap">
-									<span>￥169.00 </span>
-									<div class="row">
-										<span class="action_span sub-value icon-move iconfont"></span>
-										<span class="num">2</span>
-										<span class="action_span add-value icon-add1 iconfont">
-										</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<input  type="checkbox">
-				</div>
-				<div class="mui-input-row mui-checkbox mui-left radio_item">
-					<div class="checkbox-col">
-						<div class="row ">
-							<img src="../images/firstPageLive/homeBottom_03.jpg" alt="">
-							<div class="col_between" style="height: 0.7rem;">
-								<span class="name">农夫山泉饮用水饮用天然水5L*4桶整箱装桶装水</span>
-								<div class="row_between money_wrap">
-									<span>￥169.00 </span>
-									<div class="row">
-										<span class="action_span sub-value icon-move iconfont"></span>
-										<span class="num">2</span>
-										<span class="action_span add-value icon-add1 iconfont">
-										</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<input  type="checkbox">
-				</div>
+			<form class="mui-input-group" id="check_wrap">
 			</form>
 			
 			<div class="all_info">
 				活动优惠: -￥0.00
 			</div>
 			
-			<div class="all_info" style="padding-top: 0rem;">
-				本仓总计(不含税): ￥507.00
+			<div class="all_info cal_bottom">
+				本仓总计(不含税): ￥<span class="allMoney">0.00</span>
 			</div>
 			
 			<div class="row_between bottom_wrap">
-				<!-- <div class="mui-input-row mui-radio mui-left radio_item" style="height: 0.4rem!important; padding: 0rem;">
-					<label >全选</label>
-					<input name="radio1" type="radio" style="left:0rem">
-				</div> -->
 				
 				<div class="mui-input-row mui-checkbox mui-left radio_all">
 					
-					<input  type="checkbox">
+					<input  type="checkbox" name="all_check">
 					<label >全选</label>
 				</div>
 				
 				<div class="money_info">
 					<span>总价:</span>
-					<span class="money_num" style="font-size: 0.16rem;">¥</span>
-					<span class="money_num">1033.0</span>
+					<span class="money_num" style="font-size: 0.14rem;">¥</span>
+					<span class="money_num allMoney">0.00</span>
 				</div>
 				
-				<span class="btn">结算(1)</span>
+				<span class="btn allCheckout">结算(<span id="allNum">0</span>)</span>
+			</div>
+			
+			<div class="row_center empty_text" style="height: 100%;">
+				暂无数据
 			</div>
 			
 		</div>
+		
+		
+		<!--弹窗-->
+		<div class="modal-mask col address_modal">
+			<div style="flex: 1;"></div>
+		    <div class="modal-dialog">
+				<div class="row_between modal_title_wrap">
+					<span>选择地址</span>
+					<img src="../images/login/login_close.png" class="close_style" onclick="closeDialg();" />
+				</div>
+		        
+		        <form class="mui-input-group">
+		        	<div class="mui-input-row mui-radio mui-left radio_item">
+		        		<label>
+							<div>
+								<span class="name">王先生</span>
+								<span class="phone">1380013000 </span>
+							</div>
+							<div class="address">
+								上海普陀区金沙江路1518弄近铁城市广场 100室
+							</div>
+						</label>
+		        		<input name="radio1" type="radio">
+		        	</div>
+		        	<div class="mui-input-row mui-radio mui-left radio_item">
+		        		<label>
+		        			<div>
+		        				<span class="name">王先生</span>
+		        				<span class="phone">1380013000 </span>
+		        			</div>
+		        			<div class="address">
+		        				上海普陀区金沙江路1518弄近铁城市广场 100室
+		        			</div>
+		        		</label>
+		        		<input name="radio1" type="radio">
+		        	</div>
+					<div class="mui-input-row mui-radio mui-left radio_item">
+						<label>
+							<div>
+								<span class="name">王先生</span>
+								<span class="phone">1380013000 </span>
+							</div>
+							<div class="address">
+								上海普陀区金沙江路1518弄近铁城市广场 100室
+							</div>
+						</label>
+						<input name="radio1" type="radio" checked>
+					</div>
+		        </form>
+				<div type="button" class="mui-btn mui-btn-primary button">
+					 <span class="add">+</span> 
+					 <span>新建地址</span>
+				</div>
+		    </div>
+		</div>
+		
+		
+		<script type="text/html" id="checkList">
+		    {{each data as item i}}
+		        <div class="mui-input-row mui-checkbox mui-left radio_item">
+		        	<div class="checkbox-col">
+		        		<div class="row ">
+		        			<img src="{{item.goods_image}}" alt="">
+		        			<div class="col_between" style="height: 0.7rem;">
+		        				<span class="name">{{item.goods_name}}</span>
+		        				<div class="row_between money_wrap">
+		        					<span>￥ <span class="item_price">{{item.goods_price}}</span> </span>
+		        					<div class="row">
+		        						<span class="action_span sub-value icon-move iconfont" data-index="{{i}}"></span>
+		        						<span class="num">{{item.goods_num}}</span>
+		        						<span class="action_span add-value icon-add1 iconfont" data-index="{{i}}">
+		        						</span>
+		        					</div>
+		        				</div>
+		        			</div>
+		        		</div>
+		        	</div>
+		        	<input  type="checkbox" name="item_check" data='{{"check"+i}}'>
+		        </div>
+		    {{/each}}
+		</script>
 		
 		
 	</body>
@@ -233,19 +387,155 @@
 	<script src="../js/mui.picker.min.js"></script>
 	<script src="../js/jquery-2.1.1.min.js"></script>
 	<script src="../js/myStorage.js"></script>
+	<script src="../lib/artTemplate.js"></script>
 	<script src="../js/app.js"></script>
 	<script type="text/javascript">
 		mui.init();
 		mui.plusReady(function() {
 			getCardList();
+			
+			
 		});
 		
+		$(".address_modal").hide();
+		
+		var cardList = [];
 		//购物车
 		function getCardList() {
 		    Global.commonAjax({
 		        url: "shop/cart/index",
+				method: "POST"
+		    }, function (data) {
+				cardList = data;
+				if(data && (data.length == 0)){
+					$(".all_info").hide();
+					$(".bottom_wrap").hide();
+					$(".empty_text").show();
+				}else{
+					$(".all_info").show();
+					$(".bottom_wrap").show();
+					$(".empty_text").hide();
+					render('#check_wrap', 'checkList', { data: cardList });
+				}
+				
+		    }, function (err) {
+				mui.toast(err);
+		    })
+		}
+		
+		mui(".radio_all").on('tap', 'input[type="checkbox"]', function(e){
+			// console.log(e);
+			var value = e.target.checked;
+			
+			if(!value){
+				//选中
+				var allMoney = 0.00;
+				var allNum = 0;
+				$("input[name='item_check']").prop("checked", true);
+				$("input[name='item_check']").each(function(index){
+					var num = $(".radio_item .num").eq(index).html();
+					var price = $(".radio_item .item_price").eq(index).html();
+					allMoney = (parseFloat(allMoney) + parseFloat(num*price)).toFixed(2);
+					++allNum;
+				})
+				$(".allMoney").html(allMoney);
+				$("#allNum").text(allNum);
+			}else{
+				$("input[name='item_check']").prop("checked", false);
+				$(".allMoney").html("0.00");
+				$("#allNum").text("0");
+			}
+		});
+		
+		mui("#check_wrap").on('tap', 'input[type="checkbox"]', function(e){
+			// console.log(e);
+			var value = e.target.checked;
+			var data = $(this).attr("data");
+			console.log(data);
+			console.log(!value);
+			changeStatus(data, !value);
+		});
+		
+		
+		
+		function changeStatus(data, value){
+			$("input[name='item_check']").each(function(index){
+				
+				if("check"+index == data){
+					var num = $(".radio_item .num").eq(index).html();
+					var price = $(".radio_item .item_price").eq(index).html();
+					var allMoney = parseFloat($(".allMoney").html());
+					if(value){
+						//如果选中了
+						allMoney =(parseFloat(allMoney) + parseFloat(num*price)).toFixed(2);
+						$(".allMoney").html(allMoney);
+						
+						var oldNum = $("#allNum").text();
+						$("#allNum").text(++oldNum);
+						
+						if(oldNum == $("input[name='item_check']").length){
+							//全选中了
+							$("input[name='all_check']").prop("checked", true);
+						}
+					}else{
+						//如果取消选中了
+						allMoney =(parseFloat(allMoney) - parseFloat(num*price)).toFixed(2);
+						$(".allMoney").html(allMoney);
+						
+						var oldNum = $("#allNum").text();
+						$("#allNum").text(--oldNum);
+						
+						$("input[name='all_check']").prop("checked", false);
+					}
+				}
+
+			});
+		}
+		
+		mui("#check_wrap").on('tap', '.icon-move', function(){
+			var ind = $(this).data("index");
+			$("input[name='item_check']").each(function(index){
+				if(index == ind){
+					var status = $(this).prop("checked");
+					decrease(cardList[index].cart_id)
+					if(status){
+						var num = $(".radio_item .num").eq(index).html();
+						if(num == 1){
+							return;
+						}
+						var price = $(".radio_item .item_price").eq(index).html();
+						var allMoney = parseFloat($(".allMoney").html());
+						allMoney = (parseFloat(allMoney) - parseFloat(price)).toFixed(2);
+						$(".allMoney").html(allMoney);
+					}
+				}
+				
+			})
+		});
+		
+		mui("#check_wrap").on('tap', '.icon-add1', function(){
+			var ind = $(this).data("index");
+			$("input[name='item_check']").each(function(index){
+				if(index == ind){
+					increase(cardList[index].cart_id);
+					var status = $(this).prop("checked");
+					if(status){
+						var price = $(".radio_item .item_price").eq(index).html();
+						var allMoney = parseFloat($(".allMoney").html());
+						allMoney = (parseFloat(allMoney) + parseFloat(price)).toFixed(2);
+						$(".allMoney").html(allMoney);
+					}
+				}
+				
+			})
+		});
+		
+		//增加数量
+		function increase(cart_id) {
+		    Global.commonAjax({
+		        url: "shop/cart/increase",
 				method: "POST",
-				data: {buyer_id: myStorage.getItem("user").id}
+				data: {cart_id: cart_id}
 		    }, function (data) {
 				
 		    }, function (err) {
@@ -253,26 +543,87 @@
 		    })
 		}
 		
-		var complainPicker = new mui.PopPicker();
-		complainPicker.setData([{
-			value: 'ywj',
-			text: '董事长 叶文洁'
-		}, {
-			value: 'aaa',
-			text: '总经理 艾AA'
-		}, {
-			value: 'gezh', 
-			text: '歌者'
-		}]);
-		
-		function showReason(){
-			complainPicker.show(function(item){
-				console.log(item)
-				mui('.content')[0].innerHTML = item[0].text;
-			})
+		//减少数量
+		function decrease(cart_id) {
+		    Global.commonAjax({
+		        url: "shop/cart/decrease",
+				method: "POST",
+				data: {cart_id: cart_id}
+		    }, function (data) {
+				
+		    }, function (err) {
+				mui.toast(err);
+		    })
 		}
 		
+		//减少数量
+		function getAddressList() {
+		    Global.commonAjax({
+		        url: "shop/member/getAddressList",
+				method: "POST"
+		    }, function (data) {
+				$(".address_modal").show();
+		    }, function (err) {
+				mui.toast(err);
+		    })
+		}
 		
+		//购物车结算
+		mui(".bottom_wrap").on('tap', '.allCheckout', function(){
+			// $(".address_modal").show();
+			getAddressList();
+			return;
+			var cart_ids = [];
+			console.log('cart_ids');
+			$("input[name='item_check']").each(function(index){
+				var status = $(this).prop("checked");
+				if(status){
+					cart_ids.push(cardList[index].cart_id);
+				}
+				
+			});
+			checkout(cart_ids.join(","));
+		});
+		
+		//购物车结算
+		function checkout(cart_ids) {
+		    Global.commonAjax({
+		        url: "shop/cart/checkout",
+				method: "POST",
+				data: {cart_ids: cart_ids}
+		    }, function (data) {
+				
+		    }, function (err) {
+				mui.toast(err);
+		    })
+		}
+		
+		//删除购物车
+		mui(".header").on('tap', '.menu_add', function(){
+			var cart_ids = [];
+			$("input[name='item_check']").each(function(index){
+				var status = $(this).prop("checked");
+				if(status){
+					cart_ids.push(cardList[index].cart_id);
+				}
+				
+			});
+			remove(cart_ids.join(","));
+		});
+		
+		//删除购物车
+		function remove(cart_ids) {
+		    Global.commonAjax({
+		        url: "shop/cart/remove",
+				method: "POST",
+				data: {cart_ids: cart_ids}
+		    }, function (data) {
+				mui.toast("删除成功");
+				getCardList();
+		    }, function (err) {
+				mui.toast(err);
+		    })
+		}
 		
 	</script>
 </html>
