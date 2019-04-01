@@ -184,7 +184,7 @@
 
 			<div class="clearfix">
 				<span class="fl">
-					<img src="../images/mall/tm_01.png" />
+					<img src="../images/mall/tm_01.png" class="guige_image"/>
 					<span class="guige_price_wrap">
 						￥<span class="guige_price">127</span>.00
 					</span>
@@ -235,7 +235,7 @@
 				<div class="left sub-value">
 					<i class="iconfont icon-move"></i>
 				</div>
-				<div class="middle">1</div>
+				<div class="middle goods_storage">1</div>
 				<div class="right add-value">
 					<i class="iconfont icon-add1 active"></i>
 				</div>
@@ -244,7 +244,7 @@
 
 
 			<div class="guige-bottom">
-			<div class="guige-confirm-btn" onclick="openWindowPage('expressQianshou.html')">
+			<div class="guige-confirm-btn guige_sure" >
 				确定
 			</div>
 			</div>
@@ -284,6 +284,7 @@
 				commonEvent();
 				getDetail();
 				getShopList();
+				getGoodsSpec();
 			});
 			
 			//商品规格
@@ -293,8 +294,6 @@
 					method: "POST",
 					data: {goods_id: goodsId}
 			    }, function (data) {
-					$(".beizhu-col").show();
-					$(".beizhu-col .beizhu-text").show();
 					
 					setGuiGeHtml(data);
 					
@@ -305,7 +304,11 @@
 			
 			var selectGuige = [];
 			var guiGeList = [];
+			var param1,param2,param3;
+			var goodsChildID;
+			
 			function setGuiGeHtml(data){
+				$("#guige_content").empty();
 				var html = '';
 				data.map(function(item, ind){
 					html += '<div class="guige-row">'+
@@ -333,11 +336,22 @@
 				$("#guige_content").append(html);
 				console.log(JSON.stringify(guiGeList)); 
 				
-				guiGeList.map(function(ite){
+				guiGeList.map(function(ite, indexx){
 					var selectItem = {};
 					selectItem[ite.content[0].id] = ite.content[0].name;
 					selectGuige.push(selectItem);
 				})
+				
+				param1 = guiGeList[0].content[0].name;
+				param2 = guiGeList[1].content[0].name;
+				param3 = guiGeList[2].content[0].name;
+				var params = {
+					param1: param1,
+					param2: param2,
+					param3: param3,
+					goods_id: goodsId
+				}
+				getGoodsBySpec(params);
 				
 				console.log(JSON.stringify(selectGuige)); 
 			}
@@ -358,7 +372,7 @@
 						detailData = data;
 						$(".mall-goods-detail").append(data.mobile_body);
 						
-						$(".guige_price").text(price.split(".")[0]);
+						
 					}
 			    }, function (err) {
 					mui.toast(err);
@@ -433,10 +447,11 @@
 			
 			//加入购物车
 			function addCard() {
+					
 			    Global.commonAjax({
 			        url: "shop/cart/add",
 					method: "POST",
-					data: {goods_id: goodsId, store_id: store_id, goods_num: 1}
+					data: {goods_id: goodsChildID, store_id: store_id, goods_num: $(".goods_storage").html()}
 			    }, function (data) {
 					mui.toast("加入购物车成功");
 					
@@ -521,10 +536,8 @@
 			//立即购买
 			mui(".mall-temai-col").on('tap','#buyBtn',function(){
 				
-				getGoodsSpec();
-				
-// 				$(".beizhu-col").show();
-// 				$(".beizhu-col .beizhu-text").show();
+				$(".beizhu-col").show();
+				$(".beizhu-col .beizhu-text").show();
 				
 			});
 			
@@ -541,20 +554,16 @@
 				wishlist();
 			});
 			
-			
-			//SKU
-			function skus() {
-			    Global.commonAjax({
-			        url: "shop/shops/"+shopid+"/goods/"+goodsId+"/skus",
-			    }, function (data) {
-					
-			    }, function (err) {
-					mui.toast(err);
-			    })
-			}
+			//规格确定
+			mui("#guige").on('tap','.guige_sure',function(){
+				 //$(".goods_storage").html()
+				 $(".beizhu-col").hide();
+				 $(".beizhu-col .beizhu-text").hide();
+			});
 			
 			//规格点击
 			mui("#guige_content").on('tap','li',function(){
+				
 				
 				var dataIndex = $(this).data("id");
 				if(dataIndex < 10){
@@ -563,10 +572,12 @@
 						$("li[data-id='"+i+"']").removeClass("active");
 					}
 					
-					guiGeList.splice(0, 1);
+					selectGuige.splice(0, 1);
 					var selectItem = {};
 					selectItem[guiGeList[0].content[dataIndex].id] = guiGeList[0].content[dataIndex].name;
-					selectGuige.unshift(selectItem);
+					selectGuige.splice(0, 0, selectItem);
+					
+					param1 = guiGeList[0].content[dataIndex].name;
 					
 				}else if((dataIndex >= 10) && (dataIndex < 20)){
 					dataIndex -= 10;
@@ -574,10 +585,12 @@
 						$("li[data-id='"+(10+i)+"']").removeClass("active");
 					}
 					
-					guiGeList.splice(1, 1);
+					selectGuige.splice(1, 1);
 					var selectItem = {};
 					selectItem[guiGeList[1].content[dataIndex].id] = guiGeList[1].content[dataIndex].name;
-					selectGuige.splice(0, 1, selectItem);
+					selectGuige.splice(1, 0, selectItem);
+					
+					param2 = guiGeList[1].content[dataIndex].name;
 					
 				}else if((dataIndex >= 20) && (dataIndex < 30)){
 					dataIndex -= 20;
@@ -585,29 +598,55 @@
 						$("li[data-id='"+(20+i)+"']").removeClass("active");
 					}
 					
-					guiGeList.splice(2, 1);
+					selectGuige.splice(2, 1);
 					var selectItem = {};
 					selectItem[guiGeList[2].content[dataIndex].id] = guiGeList[2].content[dataIndex].name;
-					selectGuige.splice(1, 1, selectItem);
+					selectGuige.splice(2, 0, selectItem);
+					
+					param3 = guiGeList[2].content[dataIndex].name;
 				}else{
 					dataIndex -= 30;
 					for(var i=0; i< guiGeList[3].content.length; i++){
 						$("li[data-id='"+(30+i)+"']").removeClass("active");
 					}
 					
-					guiGeList.splice(3, 1);
+					selectGuige.splice(3, 1);
 					var selectItem = {};
 					selectItem[guiGeList[3].content[dataIndex].id] = guiGeList[3].content[dataIndex].name;
-					selectGuige.splice(2, 1, selectItem);
+					selectGuige.splice(3, 0, selectItem);
 				}
 				
 				
 				$(this).addClass("active");
 				
 				console.log(JSON.stringify(selectGuige)); 
+				var params = {
+					param1: param1,
+					param2: param2,
+					param3: param3,
+					goods_id: goodsId
+				}
+				getGoodsBySpec(params);
+				
 				
 			});
-
+			
+			var goods_storage;
+			//规格选择
+			function getGoodsBySpec(params) {
+			    Global.commonAjax({
+			        url: "shop/goods/getGoodsBySpec",
+							method: "POST",
+							data: params
+			    }, function (data) {
+						goodsChildID = data.goods_id;
+						goods_storage = data.goods_storage;
+						$(".guige_price").text(data.goods_price.split(".")[0]);
+						$(".guige_image").attr("src", data.goods_image);
+			    }, function (err) {
+					mui.toast(err);
+			    })
+			}
 			
 
 
