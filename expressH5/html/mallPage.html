@@ -437,7 +437,7 @@
 			    Global.commonAjax({
 			        url: "shop/goods/wishGoods",
 					method: "POST",
-					data: {goods_id: goodsId, store_id: store_id}
+					data: {goods_id: goodsChildID, store_id: store_id}
 			    }, function (data) {
 					mui.toast("收藏成功");
 			    }, function (err) {
