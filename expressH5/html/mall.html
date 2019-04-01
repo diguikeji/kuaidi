@@ -57,6 +57,7 @@
 			#topCol .left-text img{width:0.3rem;top:-0.06rem;}
 			.mall-info{position: absolute;bottom:0.1rem;z-index:10000;left:15px;font-size:0.16rem;color:#fff;display: inline-block;vertical-align: middle;}
 			.mall-info img{width:0.37rem;display: inline-block;vertical-align: middle;position: relative;top:-0.02rem;}
+			#slider .mui-slider-item img{height: 1.9rem!important; width: 100%;}
 		</style>
 		
 		
@@ -71,7 +72,8 @@
 			<img src="../images/mall/mallIcon_03.png"/>
 		</span>
 
-		<span class="input-col"><input type="text" placeholder="搜索关键字">
+		<span class="input-col" id="search_wrap">
+			<input type="text" placeholder="搜索关键字" readonly>
 			<img src="../images/firstPageLive/icon2.png" />
 		</span>
 
@@ -80,50 +82,13 @@
 	</div>
 
 	<div id="slider" class="mui-slider" >
-		<div class="mui-slider-group mui-slider-loop">
-			<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-			<div class="mui-slider-item mui-slider-item-duplicate">
-					<img src="../images/mall/mall_01.png">
-			</div>
-			<!-- 第一张 -->
-			<div class="mui-slider-item">
-					<img src="../images/mall/mall_01.png">
-			</div>
-			<!-- 第二张 -->
-			<div class="mui-slider-item">
-				<img src="../images/mall/mall_01.png">
-			</div>
-			<!-- 第三张 -->
-			<div class="mui-slider-item">
-				<img src="../images/mall/mall_01.png">
-			</div>
-			<!-- 第四张 -->
-			<div class="mui-slider-item">
-				<img src="../images/mall/mall_01.png">
-			</div>
-			<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-			<div class="mui-slider-item mui-slider-item-duplicate">
-				<a href="#">
-					<img src="../images/mall/mall_01.png">
-				</a>
-			</div>
-		</div>
-		<div class="mui-slider-indicator">
-			<div class="mui-indicator mui-active"></div>
-			<div class="mui-indicator"></div>
-			<div class="mui-indicator"></div>
-			<div class="mui-indicator"></div>
-		</div>
 
-		<div class="mall-info">
-			<img src="../images/mall/mallIcon_07.png">
-			<span>波司登官方旗舰店</span>
-		</div>
+		
 
 	</div>
 
 	<div class="ad-img-col">
-		<img src="../images/mall/mall_04.png"、>
+		<img src="../images/mall/mall_04.png" id="store_banner">
 	</div>
 
 	<div class="list-col">
@@ -197,8 +162,68 @@
 		<script src="../js/mui.min.js"></script>
 	    <script src="../js/jquery-2.1.1.min.js"></script>
 		<script src="../lib/jquery.waterfall.js"></script>
+		<script src="../js/myStorage.js"></script>
 		<script src="../js/app.js"></script>
 		<script>
+			var store_id;
+			mui.init();
+			mui.plusReady(function() {
+				store_id = GetQueryString("store_id");
+				getShopIndex();
+			});
+			
+			//商品规格
+			function getShopIndex() {
+			    Global.commonAjax({
+			        url: "shop/shops/index",
+					method: "POST",
+					data: {store_id: store_id}
+			    }, function (data) {
+					
+					setLunBoHtml(data.store_slide);
+					$("#logo_image").attr("src", data.store_logo);
+					$("#logo_name").html(data.store_name);
+					$("#store_banner").attr("src", data.store_banner);
+					
+			    }, function (err) {
+					mui.toast(err);
+			    })
+			}
+			
+			function setLunBoHtml(list){
+				var dotHtml = '<div class="mui-slider-indicator">';
+				var html = '<div class="mui-slider-group mui-slider-loop">'+
+								'<div class="mui-slider-item mui-slider-item-duplicate">'+
+										'<img src="'+list[list.length-1]+'">'+
+								'</div>';
+					for(var i=0; i<list.length; i++){
+						html += '<div class="mui-slider-item">'+
+										'<img src="'+list[i]+'">'+
+								'</div>';
+						if(i == 0){
+							dotHtml += '<div class="mui-indicator active"></div>';	
+						}else{
+							dotHtml += '<div class="mui-indicator"></div>';	
+						}
+							
+					}			
+					html += '<div class="mui-slider-item mui-slider-item-duplicate">'+
+									'<img src="'+list[0]+'">'+
+								'</div></div>';			
+					dotHtml += '</div>';		
+					
+					html += dotHtml;
+					
+					
+					html += '<div class="mall-info">'+
+								'<img src="" id="logo_image">'+
+								'<span id="logo_name"></span></div>';
+								
+					$("#slider").append(html);
+				
+			}
+			
+			
 			$("#grid").waterfall({
 				itemClass: ".grid-item",
 				minColCount: 2,
@@ -217,27 +242,17 @@
 					}
 				})
 			});
-			mui.init({
-				swipeBack: false,
-				pullRefresh: {
-					container: '#pullrefresh',
-					down: {
-						style:'circle',
-						callback: pulldownRefresh
-					},
-					up: {
-						contentrefresh: '正在加载...',
-						callback: pullupRefresh
+			
+			//search_wrap
+			mui("#search_wrap").on('tap','input',function(){
+				Global.openWindow({
+					url: 'shop_list.html?store_id='+store_id,
+					id: 'shop_list.html',
+					waiting: {
+						autoShow: false
 					}
-				}
+				})
 			});
 			
-			function pulldownRefresh()
-			{
-				
-			}
-			function pullupRefresh()
-			{
-			}
 		</script>
 	</body>
