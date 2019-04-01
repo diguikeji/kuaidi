@@ -303,6 +303,7 @@
 			    })
 			}
 			
+			var selectGuige = [];
 			var guiGeList = [];
 			function setGuiGeHtml(data){
 				var html = '';
@@ -330,6 +331,15 @@
 				});
 				
 				$("#guige_content").append(html);
+				console.log(JSON.stringify(guiGeList)); 
+				
+				guiGeList.map(function(ite){
+					var selectItem = {};
+					selectItem[ite.content[0].id] = ite.content[0].name;
+					selectGuige.push(selectItem);
+				})
+				
+				console.log(JSON.stringify(selectGuige)); 
 			}
 			
 			var detailData;
@@ -553,18 +563,49 @@
 						$("li[data-id='"+i+"']").removeClass("active");
 					}
 					
+					guiGeList.splice(0, 1);
+					var selectItem = {};
+					selectItem[guiGeList[0].content[dataIndex].id] = guiGeList[0].content[dataIndex].name;
+					selectGuige.unshift(selectItem);
+					
 				}else if((dataIndex >= 10) && (dataIndex < 20)){
 					dataIndex -= 10;
 					for(var i=0; i< guiGeList[1].content.length; i++){
 						$("li[data-id='"+(10+i)+"']").removeClass("active");
 					}
-				}else{
+					
+					guiGeList.splice(1, 1);
+					var selectItem = {};
+					selectItem[guiGeList[1].content[dataIndex].id] = guiGeList[1].content[dataIndex].name;
+					selectGuige.splice(0, 1, selectItem);
+					
+				}else if((dataIndex >= 20) && (dataIndex < 30)){
 					dataIndex -= 20;
 					for(var i=0; i< guiGeList[2].content.length; i++){
 						$("li[data-id='"+(20+i)+"']").removeClass("active");
 					}
+					
+					guiGeList.splice(2, 1);
+					var selectItem = {};
+					selectItem[guiGeList[2].content[dataIndex].id] = guiGeList[2].content[dataIndex].name;
+					selectGuige.splice(1, 1, selectItem);
+				}else{
+					dataIndex -= 30;
+					for(var i=0; i< guiGeList[3].content.length; i++){
+						$("li[data-id='"+(30+i)+"']").removeClass("active");
+					}
+					
+					guiGeList.splice(3, 1);
+					var selectItem = {};
+					selectItem[guiGeList[3].content[dataIndex].id] = guiGeList[3].content[dataIndex].name;
+					selectGuige.splice(2, 1, selectItem);
 				}
+				
+				
 				$(this).addClass("active");
+				
+				console.log(JSON.stringify(selectGuige)); 
+				
 			});
 
 			
