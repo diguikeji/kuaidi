@@ -180,10 +180,10 @@
 					data: {store_id: store_id}
 			    }, function (data) {
 					
-					setLunBoHtml(data.store_slide);
-					$("#logo_image").attr("src", data.store_logo);
-					$("#logo_name").html(data.store_name);
-					$("#store_banner").attr("src", data.store_banner);
+// 					setLunBoHtml(data.store_slide);
+// 					$("#logo_image").attr("src", data.store_logo);
+// 					$("#logo_name").html(data.store_name);
+// 					$("#store_banner").attr("src", data.store_banner);
 					
 			    }, function (err) {
 					mui.toast(err);
@@ -220,7 +220,7 @@
 								'<span id="logo_name"></span></div>';
 								
 					$("#slider").append(html);
-				
+					// console.log(html);
 			}
 			
 			
