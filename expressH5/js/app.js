@@ -597,6 +597,4 @@ function render(selector, tpl, data, type) {
 }
 
 
-	
-
 

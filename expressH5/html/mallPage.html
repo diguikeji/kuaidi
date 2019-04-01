@@ -366,9 +366,11 @@
 						setLunBoHtml(data.goods_images);
 						$("#goods_name").html(data.goods_name);
 						var price = data.goods_price;
+						if(price){
+							$(".price_num").text(price.split(".")[0]);
+							$(".price_dot").text("."+price.split(".")[1]);
+						}
 						
-						$(".price_num").text(price.split(".")[0]);
-						$(".price_dot").text("."+price.split(".")[1]);
 						detailData = data;
 						$(".mall-goods-detail").append(data.mobile_body);
 						
@@ -513,7 +515,7 @@
 			mui(".dianpu-col").on('tap','#goStore',function(){
 				Global.openWindow({
 					url: 'mall.html',
-					id: 'mall.html',
+					id: 'mall.html?store_id='+store_id,
 					waiting: {
 						autoShow: false
 					}

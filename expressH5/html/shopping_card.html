@@ -8,6 +8,8 @@
 		<link rel="stylesheet" href="../css/mui.picker.min.css" />
 		<link rel="stylesheet" href="../fonts/iconfont.css">
 		<link rel="stylesheet" href="../css/app.css">
+		<link rel="stylesheet" href="../css/pay.css">
+		<link rel="stylesheet" href="../css/shopping_card.css">
 		<style type="text/css">
 			html,body{
 				height: 100%;
@@ -22,235 +24,7 @@
 				height: 100%;
 			}
 			
-			.menu_add{
-				font-size: 0.14rem;
-				color: #FF5269;
-				position: absolute;
-				right: 0.2rem;
-				top: 0.02rem;
-				padding:0.1rem 0.1rem;
-			}
 			
-			.radio_item{
-				height: 1.07rem!important;
-				display: flex;
-				flex-direction: row;
-				align-items: center;
-				justify-content: space-between;
-				padding: 0.18rem 0.15rem;
-				color: #666666;
-				font-size: 0.14rem;
-			}
-			
-			.radio_item img{
-				width: 0.7rem;
-				height: 0.7rem;
-				margin-right: 0.13rem;
-			}
-
-			.radio_item .checkbox-col{position: relative;padding-left:0.5rem;box-sizing: border-box;}
-			
-			.mui-checkbox input[type=checkbox], .mui-radio input[type=radio]{
-				top: auto!important;
-			}
-			
-			.mui-radio.mui-left label{
-				padding: 0rem 0rem 0rem 0.3rem;
-			}
-			
-			.money_wrap{
-				width: 100%;
-			}
-			
-			.action_span{
-				width: 0.24rem;
-				height: 0.24rem;
-				text-align: center;
-				line-height: 0.24rem;
-				color: #999999;
-				font-size: 0.14rem;
-				border: 1px solid #E3E3E3;
-				border-radius: 50%;
-			}
-			
-			.num{
-				font-size: 0.18rem;
-				color: #333333;
-				margin: 0rem 0.2rem;
-			}
-			
-			
-			.bottom_wrap{
-				height: 0.72rem;
-				padding: 0rem 0.15rem;
-				position: fixed;
-				bottom: 0rem;
-				left: 0rem;
-				width: 100%;
-				box-sizing: border-box;
-				background-color: #FFFFFF;
-				box-shadow: 0px 0px 10px 0px #EAEAEA;
-			}
-			
-			.bottom_wrap .btn{
-				width: 1.4rem;
-				height: 0.44rem;
-				line-height: 0.44rem;
-				color: #FFFFFF;
-				background-color: #107EFF;
-				border-radius: 0.03rem;
-				text-align: center;
-			}
-			
-			.money_info{
-				color: #333333;
-				font-size: 0.14rem;
-			}
-			
-			.money_num{
-				color: #FF5269; font-size: 0.2rem;
-			}
-			
-			.all_info{
-				font-size: 0.14rem;
-				color: #333333;
-				width: 100%;
-				box-sizing: border-box;
-				padding: 0.17rem 0.15rem;
-				text-align: right;
-			}
-			
-			.mui-radio.mui-left input[type=radio]{
-				left: 0.1rem;
-			}
-			
-			.radio_all{
-				display: flex;
-				flex-direction: row;
-				align-items: center;
-				justify-content: space-between;
-				color: #666666;
-				font-size: 0.14rem;
-				left: -0.1rem;
-			}
-			
-			.radio_all label{
-				padding-left: 0.35rem!important;
-				padding-right: 0.05rem!important;
-				padding-top: 0.15rem;
-				text-align: right;
-			}
-			
-			.radio_all input{
-				left: 0.05rem!important;
-			}
-			
-			.cal_bottom{padding-top: 0rem; margin-bottom: 0.75rem;}
-			
-			.modal-mask {
-			    width: 100%;
-			    height: 100%;
-			    position: fixed;
-			    top: 0;
-			    left: 0;
-			    background: rgba(0, 0, 0, 0.4);
-			    overflow: hidden;
-			    z-index: 10;
-			    color: #fff;
-			    justify-content: center;
-			    align-items: center;
-			}
-			
-			.modal-dialog {
-			    width: 100%;
-			    overflow: auto;
-			    position: relative;
-				bottom: 0rem;
-				background-color: #FFFFFF;
-				
-			}
-			
-			.close_style {
-			    width: 0.12rem;
-			    height: 0.12rem;
-			    z-index: 100000;
-			}
-			
-			.modal_title_wrap{
-				padding: 0.17rem 0.15rem;
-				font-size: 0.14rem;
-				color: #333333;
-				font-weight: bold;
-			}
-			
-			.modal-content {
-			    font-size: 0.12rem;
-			    position: relative;
-			    z-index: 10000;
-			    color: #333333;
-			    background: #ffffff;
-			    padding: 0px;
-			}
-			
-			label{
-				padding: 0.18rem 0rem;
-				height: 100%;
-				display: flex!important;
-				flex-direction: column;
-				justify-content: space-around;
-			}
-			
-			.radio_item .name{
-				color: #333333;
-				font-size: 0.16rem;
-			}
-			
-			.radio_item .phone{
-				color: #666666;
-				font-size: 0.14rem;
-			}
-			
-			.radio_item .address{
-				font-size: 0.14rem;
-				color: #333333;
-			}
-			
-			.button{
-				border-radius: 0.03rem;
-				width: 90%;
-				margin: 0.05rem 5% 0px;
-				box-sizing: border-box;
-				background-color: #107EFF;
-				color: #FEFEFE;
-				font-size: 0.16rem;
-				height: 0.44rem;
-				display: flex;
-				flex-direction: row;
-				align-items: center;
-				justify-content: center;
-			}
-			
-			.button .add{
-				margin-right: 0.04rem;
-				font-size: 0.3rem; font-weight: 10;
-			}
-			
-			.money_item{
-				height: 0.55rem;
-				font-size: 0.16rem;
-				color: #333333;
-				padding: 0rem 0.16rem;
-			}
-			
-			.pay_money{
-				color: #FF5269;
-				font-size: 0.16rem;
-			}
-			
-			.pay_warn{
-				color: #999999;
-				font-size: 0.12rem;
-			}
 			
 		</style>
 	</head>
@@ -267,6 +41,28 @@
 		<div class="mui-content">
 			
 			<form class="mui-input-group" id="check_wrap">
+				
+				<!-- <div class="mui-input-row mui-checkbox mui-left radio_item">
+					<div class="checkbox-col">
+						<div class="row ">
+							<img src="../images/mall/pindan_20.png" alt="">
+							<div class="col_between" style="height: 0.7rem;">
+								<span class="name">sadjfjjfjfasfjsadjfjjfjfasfjdjjdjjdjjdjjsadjfjjfjfasfjsadjfjjfjfasfjdjjdjjdjjdjj</span>
+								<div class="row_between money_wrap">
+									<span>￥ <span class="item_price">dfdfdfd</span> </span>
+									<div class="row">
+										<span class="action_span sub-value icon-move iconfont" ></span>
+										<span class="num">2</span>
+										<span class="action_span add-value icon-add1 iconfont" >
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<input  type="checkbox" name="item_check" data='{{"check"+i}}' class="card_radio">
+				</div> -->
+				
 			</form>
 			
 			<div class="all_info">
@@ -303,55 +99,39 @@
 		
 		<!--弹窗-->
 		<div class="modal-mask col address_modal">
-			<div style="flex: 1;"></div>
+			<div style="flex: 1;" class="hide_tap"></div>
 		    <div class="modal-dialog">
 				<div class="row_between modal_title_wrap">
 					<span>选择地址</span>
-					<img src="../images/login/login_close.png" class="close_style" onclick="closeDialg();" />
+					<img src="../images/login/login_close.png" class="close_style" />
 				</div>
 		        
-		        <form class="mui-input-group">
-		        	<div class="mui-input-row mui-radio mui-left radio_item">
-		        		<label>
-							<div>
-								<span class="name">王先生</span>
-								<span class="phone">1380013000 </span>
-							</div>
-							<div class="address">
-								上海普陀区金沙江路1518弄近铁城市广场 100室
-							</div>
-						</label>
-		        		<input name="radio1" type="radio">
-		        	</div>
-		        	<div class="mui-input-row mui-radio mui-left radio_item">
-		        		<label>
+		        <form class="mui-input-group" id="address_wrap">
+					
+		        	<!-- <div class="mui-input-row mui-checkbox mui-left radio_item">
+		        		<label class="checkbox-col">
 		        			<div>
-		        				<span class="name">王先生</span>
-		        				<span class="phone">1380013000 </span>
+		        				<span class="name">{{item.address_realname}}</span>
+		        				<span class="phone">{{item.address_tel_phone}} </span>
 		        			</div>
 		        			<div class="address">
-		        				上海普陀区金沙江路1518弄近铁城市广场 100室
+		        				{{item.area_info}}{{item.address_detail}}
 		        			</div>
 		        		</label>
-		        		<input name="radio1" type="radio">
-		        	</div>
-					<div class="mui-input-row mui-radio mui-left radio_item">
-						<label>
-							<div>
-								<span class="name">王先生</span>
-								<span class="phone">1380013000 </span>
-							</div>
-							<div class="address">
-								上海普陀区金沙江路1518弄近铁城市广场 100室
-							</div>
-						</label>
-						<input name="radio1" type="radio" checked>
-					</div>
+		        		<input name="address_item_check" type="checkbox" class="card_radio">
+		        	</div> -->
+					
 		        </form>
-				<div type="button" class="mui-btn mui-btn-primary button">
+				<div type="button" class="mui-btn mui-btn-primary button" id="add_address">
 					 <span class="add">+</span> 
 					 <span>新建地址</span>
 				</div>
+				
+				<div type="button" class="mui-btn mui-btn-primary button" id="goToPay">
+					 
+					 <span>确定</span>
+				</div>
+				
 		    </div>
 		</div>
 		
@@ -376,7 +156,24 @@
 		        			</div>
 		        		</div>
 		        	</div>
-		        	<input  type="checkbox" name="item_check" data='{{"check"+i}}'>
+		        	<input  type="checkbox" name="item_check" data='{{"check"+i}}' class="card_radio">
+		        </div>
+		    {{/each}}
+		</script>
+		
+		<script type="text/html" id="addressList">
+		    {{each data as item i}}
+		        <div class="mui-input-row mui-checkbox mui-left radio_item">
+		        	<label class="checkbox-col">
+		        		<div>
+		        			<span class="name">{{item.address_realname}}</span>
+		        			<span class="phone">{{item.address_tel_phone}} </span>
+		        		</div>
+		        		<div class="address">
+		        			{{item.area_info}}{{item.address_detail}}
+		        		</div>
+		        	</label>
+		        	<input name="address_item_check" type="checkbox" class="card_radio">
 		        </div>
 		    {{/each}}
 		</script>
@@ -389,9 +186,11 @@
 	<script src="../js/myStorage.js"></script>
 	<script src="../lib/artTemplate.js"></script>
 	<script src="../js/app.js"></script>
+	<script src="../js/pay.js"></script>
 	<script type="text/javascript">
 		mui.init();
 		mui.plusReady(function() {
+			$(".empty_text").hide();
 			getCardList();
 			
 			
@@ -422,6 +221,11 @@
 				mui.toast(err);
 		    })
 		}
+		
+		//关闭地址选择窗口
+		mui(".address_modal").on('tap', '.close_style', function(e){
+			$(".address_modal").hide();
+		})
 		
 		mui(".radio_all").on('tap', 'input[type="checkbox"]', function(e){
 			// console.log(e);
@@ -556,13 +360,15 @@
 		    })
 		}
 		
-		//减少数量
+		//购物地址
 		function getAddressList() {
 		    Global.commonAjax({
 		        url: "shop/member/getAddressList",
 				method: "POST"
 		    }, function (data) {
 				$(".address_modal").show();
+	
+				render('#address_wrap', 'addressList', { data: data });
 		    }, function (err) {
 				mui.toast(err);
 		    })
@@ -624,6 +430,29 @@
 				mui.toast(err);
 		    })
 		}
+		
+		//add_address
+		mui(".address_modal").on('tap', '#add_address', function(){
+			Global.openWindow({
+				url: 'add_mall_address.html',
+				id: 'add_mall_address.html',
+				waiting: {
+					autoShow: false
+				}
+			})
+		});
+		//goToPay
+		mui(".address_modal").on('tap', '#goToPay', function(){
+			payModal(200);
+		});
+		
+		
+		
+		//hide_tap
+		mui(".address_modal").on('tap', '.address_modal', function(){
+			$(".address_modal").hide();
+	
+		});
 		
 	</script>
 </html>
