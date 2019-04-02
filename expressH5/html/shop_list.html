@@ -300,6 +300,9 @@
 			    $(this).addClass("clicked");
 			    var item = findList[index];
 				console.log(JSON.stringify(item));
+				
+				mui.fire(plus.webview.getWebviewById('mallPage.html'), "pageRefresh" ); 
+				
 				Global.openWindow({
 					url: 'mallPage.html?id='+item.goods_id,
 					id: 'mallPage.html',

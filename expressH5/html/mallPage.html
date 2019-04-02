@@ -252,6 +252,16 @@
 				getDetail();
 				getShopList();
 				getGoodsSpec();
+				
+				window.addEventListener("pageRefresh", function (e) {
+						// 重新获取数据或触发刷新
+						goodsId = GetQueryString("id");
+						commonEvent();
+						getDetail();
+						getShopList();
+						getGoodsSpec();
+				});
+
 			});
 			
 			//商品规格
@@ -350,6 +360,7 @@
 			
 			
 			function setLunBoHtml(list){
+				$("#slider").empty();
 				var dotHtml = '<div class="mui-slider-indicator">';
 				var html = '<div class="mui-slider-group mui-slider-loop">'+
 								'<div class="mui-slider-item mui-slider-item-duplicate">'+
