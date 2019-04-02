@@ -138,35 +138,16 @@
 				}
 			});
 			
-			if (mui.os.plus) {
-				mui.plusReady(function() {
-					setTimeout(function () {
-					    mui.focus(document.getElementById('searchInput'));
-					    $('#searchInput').focus()
-					}, 150);
-			
-					getMsglist();
-					
-					window.addEventListener('searchType', function(event) {
-					    console.log("收到事件" + event.detail.search);
-					    pulldownRefresh();
-					}, false);
-			
-				});
-			} else {
-				mui.ready(function() {
-					
-					mui.focus(document.getElementById('searchInput'));
-					$('#searchInput').focus();
-					getMsglist();
-					
-					window.addEventListener('searchType', function(event) {
-					    console.log("收到事件" + event.detail.search);
-					    pulldownRefresh();
-					}, false);
-					
-				});
-			}
+			mui.plusReady(function() {
+						
+				getMsglist();
+				
+				window.addEventListener('searchType', function(event) {
+				    console.log("收到事件" + event.detail.search);
+				    pulldownRefresh();
+				}, false);
+						
+			});
 			
 			/**
 			 * 下拉刷新具体业务实现

@@ -58,6 +58,9 @@
 			.mall-info{position: absolute;bottom:0.1rem;z-index:10000;left:15px;font-size:0.16rem;color:#fff;display: inline-block;vertical-align: middle;}
 			.mall-info img{width:0.37rem;display: inline-block;vertical-align: middle;position: relative;top:-0.02rem;}
 			#slider .mui-slider-item img{height: 1.9rem!important; width: 100%;}
+			.mui-slider-indicator{bottom:12px;}
+			.mui-slider-indicator .mui-indicator{background: #E0E5ED;margin:1px 2px;border-radius: 3px;box-shadow: none;}
+			.mui-slider-indicator .mui-active.mui-indicator{background: #107EFF;width:12px;height:6px;}
 		</style>
 		
 		
@@ -168,9 +171,14 @@
 			var store_id;
 			mui.init();
 			mui.plusReady(function() {
-				store_id = GetQueryString("store_id");
-				getShopIndex();
+// 				store_id = GetQueryString("store_id");
+// 				getShopIndex();
 			});
+			
+			setLunBoHtml(['../images/firstPageLive/banner1.png','../images/firstPageLive/banner1.png']);
+			$("#logo_image").attr("src", '../images/firstPageLive/banner1.png');
+			$("#logo_name").html("楼福宝");
+			$("#store_banner").attr("src", '../images/firstPageLive/banner1.png');
 			
 			//商品规格
 			function getShopIndex() {
@@ -180,10 +188,12 @@
 					data: {store_id: store_id}
 			    }, function (data) {
 					
-// 					setLunBoHtml(data.store_slide);
-// 					$("#logo_image").attr("src", data.store_logo);
-// 					$("#logo_name").html(data.store_name);
-// 					$("#store_banner").attr("src", data.store_banner);
+					// setLunBoHtml(data.store_slide);
+					
+					setLunBoHtml(['../images/firstPageLive/banner1.png','../images/firstPageLive/banner1.png']);
+					$("#logo_image").attr("src", data.store_logo);
+					$("#logo_name").html(data.store_name);
+					$("#store_banner").attr("src", data.store_banner);
 					
 			    }, function (err) {
 					mui.toast(err);
@@ -208,19 +218,20 @@
 							
 					}			
 					html += '<div class="mui-slider-item mui-slider-item-duplicate">'+
+									
 									'<img src="'+list[0]+'">'+
 								'</div></div>';			
 					dotHtml += '</div>';		
 					
 					html += dotHtml;
-					
-					
-					html += '<div class="mall-info">'+
-								'<img src="" id="logo_image">'+
-								'<span id="logo_name"></span></div>';
 								
 					$("#slider").append(html);
-					// console.log(html);
+					
+					var gallery = mui('.mui-slider');
+					gallery.slider({
+						  interval: 1000 
+					});
+			
 			}
 			
 			

@@ -196,40 +196,7 @@
 			</div>
 			<div id="guige_content">
 				
-				<!-- <div class="guige-row">
-					<div class="title-col">颜色</div>
-					<ul class="guige-list row_around" id="color_list">
-						<li class="active">
-							黑色
-						</li>
-						<li>
-							黑色
-						</li>
-						<li>
-							黑色
-						</li>
-					</ul>
-				</div> -->
-				
 			</div>
-			<!-- 
-			<div class="guige-row">
-
-				<div class="title-col">颜色</div>
-				<ul class="guige-list row_around" id="color_list">
-					<li class="active">
-						黑色
-					</li>
-					<li>
-						黑色
-					</li>
-					<li>
-						黑色
-					</li>
-				</ul>
-
-			</div>
- -->
 
 			<div class="select-count">
 				<div class="left sub-value">
@@ -401,6 +368,11 @@
 					
 					html += dotHtml;
 					$("#slider").append(html);
+					
+					var gallery = mui('.mui-slider');
+					gallery.slider({
+						  interval: 1000 
+					});
 				
 			}
 			
@@ -561,6 +533,8 @@
 				 //$(".goods_storage").html()
 				 $(".beizhu-col").hide();
 				 $(".beizhu-col .beizhu-text").hide();
+				 
+				 addCard();
 			});
 			
 			//规格点击

@@ -106,31 +106,38 @@
 					<img src="../images/login/login_close.png" class="close_style" />
 				</div>
 		        
-		        <form class="mui-input-group" id="address_wrap">
-					
-		        	<!-- <div class="mui-input-row mui-checkbox mui-left radio_item">
-		        		<label class="checkbox-col">
-		        			<div>
-		        				<span class="name">{{item.address_realname}}</span>
-		        				<span class="phone">{{item.address_tel_phone}} </span>
-		        			</div>
-		        			<div class="address">
-		        				{{item.area_info}}{{item.address_detail}}
-		        			</div>
-		        		</label>
-		        		<input name="address_item_check" type="checkbox" class="card_radio">
-		        	</div> -->
-					
-		        </form>
-				<div type="button" class="mui-btn mui-btn-primary button" id="add_address">
-					 <span class="add">+</span> 
-					 <span>新建地址</span>
-				</div>
+				<div class="content1">
+					<form class="mui-input-group" id="address_wrap">
+						
+						<!-- <div class="mui-input-row mui-checkbox mui-left radio_item">
+							<label class="checkbox-col">
+								<div>
+									<span class="name">{{item.address_realname}}</span>
+									<span class="phone">{{item.address_tel_phone}} </span>
+								</div>
+								<div class="address">
+									{{item.area_info}}{{item.address_detail}}
+								</div>
+							</label>
+							<input name="address_item_check" type="checkbox" class="card_radio">
+						</div> -->
+						
+					</form>
+				<div>
 				
-				<div type="button" class="mui-btn mui-btn-primary button" id="goToPay">
-					 
-					 <span>确定</span>
+				<div class="btn_wrap">
+					<div type="button" class="mui-btn mui-btn-primary button" id="add_address">
+						 <span class="add">+</span> 
+						 <span>新建地址</span>
+					</div>
+					
+					<div type="button" class="mui-btn mui-btn-primary button" id="goToPay">
+						 
+						 <span>确定</span>
+					</div>
 				</div>
+		        
+				
 				
 		    </div>
 		</div>
@@ -163,18 +170,21 @@
 		
 		<script type="text/html" id="addressList">
 		    {{each data as item i}}
-		        <div class="mui-input-row mui-checkbox mui-left radio_item">
-		        	<label class="checkbox-col">
-		        		<div>
-		        			<span class="name">{{item.address_realname}}</span>
-		        			<span class="phone">{{item.address_tel_phone}} </span>
-		        		</div>
-		        		<div class="address">
-		        			{{item.area_info}}{{item.address_detail}}
-		        		</div>
-		        	</label>
-		        	<input name="address_item_check" type="checkbox" class="card_radio">
-		        </div>
+				
+				<div class="mui-input-row mui-checkbox mui-left radio_item" data-index="{{i}}">
+					<div class="checkbox-col">
+						<div>
+							<span class="name">{{item.address_realname}}</span>
+							<span class="phone">{{item.address_mob_phone}} </span>
+						</div>
+						<div class="address">
+							{{item.area_info}}{{item.address_detail}}
+						</div>
+					</div>
+					<input  type="checkbox" name="address_item_check"  class="card_radio">
+					<img class="edit-img" src="../images/address/edit_address_icon.png" data-index="{{i}}">
+				</div>
+				
 		    {{/each}}
 		</script>
 		
@@ -188,8 +198,26 @@
 	<script src="../js/app.js"></script>
 	<script src="../js/pay.js"></script>
 	<script type="text/javascript">
+		
+		var channel;
+		var channels;
+		var id;
+		
 		mui.init();
 		mui.plusReady(function() {
+			
+			plus.payment.getChannels(function (cs) {
+			    channels = cs;
+			    console.log(JSON.stringify(channels));
+			}, function (e) {
+			    //alert("获取支付通道失败：" + e.message);
+			});
+			
+			window.addEventListener('refreshMallAddr', function(event) {
+			    console.log("收到事件");
+			    getAddressList();
+			}, false);
+			
 			$(".empty_text").hide();
 			getCardList();
 			
@@ -360,6 +388,7 @@
 		    })
 		}
 		
+		var addressList = [];
 		//购物地址
 		function getAddressList() {
 		    Global.commonAjax({
@@ -367,8 +396,15 @@
 				method: "POST"
 		    }, function (data) {
 				$(".address_modal").show();
-	
+				addressList = data;
 				render('#address_wrap', 'addressList', { data: data });
+				
+				$("input[name='address_item_check']").eq(selectAddressIndex).prop("checked", true);
+				// selectAddressIndex edit-img
+// 				$(".edit-img").hide();
+// 				$(".edit-img").eq(selectAddressIndex).show();
+				
+				address_id = addressList[selectAddressIndex].address_id;
 		    }, function (err) {
 				mui.toast(err);
 		    })
@@ -377,8 +413,12 @@
 		//购物车结算
 		mui(".bottom_wrap").on('tap', '.allCheckout', function(){
 			// $(".address_modal").show();
-			getAddressList();
-			return;
+			var allNum = $("#allNum").text();
+			if(parseInt(allNum) == 0){
+				mui.toast("请选择商品")
+				return;
+			}
+			
 			var cart_ids = [];
 			console.log('cart_ids');
 			$("input[name='item_check']").each(function(index){
@@ -398,6 +438,11 @@
 				method: "POST",
 				data: {cart_ids: cart_ids}
 		    }, function (data) {
+				
+				id = data[0];
+				console.log(id);
+				getAddressList();
+				getCardList();
 				
 		    }, function (err) {
 				mui.toast(err);
@@ -433,6 +478,7 @@
 		
 		//add_address
 		mui(".address_modal").on('tap', '#add_address', function(){
+			
 			Global.openWindow({
 				url: 'add_mall_address.html',
 				id: 'add_mall_address.html',
@@ -443,7 +489,8 @@
 		});
 		//goToPay
 		mui(".address_modal").on('tap', '#goToPay', function(){
-			payModal(200);
+			$(".address_modal").hide();
+			payModal(200, 10);
 		});
 		
 		
@@ -452,6 +499,39 @@
 		mui(".address_modal").on('tap', '.address_modal', function(){
 			$(".address_modal").hide();
 	
+		});
+		
+		//address_wrap
+		mui("#address_wrap").on('tap', '.radio_item', function(){
+			
+			
+// 			$(".edit-img").hide();
+// 			$(".edit-img").eq($(this).index()).show();
+			
+			$("input[name='address_item_check']").prop("checked", false);
+			// $("input[name='address_item_check']").eq($(this).index()).prop("checked", true);
+			$(this).children("input[name='address_item_check']").prop("checked", true);
+			
+			var index = $(this).data("index");
+			address_id = addressList[index].address_id;
+			
+		});
+		
+		var selectAddressIndex = 0, address_id;
+		mui("#address_wrap").on('tap', 'img', function(){
+			var index = $(this).data("index");
+			selectAddressIndex = index;
+			var item = addressList[index];
+			console.log(item);
+			myStorage.setItem("mallAddressItem",item);
+			Global.openWindow({
+				url: 'add_mall_address.html?address_id='+item.address_id,
+				id: 'add_mall_address.html',
+				waiting: {
+					autoShow: false
+				}
+			})
+			
 		});
 		
 	</script>

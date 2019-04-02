@@ -192,22 +192,25 @@ var isOpenLogin = false;
 
                 },
                 complete: function(xhr, status) {
-                    console.log(xhr.status);
-					if((xhr.status != 200) && (xhr.status != 401)){
-						console.log(xhr.responseText);
-						var res = JSON.parse(xhr.responseText);
-					}
-					
 					waiting.close();
+                    console.log(xhr.status);
+// 					if((xhr.status != 200) && (xhr.status != 401)){
+// 						console.log(xhr.responseText);
+// 						var res = JSON.parse(xhr.responseText);
+// 					}
+					
+					
 					if(xhr.status == 401){
 						//重新登录
 						Global.goToLogin();
 						
 					}else if(xhr.status == 200){
 						
-					}else if(res && !res.success){
-						errorback(JSON.parse(xhr.responseText)?JSON.parse(xhr.responseText).msg:'请求出错');
-					}else{
+					}
+// 					else if(res && !res.success){
+// 						errorback(JSON.parse(xhr.responseText)?JSON.parse(xhr.responseText).msg:'请求出错');
+// 					}
+					else{
 						errorback(xhr.data?xhr.data.msg:'');
 					}
 

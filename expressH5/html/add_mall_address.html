@@ -199,8 +199,51 @@
 <script src="../js/app.js"></script>
 <script src="../js/myStorage.js"></script>
 <script type="text/javascript">
+	
   mui.init();
+	var address_id=0 ;
+	
   mui.plusReady(function () {
+		
+			address_id = GetQueryString("address_id");
+			console.log(address_id)
+			
+			if(address_id){
+				//编辑
+				$(".mui-title").html("修改地址");
+				var addressItem = myStorage.getItem("mallAddressItem");
+				console.log(JSON.stringify(addressItem));
+				if (addressItem) {
+				  if (addressItem.address_realname) {
+				    $(".name").val(addressItem.address_realname);
+				  }
+				
+				  if (addressItem.mobile) {
+				    $(".mobile").val(addressItem.mobile);
+				  }
+				
+				  if (addressItem.address_detail) {
+				    $(".detail").val(addressItem.address_detail);
+				  }
+				
+				  if (addressItem.address_is_default == 1) {
+				    is_default = 1;
+				    $(".mui-switch").addClass("mui-active");
+				  } else {
+				    $(".mui-switch").removeClass("mui-active");
+				  }
+				
+				  province = addressItem.province;
+				  province_id = addressItem.province_id;
+				  city = addressItem.city;
+				  city_id = addressItem.city_id;
+				  region = addressItem.area;
+				  area_id = addressItem.area_id;
+				  $(".content").html(addressItem.province + addressItem.city + addressItem.area);
+				}
+				
+			}
+			
 			area();
   });
 
@@ -217,6 +260,12 @@
 					    text: item.area_name
 					  };
 					  areaList.push(areaItem);
+						
+						if(province_id == item.area_id){
+							province = item.area_name;
+							getCity(province_id);
+						}
+						
 					})
 					complainPicker.setData(areaList);
 					
@@ -255,29 +304,6 @@
     })
   }
 
-  function getProvince() {
-    Global.commonAjax({
-      url: 'regions?pid=1'
-    }, function (data) {
-      //console.log(JSON.stringify(data));
-      var areaList = [];
-      data.map(function (item) {
-        var areaItem = {
-          value: item.id,
-          text: item.name,
-          children: []
-        };
-        areaList.push(areaItem);
-        complainPicker.setData(areaList);
-
-      })
-
-
-    }, function (err) {
-      mui.toast(err);
-    });
-  }
-
   function getCity(id) {
     Global.commonAjax({
       url: "shop/basic/area",
@@ -292,9 +318,16 @@
           text: item.area_name
         };
         areaList.push(areaItem);
+				if(city_id == item.area_id){
+					city = item.area_name;
+					getRegions(city_id);
+				}
       })
       cityPicker.setData(areaList);
-      showCity();
+			if(!city_id){
+				showCity();
+			}
+      
     }, function (err) {
       mui.toast(err);
     });
@@ -325,9 +358,17 @@
           text: item.area_name
         }
         areaList.push(areaItem);
+				if(area_id == item.area_id){
+					area = item.area_name;
+					$(".content").html(province +"-" +city +"-" +area);
+				}
       })
       regionPicker.setData(areaList);
-      showRegion();
+			
+			if(!area_id){
+				showRegion();
+			}
+      
 
     }, function (err) {
       mui.toast(err);
@@ -335,20 +376,39 @@
   }
 
   function saveAddress() {
+		var url, method, params;
+		if(address_id){
+			//编辑
+			params = {
+				address_id: address_id,
+				province_id: province_id,
+			  city_id: city_id,
+			  area_id: area_id,
+			  address_detail: $(".detail").val(),
+			  mobile: $(".mobile").val(),
+			  address_realname: $(".name").val(),
+			  is_default: is_default
+			};
+			
+			url = "shop/member/editAddress";
+			
+		}else{
+			//新增
+			params = {
+				province_id: province_id,
+			  city_id: city_id,
+			  area_id: area_id,
+			  address_detail: $(".detail").val(),
+			  mobile: $(".mobile").val(),
+			  address_realname: $(".name").val(),
+			  is_default: is_default
+			};
+			
+			url = "shop/member/addAddress";
+			
+		}
 
-    var params = {
-			province_id: province_id,
-      city_id: city_id,
-      area_id: area_id,
-      address_detail: $(".detail").val(),
-      mobile: $(".mobile").val(),
-      address_realname: $(".name").val(),
-      is_default: is_default
-    };
-    var url, method;
-    url = "shop/member/addAddress";
-    method = "POST";
-
+		method = "POST";
     Global.commonAjax({
       url: url,
       method: method,
@@ -357,56 +417,27 @@
       console.log(JSON.stringify(data));
       mui.toast("更新成功");
       plus.webview.currentWebview().close();
-
+			refreshMallAddr();
     }, function (err) {
       mui.toast(err);
     });
   }
-
-  //解析地址
-  function parseAddress() {
-    var addre = $(".parse_address").val();
-    if (!addre) {
-      mui.toast("请输入要解析的地址");
-      return;
-    }
-    Global.commonAjax({
-      url: 'addresses/parse',
-      method: "POST",
-      data: { address: addre }
-    }, function (data) {
-      console.log(JSON.stringify(data));
-      mui.toast("解析成功");
-      var result = data.data;
-      if (result.name) {
-        $(".name").val(result.name);
-      }
-
-      if (result.mobile) {
-        $(".mobile").val(result.mobile);
-      }
-
-      if (result.detail) {
-        $(".detail").val(result.detail);
-      }
-
-      $(".content").val(result.province + result.city + result.area);
-
-    }, function (err) {
-      mui.toast(err);
-    });
-
-  }
-
+	
+	function refreshMallAddr() {
+	  var h = plus.webview.getWebviewById("shopping_card.html");
+	  mui.fire(h, 'refreshMallAddr');
+	}
+	
   //删除地址
   function delAddress() {
     Global.commonAjax({
-      url: "addresses/" + address_id,
-      method: "DELETE"
+      url: "shop/member/deleteAddress",
+      method: "POST",
+			data: {address_id: address_id}
     }, function (data) {
       console.log(JSON.stringify(data));
       mui.toast("删除成功");
-      sendSearchType("");
+      refreshMallAddr();
       plus.webview.currentWebview().close();
 
     }, function (err) {
@@ -414,11 +445,6 @@
     });
   }
 
-  function sendSearchType(search) {
-    console.log(search)
-    var h = plus.webview.getWebviewById("my_address.html");
-    mui.fire(h, 'searchType', { search: search });
-  }
 
 </script>
 

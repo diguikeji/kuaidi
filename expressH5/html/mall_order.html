@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 	<head>
@@ -284,11 +284,55 @@
 		    数据为空
 		</div>
 		
+		<script type="text/html" id="orderList">
+		    {{each data as item i}}
+				
+				<li class="mui-table-view-cell-item item_wrap col_between" data-index="{{i}}">
+					<div class="row_between title_wrap">
+						<span>2017-06-24</span>
+						<div class="row_center item_status">
+							<span class="dian">·</span>
+							<span>&nbsp;待发货</span>
+						</div>
+					</div>
+					<div class=" content_wrap">
+						<div class="col_between border">
+							<div class="content_up">
+								<img src="../images/firstPageLive/homeBottom_03.jpg" />
+								<span class="content_center">农夫山泉饮用水饮用天然水5L*4桶整箱装桶装水</span>
+								<div class="content_end">
+									<span>￥169.00</span>
+									<span class="number">x2</span>
+								</div>
+							</div>
+							<div class="content_down">
+								<span class="first_txt">共 <span class="num">8</span> 件</span>
+								<span class="sencod_txt">应付金额:
+									<span class="money">￥</span><span class="money_num">169</span>
+									<span class="num_float">.00</span>
+								</span>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row item_down">
+						<span class="normal_tag pay_order">&nbsp;&nbsp;付款&nbsp;&nbsp;</span>
+						<span class="warn_tag look_order">查看物流</span>
+						<span class="normal_tag cancle_order">取消订单</span>
+						<span class="normal_tag del_order">&nbsp;&nbsp;删除&nbsp;&nbsp;</span>
+					</div>
+							
+				</li>
+				
+		    {{/each}}
+		</script>
+		
 		
 		<script src="../js/mui.js"></script>
 		<script src="../js/jquery-2.1.1.min.js"></script>
 		 <script src="../js/app.js"></script> 
 		 <script src="../js/myStorage.js"></script>
+		 <script src="../lib/artTemplate.js"></script>
 		<script type="text/javascript">
 			var h5pullDown = true;
 			
@@ -309,6 +353,7 @@
 				pulldownRefresh();
 			});
 			
+			var type = -1;
 			/**
 			 * 下拉刷新具体业务实现
 			 */
@@ -354,31 +399,26 @@
 			
 			
 			function getMsglist() {
-				
+// 				render('.list_wrap', 'orderList', { data: [1,2,3,4,5,6,7] });
+// 				return;
 				$(".empty_text").hide();
 				$("#pullrefresh").show();
+				var url = "shop/order/list?type="+type;
+// 				if(index != 0){
+// 					url += "&status="+tabIndex;
+// 				}
+
 				
-				setTimeout(function(){
-					setHtmlData([1,2,3,4,5,6,7])
-				}, 50);
-				
-				return;
-				
-				var url = "shop/orders?page="+current;
-				if(index != 0){
-					url += "&status="+tabIndex;
-				}
 				Global.commonAjax({
-						url: url
-					},
-					function(data) {
-						if(data){
-							setHtmlData(data);
-						}
-					},
-					function(err) {
-						mui.toast(err);
-					})
+					url: url,
+				},function(data) {
+					if(data){
+						// setHtmlData(data);
+						render('.list_wrap', 'orderList', { data: [1,2,3,4,5,6,7] });
+					}
+				},function(err) {
+					mui.toast(err);
+				});
 					
 			}
 			
@@ -392,28 +432,28 @@
 						findList = findList.concat(item);
 						html += '<li class="mui-table-view-cell-item item_wrap col_between" data-index="'+i+'">';
 						
-						if(tabIndex == 0){
+						if(type == 0){
 							html += '<div class="row_between title_wrap">'+
 								'<span>2017-06-24</span>'+
 									'<div class="row_center item_status">'+ 
 										'<span class="dian">·</span>'+ 
 										'<span>&nbsp;待发货</span>'+
 									'</div>';
-						}else if(tabIndex == 1){
+						}else if(type == 1){
 							html += '<div class="row_between title_wrap">'+
 								'<span>2017-06-24</span>'+
 									'<div class="row_center item_pre_order_status">'+ 
 										'<span class="dian">·</span>'+ 
 										'<span>&nbsp;待付款</span>'+
 									'</div>';
-						}else if(tabIndex == 2){
+						}else if(type == 2){
 							html += '<div class="row_between title_wrap">'+
 								'<span>2017-06-24</span>'+
 									'<div class="row_center item_pre_get_status">'+ 
 										'<span class="dian">·</span>'+ 
 										'<span>&nbsp;待发货</span>'+
 									'</div>';
-						}else if(tabIndex == 3){
+						}else if(type == 3){
 							html += '<div class="row_between title_wrap">'+
 								'<span>2017-06-24</span>'+
 									'<div class="row_center item_finish_status">'+ 
@@ -525,7 +565,7 @@
 			});
 			
 			
-			
+		
 		</script>
 	</body>
 
