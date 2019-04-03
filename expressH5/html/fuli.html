@@ -336,7 +336,15 @@
 			}
 		   commonEvent();
 		   httpRequest();
+		   getCoupon();
 			promotionsList();
+			
+			window.addEventListener('fuliRefresh', function(event) {
+				 httpRequest();
+				 getCoupon();
+				promotionsList();
+			}, false);
+			
 	});
 	
 	var curTime = 12;
@@ -477,8 +485,8 @@
 	mui(".fuli-top").on('tap','#sosuo',function(){
 	
 		Global.openWindow({
-			url: 'mall_order.html',
-			id: 'mall_order.html',
+			url: 'shop_list.html?store_id=1',
+			id: 'shop_list.html',
 			waiting: {
 				autoShow: false
 			}

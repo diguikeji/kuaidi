@@ -89,7 +89,7 @@
                             <span class="second" id="second_address"></span>
                         </div>
                         <div class="bottom">
-                            <img class="expressLogo" />
+                            <!-- <img class="expressLogo" /> -->
                             <span class="first expressName"></span>
                             <span class="sn"></span>
                         </div>
@@ -292,7 +292,7 @@
 
         mui.plusReady(function () {
             commonEvent();
-            httpRequest();
+            // httpRequest();
 			getCompany();
             plus.payment.getChannels(function (cs) {
                 channels = cs;
@@ -321,7 +321,6 @@
 		var shipping_code = GetQueryString("shipping_code");
 
         function httpRequest() {
-
             //订单详情
             Global.commonAjax({
                 url: "shop/order/getExpress" + id
@@ -408,14 +407,29 @@
 
         }
 		
-		
+		//得到物流公司信息
 		function getCompany(){
 			Global.commonAjax({
 				url: 'shop/basic/getExpressInfo?express_id='+22
 			}, function(data){
 				$(".expressLogo").hide();
 				$(".expressName").text(data.express_name);
+				$(".sn").text(shipping_code);
 				var express_code = data.express_code;
+				getExpress(express_code);
+			}, function(err){
+				mui.toast(err);
+			});
+		}
+		
+		//物流查询
+		function getExpress(express_code){
+			Global.commonAjax({
+				url: 'shop/order/getExpress',
+				method: "POST",
+				data: {express_code: express_code, shipping_code: 22}
+			}, function(data){
+				mui.toast("操作成功");
 				
 			}, function(err){
 				mui.toast(err);

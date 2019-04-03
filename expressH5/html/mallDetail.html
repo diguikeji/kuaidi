@@ -13,7 +13,69 @@
 		<link rel="stylesheet" href="../css/secondPage.css">
 		<style>
 			body,.mui-content{background: #fff!important;}
-			.bottom-col{font-size: 0.24rem!important; text-align: center;color:#107EFF;box-shadow: 0px 0px 10px 0px #EAEAEA;}
+			.bottom-col{font-size: 0.24rem!important; text-align: center;color:#107EFF;box-shadow: 0px 0px 10px 0px #EAEAEA; z-index: 10!important;}
+			.modal-mask {
+			    width: 100%;
+			    height: 100%;
+			    position: fixed;
+			    top: 0;
+			    left: 0;
+			    background: rgba(0, 0, 0, 0.6);
+			    overflow: hidden;
+			    z-index: 10;
+			    color: #fff;
+			    justify-content: center;
+			    align-items: center;
+			}
+			
+			.modal-dialog {
+			    width: 100%;
+			    height: 2rem;
+				bottom: 0rem;
+			    position: absolute;
+				z-index: 1000;
+			}
+			
+			.close_style {
+			    position: absolute;
+			    top: 20px;
+			    right: 20px;
+			    width: 0.3rem;
+			    height: 0.3rem;
+			    z-index: 100000;
+				padding: 0.05rem;
+			}
+		
+			.modal-content {
+			    font-size: 12px;
+			    position: relative;
+			    z-index: 10000;
+			    font-size: 12px;
+			    color: #333333;
+			    padding: 0px;
+				height: 2rem;
+				background-color: #FFFFFF;
+			}
+			
+			.invite_bottom_content {
+			    justify-content: space-around;
+			    align-items: center;
+			    position: absolute;
+			    bottom: 20px;
+			    left: 0px;
+			    width: 100%;
+			}
+			
+			.invite_bottom_content img {
+			    width: 0.7rem;
+			    height: 0.7rem;
+			}
+			
+			.invite_bottom_content span {
+			    font-size: 12px;
+			}
+			
+		
 		</style>
 		
 		
@@ -31,7 +93,7 @@
 
 		<div class="header-title">详情</div>
 
-		<div class="header-right">
+		<div class="header-right" id="share_img">
 			<img src="../images/mall/goodsDetail_03.png"/>
 		</div>
 
@@ -42,44 +104,48 @@
 		
 		<div class="pd" style="padding-bottom:0.6rem;">
 
-		<div class="title"></div>
+			<div class="title"></div>
 
-		<!-- <div class="clearfix mall-detail-info">
-			<span class="left">
-				<img src="../images/firstPageLive/live_14.png"/>
-				2018-12-18
-			</span>
-			<span class="right">
-				<span class="first">208阅读</span>
-				<span class="second">128分享</span>
-
-			</span>
-		</div> -->
-
-		<div class="img-col"><img class="full-img" src=""></div>
+			<div class="img-col"><img class="full-img" src=""></div>
 
 
-		<div id="content">
-			
-		</div>
-
-
-		<div class="bottom-col" id="goToDetail">
-			<!-- <div>
-				<img src="../images/mall/goodsDetail_18.png"/>
-				<span>198</span>
+			<div id="content">
+				
 			</div>
-			<div>
-				<img src="../images/mall/goodsDetail_15.png"/>
-				<span>198</span>
-			</div> -->
-			查看商品
+
+
+			<div class="bottom-col" id="goToDetail">
+				查看商品
+			</div>
 		</div>
-
-
-
-
+	
 	</div>
+	<!--弹窗-->
+	<div class="modal-mask row inviteModal hideClass">
+	    <div class="modal-dialog">
+	        <img src="../images/login/login_close.png" class="close_style" onclick="closeInviteDialg();" />
+	        <div class="modal-content">
+	            <div class="row invite_bottom_content">
+	                <div class="col_center wx_wrap">
+	                    <img src="../images/personal/wx_invalite.png" />
+	                    <span>微信</span>
+	                </div>
+	
+	                <div class="col_center wx_friend_wrap">
+	                    <img src="../images/personal/wx_friend_invalite.png" />
+	                    <span>朋友圈</span>
+	                </div>
+	
+	                <div class="col_center qq_wrap" >
+	                    <img src="../images/personal/qq_icon.png" />
+	                    <span>QQ</span>
+	                </div>
+					
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	
 
 		<script src="../js/mui.min.js"></script>
 	    <script src="../js/jquery-2.1.1.min.js"></script>
@@ -90,7 +156,7 @@
 		var goods_id;
 		mui.init();
 		mui.plusReady(function() {
-		
+			updateSerivces();
 			goods_id = GetQueryString("goods_id");
 			getDetail();
 			
@@ -121,8 +187,136 @@
 				}
 			})
 		})
+		
+		//分享
+		mui(".header-bar").on('tap', '#share_img', function(e){
+			$(".inviteModal").removeClass("hideClass");
+		})
+		
+		//qq_wrap
+		mui(".inviteModal").on('tap', '.qq_wrap', function(e){
+			$(".inviteModal").addClass("hideClass");
+			qqShare(sqq, qqMsg);
+		})
+		
+		//weixin_wrap
+		mui(".inviteModal").on('tap', '.wx_wrap', function(e){
+			$(".inviteModal").addClass("hideClass");
+			msg.extra = { scene: 'WXSceneSession' };
+			share(sweixin, msg);
+		})
+		
+		//weixin_wrap
+		mui(".inviteModal").on('tap', '.wx_friend_wrap', function(e){
+			$(".inviteModal").addClass("hideClass");
+			msg.extra = { scene: 'WXSceneTimeline' };
+			share(sweixin, msg);
+		})
+		
+		function closeInviteDialg(){
+			$(".inviteModal").addClass("hideClass");
+		}
 
-
+		
+		/**
+		 * 更新分享服务
+		 */
+		var sqq, sweixin;
+		
+		function updateSerivces() {
+		    plus.share.getServices(function(s) {
+		        shares = {};
+		        for (var i in s) {
+		            var t = s[i];
+		            shares[t.id] = t;
+		        }
+		        sweixin = shares['weixin'];
+		        sqq = shares['qq'];
+				
+		    }, function(e) {
+		        console.log('获取分享服务列表失败：' + e.message);
+		    });
+		}
+		
+		var msg = {
+		    type: 'web',
+		    thumbs: ['_www/logo.png'],
+		    href: "https://www.baidu.com",
+		    title: "8888",
+		    content: "测试测试"
+		};
+		
+		function share(srv, msg) {
+		    console.log('分享操作：');
+		    if (!srv) {
+		        console.log('无效的分享服务！');
+		        return;
+		    }
+		
+		    if (srv.authenticated) {
+		        console.log('---已授权---');
+		        doShare(srv, msg);
+		    } else {
+		        console.log('---未授权---');
+		        srv.authorize(function() {
+		            doShare(srv, msg);
+		        }, function(e) {
+		            console.log('认证授权失败：' + JSON.stringify(e));
+		        });
+		    }
+		}
+		// 发送分享
+		function doShare(srv, msg) {
+		    //alert(JSON.stringify(msg));
+		    srv.send(msg, function() {
+		        console.log('分享到"' + srv.description + '"成功！');
+		    }, function(e) {
+		        console.log('分享到"' + srv.description + '"失败: ' + JSON.stringify(e));
+		    });
+		}
+		
+		
+		var qqMsg = {
+		    type: 'text',
+		    href: "https://www.baidu.com",
+		    title: "8888",
+		    content: "999999",
+		    pictures: ["_www/logo.png"]
+		};
+		//qq分享
+		// 分享
+		function qqShare(srv, msg) {
+		
+		    if (!srv) {
+		        console.log('无效的分享服务！');
+		        return;
+		    }
+		
+		    // 发送分享
+		    if (srv.authenticated) {
+		        console.log('---已授权---');
+		        doQQShare(srv, msg);
+		    } else {
+		        console.log('---未授权---');
+		        srv.authorize(function() {
+		            doQQShare(srv, msg);
+		        }, function(e) {
+		            console.log('认证授权失败：' + JSON.stringify(e));
+		        });
+		    }
+		}
+		// 发送分享
+		function doQQShare(srv, msg) {
+		    //alert(JSON.stringify(msg));
+		    srv.send(msg, function() {
+		        console.log('分享到"' + srv.description + '"成功！');
+		    }, function(e) {
+		        console.log('分享到"' + srv.description + '"失败: ' + JSON.stringify(e));
+		    });
+		}
+		
+		
+		
 		</script>
 	</body>
 

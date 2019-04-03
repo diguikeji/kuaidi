@@ -72,7 +72,10 @@
 			<img src="../images/firstPageLive/icon2.png" />
 		</span>
 
-		<span class="right-img" id="morePage"><img src="../images/firstPageLive/live_03.png"/><span class="dian"></span></span>
+		<span class="right-img hideClass" id="morePage">
+			<img src="../images/firstPageLive/live_03.png"/>
+			<span class="dian"></span>
+		</span>
 
 	</div>
 
@@ -157,6 +160,7 @@
 					navList = data.nav;
 					render('#nav_wrap', 'navList', { data: navList});
 					
+					$("#slider").empty();
 					setLunBoHtml(data.store_slide);
 			    }, function (err) {
 					mui.toast(err);
@@ -247,8 +251,7 @@
 				})
 			})
 
-			$("#mall").click(function()
-			{
+			$("#mall").click(function(){
 
 			
 				Global.openWindow({

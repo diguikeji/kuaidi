@@ -692,6 +692,8 @@
                 }
                 else if (clientX > parseInt(pageW * 0.6) && clientX <= parseInt(pageW * 0.8)) {
                     currIndex = 3;
+					var h = plus.webview.getWebviewById("html/fuli.html");
+					mui.fire(h, 'fuliRefresh', {});
                 }
                 else {
                     //刷新我的页面

@@ -51,7 +51,7 @@
 
 			<span class="input-col">
 				<img src="../images/firstPageLive/icon2.png">
-				<input type="text" placeholder="搜索关键字">
+				<input type="text" placeholder="搜索关键字" readonly>
 			</span>
 
 		</div>
@@ -201,6 +201,18 @@
 				Global.openWindow({
 					url: 'mallPage.html?id='+id,
 					id: 'mallPage.html',
+					waiting: {
+						autoShow: false
+					}
+				})
+			});
+			
+			//input-col
+			mui(".input-col").on('tap','input',function(){
+				
+				Global.openWindow({
+					url: 'shop_list.html?store_id=1',
+					id: 'shop_list.html',
 					waiting: {
 						autoShow: false
 					}

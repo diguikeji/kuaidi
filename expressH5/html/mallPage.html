@@ -230,7 +230,7 @@
 				<img src="../images/mall/tmBottom_07.png"/>
 				<div>收藏</div>
 			</div>
-			<div id="kefu">
+			<div id="kefu" class="hideClass">
 				<img src="../images/mall/tmBottom_09.png"/>
 				<div>客服</div>
 			</div>
@@ -410,9 +410,16 @@
 			function setShopListHtml(list){
 				var html = '';
 				for(var i=0; i<list.length; i++){
+					var name = "";
+					if(list[i].goods_name.length > 10){
+						name = list[i].goods_name.slice(0, 10)+"...";
+					}else{
+						name = list[i].goods_name;
+					}
+					
 					html += '<li >'+
 						'<img src="'+list[i].goods_images+'"/>'+
-						'<div>'+list[i].goods_name+'</div>'+
+						'<div>'+name+'</div>'+
 						'<p><span>¥</span>'+list[i].goods_price.split(".")[0]+
 						'<span>.'+list[i].goods_price.split(".")[1]+'</span></p>'+
 					'</li>';
