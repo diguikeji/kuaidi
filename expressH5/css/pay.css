@@ -198,10 +198,11 @@
     color: #000000;
 }
 
-.radio_item img{
-    width: 0.2rem;
-    margin-right: 0.13rem;
-}
+.modal-dialog .radio_item img{
+    width: 0.2rem!important;
+    margin-right: 0.13rem!important;
+    height:auto!important;
+    }
 
 .mui-checkbox input[type=checkbox], .mui-radio input[type=radio]{
     top: auto!important;

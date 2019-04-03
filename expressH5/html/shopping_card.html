@@ -196,7 +196,7 @@
 	<script src="../js/myStorage.js"></script>
 	<script src="../lib/artTemplate.js"></script>
 	<script src="../js/app.js"></script>
-	<script src="../js/pay.js"></script>
+	<script src="../js/mallPay.js"></script>
 	<script type="text/javascript">
 		
 		var channel;
@@ -438,7 +438,6 @@
 				method: "POST",
 				data: {cart_ids: cart_ids}
 		    }, function (data) {
-				
 				id = data[0];
 				console.log(id);
 				getAddressList();
@@ -490,7 +489,9 @@
 		//goToPay
 		mui(".address_modal").on('tap', '#goToPay', function(){
 			$(".address_modal").hide();
-			payModal(200, 10);
+			payModal(200);
+			console.log("payModal");
+			
 		});
 		
 		
