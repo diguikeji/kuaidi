@@ -258,7 +258,7 @@
 .mall-temai-col{line-height: 0.49rem;height:0.49rem;position: fixed;left:0;bottom:0;width:100%;background: #fff;font-size:0.14rem;z-index: 10001;}
 .mall-temai-col>div{width:33.33%;float:left;box-sizing: border-box;text-align: center;}
 .mall-temai-col .first img{width:0.22rem;}
-.mall-temai-col .first>div{width:50%;float:left;color:#666666;font-size:0.12rem;text-align: center;line-height: normal;padding-top:0.07rem;}
+.mall-temai-col .first>div{width:100%;float:left;color:#666666;font-size:0.12rem;text-align: center;line-height: normal;padding-top:0.07rem;}
 .mall-temai-col .first>div>div{position: relative;top:-0.04rem;}
 .mall-temai-col .second{background: #F39800;color:#fff;}
 .mall-temai-col .third{background:#107EFF;color:#fff;}

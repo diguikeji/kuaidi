@@ -167,6 +167,7 @@
 
 		<div class="tab-detail-col">
 			<div class="mall-goods-detail">
+				<img src="" class="img_type">
 				<!-- <img src="../images/mall/tm_03.png"/>
 				<img src="../images/mall/tm_04.jpg"/> -->
 			</div>
@@ -355,7 +356,10 @@
 						}
 						
 						detailData = data;
-						$(".mall-goods-detail").append(data.mobile_body);
+						if(data.mobile_body[0].type == "image"){
+							$(".mall-goods-detail img").attr("src", data.mobile_body[0].value)
+						}
+						// $(".mall-goods-detail").append(data.mobile_body[0].value);
 					
 			    }, function (err) {
 					mui.toast(err);
@@ -485,11 +489,16 @@
 				$(this).addClass("active");
 				
 				var index = $(this).index();
-				console.log(index);
+				
 				if(detailData){
-					$(".mall-goods-detail").empty();
+					// $(".mall-goods-detail").empty();
 					if(index == 0){
-						$(".mall-goods-detail").append(detailData.mobile_body);
+						console.log(detailData.mobile_body[0].value);
+						if(detailData.mobile_body[0].type == "image"){
+							$(".mall-goods-detail img").attr("src", detailData.mobile_body[0].value)
+						}
+						
+						// $(".mall-goods-detail").append(detailData.mobile_body);
 					}else if(index == 1){
 						$(".mall-goods-detail").append(detailData.mobile_body_2);
 					}else{
