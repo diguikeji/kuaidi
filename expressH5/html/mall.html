@@ -80,7 +80,7 @@
 			<img src="../images/firstPageLive/icon2.png" />
 		</span>
 
-		<span class="right-img"><img src="../images/firstPageLive/live_03.png"/><span class="dian"></span></span>
+		<span class="right-img hideClass"><img src="../images/firstPageLive/live_03.png"/><span class="dian"></span></span>
 
 	</div>
 
@@ -95,90 +95,64 @@
 	</div>
 
 	<div class="list-col">
-	<ul class="img-list clearfix" id="grid">
-		<li class="grid-item">
-			<div class="grid-item-col">
-			<img class="img" src="../images/mall/mall_08.png"/>
-			<p>深层补水保湿舒缓滋润拯救你的肌肤，滋润你的冬天...</p>
-			<div class="clearfix bottom-text">
-				<span class="fl"><span>¥</span> 518.00</span>
-			</div>
-			</div>
-		</li>
-		<li class="grid-item">
-			<div class="grid-item-col">
-				<img class="img" src="../images/mall/mall_10.png"/>
-				<p>治愈系双十二必买清单，理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天</p>
+		<ul class="img-list clearfix" id="grid">
+			<!-- <li class="grid-item">
+				<div class="grid-item-col">
+				<img class="img" src="../images/mall/mall_08.png"/>
+				<p>深层补水保湿舒缓滋润拯救你的肌肤，滋润你的冬天...</p>
 				<div class="clearfix bottom-text">
 					<span class="fl"><span>¥</span> 518.00</span>
 				</div>
-			</div>
-		</li>
-
-		<li class="grid-item">
-			<div class="grid-item-col">
-				<img class="img" src="../images/mall/mall_13.png"/>
-				<p>治愈系双十二必买清单，理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天</p>
-				<div class="clearfix bottom-text">
-					<span class="fl"><span>¥</span> 518.00</span>
 				</div>
-			</div>
-		</li>
+			</li> -->
 
-		<li class="grid-item">
-			<div class="grid-item-col">
-				<img class="img" src="../images/mall/mall_15.png"/>
-				<p>治愈系双十二必买清单，理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天</p>
-				<div class="clearfix bottom-text">
-					<span class="fl"><span>¥</span> 518.00</span>
-				</div>
-			</div>
-		</li>
-
-		<li class="grid-item">
-			<div class="grid-item-col">
-				<img class="img" src="../images/mall/mall_19.png"/>
-				<p>治愈系双十二必买清单，理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天</p>
-				<div class="clearfix bottom-text">
-					<span class="fl"><span>¥</span> 518.00</span>
-				</div>
-			</div>
-		</li>
-
-		<li class="grid-item">
-			<div class="grid-item-col">
-				<img class="img" src="../images/mall/mall_13.png"/>
-				<p>治愈系双十二必买清单，理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天</p>
-				<div class="clearfix bottom-text">
-					<span class="fl"><span>¥</span> 518.00</span>
-				</div>
-			</div>
-		</li>
-
-
-
-
-
-	</ul>
+		</ul>
 	</div>
+	
+	<script type="text/html" id="goodsList">
+	    {{each data as item i}}
+			
+			<li class="grid-item">
+				<div class="grid-item-col">
+					<img class="img" src="../images/mall/mall_13.png"/>
+					<p>治愈系双十二必买清单，理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天</p>
+					<div class="clearfix bottom-text">
+						<span class="fl"><span>¥</span> 518.00</span>
+					</div>
+				</div>
+			</li>
+			
+			<li class="grid-item">
+				<div class="grid-item-col">
+					<img class="img" src="../images/mall/mall_10.png"/>
+					<p>治愈系双十二必买清单，理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天</p>
+					<div class="clearfix bottom-text">
+						<span class="fl"><span>¥</span> 518.00</span>
+					</div>
+				</div>
+			</li>
+			
+	    {{/each}}
+	</script>
+	
 
 		<script src="../js/mui.min.js"></script>
 	    <script src="../js/jquery-2.1.1.min.js"></script>
 		<script src="../lib/jquery.waterfall.js"></script>
 		<script src="../js/myStorage.js"></script>
+		<script src="../lib/artTemplate.js"></script>
 		<script src="../js/app.js"></script>
 		<script>
 			var store_id;
 			mui.init();
 			mui.plusReady(function() {
-// 				store_id = GetQueryString("store_id");
-// 				getShopIndex();
+				store_id = GetQueryString("store_id");
+				getShopIndex();
+				
+				
 			});
 			
-			setLunBoHtml(['../images/firstPageLive/banner1.png','../images/firstPageLive/banner1.png']);
-			$("#logo_image").attr("src", '../images/firstPageLive/banner1.png');
-			$("#logo_name").html("楼福宝");
-			$("#store_banner").attr("src", '../images/firstPageLive/banner1.png');
+			render('#grid', 'goodsList', { data: [1,2,3,4,5,6] });
 			
 			//商品规格
 			function getShopIndex() {
@@ -190,9 +164,7 @@
 					
 					// setLunBoHtml(data.store_slide);
 					
-					setLunBoHtml(['../images/firstPageLive/banner1.png','../images/firstPageLive/banner1.png']);
-					$("#logo_image").attr("src", data.store_logo);
-					$("#logo_name").html(data.store_name);
+					setLunBoHtml(data);
 					$("#store_banner").attr("src", data.store_banner);
 					
 			    }, function (err) {
@@ -200,7 +172,10 @@
 			    })
 			}
 			
-			function setLunBoHtml(list){
+			function setLunBoHtml(data){
+				
+				var list = data.store_slide;
+				
 				var dotHtml = '<div class="mui-slider-indicator">';
 				var html = '<div class="mui-slider-group mui-slider-loop">'+
 								'<div class="mui-slider-item mui-slider-item-duplicate">'+
@@ -224,6 +199,11 @@
 					dotHtml += '</div>';		
 					
 					html += dotHtml;
+					
+					html += '<div class="mall-info">'+
+								'<img src="'+data.store_logo+'">'+
+								'<span>'+data.store_name+'</span>'+
+							'</div>';
 								
 					$("#slider").append(html);
 					

@@ -141,7 +141,7 @@
 	<!-- ../images/mall/mall_13.png -->
 	<script type="text/html" id="dataList">
 	    {{each data as item i}}
-	        <li class="mui-table-view-cell-item row_center item">
+	        <li class="mui-table-view-cell-item row_center item" data-index="{{i}}">
 	        	<img src="{{item.goods_image}}" >
 	        	<div class="content_wrap">
 	        		<span class="name">{{item.goods_name}}</span>
@@ -174,10 +174,6 @@
 		
 		
 		mui.plusReady(function() {
-			setTimeout(function () {
-			    mui.focus(document.getElementById('searchInput'));
-			    $('#searchInput').focus()
-			}, 150);
 			
 			store_id = GetQueryString("store_id");
 			
@@ -298,44 +294,22 @@
 				
 		}
 		
-			mui(".mui-table-view-condensed").on('tap', 'li ', function() {
+			mui(".mui-table-view-condensed").on('tap', 'li', function() {
 			
 			    var index = $(this).data("index");
 			    $(this).addClass("clicked");
 			    var item = findList[index];
 				console.log(JSON.stringify(item));
-			
 				
-			    if(myStorage.getItem("storageSelectAddressValue")>0)
-			    {
-			        myStorage.setItem("storageAddressValue",item);
-			        var list = plus.webview.getWebviewById("expressInfoAdd.html");
-			        mui.fire(list, 'storageAddressValue');
-			        mui.back();
-			        return false;
-			    }else if(myStorage.getItem("serviceOrderAddress")){
-					myStorage.setItem("serviceOrderAddress",item);
-					var list = plus.webview.getWebviewById("submitOrder.html");
-					mui.fire(list, 'serviceOrderAddress');
-					mui.back();
-					return false;
-					
-				}else{
-			
-			       myStorage.setItem("addressItem", item);
-					Global.openWindow({
-					url: 'add_address.html',
-					id: 'add_address.html',
+				mui.fire(plus.webview.getWebviewById('mallPage.html'), "pageRefresh" ); 
+				
+				Global.openWindow({
+					url: 'mallPage.html?id='+item.goods_id,
+					id: 'mallPage.html',
 					waiting: {
-					    autoShow: false
-					},
-					extras: {
-						isEdit: true,
-						address_id: item.id
+						autoShow: false
 					}
-					})
-			
-			    }
+				})
 			    
 			});
 
