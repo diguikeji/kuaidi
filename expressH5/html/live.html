@@ -54,7 +54,9 @@
 
 			#topCol{padding:0 0.66rem 0 1.16rem;top:20px;}
 			#topCol .right-img{top:0.1rem;}
+			#slider img{width: 100%; height: 2.57rem!important;}
 			
+			/* #grid img{width: 1rem; height: 1rem;} */
 
 		</style>
 		
@@ -83,26 +85,11 @@
 
 
 	<div class="type-list" id="nav_wrap">
-		<!-- <div class="child child1 active">
-			<span  style="width:0.16rem;height:0.16rem;"></span>
-			<p>推荐</p>
-		</div>
-		<div class="child child2">
-			<span  style="width:0.15rem;height:0.16rem;"></span>
-			<p>服饰鞋包</p>
-		</div>
-		<div class="child child3">
-			<span  style="width:0.13rem;height:0.16rem;"></span>
-			<p>食品生鲜</p>
-		</div>
-		<div class="child child4">
-			<span  style="width:0.08rem;height:0.18rem;"></span>
-			<p>美妆护肤</p>
-		</div> -->
 	</div>
 
 	<div class="list-col">
 	<ul class="img-list clearfix" id="grid">
+		
 		
 	</ul>
 	</div>
@@ -120,8 +107,19 @@
 				<div class='{{"child "+"child"+(i+1)}}'>
 			{{/if}}
 					<span  style="width:0.15rem;height:0.16rem;"></span>
-						<p>{{item.storenav_title}}</p>
+						<p>{{item.gc_name}}</p>
 					</div>
+	    {{/each}}
+	</script>
+	
+	<script type="text/html" id="articleList">
+	    {{each data as item i}}
+			<li class="grid-item">
+				<div class="grid-item-col">
+				<img class="img" src="{{item.article_image}}"/>
+				<p>{{item.article_title}}</p>
+				</div>
+			</li>
 	    {{/each}}
 	</script>
 	
@@ -137,18 +135,29 @@
 
 				commonEvent();
 				getList(); 
+				
+				window.addEventListener('liveRefresh', function(event) {
+					console.log("loginRefresh----");
+				    getList(); 
+				}, false);
+				
 			}); 
 			
-			//购物地址
+			var gc_id = 0;
+			var navList = [];
+			//首页头部
 			function getList() {
 			    Global.commonAjax({
 			        url: "shop/shops/lifeShop?shopid=1"
 			    }, function (data) {
 					
-					render('#nav_wrap', 'navList', { data: data.nav });
-					$("#grid").append(data.nav[0].storenav_content);
-					// setLunBoHtml(data.store_slide_url);
-					setLunBoHtml(['../images/firstPageLive/banner1.png','../images/firstPageLive/banner1.png']);
+					gc_id = data.nav[0].gc_id;
+					getArticleList();
+					
+					navList = data.nav;
+					render('#nav_wrap', 'navList', { data: navList});
+					
+					setLunBoHtml(data.store_slide);
 			    }, function (err) {
 					mui.toast(err);
 			    })
@@ -188,9 +197,21 @@
 
 			}
 			
-
-			$("#morePage").click(function()
-			{
+			var articleList = [];
+			//文章列表
+			function getArticleList() {
+			    Global.commonAjax({
+			        url: "shop/shops/artile?shopid=1&per=20&page=1&gc_id="+gc_id
+			    }, function (data) {
+					articleList = data;
+					render('#grid', 'articleList', { data: data });
+					
+			    }, function (err) {
+					mui.toast(err);
+			    })
+			}
+			
+			$("#morePage").click(function(){
 				
 				Global.openWindow({
 					url: 'appointment.html',
@@ -206,12 +227,19 @@
 			mui(".type-list").on('tap', '.child', function(e){
 				$(".type-list .child").removeClass("active");
 				$(this).addClass("active");
+				
+				gc_id = navList[$(this).index()].gc_id;
+				$("#grid").empty();
+				
+				getArticleList();
 			})
 			
 			//列表点击
-			mui(".list-col").on('tap', 'li', function(e){
+			mui("#grid").on('tap', '.grid-item', function(e){
+				console.log('999');
+				var index = $(this).index();
 				Global.openWindow({
-					url: 'mallDetail.html',
+					url: 'mallDetail.html?goods_id='+articleList[index].goods_id,
 					id: 'mallDetail.html',
 					waiting: {
 						autoShow: false

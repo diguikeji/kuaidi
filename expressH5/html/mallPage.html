@@ -111,7 +111,7 @@
 		<p id="goods_name">2019年最新优品波司登冬季羽绒服中长款新款韩版宽松连帽羽绒服</p>
 		<p class="price">
 			<span>￥</span>
-			<span class="price_num">258</span>
+			<span class="price_num">0</span>
 			<span class="price_dot">.00</span>
 		</p>
 
@@ -125,7 +125,7 @@
 			<div class="clearfix">
 				<span class="left">
 					<img src="../images/mall/mallIcon_07.png" id="shop_logo">
-					<span id="shop_name">波司登官方旗舰店</span>
+					<span id="shop_name"></span>
 				</span>
 
 				<span class="right" id="goStore">进店逛</span>
@@ -187,7 +187,7 @@
 				<span class="fl">
 					<img src="../images/mall/tm_01.png" class="guige_image"/>
 					<span class="guige_price_wrap">
-						￥<span class="guige_price">127</span>.00
+						￥<span class="guige_price">0</span>.00
 					</span>
 				</span>
 
@@ -340,10 +340,15 @@
 			    Global.commonAjax({
 			        url: "shop/goods/goodsDetail?goods_id="+goodsId
 			    }, function (data) {
-					if(data.goods_images){
-						setLunBoHtml(data.goods_images);
+						if(data.goods_images){
+								setLunBoHtml(data.goods_images);
+								
+							
+							
+						}
+						
 						$("#goods_name").html(data.goods_name);
-						var price = data.goods_price;
+						var price = data.child_goods[0].goods_price;
 						if(price){
 							$(".price_num").text(price.split(".")[0]);
 							$(".price_dot").text("."+price.split(".")[1]);
@@ -351,9 +356,7 @@
 						
 						detailData = data;
 						$(".mall-goods-detail").append(data.mobile_body);
-						
-						
-					}
+					
 			    }, function (err) {
 					mui.toast(err);
 			    })

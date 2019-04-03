@@ -13,6 +13,7 @@
 		<link rel="stylesheet" href="../css/secondPage.css">
 		<style>
 			body,.mui-content{background: #fff!important;}
+			.bottom-col{font-size: 0.24rem!important; text-align: center;color:#107EFF;box-shadow: 0px 0px 10px 0px #EAEAEA;}
 		</style>
 		
 		
@@ -37,12 +38,13 @@
 	</div>
 
 	<div class="mui-content has-header mall-detail">
-
+		
+		
 		<div class="pd" style="padding-bottom:0.6rem;">
 
-		<div class="title">补水保湿，拯救你的肌肤，告别干 燥，滋润你的冬天</div>
+		<div class="title"></div>
 
-		<div class="clearfix mall-detail-info">
+		<!-- <div class="clearfix mall-detail-info">
 			<span class="left">
 				<img src="../images/firstPageLive/live_14.png"/>
 				2018-12-18
@@ -52,37 +54,26 @@
 				<span class="second">128分享</span>
 
 			</span>
-		</div>
+		</div> -->
 
-		<div class="img-col"><img class="full-img" src="../images/mall/goodsDetail_07.png"></div>
-
-
-		<p style="padding-top:0.1rem;">
-			欣兰冻膜+城野医生毛孔收敛水+蒂佳婷蓝色药丸面膜
-			Emmmmm本人混油皮每个星期都做一次清洁面膜，(冬天到了都没怎么用了)之前用过贝佳斯绿泥，雪花秀撕拉面膜，觉得无感就没用了，这个冻膜回购好几次了感觉确实可以吸出毛孔里的脏东西哦，用的时候一定要厚厚的涂一层，我一般先用热毛巾敷T区打开毛孔再敷冻膜，敷完洗干净脸一定要收缩毛孔啊啊啊 城野医生毛孔收敛水效果不是很好啊(哭唧唧) 我都是收敛水倒进面膜里再敷面膜10分钟左右，感觉凉凉的特别舒服，完了还要正常护肤(水+精华+乳液) 感觉毛孔确实干净了不少~~
-		</p>
+		<div class="img-col"><img class="full-img" src=""></div>
 
 
-		<div class="goods-col">
-			<img src="../images/mall/goodsDetail_11.png">
-			<p>
-				韩国Dr.Jart蒂佳婷蓝绿色胶囊药丸面膜贴套装 深层补水保湿舒缓滋润
-			</p>
-
-			<div>￥169.00</div>
-
+		<div id="content">
+			
 		</div>
 
 
-		<div class="bottom-col">
-			<div>
+		<div class="bottom-col" id="goToDetail">
+			<!-- <div>
 				<img src="../images/mall/goodsDetail_18.png"/>
 				<span>198</span>
 			</div>
 			<div>
 				<img src="../images/mall/goodsDetail_15.png"/>
 				<span>198</span>
-			</div>
+			</div> -->
+			查看商品
 		</div>
 
 
@@ -93,9 +84,43 @@
 		<script src="../js/mui.min.js"></script>
 	    <script src="../js/jquery-2.1.1.min.js"></script>
 	    <script src="../js/app.js"></script>
+		<script src="../js/myStorage.js"></script>
 		<script>
 
-
+		var goods_id;
+		mui.init();
+		mui.plusReady(function() {
+		
+			goods_id = GetQueryString("goods_id");
+			getDetail();
+			
+		}); 
+		
+		//首页头部
+		function getDetail() {
+		    Global.commonAjax({
+		        url: "shop/shops/artileDetail?goods_id="+goods_id
+		    }, function (data) {
+				$(".title").html(data.article_title);
+				$(".full-img").attr('src', data.article_image);
+				$("#content").html(data.article_content);
+				goods_id = data.goods_id;
+		    }, function (err) {
+				mui.toast(err);
+		    })
+		}
+		
+		//列表点击 
+		mui(".mui-content").on('tap', '#goToDetail', function(e){
+			
+			Global.openWindow({
+				url: 'mallPage.html?id='+goods_id,
+				id: 'mallPage.html',
+				waiting: {
+					autoShow: false
+				}
+			})
+		})
 
 
 		</script>

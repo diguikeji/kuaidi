@@ -88,7 +88,14 @@
 			<li onclick="goToMyOrder();">
 				<div class="badge_wrap">
 				<img src="../images/wode/wode_19.jpg">
-				<p>订单</p>
+				<p>企业订单</p>
+				<span class="badge orders_count hideClass">1</span>
+				</div>
+			</li>
+			<li onclick="goToMallOrder();">
+				<div class="badge_wrap">
+				<img src="../images/wode/wode_19.jpg">
+				<p>个人订单</p>
 				<span class="badge orders_count hideClass">1</span>
 				</div>
 			</li>
@@ -284,13 +291,50 @@
 	
 	//订单
 	function goToMyOrder(){
-		Global.openWindow({
-		    url: 'my_order.html',
-		    id: 'my_order.html',
-		    waiting: {
-		        autoShow: false
-		    }
-		})
+		token = myStorage.getItem("token");
+		if(token){
+			Global.openWindow({
+			    url: 'my_order.html',
+			    id: 'my_order.html',
+			    waiting: {
+			        autoShow: false
+			    }
+			})
+		}else{
+			Global.openWindow({
+			    url: 'login.html',
+			    id: 'login.html',
+			    waiting: {
+			        autoShow: false
+			    }
+			})
+		}
+		
+		
+	}
+	
+	//goToMallOrder
+	function goToMallOrder(){
+		token = myStorage.getItem("token");
+		if(token){
+			Global.openWindow({
+			    url: 'mall_order.html',
+			    id: 'mall_order.html',
+			    waiting: {
+			        autoShow: false
+			    }
+			})
+		}else{
+			Global.openWindow({
+			    url: 'login.html',
+			    id: 'login.html',
+			    waiting: {
+			        autoShow: false
+			    }
+			})
+		}
+		
+		
 	}
 
 
