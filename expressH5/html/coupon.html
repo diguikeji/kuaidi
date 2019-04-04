@@ -69,7 +69,65 @@
 				height: 47px;
 				position: relative;
 			}
-
+			
+			 body,
+        html {
+            width: 100%;
+			height: 100%;
+            background: #EDECF2;
+        }
+        
+        .list_wrap {
+            padding: 0px;
+            box-sizing: border-box;
+			background-color: #F8F8F8;
+			
+        }
+        
+        .item_wrap {
+            height: 0.93rem;
+            width: 92%;
+            margin: 0.15rem 4%;
+			background-color: #FFFFFF;
+			border-radius: 0.04rem;
+			background-size: 100% 100%;
+			padding-left: 0.15rem;
+        }
+		
+		.item_wrap img{
+			width: 0.63rem;
+			height: 0.63rem;
+			border-radius: 0.04rem;
+		}
+		
+		.content_item{
+			margin-left: 0.3rem;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+		}
+		
+		.content_item .name{
+			color: #333333;
+			font-size: 0.14rem;
+		}
+		
+		.content_item .time{
+			color: #cccccc;
+			font-size: 0.11rem;
+		}
+		
+		.content_item .money_wrap{
+			color: #ff5269;
+			font-size: 0.14rem;
+			font-weight: 100;
+		}
+		
+		.content_item .money{
+			color: #ff5269;
+			font-size: 0.16rem;
+			font-weight: 400;
+		}
 		</style>
 	</head>
 
@@ -98,38 +156,41 @@
 				
 			</div>
 		</div>
+		
+		
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper" style="background-color: #F8F8F8;padding-top:60px;">
+        <div class="mui-scroll">
+            <!--数据列表-->
+            <ul class="mui-table-view-condensed list_wrap">
+				<li class=" mui-table-view-cell-item row item_wrap" style="background-image: url(../images/coupon/coupon_mall.png);">
+					
+					<img src="../images/firstPageLive/homeBottom_03.jpg" />
+					<div class="content_item">
+						<span class="name">GUCCI 折扣券</span>
+						<span class="time">2018-01-01 至 2018-12-31</span>
+						<span class="money_wrap">
+							满<span class="money">&nbsp;10000&nbsp;</span>
+							减<span class="money">&nbsp;100</span>
+						</span>
+					</div>
+					
+					
+				</li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="empty_text">
+        数据为空
+    </div>
+		
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/jquery-2.1.1.min.js"></script>
-		<!-- <script src="../js/app.js"></script> -->
+		<script src="../js/app.js"></script>
 		<script type="text/javascript">
-			mui.init({
-				subpages:[{
-					url:'coupon_sub.html',
-					id:'coupon_sub.html',
-					styles:{
-						top: '90px',
-						bottom: '0px'
-					}
-				}]
-			}); 
 			
-			function changeType(index){
-				$(".titleType").each(function(ind){
-					$(this).removeClass("active");
-					$(this).next().removeClass("active_line");
-					
-					if(index == ind){
-						$(this).addClass("active");
-						$(this).next().addClass("active_line");
-						sendClickType(index);
-					}
-				})
-			}
-				
-				function sendClickType(index){
-					var h = plus.webview.getWebviewById("coupon_sub.html");
-					mui.fire(h,'updateCouponType',{index: index});
-				}
+			
+			
 			
 		</script>
 	</body>

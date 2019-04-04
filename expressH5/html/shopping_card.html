@@ -98,7 +98,7 @@
 		
 		
 		<!--弹窗-->
-		<div class="modal-mask col address_modal">
+		<div class="modal-mask col address_modal" style="display:none;">
 			<div style="flex: 1;" class="hide_tap"></div>
 		    <div class="modal-dialog">
 				<div class="row_between modal_title_wrap">
@@ -123,7 +123,9 @@
 						</div> -->
 						
 					</form>
-				<div>
+					
+					
+				</div>
 				
 				<div class="btn_wrap">
 					<div type="button" class="mui-btn mui-btn-primary button" id="add_address">
@@ -132,7 +134,6 @@
 					</div>
 					
 					<div type="button" class="mui-btn mui-btn-primary button" id="goToPay">
-						 
 						 <span>确定</span>
 					</div>
 				</div>
@@ -196,7 +197,7 @@
 	<script src="../js/myStorage.js"></script>
 	<script src="../lib/artTemplate.js"></script>
 	<script src="../js/app.js"></script>
-	<script src="../js/mallPay.js"></script>
+	<script src="../js/pay.js"></script>
 	<script type="text/javascript">
 		
 		var channel;
@@ -223,8 +224,6 @@
 			
 			
 		});
-		
-		$(".address_modal").hide();
 		
 		var cardList = [];
 		//购物车

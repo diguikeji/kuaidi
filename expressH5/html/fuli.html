@@ -208,21 +208,7 @@
 			<div class="pd">
 
 				<ul class="fuli-list">
-					<li>
-						<img class="img" src="../images/fuli/fuli_15.jpg">
-						<div>
-							<div class="biaoti">GUCCI 八折优惠券</div>
-							<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
-							<div class="riqi">2018-01-01 至 2018-12-31</div>
-						</div>
-
-						<div class="lingqu">
-							<div>立即</div>
-							<div>领取</div>
-						</div>
-
-					</li>
-
+					
 					
 				</ul>
 				
@@ -288,9 +274,9 @@
 		<li>
 			<img class="img" src="../images/fuli/fuli_15.jpg">
 			<div>
-				<div class="biaoti">GUCCI 八折优惠券</div>
-				<p class="weizhi"><img  src="../images/fuli/weizhi.jpg"/>上海歌斐中心</p>
-				<div class="riqi">2018-01-01 至 2018-12-31</div>
+				<div class="biaoti">{{item.name}}</div>
+				<p class="weizhi"><img  src="{item.image}"/>上海歌斐中心</p>
+				<div class="riqi">{item.start_at} 至 {item.end_at}</div>
 			</div>
 		
 			<div class="lingqu">
@@ -352,6 +338,10 @@
 	    Global.commonAjax({
 	        url: "welfare/coupons/today"
 	    }, function (data) {
+	    	
+	    	console.log("数据数据数据");
+	    	console.log(JSON.stringify(data));
+	    	
 	        if (data) {
 				render('.time_wrap', 'timeList', { data: data }, true);
 				data.map(function(item){
