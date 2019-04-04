@@ -114,20 +114,10 @@
 			
 			<li class="grid-item">
 				<div class="grid-item-col">
-					<img class="img" src="../images/mall/mall_13.png"/>
-					<p>治愈系双十二必买清单，理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天</p>
+					<img class="img" src="{{item.goods_image}}"/>
+					<p>{{item.goods_name}}</p>
 					<div class="clearfix bottom-text">
-						<span class="fl"><span>¥</span> 518.00</span>
-					</div>
-				</div>
-			</li>
-			
-			<li class="grid-item">
-				<div class="grid-item-col">
-					<img class="img" src="../images/mall/mall_10.png"/>
-					<p>治愈系双十二必买清单，理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天理想的冬天</p>
-					<div class="clearfix bottom-text">
-						<span class="fl"><span>¥</span> 518.00</span>
+						<span class="fl"><span>¥</span> {{item.goods_price}}</span>
 					</div>
 				</div>
 			</li>
@@ -152,8 +142,8 @@
 				
 			});
 			
-			render('#grid', 'goodsList', { data: [1,2,3,4,5,6] });
 			
+			var dataList = [];
 			//商品规格
 			function getShopIndex() {
 			    Global.commonAjax({
@@ -161,12 +151,10 @@
 					method: "POST",
 					data: {store_id: store_id}
 			    }, function (data) {
-					
-					// setLunBoHtml(data.store_slide);
-					
+					dataList = data.commend_goods;
 					setLunBoHtml(data);
 					$("#store_banner").attr("src", data.store_banner);
-					
+					render('#grid', 'goodsList', { data: data.commend_goods });
 			    }, function (err) {
 					mui.toast(err);
 			    })
@@ -224,10 +212,14 @@
 				ajaxCallback: function(success, end) {
 				}
 			});
+			
+			//列表点击
 			mui("#grid").on('tap','li',function(){
+				var index = $(this).index();
+				
 				Global.openWindow({
-					url: 'mallPindan.html',
-					id: 'mallPindan.html',
+					url: 'mallPage.html?id='+dataList[index].goods_id,
+					id: 'mallPage.html',
 					waiting: {
 						autoShow: false
 					}
