@@ -84,11 +84,11 @@ function pay(payWay) {
 	}
 	
 	var params = {
-		pay_method:PAYSERVER
+		pay_method:PAYSERVER,
+		address_id:address_id
 	}
-	if(payType){
-		params.address_id=address_id;
-	}
+	
+	
 
     Global.commonAjax({
         url: url,
