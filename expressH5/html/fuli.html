@@ -276,7 +276,7 @@
 			<div>
 				<div class="biaoti">{{item.name}}</div>
 				<p class="weizhi"><img  src="{item.image}"/>上海歌斐中心</p>
-				<div class="riqi">{item.start_at} 至 {item.end_at}</div>
+				<div class="riqi">{{item.start_at.substr(0,10)}} 至 {{item.end_at.substr(0,10)}}</div>
 			</div>
 		
 			<div class="lingqu">
@@ -352,10 +352,29 @@
 					}
 				});
 	        }
+	        
+	        var swiperDetail = new Swiper('.swiper-tab-col', {
+				slidesPerView: 5,
+				spaceBetween: 0,
+				on:{
+					slideChange: function(index){
+		
+					},
+				},
+		
+			});
+			
+			curTime = $(".time_wrap .swiper-slide").eq(0).attr("data-id");
+			$(".time_wrap .swiper-slide").eq(0).addClass("active");
+		    getCoupon();
+			
+	        
 	    }, function (err) {
 	        console.log("获取快递公司" + JSON.stringify(err));
 	    })
 	}
+	
+	
 	
 	//福利列表
 	function getCoupon() {
@@ -416,23 +435,12 @@
 		}
 	});
 
-	var swiperDetail = new Swiper('.swiper-tab-col', {
-		slidesPerView: 5,
-		spaceBetween: 0,
-		on:{
-			slideChange: function(index){
-
-			},
-		},
-
-	});
+	
 
 	$(".buzhou-list .swiper-slide").click(function()
 	{
 		$(".buzhou-list .swiper-slide").removeClass("active");
 		$(this).addClass("active");
-
-
 
 	});
 
