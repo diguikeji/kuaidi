@@ -178,6 +178,7 @@ var isOpenLogin = false;
 
                 },
                 success: function(data) {
+                	console.log("成功数据");
                 	console.log(JSON.stringify(data));
 					if (data.success || (data.result == 1)) {
 						console.log(JSON.stringify(data));
@@ -188,17 +189,17 @@ var isOpenLogin = false;
 
                 },
                 error: function(data) {
+                	console.log("失败回调");
+                	console.log(data.msg);
+                	
 					errorback(data.msg ? data.msg : "");
 
                 },
                 complete: function(xhr, status) {
 					waiting.close();
+					console.log("调用完成");
                     console.log(xhr.status);
-// 					if((xhr.status != 200) && (xhr.status != 401)){
-// 						console.log(xhr.responseText);
-// 						var res = JSON.parse(xhr.responseText);
-// 					}
-					
+                    console.log(xhr.responseText);
 					
 					if(xhr.status == 401){
 						//重新登录
@@ -207,11 +208,9 @@ var isOpenLogin = false;
 					}else if(xhr.status == 200){
 						
 					}
-// 					else if(res && !res.success){
-// 						errorback(JSON.parse(xhr.responseText)?JSON.parse(xhr.responseText).msg:'请求出错');
-// 					}
 					else{
-						errorback(xhr.data?xhr.data.msg:'');
+						var res = JSON.parse(xhr.responseText);
+						mui.toast(res.msg);
 					}
 
                 }

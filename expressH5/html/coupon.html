@@ -54,7 +54,7 @@
 				background: #f2f2f2;
 			}
 			
-			.active_line{
+			.select_type .item.active .active_line{
 				height: 4px;
 				width: 20px;
 				background-color: #107EFF;
@@ -137,28 +137,27 @@
 		    <h1 class="mui-title">卡劵</h1>
 		</header>
 		
-		<div class="mui-content" style="text-align: center; background: #F2F2F2;">
-			<div class="row select_type">
-				<div class="col_center item" onclick="changeType(0)">
-					<span class="titleType active" >未使用</span>
+		<div class="row select_type" style="top:44px;z-index:100;border-top:1px solid #f1f1f1;">
+				<div class="col_center item active" data-id="1">
+					<span class="titleType" >未使用</span>
 					<span class="active_line"></span>
 				</div>
 				
-				<div class="col_center item" onclick="changeType(1)">
+				<div class="col_center item" data-id="2">
 					<span class="titleType" >已使用</span>
-					<span class=""></span>
+					<span class="active_line"></span>
 				</div>
 				
-				<div class="col_center item" onclick="changeType(2)">
+				<div class="col_center item" data-id="3">
 					<span class="titleType" >已过期</span>
-					<span class=""></span>
+					<span class="active_line"></span>
 				</div>
 				
 			</div>
-		</div>
 		
-		
-		<div id="pullrefresh" class="mui-content mui-scroll-wrapper" style="background-color: #F8F8F8;padding-top:60px;">
+			
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper" style="text-align: center; background: #F2F2F2;margin-top:0.45rem">
+			
         <div class="mui-scroll">
             <!--数据列表-->
             <ul class="mui-table-view-condensed list_wrap">
@@ -179,18 +178,122 @@
             </ul>
         </div>
 
-    </div>
-    <div class="empty_text">
-        数据为空
-    </div>
+	    </div>
+	    
+	    <div class="empty_text">
+	        数据为空
+	    </div>
+    
 		
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/jquery-2.1.1.min.js"></script>
+		<script src="../js/myStorage.js"></script>
 		<script src="../js/app.js"></script>
 		<script type="text/javascript">
+		
 			
+			$(".select_type .item").click(function()
+			{
+				$(".select_type .item").removeClass("active");
+				$(this).addClass("active");
+				getData();
+			});
 			
+			var h5pullDown = true;
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+	/**
+	 * 下拉刷新具体业务实现
+	 */
+	function pulldownRefresh() {
+		setTimeout(function() {
 			
+			getData();
+			mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+
+		}, 1500);
+	}
+	var count = 0;
+	/**
+	 * 上拉加载具体业务实现
+	 */
+	function pullupRefresh() {
+		setTimeout(function() {
+			mui('#pullrefresh').pullRefresh().endPullupToRefresh(isEnd); //参数为true代表没有更多数据了。
+			getData();
+		}, 1500);
+	}
+	if (mui.os.plus) {
+		mui.plusReady(function() {
+
+			setTimeout(function() {
+				mui('#pullrefresh').pullRefresh().pullupLoading();
+			}, 1000);
+
+			commonEvent();
+			getData();
+
+		});
+	} else {
+		mui.ready(function() {
+			mui('#pullrefresh').pullRefresh().pullupLoading();
+		});
+	}
+
+			
+	function getData()
+	{
+		$(".list_wrap").empty();
+		var status=$(".select_type .active").attr("data-id");
+		Global.commonAjax({
+					url: "user/coupons?status="+status,
+				},
+				function(data) {
+					console.log("优惠券列表");
+					console.log(JSON.stringify(data));
+					
+					if(data)
+					{
+						var html="";
+						
+						if(data.data.length>0)
+						{
+
+							$(".list_wrap").append(html);
+						}
+						else
+						{
+							isEnd=1;
+						}
+
+
+						$(".empty_text").show();
+
+
+					}
+
+
+
+
+				},
+				function(err) {
+
+					console.log("err");
+
+				})
+	}
+
+	var isEnd=0;
 			
 		</script>
 	</body>

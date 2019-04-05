@@ -55,10 +55,30 @@
 
 			mui("#louyuList").on('tap','li',function(event){
 
-				myStorage.setItem("louyuName",$(this).find("span").text());
-				var list = plus.webview.currentWebview().opener();
-				mui.fire(list, 'updateLouyuName');
-				mui.back();
+				var louyuId=$(this).attr("data-id");
+				var louyuName=$(this).find("span").text();
+				
+				Global.commonAjax({
+							url: "user/building",
+							method:"POST",
+							data:{building_id:louyuId}
+
+						},
+						function(data) {
+							
+							console.log("切换楼宇");
+							console.log(data);
+							myStorage.setItem("louyuName",louyuName);
+							myStorage.setItem("louyuId",louyuId);
+							var list = plus.webview.currentWebview().opener();
+							mui.fire(list, 'updateLouyuName');
+							mui.back();
+
+						},function(err) {
+							
+						});
+
+
 
 			});
 
@@ -78,7 +98,7 @@
 
 							for(var i=0;i<data.length;i++)
 							{
-								html=html+'<li class="mui-table-view-cell">' +
+								html=html+'<li class="mui-table-view-cell" data-id="'+data[i].id+'">' +
 										'<a class="mui-navigate-right">'+data[i].name+'</a><span class="hide">'+JSON.stringify(data[i])+'</span>' +
 										'</li>';
 							}

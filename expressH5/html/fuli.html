@@ -255,15 +255,15 @@
 
 <script type="text/html" id="timeList">
 	{{each data as item i}}
-	{{if item.status==0}}
+	{{if item.status=="已结束"}}
 		<div class="swiper-slide disabled" data-id="{{item.time}}">
-	{{else if item.status==1}}
-		<div class="swiper-slide active" data-id="{{item.time}}">
+	{{else if item.status=="进行中"}}
+		<div class="swiper-slide" data-id="{{item.time}}">
 	{{else}}
 		<div class="swiper-slide" data-id="{{item.time}}">
 	{{/if}}
 			<span>{{item.label}}</span>
-			<div>{{item.text}}</div>
+			<div>{{item.status}}</div>
 		</div>
 	{{/each}}
 </script>
@@ -271,15 +271,14 @@
 
 <script type="text/html" id="couponList">
 	{{each data as item i}}
-		<li>
-			<img class="img" src="../images/fuli/fuli_15.jpg">
+		<li data-id="{item.id}}">
+			<img class="img" src="{{item.image}}">
 			<div>
 				<div class="biaoti">{{item.name}}</div>
-				<p class="weizhi"><img  src="{item.image}"/>上海歌斐中心</p>
+				<p class="weizhi"><img  src="../images/fuli/weizhi.jpg" />{{item.building.name}}</p>
 				<div class="riqi">{{item.start_at.substr(0,10)}} 至 {{item.end_at.substr(0,10)}}</div>
 			</div>
-		
-			<div class="lingqu">
+			<div class="lingqu" data-id="{{item.id}}">
 				<div>立即</div>
 				<div>领取</div>
 			</div>
@@ -338,14 +337,13 @@
 	    Global.commonAjax({
 	        url: "welfare/coupons/today"
 	    }, function (data) {
-	    	
 	    	console.log("数据数据数据");
 	    	console.log(JSON.stringify(data));
 	    	
 	        if (data) {
 				render('.time_wrap', 'timeList', { data: data }, true);
 				data.map(function(item){
-					if(item.status == 1){
+					if(item.status == "进行中"){
 						curTime = item.time;
 						getCoupon();
 						return;
@@ -364,9 +362,13 @@
 		
 			});
 			
-			curTime = $(".time_wrap .swiper-slide").eq(0).attr("data-id");
-			$(".time_wrap .swiper-slide").eq(0).addClass("active");
-		    getCoupon();
+			if($(".time_wrap .swiper-slide.active").length==0)
+			{
+				curTime = $(".time_wrap .swiper-slide").eq(0).attr("data-id");
+				$(".time_wrap .swiper-slide").eq(0).addClass("active");
+			    getCoupon();
+			}
+			
 			
 	        
 	    }, function (err) {
@@ -381,6 +383,8 @@
 	    Global.commonAjax({
 	        url: "welfare/coupons?time="+curTime
 	    }, function (data) {
+	    	console.log(JSON.stringify(data));
+	    	
 	        if (data) {
 				var list = data.data;
 				console.log(list);
@@ -441,20 +445,27 @@
 	{
 		$(".buzhou-list .swiper-slide").removeClass("active");
 		$(this).addClass("active");
-
 	});
 
+
 	//会员福利 点击事件
-	mui(".fuli-list").on('tap','li',function(){
+	mui(".fuli-list").on('tap','.lingqu',function(){
 
-		Global.openWindow({
-			url: 'fuliShiyong.html',
-			id: 'fuliShiyong.html',
-			waiting: {
-				autoShow: false
-			}
-		})
-
+		var id=$(this).attr("data-id");
+		Global.commonAjax({
+	        url: "welfare/coupons/"+id,
+	        data:{coupon_id:id},
+	        method:"POST"
+	    }, function (data) {
+	    	
+	    	console.log("领取优惠券");
+	    	console.log(JSON.stringify(data));
+	    	mui.toast("领取优惠券成功");
+	    	
+	    },function (err) {
+	        console.log(err);
+	    })
+	
 	});
 	
 	//线上特卖 点击事件
