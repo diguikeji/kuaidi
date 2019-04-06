@@ -76,18 +76,16 @@ function pay(payWay) {
         }
     }
 	
-	var url = "express/orders/"+id+"/pay";
-	if(!payType){
-		url = "express/orders/"+id+"/pay";
-	}else{
-		url = "service/orders/"+id+"/pay";
-	}
+	var url = payType+"/orders/"+id+"/pay";
 	
 	var params = {
-		pay_method:PAYSERVER,
-		address_id:address_id
+		pay_method:PAYSERVER
 	}
 	
+	if(address_id)
+	{
+		params.address_id=address_id;
+	}
 	
 
     Global.commonAjax({
@@ -104,7 +102,20 @@ function pay(payWay) {
 
         plus.payment.request(channel, varpay, function(result) {
             plus.nativeUI.alert("支付成功！", function() {
-                back();
+            	if(payType=="shop")
+            	{
+            		Global.openWindow({
+					    url: 'my_order.html',
+					    id: 'my_order.html',
+					    waiting: {
+					        autoShow: false
+					    }
+					})
+            	}
+            	else{
+            		back();
+            	}
+                
             });
         }, function(e) {
             plus.nativeUI.alert("支付失败");

@@ -84,7 +84,7 @@
 				<div class="money_info">
 					<span>总价:</span>
 					<span class="money_num" style="font-size: 0.14rem;">¥</span>
-					<span class="money_num allMoney">0.00</span>
+					<span class="money_num allMoney" id="allMoneyCount">0.00</span>
 				</div>
 				
 				<span class="btn allCheckout">结算(<span id="allNum">0</span>)</span>
@@ -488,8 +488,8 @@
 		//goToPay
 		mui(".address_modal").on('tap', '#goToPay', function(){
 			$(".address_modal").hide();
-			payModal(200);
-			console.log("payModal");
+			payType="shop";
+			payModal($("#allMoneyCount").text());
 			
 		});
 		

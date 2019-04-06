@@ -135,7 +135,8 @@ var isOpenLogin = false;
         //网络请求
         commonAjax: function(params,callback, errorback) {
            var baseUrl = "http://kd.loufubao.com/api/" ;
-		   if(params.url.indexOf("shop") != -1){
+		   if(params.url.indexOf("shop") != -1&&params.url.indexOf("shop/orders")== -1){
+		   	
 			   //包含
 			   baseUrl = "http://kd.loufubao.com/shopapi/index.php/api/";
 		   }
@@ -153,6 +154,8 @@ var isOpenLogin = false;
                 Global.errorNet();
                 return;
             }
+			
+			console.log(baseUrl + params.url);
 			
 			var waiting;
             mui.ajax(baseUrl + params.url, {

@@ -7,6 +7,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/pay.css">
 		<style type="text/css">
 			body, html{
 				width: 100%;
@@ -367,6 +368,7 @@
 		 <script src="../js/app.js"></script> 
 		 <script src="../js/myStorage.js"></script>
 		 <script src="../lib/artTemplate.js"></script>
+		 <script src="../js/pay.js"></script>
 		<script type="text/javascript">
 			var h5pullDown = true;
 			
@@ -383,8 +385,20 @@
 				}
 			});
 			
+			var channel;
+			var channels;
+			var id;
+			
 			mui.plusReady(function() {
 				pulldownRefresh();
+				
+				plus.payment.getChannels(function (cs) {
+			    channels = cs;
+			    console.log(JSON.stringify(channels));
+				}, function (e) {
+				    //alert("获取支付通道失败：" + e.message);
+				});
+				
 			});
 			
 			var type = -1;
@@ -489,17 +503,14 @@
 				
 				var index = $(this).index();
 				var item = findList[index];
-				Global.commonAjax({
-					url: 'shop/order/pay',
-					method: "POST",
-					data: {order_id: item.order_id}
-				}, function(data){
-					mui.toast("操作成功");
-					$('.mui-table-view-condensed').scrollTop(0);
-					pulldownRefresh();
-				}, function(err){
-					mui.toast(err);
-				});
+				
+				id=item.order_id;
+				
+				payType="shop";
+				payModal(item.need_amount);
+				
+				console.log("数据"+JSON.stringify(item));
+				
 			});
 			
 			//列表点击 取消订单

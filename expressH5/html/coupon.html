@@ -161,7 +161,7 @@
         <div class="mui-scroll">
             <!--数据列表-->
             <ul class="mui-table-view-condensed list_wrap">
-				<li class=" mui-table-view-cell-item row item_wrap" style="background-image: url(../images/coupon/coupon_mall.png);">
+				<!--<li class=" mui-table-view-cell-item row item_wrap" style="background-image: url(../images/coupon/coupon_mall.png);">
 					
 					<img src="../images/firstPageLive/homeBottom_03.jpg" />
 					<div class="content_item">
@@ -174,7 +174,7 @@
 					</div>
 					
 					
-				</li>
+				</li>-->
             </ul>
         </div>
 
@@ -184,14 +184,35 @@
 	        数据为空
 	    </div>
     
+    
+    <script type="text/html" id="couponList">
+	{{each data as item i}}
 		
+		
+		<li class=" mui-table-view-cell-item row item_wrap" style="background-image: url(../images/coupon/coupon_mall.png);">
+					
+					<img src="{{item.image}}" />
+					<div class="content_item">
+						<span class="name">{{item.name}}</span>
+						<span class="time">{{item.start_at.substr(0,10)}} 至 {{item.end_at.substr(0,10)}}</span>
+						<span class="money_wrap">
+							满<span class="money">&nbsp;{{item.discount_full}}&nbsp;</span>
+							减<span class="money">&nbsp;{{item.discount_amount}}</span>
+						</span>
+					</div>
+					
+					
+		</li>
+		
+	{{/each}}
+</script>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/jquery-2.1.1.min.js"></script>
+		<script src="../lib/artTemplate.js"></script>
 		<script src="../js/myStorage.js"></script>
 		<script src="../js/app.js"></script>
 		<script type="text/javascript">
 		
-			
 			$(".select_type .item").click(function()
 			{
 				$(".select_type .item").removeClass("active");
@@ -268,21 +289,13 @@
 						
 						if(data.data.length>0)
 						{
-
-							$(".list_wrap").append(html);
-						}
-						else
-						{
+							render('.list_wrap', 'couponList', { data: data.data }, true);
 							isEnd=1;
 						}
 
-
 						$(".empty_text").show();
 
-
 					}
-
-
 
 
 				},
