@@ -96,6 +96,7 @@
 
         .imc-col .right img {
             width: 100%;
+			
         }
 
         .bottom-col {
@@ -305,20 +306,23 @@
         mui.plusReady(function () {
 
             commonEvent();
-            getData();
+            getData(); 
 
         });
 
         var page = 1;
-        function getData(page) {
+		var serviceList = [];
+        function getData() {
             Global.commonAjax({
                 url: "service/types"
             }, function (data) {
+				serviceList = data;
                 // render('#company_services', 'serviceList', { data: data });
             }, function (err) {
                 console.log("服务类型失败");
             });
-        
+			
+			return;
             Global.commonAjax({
                 url: "deliveries?page=" + page
 
@@ -444,6 +448,37 @@
 
         //企业服务
         function goToServiceOrder(type) {
+// 			var id = 0;
+// 			
+// 			switch (type) {
+// 			    case 1:
+// 			        name = '饮水服务';
+// 			        break;
+// 			    case 2:
+// 			        name = '保洁服务';
+// 			        break;
+// 			    case 3:
+// 			        name = '商务场地';
+// 			        break;
+// 			    case 4:
+// 			        name = '绿植服务';
+// 			        break;
+// 			
+// 			    default:
+// 			        break;
+// 			}
+			
+			Global.openWindow({
+				url: 'mall_goods_list.html?gc_id='+serviceList[type-1].gc_id,
+				id: 'mall_goods_list.html',
+				waiting: {
+					autoShow: false
+				}
+			})
+			return;
+			
+			
+			
             if (typeof type !== 'undefined') {
                 switch (type) {
                     case 1:

@@ -138,8 +138,8 @@
 	<div class="main-tab-detail">
 
 		<div class="tab-detail-col">
-			<div class="mall-goods-detail">
-				<img src="" class="img_type">
+			<div class="mall-goods-detail" id="goods_detail">
+				
 				<!-- <img src="../images/mall/tm_03.png"/>
 				<img src="../images/mall/tm_04.jpg"/> -->
 			</div>
@@ -213,9 +213,20 @@
 	</div>
 		
 		
+		<script type="text/html" id="dataList">
+		    {{each data as item i}}
+				{{if item.type == 'image'}}
+		        <img src="{{item.value}}" class="img_type">
+				{{else}}
+		        <span class="detail_text">{{item.value}}</span>
+				{{/if}}
+		    {{/each}}
+		</script>
+		
 		<script src="../js/mui.min.js"></script>
 	    <script src="../js/jquery-2.1.1.min.js"></script>
 		<script src="../js/myStorage.js"></script>
+		<script src="../lib/artTemplate.js"></script>
 		<script src="../js/app.js"></script>
 		<script>
 			var goodsId, store_id;
@@ -248,10 +259,10 @@
 					method: "POST",
 					data: {goods_id: goodsId}
 			    }, function (data) {
-					if(data.data.length == 0){
-						return;
+					if(data.length>0){
+						setGuiGeHtml(data);
 					}
-					setGuiGeHtml(data);
+					
 					
 			    }, function (err) {
 					mui.toast(err);
@@ -335,9 +346,11 @@
 						}
 						
 						detailData = data;
-						if(data.mobile_body[0].type == "image"){
-							$(".mall-goods-detail img").attr("src", data.mobile_body[0].value)
+						if(data.mobile_body.length != 0){
+							
+							render('#goods_detail', 'dataList', { data: data.mobile_body });
 						}
+						
 						// $(".mall-goods-detail").append(data.mobile_body[0].value);
 					
 			    }, function (err) {
@@ -472,16 +485,35 @@
 				if(detailData){
 					// $(".mall-goods-detail").empty();
 					if(index == 0){
-						console.log(detailData.mobile_body[0].value);
-						if(detailData.mobile_body[0].type == "image"){
-							$(".mall-goods-detail img").attr("src", detailData.mobile_body[0].value)
-						}
+// 						console.log(detailData.mobile_body[0].value);
+// 						detailData.mobile_body.map(function(item, index){
+// 							if(detailData.mobile_body[index].type == "image"){
+// 								$(".mall-goods-detail img").attr("src", detailData.mobile_body[index].value)
+// 							}else{
+// 								$(".mall-goods-detail img").attr("src", detailData.mobile_body[index].value)
+// 							}
+// 						})
+						
+						render('#goods_detail', 'dataList', { data: detailData.mobile_body });
+						
+						
 						
 						// $(".mall-goods-detail").append(detailData.mobile_body);
 					}else if(index == 1){
-						$(".mall-goods-detail").append(detailData.mobile_body_2);
+// 						if(detailData.mobile_body1[0].type == "image"){
+// 							$(".mall-goods-detail img").attr("src", detailData.mobile_body[0].value)
+// 						}
+// 						
+// 						$(".mall-goods-detail").append(detailData.mobile_body_2);
+						
+						render('#goods_detail', 'dataList', { data: detailData.mobile_body1 });
 					}else{
-						$(".mall-goods-detail").append(detailData.mobile_body_3);
+// 						if(detailData.mobile_body2[0].type == "image"){
+// 							$(".mall-goods-detail img").attr("src", detailData.mobile_body[0].value)
+// 						}
+// 						
+// 						$(".mall-goods-detail").append(detailData.mobile_body_3);
+						render('#goods_detail', 'dataList', { data: detailData.mobile_body2 });
 					}
 				}
 
