@@ -83,7 +83,7 @@
     </div>
     <script type="text/html" id="orderList">
         {{each data as order j}}
-        <li data-id="{{order}}">
+        <li data-id="{{order.id}}">
         <div class="clearfix top">
             <div class="left">
                 <div class="name"> {{order.from_name}} </div>
@@ -229,7 +229,7 @@
 // 
 //                              $("#expressList" + type).append(html);
 							
-                            render('#expressList1', 'orderList', {data: data}, true) 
+                            render('#expressList'+type, 'orderList', {data: data}, true) 
 
                             if ($(".middle-tab-col .active").attr("data-type") == 1) {
                                 page1++;
@@ -309,7 +309,6 @@
 
 
         });
-
 
 
         mui("body").on('tap', '.middle-tab-col span', function (event) {

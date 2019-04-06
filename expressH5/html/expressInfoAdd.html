@@ -259,7 +259,7 @@
 
         <div class="yunfei-bottom">
 
-            <div class="left has-tip">运费: <span><span id="priceText">0.0</span></span>
+            <div class="left has-tip">运费<em style="font-style:normal;" id="qiyeText"></em>:<span><span id="priceText" data-yufei="0">0.0</span></span>
 
                 <div class="tip">（含保费)<label class="baofei">0</label>元</div>
 
@@ -402,7 +402,7 @@
         {{each data as com i}}
         <div class="swiper-slide express-com-{{com.company.id}}" data-id="{{com.company.id}}">
             <div><img src="{{com.company.logo_url}}"/></div>
-            <p>{{com.company.name}}</p><div class="bottom express-jiage{{com.company.id}}">￥{{com.price}}</div>
+            <p>{{com.company.name}}</p><div class="express-jiage{{com.company.id}}">￥<span class="bottom">{{com.price}}</span></div>
         </div>
         {{/each}}
     </script>
