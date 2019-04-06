@@ -76,16 +76,16 @@
 				
 			}
 			
-			.item_wrap {
+			.list_wrap .item_wrap {
 			    height: 2.3rem;
 			    width: 92%;
 			    margin: 15px 4%;
 				background-color: #FFFFFF;
 				border-radius: 4px;
-				box-shadow: 0px 0px 10px 0px #EAEAEA;
+				/* box-shadow: 0px 0px 10px 0px #EAEAEA; */
 				/* box-shadow: 2px 2px 50px 20px #FDFDFD; */
 			}
-			.title_wrap{
+			.list_wrap .title_wrap{
 				padding: 15px;
 				font-size: 14px;
 				color: #666666;
@@ -95,7 +95,7 @@
 				box-sizing: border-box;
 			}
 			
-			.title_wrap .item_status{
+			.list_wrap .title_wrap .item_status{
 				color: #FF5269;
 				font-size: 14px;
 			}
@@ -128,14 +128,14 @@
 				top: -2px;
 			}
 			
-			.content_wrap{
+			.list_wrap .content_wrap_item{
 				width: 100%;
 				box-sizing: border-box;
 				padding: 15px 15px 0px;
 				
 			}
 			
-			.content_wrap .border{
+			.content_wrap_item .border{
 				height: 122px;
 				width: 100%;
 				border-bottom: 1px solid #E3E3E3;
@@ -314,7 +314,7 @@
 						{{/if}}	
 							</div>
 					</div>
-					<div class=" content_wrap">
+					<div class=" content_wrap_item">
 						<div class="col_between border">
 							<div class="content_up">
 								<img src="{{item.goods_image}}" />
