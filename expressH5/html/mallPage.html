@@ -77,34 +77,6 @@
 	</div>
 
 	<div id="slider" class="mui-slider" >
-		<!-- <div class="mui-slider-group mui-slider-loop">
-			<div class="mui-slider-item mui-slider-item-duplicate">
-					<img src="../images/mall/tm_01.png">
-			</div>
-			<div class="mui-slider-item">
-					<img src="../images/mall/tm_01.png">
-			</div>
-			<div class="mui-slider-item">
-				<img src="../images/mall/tm_01.png">
-			</div>
-			<div class="mui-slider-item">
-				<img src="../images/mall/tm_01.png">
-			</div>
-			<div class="mui-slider-item">
-				<img src="../images/mall/tm_01.png">
-			</div>
-			<div class="mui-slider-item mui-slider-item-duplicate">
-				<a href="#">
-					<img src="../images/mall/tm_01.png">
-				</a>
-			</div>
-		</div>
-		<div class="mui-slider-indicator">
-			<div class="mui-indicator mui-active"></div>
-			<div class="mui-indicator"></div>
-			<div class="mui-indicator"></div>
-			<div class="mui-indicator"></div>
-		</div> -->
 	</div>
 
 	<div class="mall-goods-info">
@@ -250,6 +222,9 @@
 			mui.init();
 			mui.plusReady(function() {
 				goodsId = GetQueryString("id");
+				console.log('goodsId')
+				console.log(goodsId)
+				console.log(goodsId)
 				commonEvent();
 				getDetail();
 				getShopList();
@@ -273,7 +248,9 @@
 					method: "POST",
 					data: {goods_id: goodsId}
 			    }, function (data) {
-					
+					if(data.data.length == 0){
+						return;
+					}
 					setGuiGeHtml(data);
 					
 			    }, function (err) {
@@ -342,11 +319,13 @@
 			        url: "shop/goods/goodsDetail?goods_id="+goodsId
 			    }, function (data) {
 						if(data.goods_images){
-								setLunBoHtml(data.goods_images);
-								
-							
-							
+							setLunBoHtml(data.goods_images);
 						}
+						
+						goodsChildID = data.child_goods[0].goods_id;
+						goods_storage = data.child_goods[0].goods_storage;
+						$(".guige_price").text(data.child_goods[0].goods_price.split(".")[0]);
+						$(".guige_image").attr("src", data.child_goods[0].goods_image);
 						
 						$("#goods_name").html(data.goods_name);
 						var price = data.child_goods[0].goods_price;
@@ -646,8 +625,9 @@
 							method: "POST",
 							data: params
 			    }, function (data) {
-						goodsChildID = data.goods_id;
-						goods_storage = data.goods_storage;
+					
+// 						goodsChildID = data.goods_id;
+// 						goods_storage = data.goods_storage;
 						$(".guige_price").text(data.goods_price.split(".")[0]);
 						$(".guige_image").attr("src", data.goods_image);
 			    }, function (err) {

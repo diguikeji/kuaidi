@@ -143,6 +143,7 @@
 			    })
 			}
 			
+			var goodsList;
 			//商品分类
 			function mallTypes(index) {
 			    Global.commonAjax({
@@ -150,12 +151,12 @@
 					method: "POST",
 					data: {pid: index}
 			    }, function (data) {
-					console.log(data);
-					if(index == 0){
-						render('#left_type', 'leftTypeLeft', { data: data });
-					}else{
-						render('#recommandList', 'list', { data: data });
-					}
+						console.log(data);
+						if(index == 0){
+							render('#left_type', 'leftTypeLeft', { data: data });
+						}else{
+							render('#recommandList', 'list', { data: data });
+						}
 					
 			    }, function (err) {
 					mui.toast(err);
@@ -187,13 +188,24 @@
 			//商品 详情 
 			mui("#recommandList").on('tap','li',function(){
 				var id = $(this).data("id");
+				
 				Global.openWindow({
-					url: 'mallPage.html?id='+id,
-					id: 'mallPage.html',
+					url: 'mall_goods_list.html?gc_id='+id,
+					id: 'mall_goods_list.html',
 					waiting: {
 						autoShow: false
 					}
 				})
+				
+				
+// 				Global.openWindow({
+// 					url: 'mallPage.html?id='+id,
+// 					id: 'mallPage.html',
+// 					waiting: {
+// 						autoShow: false
+// 					}
+// 				})
+				
 			});
 			
 			mui("#likeList").on('tap','li',function(){
@@ -217,6 +229,7 @@
 						autoShow: false
 					}
 				})
+				
 			});
 
 

@@ -1,0 +1,276 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="../css/mui.min.css" rel="stylesheet" />
+    <link href="../css/app.css" rel="stylesheet" />
+    <style type="text/css">
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            background: #FFFFFF;
+        }
+
+        ::-webkit-input-placeholder {
+            color: #CCCCCC;
+            font-size: 12px;
+        }
+
+        .empty_text {
+            width: 100%;
+            padding-top: 0.5rem;
+            text-align: center;
+            background: #FFFFFF;
+            border: none;
+            z-index: 100;
+        }
+
+        .input_wrap {
+            width: 90%;
+            height: 0.36rem;
+            margin: 0.5rem 5% 0.05rem;
+            background-color: #FAFAFA;
+            box-sizing: border-box;
+            border-radius: 0.18rem;
+            padding: 0rem 0.15rem;
+            border: 1px solid #E3E3E3;
+			
+        }
+
+        .input_wrap img {
+            width: 14px;
+            height: 14px;
+            margin-right: 10px;
+        }
+
+        .input_wrap input {
+            border: none;
+            background-color: transparent;
+            margin: 0px;
+            padding: 0px;
+            text-align: left;
+        }
+
+        .input_wrap input.address_search {
+            font-size: 14px;
+        }
+        
+        .mui-bar-nav {
+            box-shadow: none;
+            border-bottom: 1px solid #E1E1E1;
+        }
+		
+		* { touch-action: pan-y; }
+		
+		.list_wrap {
+		    box-sizing: border-box;
+			background-color: #FFFFFF;
+			width: 100%;
+		}
+		
+		.item{
+			height: 1.2rem;
+			width: 100%;
+			box-sizing: border-box;
+			border-bottom: 1px solid #E1E1E1;
+			margin-bottom: 0.05rem;
+			padding-left: 0.25rem;
+		}
+		.list_wrap img{
+			width: 0.8rem;
+			height: 0.8rem;
+			margin-right: 0.1rem;
+		}
+		
+		.content_wrap{
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			padding: 0.15rem 0rem;
+			flex: 1;
+		}
+		
+		.content_wrap .price{
+			text-align: right;
+			padding-right: 0.2rem;
+		}
+		
+    </style>
+</head>
+
+<body>
+    <header class="mui-bar mui-bar-nav">
+        <img src="../images/back.png" class="mui-action-back">
+        <h1 class="mui-title">商品列表</h1>
+    </header>
+
+    <!-- <div class="row input_wrap">
+        <img src="../images/address/search.png">
+        <input type="search" placeholder="请输入商品名字" id="searchInput" class="address_search" onkeyup="enterSearch(event)">
+    </div> -->
+	
+	<div id="pullrefresh" class=" mui-scroll-wrapper" 
+				style="margin-top:0.44rem; border-top: 1px solid #E3E3E3;">
+	    <div class="mui-scroll" >
+	        <!--数据列表-->
+	        <ul class="mui-table-view-condensed mui-table-view  list_wrap" >
+				
+				<!-- <div class="row item">
+					<img src="../images/mall/mall_13.png" >
+					<div class="content_wrap">
+						<span class="name">治愈系双十二必买清单</span>
+						<span>￥200.00</span>
+					</div>
+				</div> -->
+				
+	        </ul>
+	    </div>
+	
+	</div>
+	<div class="empty_text">
+	    数据为空
+	</div>
+	
+	
+	<!-- ../images/mall/mall_13.png -->
+	<script type="text/html" id="dataList">
+	    {{each data as item i}}
+	        <li class="mui-table-view-cell-item row_center item" data-index="{{i}}">
+	        	<img src="{{item.goods_image}}" >
+	        	<div class="content_wrap">
+	        		<span class="name">{{item.goods_name}}</span>
+	        		<span class="price">￥{{item.goods_price}}</span>
+	        	</div>
+	        </li>
+	    {{/each}}
+	</script>
+	
+    <script src="../js/mui.js"></script>
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="../js/app.js"></script>
+	<script src="../js/myStorage.js"></script>
+	<script src="../lib/artTemplate.js"></script>
+    <script type="text/javascript">
+		var h5pullDown = true;
+		var gc_id;
+		mui.init({
+			pullRefresh: {
+				container: '#pullrefresh',
+				down: {
+					callback: pulldownRefresh
+				},
+				up: {
+					contentrefresh: '正在加载...',
+					callback: pullupRefresh
+				}
+			}
+		});
+		
+		
+		mui.plusReady(function() {
+			
+			gc_id = GetQueryString("gc_id");
+			
+			$(".empty_text").hide();
+			$("#pullrefresh").show();
+			pulldownRefresh();
+				
+		});
+		
+		/**
+		 * 下拉刷新具体业务实现
+		 */
+		function pulldownRefresh() {
+			current=1;
+			mui('#pullrefresh').pullRefresh().refresh(true);
+			$(".list_wrap").empty();
+			findList = [];
+			getMsglist();
+			mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+		}
+		/**
+		 * 上拉加载具体业务实现
+		 */
+		function pullupRefresh() {
+			setTimeout(function() {
+				getMsglist();
+			}, 500);
+		}
+		
+		
+		//当前查询  页数
+		var current = 1;
+		var isEnd = 0;
+		var findList = [];
+
+		function getMsglist() {
+			
+			$(".empty_text").hide();
+			$("#pullrefresh").show();
+			
+			var url = "shop/goods/getGoodsByClass?gc_id="+gc_id+"&per=10&page="+current;
+			
+			
+			Global.commonAjax({
+					url: url
+				},
+				function(data) {
+					if(data){
+						var html = "";
+						var res = data;
+						console.log(res);
+						
+						if(res.length > 0){
+							findList = findList.concat(res);
+							current ++;
+							
+							render('.list_wrap', 'dataList', { data: findList });
+							
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
+						}else{
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+						}
+						if(current==1&&res.length==0)
+						{
+							$(".empty_text").show();
+							$("#pullrefresh").hide();
+						}
+					}
+				},
+				function(err) {
+					mui.toast(err);
+// 							isEnd=1;
+// 						    mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+				})
+				
+		}
+		
+			mui(".mui-table-view-condensed").on('tap', 'li', function() {
+			
+			    var index = $(this).data("index");
+			    $(this).addClass("clicked");
+			    var item = findList[index];
+				console.log(JSON.stringify(item));
+				
+				mui.fire(plus.webview.getWebviewById('mallPage.html'), "pageRefresh" ); 
+				
+				Global.openWindow({
+					url: 'mallPage.html?id='+item.goods_commonid,
+					id: 'mallPage.html',
+					waiting: {
+						autoShow: false
+					}
+				})
+			    
+			});
+
+    </script>
+</body>
+
+</html>
