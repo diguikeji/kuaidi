@@ -138,7 +138,7 @@
 .yunfei-top-detail .bottom .step-list .step-middle{width:20px;height:20px;background: #fff;position: absolute;top:0.07rem;left:50%;margin-left:-10px;text-align: center;border-radius: 50%;}
 .yunfei-top-detail .bottom .step-list .step-middle .dian{width:8px;height:8px;border-radius: 50%;background: #107EFF;display: inline-block;position: relative;z-index:100;position: absolute;left:50%;top:50%;margin-left:-4px;margin-top:-4px;}
 .yunfei-top-detail .bottom{position: relative;}
-.yunfei-top-detail .bottom .step-tag{background: #107EFF;color:#fff;font-size:0.12rem;padding:0.032rem 0.1rem;border-radius: 0.1rem;white-space: nowrap;position: absolute;top:-0.35rem;left:-50%;margin-left:-0.2rem;}
+.yunfei-top-detail .bottom .step-tag{background: #107EFF;color:#fff;font-size:0.12rem;padding:0.032rem 0.1rem;border-radius: 0.1rem;white-space: nowrap;position: absolute;top:-0.35rem;left:-50%;margin-left:-0.28rem;}
 .yunfei-top-detail .bottom .step-tag img{width:0.12rem;position: absolute;left:50%;top:0.27rem;margin-left:-0.06rem;}
 .yunfei-top-detail .bottom .left-text{color:#B0D1F8;font-size:0.11rem;position: absolute;left:0.15rem;top:-0.2rem;}
 .yunfei-top-detail .bottom .right-text{color:#CCCCCC;font-size:0.11rem;position: absolute;right:0.15rem;top:-0.2rem;}
