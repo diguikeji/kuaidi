@@ -236,9 +236,8 @@
 		 * 上拉加载具体业务实现
 		 */
 		function pullupRefresh() {
-			setTimeout(function() {
-				getMsglist();
-			}, 500);
+			getMsglist();
+			
 		}
 		
 		
@@ -282,9 +281,11 @@
 					}
 				},
 				function(err) {
+					console.log("error");
 					mui.toast(err);
-// 							isEnd=1;
-// 						    mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(true);
+					
 				})
 				
 		}

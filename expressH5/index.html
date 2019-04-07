@@ -683,6 +683,8 @@
 
                 } else if (clientX > parseInt(pageW * 0.2) && clientX <= parseInt(pageW * 0.4)) {
                     currIndex = 1;
+					var h = plus.webview.getWebviewById("html/service.html");
+					mui.fire(h, 'serviceRefresh', {});
                 }
                 else if (clientX > parseInt(pageW * 0.4) && clientX <= parseInt(pageW * 0.6)) {
                     currIndex = 2;

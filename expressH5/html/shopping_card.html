@@ -25,7 +25,7 @@
 			}
 			
 			.card_item{width: 100%;}
-			.content_item{display: flex; flex-direction: column;justify-content: space-between;width: 100%;height: 0.7rem;}
+			.content_item{display: flex; flex-direction: column;justify-content: space-between;width: 100%;height: 0.8rem;}
 			
 		</style>
 	</head>
@@ -155,7 +155,11 @@
 		        				<span class="name">{{item.goods_name}}</span>
 		        				<div class="row_between money_wrap">
 		        					<span>￥ <span class="item_price">{{item.goods_price}}</span> </span>
-		        					<div class="row">
+		        					{{if item.is_monthly == 1}}
+									<span>月结</span>
+									{{else}}
+									{{/if}}
+									<div class="row">
 		        						<span class="action_span sub-value icon-move iconfont" data-index="{{i}}"></span>
 		        						<span class="num">{{item.goods_num}}</span>
 		        						<span class="action_span add-value icon-add1 iconfont" data-index="{{i}}">
@@ -238,7 +242,9 @@
 					$(".all_info").hide();
 					$(".bottom_wrap").hide();
 					$(".empty_text").show();
+					$("#check_wrap").empty();
 				}else{
+					$("#check_wrap").show();
 					$(".all_info").show();
 					$(".bottom_wrap").show();
 					$(".empty_text").hide();
@@ -415,6 +421,8 @@
 		//购物车结算
 		mui(".bottom_wrap").on('tap', '.allCheckout', function(){
 			// $(".address_modal").show();
+			noMonthPay = false;
+			monthPay = false;
 			var allNum = $("#allNum").text();
 			if(parseInt(allNum) == 0){
 				mui.toast("请选择商品")
@@ -433,8 +441,40 @@
 			checkout(cart_ids.join(","));
 		});
 		
+		var noMonthPay = false;
+		var monthPay = false;
 		//购物车结算
 		function checkout(cart_ids) {
+			console.log('cart_ids--'+cart_ids.split(","));
+			cardList.map(function(item){
+				if(cart_ids.split(",").length == 1){
+					if(cart_ids == item.cart_id){
+						if(item.is_monthly == 1){
+							//月结算
+							monthPay = true;
+						}
+					}
+				}else{
+					cart_ids.split(",").map(function(ite){
+						if(ite.cart_id == item.cart_id){
+							if(item.is_monthly == 1){
+								//月结算
+								monthPay = true;
+							}else{
+								noMonthPay = true;
+							}
+						}
+					});
+				}
+				
+				
+			});
+			console.log('cart_ids--'+monthPay+"---"+noMonthPay);
+			if(monthPay && noMonthPay){
+				mui.toast("月结与非月结商品请分开结算");
+				return;
+			}
+			payType="shop";
 		    Global.commonAjax({
 		        url: "shop/cart/checkout",
 				method: "POST",
@@ -443,7 +483,7 @@
 				id = data[0];
 				console.log(id);
 				getAddressList();
-				
+				getCardList();
 				
 		    }, function (err) {
 				mui.toast(err);
@@ -492,7 +532,7 @@
 		mui(".address_modal").on('tap', '#goToPay', function(){
 			$(".address_modal").hide();
 			payType="shop";
-			getCardList();
+			
 			payModal($("#allMoneyCount").text());
 			
 		});

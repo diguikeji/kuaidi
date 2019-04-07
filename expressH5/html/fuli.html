@@ -388,6 +388,7 @@
 	    	console.log(JSON.stringify(data));
 	    	
 	        if (data) {
+				$(".time").empty();
 				render('.time_wrap', 'timeList', { data: data }, true);
 				data.map(function(item){
 					if(item.status == "进行中"){
@@ -439,7 +440,7 @@
 				if(list.length > 0){
 					$(".fuli-list").removeClass("hideClass");
 					$(".fuli-list-empty").addClass("hideClass");
-					
+					$(".fuli-list").empty();
 					render('.fuli-list', 'couponList', { data: list }, true);
 				}else{
 					$(".fuli-list").addClass("hideClass");
@@ -466,6 +467,7 @@
 				if(list.length > 0){
 					$(".fuli-temai-list").removeClass("hideClass");
 					$(".temai-list-empty").addClass("hideClass");
+					$(".fuli-temai-list").empty();
 					render('.fuli-temai-list', 'promotionsList', { data: list }, true);
 				}else{
 					$(".fuli-temai-list").addClass("hideClass");

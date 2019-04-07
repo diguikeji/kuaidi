@@ -371,7 +371,7 @@
 		 <script src="../js/pay.js"></script>
 		<script type="text/javascript">
 			var h5pullDown = true;
-			
+			var monthPay = '';
 			mui.init({
 				pullRefresh: {
 					container: '#pullrefresh',
@@ -398,6 +398,11 @@
 				}, function (e) {
 				    //alert("获取支付通道失败：" + e.message);
 				});
+				
+				window.addEventListener('mallOrderRefresh', function(event) {
+					closeDialg();
+					pulldownRefresh();
+				}, false);
 				
 			});
 			
@@ -461,7 +466,7 @@
 			function getMsglist() {
 				$(".empty_text").hide();
 				$("#pullrefresh").show();
-				var url = "shop/order/list?type="+type+"&per=10&page="+current;
+				var url = "shop/order/list?type="+type+"&per=10&is_business=0&page="+current;
 				
 				Global.commonAjax({
 					url: url,
