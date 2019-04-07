@@ -140,7 +140,7 @@
                                         <p>外卖管理</p>
                                     </div> -->
 
-                                    <div class="fenlei-child" onclick="openWindow(2)">
+                                    <div class="fenlei-child" onclick="openWindowExpress(2);">
                                         <img style="width:51px;margin-top:2px;"
                                             src="images/firstPageLive/home_09.jpg" />
                                         <p>楼宇福利</p>
@@ -174,7 +174,7 @@
                                         <p>外卖管理</p>
                                     </div> -->
 
-                                    <div class="fenlei-child" onclick="openWindow(2)">
+                                    <div class="fenlei-child" onclick="openWindowExpress(2);">
                                         <img style="width:51px;margin-top:2px;"
                                             src="images/firstPageLive/home_09.jpg" />
                                         <p>楼宇福利</p>
@@ -200,12 +200,6 @@
                     <div class="swiper-pagination"></div>
                 </div>
             </div>
-
-
-
-
-
-
 
             <div class="main-col">
 
@@ -275,14 +269,14 @@
 
             <div class="main-col">
                 <div class="ad-col" onclick="openWindow(2)">
-                    <img src="images/firstPageLive/home_38.jpg" />
+                    <img src="images/home_bottom.jpg" style="height: 2rem;"/>
                 </div>
             </div>
 
         </div>
 
 
-        <div class="home-bottom">
+        <div class="home-bottom hideClass">
             <div class="zhankai">
 
                 <span id="openMore">
@@ -492,7 +486,7 @@
                 })
             } else if (id == 2) {
                 Global.openWindow({
-                    url: 'html/fuli.html',
+                    url: 'html/fuli.html?fromHome='+'home',
                     id: 'fuli.html',
                     waiting: {
                         autoShow: false
@@ -527,8 +521,8 @@
             else if (str == 2) {
 
                 Global.openWindow({
-                    url: 'html/fuli.html?p=1',
-                    id: 'fuli.html',
+                    url: 'html/web_view.html',
+                    id: 'web_view.html',
                     waiting: {
                         autoShow: false
                     }

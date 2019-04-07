@@ -117,7 +117,7 @@
     <div class=" head_wrap">
         <div class="row_between">
             <img src="../images/back_white.png" class="mui-action-back">
-            <span style="font-size: 0.14rem;" onclick="openWindowPage('service_order.html')">服务订单</span>
+            <span style="font-size: 0.14rem;" onclick="openWindowPage('my_order.html')">企业订单</span>
         </div>
 
         <div>
@@ -143,7 +143,7 @@
     </div>
     <script type="text/html" id="serviceList">
         {{each data as datum j}}
-        <div class="row_between-col" data-id="{{datum.id}}" data-title="{{datum.title}}">
+        <div class="row_between-col" data-index="{{j}}" data-title="{{datum.title}}">
             <div class="row_center item_wrap">
                 <img src="{{datum.icon}}">
                 <div class="col">
@@ -169,13 +169,14 @@
         httpRequest();
     });
 
-
+	var serviceList = [];
     function httpRequest() {
         //服务类型
         Global.commonAjax({
             url: "service/types"
         },
             function (data) {
+				serviceList = data;
                 render('#list', 'serviceList', { data: data }, true) 
             },
             function (err) {
@@ -199,19 +200,27 @@
     //企业饮水服务
     mui("#list").on('tap', '.row_between-col ', function () {
 
-        var id = $(this).attr("data-id");
-        var name = myStorage.setItem("localServiceName", $(this).attr("data-title"));
-
-        Global.openWindow({
-            url: 'post_service_order.html',
-            id: 'post_service_order.html',
-            waiting: {
-                autoShow: false
-            },
-            extras: {
-                type: id
-            }
-        })
+        var type = $(this).data("index") + 1;
+		
+		Global.openWindow({
+			url: 'mall_goods_list.html?gc_id='+serviceList[type-1].gc_id+"&type="+type,
+			id: 'mall_goods_list.html',
+			waiting: {
+				autoShow: false
+			}
+		})
+		return;
+		
+//         Global.openWindow({
+//             url: 'post_service_order.html',
+//             id: 'post_service_order.html',
+//             waiting: {
+//                 autoShow: false
+//             },
+//             extras: {
+//                 type: id
+//             }
+//         })
 
     })
 

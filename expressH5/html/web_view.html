@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <link href="../css/mui.min.css" rel="stylesheet" />
+        <style type="text/css">
+        	.header-right{position: absolute;right:0;top:0;padding:0 10px;}
+        	.header-right img{width:28px; margin-top: 4px;}
+        </style>
+    </head>
+	
+	<header class="mui-bar mui-bar-nav" style="position: relative;">
+	    <a class=" mui-icon mui-action-back mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title"></h1>
+		<!-- <div class="header-right" id="share_img">
+			<img src="../images/mall/goodsDetail_03.png"/>
+		</div> -->
+	</header>
+
+    <body>
+        <div id="div1"></div>
+		
+		<!--弹窗-->
+		<!-- <div class="modal-mask row inviteModal hideClass">
+		    <div class="modal-dialog">
+		        <img src="../images/login/login_close.png" class="close_style" onclick="closeInviteDialg();" />
+		        <div class="modal-content">
+		            <div class="row invite_bottom_content">
+		                <div class="col_center wx_wrap">
+		                    <img src="../images/personal/wx_invalite.png" />
+		                    <span>微信</span>
+		                </div>
+		
+		                <div class="col_center wx_friend_wrap">
+		                    <img src="../images/personal/wx_friend_invalite.png" />
+		                    <span>朋友圈</span>
+		                </div>
+		
+		                <div class="col_center qq_wrap" >
+		                    <img src="../images/personal/qq_icon.png" />
+		                    <span>QQ</span>
+		                </div>
+						
+		            </div>
+		        </div>
+		    </div>
+		</div> -->
+		
+        <script src="../js/mui.min.js"></script>
+		<script src="../js/myStorage.js"></script>
+        <script type="text/javascript">
+            mui.init();
+			mui.plusReady(function() {
+				var self = plus.webview.currentWebview();
+				var baiduWV = plus.webview.create("http://kd.loufubao.com/dajin/#/?token="+myStorage.getItem("token")+"&inapp=true",
+					"baidu", {
+					top: "45px",
+					bottom: 0
+				});
+				self.append(baiduWV);
+
+			});
+			
+			//Android 物理返回
+// 			var old_back = mui.back;
+// 			mui.back = function(){
+// 				close();
+// 			}
+            			
+        </script>
+    </body>
+
+</html>

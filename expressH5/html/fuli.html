@@ -160,6 +160,7 @@
 			.fuli-top .back-col{display: none;}
 			.space{height:0.8rem;}
 			.space.active{height:0.6rem;}
+			#statusBar img{width: 0.18rem; height: 0.14rem; position: fixed; left: 0.2rem; top: 0.1rem;}
 	</style>
 
 </head>
@@ -167,7 +168,11 @@
 <body>
 
 
-<!-- <div class="status-bar" id="statusBar"></div> -->
+<div class="status-bar" id="statusBar">
+	<div class="left-col back-col" onclick="mui.back();">
+			<img src="../images/back.png"/>
+	</div>
+</div>
 
 <div class="fuli-top">
 
@@ -351,6 +356,7 @@
 <script>
 	
 	var param=GetQueryString("p");
+	var fromHome=GetQueryString("fromHome");
 	if(param==1)
 	{
 		$(".fuli-top").addClass("child-col");
@@ -364,6 +370,12 @@
 			if(mui.os.android)
 			{
 				$("#statusBar").height(topHeight);
+			}
+			
+			if(fromHome){
+				$("#statusBar").show();
+			}else{
+				$("#statusBar").hide();
 			}
 		   commonEvent();
 		   httpRequest();
