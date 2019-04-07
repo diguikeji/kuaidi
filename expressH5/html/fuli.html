@@ -400,7 +400,7 @@
 	    	console.log(JSON.stringify(data));
 	    	
 	        if (data) {
-				$(".time").empty();
+				$(".time_wrap").empty();
 				render('.time_wrap', 'timeList', { data: data }, true);
 				data.map(function(item){
 					if(item.status == "进行中"){
