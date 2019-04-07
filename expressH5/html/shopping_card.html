@@ -24,7 +24,8 @@
 				height: 100%;
 			}
 			
-			
+			.card_item{width: 100%;}
+			.content_item{display: flex; flex-direction: column;justify-content: space-between;width: 100%;height: 0.7rem;}
 			
 		</style>
 	</head>
@@ -43,11 +44,11 @@
 			<form class="mui-input-group" id="check_wrap">
 				
 				<!-- <div class="mui-input-row mui-checkbox mui-left radio_item">
-					<div class="checkbox-col">
+					<div class="checkbox-col card_item">
 						<div class="row ">
 							<img src="../images/mall/pindan_20.png" alt="">
-							<div class="col_between" style="height: 0.7rem;">
-								<span class="name">sadjfjjfjfasfjsadjfjjfjfasfjdjjdjjdjjdjjsadjfjjfjfasfjsadjfjjfjfasfjdjjdjjdjjdjj</span>
+							<div class="content_item" >
+								<span class="name">123</span>
 								<div class="row_between money_wrap">
 									<span>￥ <span class="item_price">dfdfdfd</span> </span>
 									<div class="row">
@@ -147,10 +148,10 @@
 		<script type="text/html" id="checkList">
 		    {{each data as item i}}
 		        <div class="mui-input-row mui-checkbox mui-left radio_item">
-		        	<div class="checkbox-col">
+		        	<div class="checkbox-col card_item">
 		        		<div class="row ">
 		        			<img src="{{item.goods_image}}" alt="">
-		        			<div class="col_between" style="height: 0.7rem;">
+		        			<div class="content_item" >
 		        				<span class="name">{{item.goods_name}}</span>
 		        				<div class="row_between money_wrap">
 		        					<span>￥ <span class="item_price">{{item.goods_price}}</span> </span>
@@ -252,6 +253,7 @@
 		//关闭地址选择窗口
 		mui(".address_modal").on('tap', '.close_style', function(e){
 			$(".address_modal").hide();
+			
 		})
 		
 		mui(".radio_all").on('tap', 'input[type="checkbox"]', function(e){
@@ -404,6 +406,7 @@
 // 				$(".edit-img").eq(selectAddressIndex).show();
 				
 				address_id = addressList[selectAddressIndex].address_id;
+				
 		    }, function (err) {
 				mui.toast(err);
 		    })
@@ -440,7 +443,7 @@
 				id = data[0];
 				console.log(id);
 				getAddressList();
-				getCardList();
+				
 				
 		    }, function (err) {
 				mui.toast(err);
@@ -489,6 +492,7 @@
 		mui(".address_modal").on('tap', '#goToPay', function(){
 			$(".address_modal").hide();
 			payType="shop";
+			getCardList();
 			payModal($("#allMoneyCount").text());
 			
 		});

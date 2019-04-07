@@ -499,10 +499,12 @@
 					
 			}
 			//列表点击 付款
-			mui(".mui-table-view-condensed").on('tap', 'li .pay_order', function() {
+			mui(".mui-table-view-condensed").on('tap', 'li .item_down .pay_order', function() {
 				
 				var index = $(this).index();
 				var item = findList[index];
+				
+				console.log(JSON.stringify(item));
 				
 				id=item.order_id;
 				

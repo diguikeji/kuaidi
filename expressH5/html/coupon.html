@@ -12,8 +12,6 @@
 		<style type="text/css">
 			body, html{
 				width: 100%;
-				height: 90%;
-				background: #F2F2F2;
 			}
 			
 			.select_type{
@@ -69,26 +67,17 @@
 				height: 47px;
 				position: relative;
 			}
-			
-			 body,
-        html {
-            width: 100%;
-			height: 100%;
-            background: #EDECF2;
-        }
         
         .list_wrap {
             padding: 0px;
             box-sizing: border-box;
-			background-color: #F8F8F8;
-			
+			background: #EDECF2;
         }
         
         .item_wrap {
             height: 0.93rem;
             width: 92%;
             margin: 0.15rem 4%;
-			background-color: #FFFFFF;
 			border-radius: 0.04rem;
 			background-size: 100% 100%;
 			padding-left: 0.15rem;
@@ -156,7 +145,7 @@
 			</div>
 		
 			
-		<div id="pullrefresh" class="mui-content mui-scroll-wrapper" style="text-align: center; background: #F2F2F2;margin-top:0.45rem">
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper" style="text-align: center; margin-top:0.45rem">
 			
         <div class="mui-scroll">
             <!--数据列表-->
@@ -289,12 +278,14 @@
 						
 						if(data.data.length>0)
 						{
+							$(".empty_text").hide();
+							$("#pullrefresh").show();
 							render('.list_wrap', 'couponList', { data: data.data }, true);
 							isEnd=1;
+						}else{
+							$(".empty_text").show();
+							$("#pullrefresh").hide();
 						}
-
-						$(".empty_text").show();
-
 					}
 
 

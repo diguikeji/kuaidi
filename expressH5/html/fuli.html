@@ -14,11 +14,12 @@
 	<link rel="stylesheet" href="../css/firstPage.css">
 	<style>
 		body{background: #fff;overflow-x:hidden;}
+		.tab-main{position: fixed;top:0.85rem;width: 100%; height: auto; bottom: 0rem;overflow-y: scroll;overflow-x: hidden;}
 		.fuli-list{padding-bottom:0.2rem;}
 		.fuli-list li{height:1.15rem;width:100%;background: url("../images/fuli/fuli_12.jpg");background-size:100% 100%;border:1px solid rgba(243, 243, 243, 1);
 			box-shadow:0px 2px 6px 0px rgba(126,125,125,0.14);position: relative;margin:0.1rem 0 0.1rem 0;padding-left:1.1rem;box-sizing: border-box;}
 
-		.fuli-list li .img{width:0.9rem;height:0.9rem;position: absolute;left:0.12rem;top:0.13rem;}
+		.fuli-list li .coupon_image{width:0.9rem;height:0.9rem;position: absolute;left:0.12rem;top:0.13rem;z-index: 100;}
 		.fuli-list li .weizhi{height:11px;
 			font-size:12px;
 			font-weight:400;
@@ -37,6 +38,7 @@
 		.buzhou-list .swiper-slide div{color:#333333;font-size:0.11rem;padding:0.02rem;}
 		.buzhou-list .swiper-slide.disabled div{color:#CCCCCC;}
 		.buzhou-list .swiper-slide.active{color:#fff;}
+		.mui-slider-group .mui-slider-item img{width: 100%; height: 1.6rem!important;}
 		.buzhou-list .swiper-slide.active div{color:#fff;position: relative;z-index:10;}
 		.buzhou-list .swiper-slide.active span{position: relative;z-index:10;}
 		.buzhou-list .swiper-slide.active:after{content:" ";display:block;height:0.55rem;top:0;left:0;position:absolute;width:100%;background: url("../images/fuli/fuli_08.png");background-size:100% 100%;}
@@ -71,7 +73,7 @@
 		/* .fuli-temai-list li button{background: #F39800;color:#fff;border:0;width:0.89rem;line-height:0.36rem;padding:0;position: absolute;right:0.1rem;bottom:0.05rem;} */
 		.fuli-temai-list li button{background: #F39800;color:#fff;border:0;width:0.89rem;line-height:0.36rem;padding:0;}
 
-		.fuli-temai-list li img{display: block;width:100%; height: 1.5rem;}
+		.fuli-temai-list li img{display: block;width:100%; height: 3.2rem;}
 		.swiper-banner img{display: block;width:100%;}
 		.swiper-tab-col{overflow:visible!important;}
 		.tab-col{width:100%;overflow: hidden;}
@@ -130,7 +132,7 @@
 			.modal-content .img{
 				text-align: center;
 				position:relative;
-				margin: 0.2rem auto 0.2rem auto;
+				margin: 0.2rem auto 0rem auto;
 				
 			}
 			
@@ -138,7 +140,7 @@
 			
 			.modal-content .img span{color:#fff;font-size:0.14rem;position:absolute;left:0;width:100%;text-align:center;line-height:0.6rem;}
 			
-			.modal-content .btn{text-align:center;line-height:0.3rem;}
+			.modal-content .btn{text-align:center;line-height:0.3rem; font-size: 0.16rem; border-top:1px solid #E3E3E3;padding: 0.1rem 0rem; }
 			
 			.modal-content .img img{
 				width: 2.4rem;
@@ -195,17 +197,18 @@
 <div class="tab-main" >
 
 		<div class="tab-col">
-
-			<div class="swiper-container swiper-banner">
+			
+			<div id="slider" class="mui-slider" >
+				
+			</div>
+			
+			<!-- <div class="swiper-container swiper-banner">
 				<div class="swiper-wrapper swiper-banner-list">
-					<!--<div class="swiper-slide">
-						<img src="../images/fuli/fuli_06.jpg">
-					</div>-->
 				</div>
 
 
 				<div class="swiper-pagination swiper-banner-pagination"></div>
-			</div>
+			</div> -->
 
 
 			<div class="swiper-container swiper-tab-col buzhou-list">
@@ -220,6 +223,19 @@
 
 				<ul class="fuli-list">
 					
+					<!-- <li >
+						<img class="coupon_image" src="../images/fuli/temai_08.jpg" />
+						<div>
+							<div class="biaoti">1223</div>
+							<p class="weizhi"><img  src="../images/fuli/weizhi.jpg" />人天天拖拖拖</p>
+							<div class="riqi">12 至 34</div>
+						</div>
+						<div class="lingqu" data-id="{{item.id}}">
+							<div>立即</div>
+							<div>领取</div>
+						</div>
+					
+					</li> -->
 					
 				</ul>
 				
@@ -293,8 +309,8 @@
 
 <script type="text/html" id="couponList">
 	{{each data as item i}}
-		<li data-id="{item.id}}">
-			<img class="img" src="{{item.image}}">
+		<li data-id="{{item.id}}">
+			<img class="coupon_image" src="{{item.image}}" />
 			<div>
 				<div class="biaoti">{{item.name}}</div>
 				<p class="weizhi"><img  src="../images/fuli/weizhi.jpg" />{{item.building.name}}</p>
@@ -418,10 +434,12 @@
 	    	
 	        if (data) {
 				var list = data.data;
-				console.log(list);
+				console.log('list[0].image');
+				// console.log(list[0].image);
 				if(list.length > 0){
 					$(".fuli-list").removeClass("hideClass");
 					$(".fuli-list-empty").addClass("hideClass");
+					
 					render('.fuli-list', 'couponList', { data: list }, true);
 				}else{
 					$(".fuli-list").addClass("hideClass");
@@ -476,12 +494,14 @@
 		    if (data) {
 				var list = data;
 				console.log(list);
-				render('.swiper-banner-list', 'bannerListCol', { data: list }, true);
-				var swiper = new Swiper('.swiper-banner', {
-					pagination: {
-						el: '.swiper-banner-pagination',
-					}
-				});
+// 				render('.swiper-banner-list', 'bannerListCol', { data: list }, true);
+// 				var swiper = new Swiper('.swiper-banner', {
+// 					pagination: {
+// 						el: '.swiper-banner-pagination',
+// 					}
+// 				});
+				
+				setLunBoHtml(list);
 
 				
 		    }
@@ -505,7 +525,9 @@
 	mui(".fuli-list").on('tap','.lingqu',function(){
 
 		var id=$(this).attr("data-id");
-		var nameText=$(this).find(".biaoti").text();
+		var nameText=$(this).parent().find(".biaoti").text();
+		console.log(nameText);
+		
 		Global.commonAjax({
 	        url: "welfare/coupons/"+id,
 	        data:{coupon_id:id},
@@ -524,10 +546,53 @@
 	
 	});
 	
+	
+	function setLunBoHtml(list){
+		var dotHtml = '<div class="mui-slider-indicator">';
+		var html = '<div class="mui-slider-group mui-slider-loop">'+
+						'<div class="mui-slider-item mui-slider-item-duplicate" data-type="'+list[list.length-1].type+'" data-url="'+list[list.length-1].img_url+'">'+
+								'<img src="'+list[list.length-1].img_url+'">'+
+						'</div>';
+			for(var i=0; i<list.length; i++){
+				html += '<div class="mui-slider-item">'+
+								'<img src="'+list[i].img_url+'">'+
+						'</div>';
+				if(i == 0){
+					dotHtml += '<div class="mui-indicator active"></div>';	
+				}else{
+					dotHtml += '<div class="mui-indicator"></div>';	
+				}
+					
+			}			
+			html += '<div class="mui-slider-item mui-slider-item-duplicate">'+
+							
+							'<img src="'+list[0]+'">'+
+						'</div></div>';			
+			dotHtml += '</div>';		
+			
+			html += dotHtml;
+						
+			$("#slider").append(html);
+			
+			var gallery = mui('.mui-slider');
+			gallery.slider({
+				  interval: 1000 
+			});
+	
+	}
+	
+	//左右滑动获取当前轮播位置索引
+document.querySelector('.mui-slider').addEventListener('slide', function(event) {
+  
+});
+	
+	
 	//banner点击事件
-	mui(".swiper-banner-list").on('tap','.swiper-slide',function(){
+	mui(".mui-slider").on('tap','.mui-slider-item',function(){
+		//mui.alert("点击了");
 		var type=$(this).attr("data-type");
 		var subUrl=$(this).attr("data-url");
+		console.log(subUrl);
 		if(type==2&&subUrl)
 		{
 			Global.openWindow({

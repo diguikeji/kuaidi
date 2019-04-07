@@ -101,6 +101,26 @@
 			padding-right: 0.2rem;
 		}
 		
+		.list-col{padding:0 8px;box-sizing: border-box;}
+		.img-list{width:100%;list-style: none;padding:0 0;box-sizing: border-box;margin:0.08rem 0 0 0;position: relative;}
+		.img-list .grid-item { width: 50%;padding:8px 8px;box-sizing: border-box;margin-bottom:0.16rem;float:left;box-sizing: border-box;}
+		.img-list .grid-item .grid-item-col{background: #fff;}
+		.img-list .grid-item .img{width:100%; height: 1.5rem;}
+		.img-list .grid-item .bottom-text img{width:0.12rem;position: relative;top:0.02rem;margin-right:0.02rem;}
+		.img-list .grid-item .bottom-text{padding:0 8px 6px 8px;}
+		.img-list .grid-item p{font-size:0.12rem;line-height:0.18rem;height:0.36rem;text-overflow: -o-ellipsis-lastline;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			line-clamp: 2;
+			-webkit-box-orient: vertical;
+			padding:0 8px;
+			margin-bottom:0;
+		}
+		.img-list .grid-item .bottom-text{font-size:10px;color:#999;}
+		
+		
     </style>
 </head>
 
@@ -117,9 +137,9 @@
 	
 	<div id="pullrefresh" class=" mui-scroll-wrapper" 
 				style="margin-top:0.9rem; border-top: 1px solid #E3E3E3;">
-	    <div class="mui-scroll" >
+	    <div class="mui-scroll list-col" >
 	        <!--数据列表-->
-	        <ul class="mui-table-view-condensed mui-table-view  list_wrap" >
+	        <ul class="mui-table-view-condensed mui-table-view  list_wrap img-list" >
 				
 				<!-- <div class="row item">
 					<img src="../images/mall/mall_13.png" >
@@ -139,7 +159,7 @@
 	
 	
 	<!-- ../images/mall/mall_13.png -->
-	<script type="text/html" id="dataList">
+	<script type="text/html" id="dataList123">
 	    {{each data as item i}}
 	        <li class="mui-table-view-cell-item row_center item" data-index="{{i}}">
 	        	<img src="{{item.goods_image}}" >
@@ -148,6 +168,18 @@
 	        		<span class="price">￥{{item.goods_price}}</span>
 	        	</div>
 	        </li>
+	    {{/each}}
+	</script>
+	
+	<script type="text/html" id="dataList">
+	    {{each data as item i}}
+			<li class="grid-item" data-index="{{i}}">
+				<div class="grid-item-col">
+				<img class="img" src="{{item.goods_image}}"/>
+				<p>{{item.goods_name}}</p>
+				<span>￥{{item.goods_price}}</span>
+				</div>
+			</li>
 	    {{/each}}
 	</script>
 	

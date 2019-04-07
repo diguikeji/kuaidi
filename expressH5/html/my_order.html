@@ -7,6 +7,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/pay.css">
 		<style type="text/css">
 			body, html{
 				width: 100%;
@@ -67,6 +68,173 @@
 				height: 47px;
 				position: relative;
 			}
+			
+			.list_wrap {
+			    padding: 0px;
+			    box-sizing: border-box;
+				background-color: #EDECF2;
+				
+			}
+			
+			.list_wrap .item_wrap {
+			    height: 2.3rem;
+			    width: 92%;
+			    margin: 15px 4%;
+				background-color: #FFFFFF;
+				border-radius: 4px;
+				/* box-shadow: 0px 0px 10px 0px #EAEAEA; */
+				/* box-shadow: 2px 2px 50px 20px #FDFDFD; */
+			}
+			.list_wrap .title_wrap{
+				padding: 15px;
+				font-size: 14px;
+				color: #666666;
+				height: 44rpx;
+				border-bottom: 1px solid #E3E3E3;
+				width: 100%;
+				box-sizing: border-box;
+			}
+			
+			.list_wrap .title_wrap .item_status{
+				color: #FF5269;
+				font-size: 14px;
+			}
+			
+			/* 待付款 */
+			.title_wrap .item_pre_pay_status{
+				color: #F39800;
+				font-size: 14px;
+			}
+			
+			/* 待收货 */
+			.title_wrap .item_pre_get_status{
+				color: #18C800;
+				font-size: 14px;
+			}
+			
+			/* 已完成 */
+			.title_wrap .item_finish_status{
+				color: #999999;
+				font-size: 14px;
+			}
+			
+			.title_wrap .item_pre_pay_status .dian,
+			.title_wrap .item_pre_get_status .dian,
+			.title_wrap .item_finish_status .dian,
+			.title_wrap .item_status .dian{
+				font-weight: bold;
+				font-size: 25px;
+				position: relative;
+				top: -2px;
+			}
+			
+			.list_wrap .content_wrap_item{
+				width: 100%;
+				box-sizing: border-box;
+				padding: 15px 15px 0px;
+				
+			}
+			
+			.content_wrap_item .border{
+				height: 122px;
+				width: 100%;
+				border-bottom: 1px solid #E3E3E3;
+			}
+			
+			.content_up{
+				height: 122px;
+				width: 100%;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+			}
+			
+			.content_up img{
+				width: 70px;
+				height: 70px;
+				border-radius: 4px;
+			}
+			
+			.content_center{
+				width:168px;
+				max-height:57px;
+				position: relative;
+				line-height: 20px;
+				overflow: hidden;
+				font-size: 14px;
+				color: #666666;
+				flex: 1;
+				padding: 0px 16px;
+			}
+			
+			.content_end{
+				color: #666666;
+				font-size: 14px;
+				display: flex;
+				flex-direction: column;
+			}
+			
+			.content_end .number{
+				text-align: right;
+			}
+			
+			.content_down{
+				width: 100%;
+				text-align: right;
+				margin-bottom: 10px;
+			}
+			
+			.first_txt{
+				color: #999999;
+				font-size: 14px;
+			}
+			
+			.first_txt .num{
+				color: #333333;
+			}
+			
+			.sencod_txt{
+				font-size: 14px;
+				color: #333333;
+			}
+			
+			.sencod_txt .money{
+				font-size: 12px;
+			}
+			
+			.sencod_txt .money_num{
+				font-size: 18px;
+			}
+			
+			.sencod_txt .num_float{
+				font-size: 12px;
+			}
+			
+			.item_down{
+				height: 0.6rem;
+				font-size: 0.12rem;
+				justify-content: flex-end;
+				width: 100%;
+				padding-right: 15px;
+				padding-top: 0;
+			}
+			
+			.item_down span{
+				border-radius: 12px;
+				padding: 0px 11px;
+				margin-left: 10px;
+			}
+			
+			.warn_tag{
+				color: #FFFFFF;
+				background-color: #107EFF;
+			}
+			
+			.normal_tag{
+				color: #666666;
+				background-color: #FFFFFF;
+				border: 1px solid #999999;
+			}
 
 		</style>
 	</head>
@@ -118,12 +286,95 @@
 		</div>
 		
 		
+		<script type="text/html" id="orderList">
+		    {{each data as item i}}
+				
+				<li class="mui-table-view-cell-item item_wrap col_between" data-index="{{i}}">
+					<div class="row_between title_wrap">
+						<span>{{item.add_time}}</span>
+						{{if item.order_state == 20}}
+							<div class="row_center item_status">
+								<span class="dian">·</span>
+								<span>&nbsp;待发货</span>
+						{{else if item.order_state == 10}}
+							<div class="row_center item_pre_pay_status">
+								<span class="dian">·</span>
+								<span>&nbsp;待付款</span>
+						{{else if item.order_state == 30}}
+							<div class="row_center item_pre_get_status">
+								<span class="dian">·</span>
+								<span>&nbsp;已发货</span>
+						{{else if item.order_state == 40}}	
+							<div class="row_center item_finish_status">
+								<span class="dian">·</span>
+								<span>&nbsp;交易完成</span>
+						{{else if item.order_state == 0}}	
+							<div class="row_center">
+								<span class="dian">·</span>
+								<span>&nbsp;已取消</span>		
+						{{/if}}	
+							</div>
+					</div>
+					<div class=" content_wrap_item">
+						<div class="col_between border">
+							<div class="content_up">
+								<img src="{{item.goods_image}}" />
+								<span class="content_center">{{item.goods_name}}</span>
+								<div class="content_end">
+									<span>￥{{item.goods_price}}</span>
+									<span class="number">x{{item.goods_num}}</span>
+								</div>
+							</div>
+							<div class="content_down">
+								<span class="first_txt">共 <span class="num">{{item.goods_num}}</span> 件</span>
+								<span class="sencod_txt">应付金额:
+									<span class="money">￥</span><span class="money_num">{{item.goods_pay_price}}</span>
+									<!-- <span class="num_float">.00</span> -->
+								</span>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row item_down">
+						
+						
+						{{if item.order_state == 20}}
+							<!-- <span class="warn_tag tixing_order">提醒发货</span> -->
+							<span class="normal_tag cancle_order">取消订单</span>
+							<span class="normal_tag look_order">查看物流</span>
+						{{else if item.order_state == 10}}
+							<span class="normal_tag cancle_order">取消订单</span>
+							<span class="warn_tag pay_order">&nbsp;&nbsp;付款&nbsp;&nbsp;</span>
+						{{else if item.order_state == 30}}
+							<!-- <span class="warn_tag cui_order">&nbsp;催物流&nbsp;</span> -->
+							<span class="normal_tag cancle_order">取消订单</span>
+							<span class="normal_tag sure_order">确认收货</span>
+						{{else if item.order_state == 40}}
+							<span class="warn_tag del_order">&nbsp;&nbsp;删除&nbsp;&nbsp;</span>
+							<span class="normal_tag again_order">再次购买</span>
+							<span class="normal_tag look_order">查看物流</span>	
+						{{else if item.order_state == 0}}
+							<span class="warn_tag del_order">&nbsp;&nbsp;删除&nbsp;&nbsp;</span>	
+						{{/if}}
+					</div>
+							
+				</li>
+				
+		    {{/each}}
+		</script>
+		
+		
 		<script src="../js/mui.js"></script>
 		<script src="../js/jquery-2.1.1.min.js"></script>
 		 <script src="../js/app.js"></script> 
 		 <script src="../js/myStorage.js"></script>
+		 <script src="../lib/artTemplate.js"></script>
 		<script type="text/javascript">
 			var h5pullDown = true;
+			var type = -1;
+			var channel;
+			var channels;
+			var id;
 			
 			mui.init({
 				pullRefresh: {
@@ -139,13 +390,15 @@
 			});
 			
 			mui.plusReady(function() {
-						
-				getMsglist();
 				
-				window.addEventListener('searchType', function(event) {
-				    console.log("收到事件" + event.detail.search);
-				    pulldownRefresh();
-				}, false);
+				plus.payment.getChannels(function (cs) {
+				channels = cs;
+				console.log(JSON.stringify(channels));
+				}, function (e) {
+				    //alert("获取支付通道失败：" + e.message);
+				});
+				
+				pulldownRefresh();
 						
 			});
 			
@@ -164,9 +417,7 @@
 			 * 上拉加载具体业务实现
 			 */
 			function pullupRefresh() {
-				setTimeout(function() {
-					getMsglist();
-				}, 500);
+				getMsglist();
 			}
 			
 			
@@ -183,94 +434,138 @@
 					if(index == ind){
 						$(this).addClass("active");
 						$(this).next().addClass("active_line");
-						sendClickType(index);
+						
+						if(index == 0){
+							//全部
+							type = -1;
+						}else if(index == 1){
+							//待付款
+							type = 10;
+						}else if(index == 2){
+							//已付款 代发货
+							type = 20;
+						}else if(index == 3){
+							//已发货
+							type = 30;
+						}
+						
+						pulldownRefresh();
+						
 					}
 				})
-			}
-				
-			function sendClickType(index){
-				console.log("发送事件"+index);
-				var h = plus.webview.getWebviewById("my_order_sub.html");
-				mui.fire(h,'updateOrderType',{index: index});
 			}
 			
 			
 			function getMsglist() {
-				var searchKey = $("#searchInput").val();
-				var params = {
-					"q": searchKey
-				};
-	
 				$(".empty_text").hide();
 				$("#pullrefresh").show();
-				//mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
-				
-				console.log("进入页面："+myStorage.getItem("storageSelectAddressValue"));
-				
-				var typeValue=myStorage.getItem("storageSelectAddressValue");
-				var url=searchKey ? "addresses/search?q="+searchKey+"&page="+current : "addresses?type=1&page="+current;
-				if(typeValue>0)
-				{
-					if(typeValue==1)
-					{
-						url=searchKey ? "addresses/search?type=1&q="+searchKey+"&page="+current : "addresses?type=1&page="+current;
-					}
-					else
-					{
-						url=searchKey ? "addresses/search?type=2&q="+searchKey+"&page="+current : "addresses?type=2&page="+current;
-					}
-				}
+				var url = "shop/order/list?type="+type+"&per=10&page="+current;
 				
 				Global.commonAjax({
-						url: url
-						
-					},
-					function(data) {
-						if(data){
-							var html = "";
-							var res = data;
-							if(searchKey){
-								res = data;
-							}else{
-								res = data.data;
-							}
-							console.log(res);
-							
-							if(res.length > 0){
-								for(var i=0;i<res.length;i++){
-									var item = res[i];
-									findList = findList.concat(item);
-									html += '<li class="mui-table-view-cell-item item_wrap col_between" data-index="'+i+'">'+
-											'<div class="row_between wrap">'+
-											'<span class="sex">'+item.name.substring(0,1)+'</span>'+
-											'<div class="content_wrap">'+
-												'<span class="name">'+item.name+
-													' &nbsp;&nbsp;<span class="tel">'+item.mobile+'</span>'+
-												'</span>'+
-												'<span class="address">'+item.province+item.city+item.area+item.detail+'</span>'+
-											'</div>'+
-											'<img class="edit-img" src="../images/address/edit_address_icon.png" >'+
-										'</div></li>';
-								}
-								current ++;
-								$(".list_wrap").append(html);
-								mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
-							}else{
-								mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
-							}
-							if(current==1&&res.length==0)
-							{
-								$(".empty_text").removeClass("hideClass");
-							}
+					url: url,
+				},function(data) {
+					if(data){
+						// setHtmlData(data);
+						if(data.length > 0){
+							current ++;
+							data.map(function(item){
+								item.order_goods.map(function(ite){
+									var objItem = {};
+									Object.assign(objItem, item, ite);
+									findList.push(objItem);
+								});
+							});
+							console.log(JSON.stringify(findList));
+							console.log(JSON.stringify(findList[0]));
+							render('.list_wrap', 'orderList', { data: findList });
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
+						}else{
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
 						}
-					},
-					function(err) {
-						mui.toast(err);
-// 							isEnd=1;
-// 						    mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
-					})
+						
+						if(current==1&&data.length==0)
+						{
+							$(".empty_text").show();
+							$("#pullrefresh").hide();
+						}
+						
+						
+					}
+				},function(err) {
+					mui.toast(err);
+				});
 					
 			}
+			
+			//列表点击 付款
+			mui(".mui-table-view-condensed").on('tap', 'li .item_down .pay_order', function() {
+				
+				var index = $(this).index();
+				var item = findList[index];
+				
+				console.log(JSON.stringify(item));
+				
+				id=item.order_id;
+				
+				payType="shop";
+				payModal(item.need_amount);
+				
+				console.log("数据"+JSON.stringify(item));
+				
+			});
+			
+			//列表点击 取消订单
+			mui(".mui-table-view-condensed").on('tap', 'li .cancle_order', function() {
+				var index = $(this).index();
+				var item = findList[index];
+				console.log(JSON.stringify(item))
+				Global.commonAjax({
+					url: 'shop/order/cancel',
+					method: "POST",
+					data: {order_id: item.order_id}
+				}, function(data){
+					mui.toast("操作成功");
+					$('.mui-table-view-condensed').scrollTop(0);
+					pulldownRefresh();
+				}, function(err){
+					mui.toast(err);
+				});
+				
+			});
+			
+			//列表点击 删除订单
+			mui(".mui-table-view-condensed").on('tap', 'li .del_order', function() {
+				var index = $(this).index();
+				var item = findList[index];
+				Global.commonAjax({
+					url: 'shop/order/delete',
+					method: "POST",
+					data: {order_id: item.order_id}
+				}, function(data){
+					mui.toast("操作成功");
+					pulldownRefresh();
+				}, function(err){
+					mui.toast(err);
+				});
+				
+			});
+			
+			//列表点击 查看物流
+			mui(".mui-table-view-condensed").on('tap', 'li .look_order', function() {
+				var index = $(this).index();
+				var item = findList[index];
+				
+				Global.openWindow({
+					url:"mallExpressDetail.html?id="+item.order_id
+							+"&shipping_express_id="+item.shipping_express_id+"&shipping_code="+item.shipping_code,
+					id: "mallExpressDetail.html",
+					waiting: {
+						autoShow: false
+					}
+				})
+				
+			});
+			
 	
 			
 		</script>

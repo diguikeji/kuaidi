@@ -229,10 +229,12 @@
 		<script src="../lib/artTemplate.js"></script>
 		<script src="../js/app.js"></script>
 		<script>
-			var goodsId, store_id;
+			var goodsId, store_id, type = 0;
 			mui.init();
 			mui.plusReady(function() {
 				goodsId = GetQueryString("id");
+				type = GetQueryString("type");
+				
 				console.log('goodsId')
 				console.log(goodsId)
 				console.log(goodsId)
