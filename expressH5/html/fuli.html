@@ -87,7 +87,7 @@
 			    left: 0;
 			    background: rgba(0, 0, 0, 0.4);
 			    overflow: hidden;
-			    z-index: 10;
+			    z-index: 1000;
 			    color: #fff;
 			    justify-content: center;
 			    align-items: center;
@@ -101,6 +101,7 @@
 			    position: relative;
 			    border-radius: 0.04rem;
 				background-color: #FFFFFF;
+				z-index: 1000;
 			}
 			
 			.close_style {
@@ -115,7 +116,7 @@
 			.modal-content {
 			    font-size: 0.12rem;
 			    position: relative;
-			    z-index: 10000;
+			    z-index: 100001;
 			    color: #333333;
 			    background: #ffffff;
 			    padding: 0px;
@@ -569,7 +570,7 @@
 								'<img src="'+list[list.length-1].img_url+'">'+
 						'</div>';
 			for(var i=0; i<list.length; i++){
-				html += '<div class="mui-slider-item">'+
+				html += '<div class="mui-slider-item" data-type="'+list[i].type+'" data-url="'+list[i].img_url+'">'+
 								'<img src="'+list[i].img_url+'">'+
 						'</div>';
 				if(i == 0){
@@ -608,6 +609,8 @@ document.querySelector('.mui-slider').addEventListener('slide', function(event) 
 		var type=$(this).attr("data-type");
 		var subUrl=$(this).attr("data-url");
 		console.log(subUrl);
+// 		type  =2;
+// 		subUrl = "http://kd.loufubao.com/dajin/#/";
 		if(type==2&&subUrl)
 		{
 			Global.openWindow({
