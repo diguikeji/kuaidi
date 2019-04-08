@@ -245,7 +245,13 @@
 				
 				window.addEventListener("pageRefresh", function (e) {
 						// 重新获取数据或触发刷新
-						goodsId = GetQueryString("id");
+						goodsId = event.detail.id;
+						if(goodsId > 0){
+							
+						}else{
+							goodsId = GetQueryString("id");
+						}
+						
 						commonEvent();
 						getDetail();
 						getShopList();
@@ -434,7 +440,7 @@
 			    Global.commonAjax({
 			        url: "shop/goods/wishGoods",
 					method: "POST",
-					data: {goods_id: goodsChildID, store_id: store_id}
+					data: {goods_id: goodsId, store_id: store_id}
 			    }, function (data) {
 					mui.toast("收藏成功");
 					$("#shoucang_img").attr("src", '../images/mall/shou_cang_icon.png')
@@ -587,7 +593,7 @@
 				Global.commonAjax({
 				    url: "shop/goods/cancelWishGoods",
 						method: "POST",
-						data: {goods_id: goodsChildID, store_id: store_id}
+						data: {goods_id: goodsId, store_id: store_id}
 						}, function (data) {
 						mui.toast("取消收藏成功");
 						$("#shoucang_img").attr("src", '../images/mall/tmBottom_07.png')

@@ -217,13 +217,12 @@
 			mui("#grid").on('tap','li',function(){
 				var index = $(this).index();
 				
-				Global.openWindow({
-					url: 'mallPage.html?id='+dataList[index].goods_id,
-					id: 'mallPage.html',
-					waiting: {
-						autoShow: false
-					}
-				})
+				var h = plus.webview.getWebviewById("mallPage.html");
+				mui.fire(h, 'pageRefresh', { id: dataList[index].goods_id });
+				
+			
+				
+				plus.webview.currentWebview().close();
 			});
 			
 			//search_wrap
