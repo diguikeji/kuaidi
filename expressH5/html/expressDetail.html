@@ -327,8 +327,8 @@
                 url: "express/orders/" + id
             },
                 function (data) {
-                    console.log("订单详情");
-                    console.log(data.status);
+                    console.log("订单数据详情");
+                    console.log(JSON.stringify(data));
 
                     if (data.status == 1) {
                         $(".xiadan").show();
@@ -337,10 +337,9 @@
                         $(".delete-order").show();
                     }
 
-                    var expressObj = findExpressCompany(data.express_company_id);
-                    console.log(JSON.stringify(expressObj));
-                    $(".expressLogo").attr("src", expressObj.logo_url);
-                    $(".expressName").text(expressObj.name);
+                    
+                    $(".expressLogo").attr("src", data.express_company.logo_url);
+                    $(".expressName").text(data.express_company.name);
 
                     $(".sn").text(data.sn);
                     $("#package").text(data.package);
