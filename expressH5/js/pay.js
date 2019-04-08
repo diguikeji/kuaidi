@@ -154,18 +154,20 @@ function pay(payWay) {
 				
 				if(payType=="shop")
 				{
-					Global.openWindow({
-					    url: 'my_order.html',
-					    id: 'my_order.html',
-					    waiting: {
-					        autoShow: false
-					    }
-					});
-					plus.webview.currentWebview().close();
+					
+					if((typeof(payBack)  != 'undefined') && payBack){
+						Global.openWindow({
+						    url: 'my_order.html',
+						    id: 'my_order.html',
+						    waiting: {
+						        autoShow: false
+						    }
+						});
+						plus.webview.currentWebview().close();
+					}
 				}
 				else{
-					
-					back();
+					mui.back();
 				}
 			    
 			});
@@ -181,16 +183,20 @@ function pay(payWay) {
 					var h = plus.webview.getWebviewById("mall_order.html");
 					mui.fire(h, 'mallOrderRefresh', {});
 					
-            		Global.openWindow({
-					    url: 'mall_order.html',
-					    id: 'mall_order.html',
-					    waiting: {
-					        autoShow: false
-					    }
-					})
+					if((typeof(payBack)  != 'undefined') && payBack){
+						Global.openWindow({
+						    url: 'mall_order.html',
+						    id: 'mall_order.html',
+						    waiting: {
+						        autoShow: false
+						    }
+						});
+						
+						plus.webview.currentWebview().close();
+					}
             	}
             	else{
-            		back();
+            		mui.back();
             	}
                 
             });

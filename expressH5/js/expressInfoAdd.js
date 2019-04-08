@@ -66,6 +66,15 @@ $("#payWay .tag-list span").click(function () {
     $("#payWay .tag-list span").removeClass("active");
     $(this).addClass("active");
     $("#payWaySelect .text").text($("#payWay .tag-list .active").text());
+	
+	console.log("999999999")
+	console.log($(this).text())
+	if($(this).text() == '到付'){
+		$(".yunfei-bottom .left").hide();
+	}else{
+		$(".yunfei-bottom .left").show();
+	}
+	
     hideBottomModal();
     countFeiyong();
 })
@@ -97,11 +106,23 @@ if ($("#baojiaSwitch").length > 0) {
             if($("#priceText").attr("data-yufei"))
             {
             	$("#priceText").text("￥"+$("#priceText").attr("data-yufei"));
+				checkYunFei();
             }
         }
     });
 }
 
+//同城模板
+function checkYunFei(){
+	if (myStorage.getItem("storageExpressCreateType") == 3){
+		//同城快递
+		if($("#priceText").text() == "￥99999"){
+			$("#priceText").text("请与工作人员联系").addClass("small");
+			return;
+		}
+	}
+	
+}
 
 $("#confirmBtn").click(function () {
     $("#beizhuWenzi .beizhu").text($("#beizhuText textarea").val());
@@ -142,6 +163,7 @@ function initExpressList() {
     {
     	$("#priceText").attr("data-yufei",yunfei);
     	$("#priceText").text("￥"+yunfei);
+		checkYunFei();
     }
     
 
@@ -159,6 +181,7 @@ function initExpressList() {
             	{
             		$("#priceText").attr("data-yufei",price);
                 	$("#priceText").text("￥"+price).removeClass("small");
+					checkYunFei();
             	}
             	
             }
@@ -174,7 +197,7 @@ function countFeiyong() {
 
     var express_company_id = $(".yunfei-img-list .active").attr("data-id");
     var package = $("#wupinSelect .text").text();
-    var weight = parseInt($(".weight-value").text());
+    var weight = parseFloat($(".weight-value").text()).toFixed(1);
     var type = myStorage.getItem("storageExpressType");
     var create_type = myStorage.getItem("storageExpressCreateType");
 
@@ -239,7 +262,7 @@ function baojiaHttp() {
         var express_company_id = $(".yunfei-img-list .active").attr("data-id");
         var package = $("#wupinSelect .text").text();
 
-        var weight=parseInt($(".weight-value").text(),10);
+        var weight=parseFloat($(".weight-value").text()).toFixed(1);
         console.log($(".weight-value").next())
 
         var type = myStorage.getItem("storageExpressType");
@@ -275,6 +298,7 @@ function baojiaHttp() {
             }
     		$("#priceText").text("￥"+yunfei);
             $(".baofei").text(data.insure_price);
+			checkYunFei();
         },
         function (err) {
             console.log("保费计算失败");
@@ -342,7 +366,7 @@ $("#goodsType .tag-list span").click(function () {
     $("#goodsType .tag-list span").removeClass("active");
     $(this).addClass("active");
     $("#wupinSelect .text").text($("#goodsType .tag-list .active").text());
-    hideBottomModal();
+	hideBottomModal();
 
     if (myStorage.getItem("storageExpressCreateType") == 2) {
         if ($("#wupinSelect .text").text() == "文件") {
@@ -414,7 +438,7 @@ function submitData() {
     var express_company_id = $(".yunfei-img-list .active").attr("data-id");
     var package = $("#wupinSelect .text").text();
 
-    var weight = parseInt($(".weight-value").text(), 10);
+    var weight = parseFloat($(".weight-value").text()).toFixed(1);
 
     var comment = $("#beizhuWenzi .beizhu").text();
 

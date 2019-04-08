@@ -225,6 +225,20 @@
         }
 
         function goToAddAddr() {
+			if (myStorage.getItem("storageExpressCreateType") == 2){
+				//国际快递
+				Global.openWindow({
+				    url: 'global_add_address.html',
+				    id: 'global_add_address.html',
+				    waiting: {
+				        autoShow: false
+				    },
+				    extras: {
+				        isStep: true
+				    }
+				})
+				return;
+			}
             Global.openWindow({
                 url: 'add_address.html',
                 id: 'add_address.html',

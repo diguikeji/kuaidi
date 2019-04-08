@@ -374,9 +374,11 @@ function openWindowPage(url){
 mui("body").on('tap','.add-value',function(event){
 
     event.stopPropagation();
-    var value=parseInt($(this).prev().text());
-    value++;
-    $(this).prev().text(value);
+    var value=parseFloat($(this).prev().text()).toFixed(1);
+	
+    value = Number(value) + 0.5;
+	value = parseFloat(value).toFixed(1);
+    $(this).prev().text(value); 
 
     if(window.location.href.indexOf("expressInfoAdd")>-1)
     {
@@ -389,12 +391,13 @@ mui("body").on('tap','.sub-value',function(event){
 
 
     event.stopPropagation();
-    var value=parseInt($(this).next().text());
-    if(value<=1)
+    var value=parseFloat($(this).next().text()).toFixed(1);
+    if(value<=0.5)
     {
         return;
     }
-    value--;
+    value = Number(value) - 0.5;
+	value = parseFloat(value).toFixed(1);
     $(this).next().text(value);
     if(window.location.href.indexOf("expressInfoAdd")>-1)
     {
