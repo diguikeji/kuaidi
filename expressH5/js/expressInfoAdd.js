@@ -94,7 +94,10 @@ if ($("#baojiaSwitch").length > 0) {
             $("#baojiaCol").hide();
             $("#baojiaCol input").val("");
             $(".baofei").text("0");
-            $("#priceText").text("￥"+$("#priceText").attr("data-yufei"));
+            if($("#priceText").attr("data-yufei"))
+            {
+            	$("#priceText").text("￥"+$("#priceText").attr("data-yufei"));
+            }
         }
     });
 }
@@ -152,8 +155,12 @@ function initExpressList() {
             if (price > 10000) {
                 $("#priceText").text("请与工作人员联系").addClass("small");
             } else {
-            	$("#priceText").attr("data-yufei",price);
-                $("#priceText").text("￥"+price).removeClass("small");
+            	if(price)
+            	{
+            		$("#priceText").attr("data-yufei",price);
+                	$("#priceText").text("￥"+price).removeClass("small");
+            	}
+            	
             }
         // }
     });
