@@ -26,9 +26,9 @@
 			color:#666;
 			line-height:14px;}
 		.fuli-list li .biaoti{font-size:16px;padding-top:0.22rem;padding-bottom:0.06rem;
-			font-weight:bold;
+			font-weight:bold; max-width: 1.6rem;
 			color:rgba(51,51,51,1);
-			line-height:14px;}
+			line-height:0.2rem;}
 		.fuli-list li .weizhi img{width:0.12rem;position: relative;top:0.03rem;}
 		.fuli-list li .riqi{color:#999;font-size:11px;position: absolute;bottom:0.1rem;}
 		.fuli-list li .lingqu{position: absolute;right:0;top:0;font-size:0.15rem;color:#fff;text-align: center;width:0.66rem;height:1.15rem;box-sizing: border-box;padding-top:0.32rem;}
@@ -388,6 +388,7 @@
 				 httpRequest();
 				 getCoupon();
 				promotionsList();
+				bannerList();
 			}, false);
 			
 	});
@@ -563,13 +564,14 @@
 	
 	
 	function setLunBoHtml(list){
+		$("#slider").empty();
 		var dotHtml = '<div class="mui-slider-indicator">';
 		var html = '<div class="mui-slider-group mui-slider-loop">'+
-						'<div class="mui-slider-item mui-slider-item-duplicate" data-type="'+list[list.length-1].type+'" data-url="'+list[list.length-1].img_url+'">'+
+						'<div class="mui-slider-item mui-slider-item-duplicate" data-type="'+list[list.length-1].type+'" data-url="'+list[list.length-1].link_url+'">'+
 								'<img src="'+list[list.length-1].img_url+'">'+
 						'</div>';
 			for(var i=0; i<list.length; i++){
-				html += '<div class="mui-slider-item" data-type="'+list[i].type+'" data-url="'+list[i].img_url+'">'+
+				html += '<div class="mui-slider-item" data-type="'+list[i].type+'" data-url="'+list[i].link_url+'">'+
 								'<img src="'+list[i].img_url+'">'+
 						'</div>';
 				if(i == 0){
