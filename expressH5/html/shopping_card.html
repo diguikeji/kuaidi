@@ -209,9 +209,13 @@
 		var channel;
 		var channels;
 		var id;
+		var goods_id;
 		
 		mui.init();
 		mui.plusReady(function() {
+			
+			goods_id = GetQueryString("goods_id");
+			console.log(goods_id);
 			
 			plus.payment.getChannels(function (cs) {
 			    channels = cs;
@@ -250,6 +254,16 @@
 					$(".bottom_wrap").show();
 					$(".empty_text").hide();
 					render('#check_wrap', 'checkList', { data: cardList });
+					
+					cardList.map(function(item, index){
+						
+						if(item.goods_id == goods_id){
+							console.log(JSON.stringify(item));
+							console.log(goods_id);
+							$("input[name='item_check']").eq(index).prop("checked", true);
+							changeStatus("check"+index, true);
+						}
+					})
 				}
 				
 		    }, function (err) {

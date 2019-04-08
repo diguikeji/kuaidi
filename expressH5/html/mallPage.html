@@ -452,15 +452,23 @@
 			}
 			
 			//加入购物车
-			function addCard() {
+			function addCard(type) {
 					
 			    Global.commonAjax({
 			        url: "shop/cart/add",
 					method: "POST",
 					data: {goods_id: goodsChildID, store_id: store_id, goods_num: $(".goods_storage").html()}
 			    }, function (data) {
-					mui.toast("加入购物车成功");
-					
+						mui.toast("加入购物车成功");
+						if(type == 1){
+							Global.openWindow({
+								url: 'shopping_card.html?goods_id='+goodsChildID,
+								id: 'shopping_card.html',
+								waiting: {
+									autoShow: false
+								}
+							})
+						}
 			    }, function (err) {
 					mui.toast(err);
 			    })
@@ -499,34 +507,11 @@
 				if(detailData){
 					// $(".mall-goods-detail").empty();
 					if(index == 0){
-// 						console.log(detailData.mobile_body[0].value);
-// 						detailData.mobile_body.map(function(item, index){
-// 							if(detailData.mobile_body[index].type == "image"){
-// 								$(".mall-goods-detail img").attr("src", detailData.mobile_body[index].value)
-// 							}else{
-// 								$(".mall-goods-detail img").attr("src", detailData.mobile_body[index].value)
-// 							}
-// 						})
 						
 						render('#goods_detail', 'dataList', { data: detailData.mobile_body });
-						
-						
-						
-						// $(".mall-goods-detail").append(detailData.mobile_body);
 					}else if(index == 1){
-// 						if(detailData.mobile_body1[0].type == "image"){
-// 							$(".mall-goods-detail img").attr("src", detailData.mobile_body[0].value)
-// 						}
-// 						
-// 						$(".mall-goods-detail").append(detailData.mobile_body_2);
-						
 						render('#goods_detail', 'dataList', { data: detailData.mobile_body1 });
 					}else{
-// 						if(detailData.mobile_body2[0].type == "image"){
-// 							$(".mall-goods-detail img").attr("src", detailData.mobile_body[0].value)
-// 						}
-// 						
-// 						$(".mall-goods-detail").append(detailData.mobile_body_3);
 						render('#goods_detail', 'dataList', { data: detailData.mobile_body2 });
 					}
 				}
@@ -609,7 +594,7 @@
 				 $(".beizhu-col").hide();
 				 $(".beizhu-col .beizhu-text").hide();
 				 
-				 addCard();
+				 addCard(1);
 			});
 			
 			//规格点击
