@@ -64,6 +64,7 @@
 					<input  type="checkbox" name="item_check" data='{{"check"+i}}' class="card_radio">
 				</div> -->
 				
+				
 			</form>
 			
 			<div class="all_info">
@@ -262,10 +263,10 @@
 			
 		})
 		
-		mui(".radio_all").on('tap', 'input[type="checkbox"]', function(e){
-			// console.log(e);
-			var value = e.target.checked;
+		mui(".bottom_wrap").on('tap', '.radio_all', function(){
 			
+			var value = $("input[name='all_check']").prop("checked");
+			console.log(value);
 			if(!value){
 				//选中
 				var allMoney = 0.00;
@@ -286,13 +287,22 @@
 			}
 		});
 		
-		mui("#check_wrap").on('tap', 'input[type="checkbox"]', function(e){
-			// console.log(e);
+// 		mui("#check_wrap").on('tap', '.radio_item', function(e){
+// 			var value = $(this).children("input[name='item_check']").eq($(this).index()).prop("checked");
+// 			$(this).children("input[name='item_check']").eq($(this).index()).prop("checked", !value);
+// 			var data = $(this).children("input[name='item_check']").eq($(this).index()).attr("data");
+// 			console.log(data);
+// 			console.log(value);
+// 			changeStatus(data, !value);
+// 		});
+		
+		mui("#check_wrap").on('click', 'input[type="checkbox"]', function(e){
+			
 			var value = e.target.checked;
 			var data = $(this).attr("data");
 			console.log(data);
-			console.log(!value);
-			changeStatus(data, !value);
+			console.log(value);
+			changeStatus(data, value);
 		});
 		
 		
@@ -325,8 +335,8 @@
 						$(".allMoney").html(allMoney);
 						
 						var oldNum = $("#allNum").text();
-						if(oldNum < 0){
-							oldNum = 0;
+						if(oldNum < 1){
+							oldNum = 1;
 						}
 						$("#allNum").text(--oldNum);
 						
