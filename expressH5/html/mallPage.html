@@ -47,7 +47,7 @@
 			.shopItem li div{
 				width:0.8rem;font-size:0.13rem;
 				word-wrap: break-word;word-break: break-all; display: flex;
-				flex-wrap: wrap; 
+				flex-wrap: wrap; height: 0.5rem;
 				white-space:normal;
 			}
 			.shopItem li p{color:#FF5269;font-size:0.16rem;text-align: left;}
@@ -424,7 +424,7 @@
 						name = list[i].goods_name;
 					}
 					
-					html += '<li >'+
+					html += '<li>'+
 						'<img src="'+list[i].goods_images+'"/>'+
 						'<div>'+name+'</div>'+
 						'<p><span>¥</span>'+list[i].goods_price.split(".")[0]+
@@ -434,6 +434,19 @@
 				$(".shopItem").append(html);
 				
 			}
+			
+			//逛店铺
+			mui(".shopItem").on('tap','li',function(){
+				
+				Global.openWindow({
+					url: 'mall.html?store_id='+store_id,
+					id: 'mall.html',
+					waiting: {
+						autoShow: false
+					}
+				})
+			});
+			
 			
 			//商品收藏
 			function wishlist() {

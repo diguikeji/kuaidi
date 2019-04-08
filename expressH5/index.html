@@ -80,6 +80,8 @@
             width: 100%;
             left: 0;
         }
+		
+		#slider img{width:100%;display: block; height: 1.9rem;}
     </style>
 </head>
 
@@ -96,12 +98,12 @@
                     <img src="images/firstPageLive/icon2.png" />
                 </span>
 
-                <span class="right-img" onclick="openTopPage()"><img src="images/firstPageLive/live_03.png" /><span
+                <span class="right-img hideClass" onclick="openTopPage()"><img src="images/firstPageLive/live_03.png" /><span
                         class="dian"></span></span>
 
             </div>
 
-            <div class="banner-col">
+            <!-- <div class="banner-col">
 
                 <div class="swiper-container swiper-banner">
                     <div class="swiper-wrapper">
@@ -119,7 +121,10 @@
 
                     <div class="swiper-pagination"></div>
                 </div>
-            </div>
+            </div> -->
+			
+			<div id="slider" class="mui-slider" >
+			</div>
 
 
             <div class="fenlei-col" id="slider2">
@@ -640,6 +645,7 @@
 
             httpRequest();
             commonEvent();
+			getHomeLunBo();
 
             plus.navigator.setStatusBarBackground('transparent');
 
@@ -724,9 +730,49 @@
 
             });
         });
+		
+		
+		function getHomeLunBo(){
+			Global.commonAjax({
+				url: "home/banners"
+
+			},
+			function (data) {
+				setLunBoHtml(data);
+			},
+			function (err) {
+				console.log("外卖详情" + JSON.stringify(err));
+			});
+		}
 
 
-
+		function setLunBoHtml(list){
+			$("#slider").empty();
+			var dotHtml = '<div class="mui-slider-indicator">';
+			var html = '<div class="mui-slider-group mui-slider-loop">'+
+							'<div class="mui-slider-item mui-slider-item-duplicate">'+
+									'<img src="'+list[list.length-1].img_url+'">'+
+							'</div>';
+				for(var i=0; i<list.length; i++){
+					html += '<div class="mui-slider-item">'+
+									'<img src="'+list[i].img_url+'">'+
+							'</div>';
+					dotHtml += '<div class="mui-indicator"></div>';		
+				}			
+				html += '<div class="mui-slider-item mui-slider-item-duplicate">'+
+								'<img src="'+list[0]+'">'+
+							'</div></div>';			
+				dotHtml += '</div>';		
+				
+				html += dotHtml;
+				$("#slider").append(html);
+				
+				var gallery = mui('.mui-slider');
+				gallery.slider({
+					  interval: 1000 
+				});
+			
+		}
 
 
 
