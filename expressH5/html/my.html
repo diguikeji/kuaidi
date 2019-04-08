@@ -113,6 +113,13 @@
 				<span class="badge coupons_count hideClass">1</span>
 				</div>
 			</li>
+			<li onclick="goToWish();">
+				<div class="badge_wrap">
+				<img src="../images/wode/wode_13.jpg">
+				<p>收藏列表</p>
+				<!-- <span class="badge wish_count hideClass"></span> -->
+				</div>
+			</li>
 		</ul>
 
 
@@ -287,6 +294,27 @@
 		}
 		
 		
+	}
+	
+	function goToWish(){
+		token = myStorage.getItem("token");
+		if(token){
+			Global.openWindow({
+			    url: 'wish_list.html',
+			    id: 'wish_list.html',
+			    waiting: {
+			        autoShow: false
+			    }
+			})
+		}else{
+			Global.openWindow({
+			    url: 'login.html',
+			    id: 'login.html',
+			    waiting: {
+			        autoShow: false
+			    }
+			})
+		}
 	}
 	
 	//订单

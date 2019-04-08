@@ -160,9 +160,11 @@ function pay(payWay) {
 					    waiting: {
 					        autoShow: false
 					    }
-					})
+					});
+					plus.webview.currentWebview().close();
 				}
 				else{
+					
 					back();
 				}
 			    

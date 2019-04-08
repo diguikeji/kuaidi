@@ -319,9 +319,15 @@
 					}else{
 						//如果取消选中了
 						allMoney =(parseFloat(allMoney) - parseFloat(num*price)).toFixed(2);
+						if(allMoney < 0){
+							allMoney = 0;
+						}
 						$(".allMoney").html(allMoney);
 						
 						var oldNum = $("#allNum").text();
+						if(oldNum < 0){
+							oldNum = 0;
+						}
 						$("#allNum").text(--oldNum);
 						
 						$("input[name='all_check']").prop("checked", false);

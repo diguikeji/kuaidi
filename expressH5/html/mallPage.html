@@ -200,8 +200,8 @@
 	<div class="mall-temai-col">
 		<div class="first">
 			<div id="shoucang">
-				<img src="../images/mall/tmBottom_07.png"/>
-				<div>收藏</div>
+				<img src="../images/mall/tmBottom_07.png" id="shoucang_img"/>
+				<div id="shoucang_text">收藏</div>
 			</div>
 			<div id="kefu" class="hideClass">
 				<img src="../images/mall/tmBottom_09.png"/>
@@ -347,6 +347,9 @@
 							$(".price_dot").text("."+price.split(".")[1]);
 						}
 						
+						$("#shoucang_img").attr("src", (data.is_collect == 1?'../images/mall/shou_cang_icon.png':'../images/mall/tmBottom_07.png'))
+						$("#shoucang_text").html(data.is_collect == 1?'取消收藏':'收藏');
+						
 						detailData = data;
 						if(data.mobile_body.length != 0){
 							
@@ -434,6 +437,9 @@
 					data: {goods_id: goodsChildID, store_id: store_id}
 			    }, function (data) {
 					mui.toast("收藏成功");
+					$("#shoucang_img").attr("src", '../images/mall/shou_cang_icon.png')
+					$("#shoucang_text").html('取消收藏');
+					
 			    }, function (err) {
 					mui.toast("收藏失败");
 			    })
@@ -569,8 +575,27 @@
 
 			//收藏
 			mui(".mall-temai-col").on('tap','#shoucang',function(){
-				wishlist();
+				if($("#shoucang_text").html() == "收藏"){
+					wishlist();
+				}else{
+					cancleWish();
+				}
+				
 			});
+			
+			function cancleWish(){
+				Global.commonAjax({
+				    url: "shop/goods/cancelWishGoods",
+						method: "POST",
+						data: {goods_id: goodsChildID, store_id: store_id}
+						}, function (data) {
+						mui.toast("取消收藏成功");
+						$("#shoucang_img").attr("src", '../images/mall/tmBottom_07.png')
+						$("#shoucang_text").html('收藏');
+						}, function (err) {
+						mui.toast("取消收藏失败");
+						})
+			}
 			
 			//规格确定
 			mui("#guige").on('tap','.guige_sure',function(){
