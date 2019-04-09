@@ -106,9 +106,9 @@ if ($("#baojiaSwitch").length > 0) {
             if($("#priceText").attr("data-yufei"))
             {
             	
-            	if($("#priceText").attr("data-yufei")>=99999)
+            	if($("#priceText").attr("data-yufei")=="--")
 		    	{
-		    		$("#priceText").text("--");
+		    		$("#priceText").text("请与工作人员联系").addClass("small");;
 		    	}
 		    	else{
 		    		
@@ -170,9 +170,9 @@ function initExpressList() {
     
     if(yunfei)
     {
-    	if(yunfei>=99999)
+    	if(yunfei=="--")
     	{
-    		$("#priceText").text("--");
+    		$("#priceText").text("请与工作人员联系").addClass("small");;
     	}
     	else{
     		
@@ -192,16 +192,16 @@ function initExpressList() {
         //     $("#priceText").text("到付");
         // } else {
             var price = $(".yunfei-img-list .swiper-slide.active .express-jiage" + $('.yunfei-img-list .swiper-slide.active').data('id')).text();
-            if (price > 10000) {
+            if (price=="--") {
                 $("#priceText").text("请与工作人员联系").addClass("small");
             } else {
             	if(price)
             	{
             		$("#priceText").attr("data-yufei",price);
             		
-            		if(price>=99999)
+            		if(price=="--")
 			    	{
-			    		$("#priceText").text("--");
+			    		$("#priceText").text("请与工作人员联系").addClass("small");;
 			    	}
 			    	else{
 			    		$("#priceText").text("￥"+price).removeClass("small");
@@ -323,9 +323,9 @@ function baojiaHttp() {
             {
             	yunfei=parseFloat(yunfei)+data.insure_price;
             }
-            if(yunfei>=99999)
+            if(yunfei=="--")
 	    	{
-	    		$("#priceText").text("--");
+	    		$("#priceText").text("请与工作人员联系").addClass("small");;
 	    	}
 	    	else{
 	    		$("#priceText").text("￥"+yunfei);

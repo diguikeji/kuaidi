@@ -402,7 +402,8 @@
         {{each data as com i}}
         <div class="swiper-slide express-com-{{com.company.id}}" data-id="{{com.company.id}}">
             <div><img src="{{com.company.logo_url}}"/></div>
-            <p>{{com.company.name}}</p><div class="express-jiage{{com.company.id}}">￥<span class="bottom">{{com.price}}</span></div>
+            <p>{{com.company.name}}</p>
+            <div class="express-jiage{{com.company.id}}">￥<span class="bottom">{{com.price>10000?'--':com.price}}</span></div>
         </div>
         {{/each}}
     </script>
