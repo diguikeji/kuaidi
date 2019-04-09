@@ -552,7 +552,7 @@ function submitData() {
         if (myStorage.getItem("storageExpressType") == 2) {
             
             Global.openWindow({
-                    url: 'html/express.html',
+                    url: 'express.html',
                     id: 'express.html',
                     waiting: {
                         autoShow: false
@@ -568,7 +568,7 @@ function submitData() {
         	else
         	{
         		Global.openWindow({
-                    url: 'html/express.html',
+                    url: 'express.html',
                     id: 'express.html',
                     waiting: {
                         autoShow: false
