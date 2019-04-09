@@ -193,7 +193,7 @@ function initExpressList() {
         // if (is_freight_collect == 1) {
         //     $("#priceText").text("到付");
         // } else {
-            var price = $(".yunfei-img-list .swiper-slide.active .express-jiage" + $('.yunfei-img-list .swiper-slide.active').data('id')).text();
+            var price = $(this).find(".bottom").text();
             if (price=="--") {
                 $("#priceText").text("请与工作人员联系").addClass("small");
             } else {
@@ -550,10 +550,32 @@ function submitData() {
         id = data.id;
 
         if (myStorage.getItem("storageExpressType") == 2) {
-            mui.back();
-        } else {
-        	payType="express";
-            payModal($("#priceText").text().substr(1));
+            
+            Global.openWindow({
+                    url: 'html/express.html',
+                    id: 'express.html',
+                    waiting: {
+                        autoShow: false
+                    }
+                })
+        }
+        else {
+        	if($("#priceText").text().substr(1)>0)
+        	{
+        		payType="express";
+            	payModal($("#priceText").text().substr(1));
+        	}
+        	else
+        	{
+        		Global.openWindow({
+                    url: 'html/express.html',
+                    id: 'express.html',
+                    waiting: {
+                        autoShow: false
+                    }
+                })
+        	}
+        	
         }
         console.log(JSON.stringify(data));
     }, function (err) {

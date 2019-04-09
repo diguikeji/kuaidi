@@ -75,7 +75,7 @@
 
 					<span class="middle">
 						<img class="sub-value" src="../images/yunfei/yunfei_09.png"/>
-						<span class="value active">0.5</span>
+						<span class="value active" id="weight">0.5</span>
 						<img class="add-value" src="../images/yunfei/yunfei_12.png"/>
 					</span>
 
@@ -126,7 +126,7 @@
 
 		<div class="yunfei-bottom">
 
-			<span class="left">运费: <span><label id="priceText" class="">¥0.0</label></span></span>
+			<span class="left">运费: <span><label  class="">¥<span id="priceText">0.0</span></label></span></span>
 
 			<button type="button" onclick="countYunfei()">运费计算</button>
 
@@ -187,12 +187,29 @@
 
 
 	</div>
-
-
+ <script type="text/html" id="expressCompanyList">
+        {{each data as com i}}
+        <div class="swiper-slide express-com-{{com.id}}" data-id="{{com.id}}">
+            <div><img src="{{com.logo_url}}"/></div>
+            <p>{{com.name}}</p><div class="bottom express-jiage{{com.id}}"></div>
+        </div>
+        {{/each}}
+    </script>
+    
+    <script type="text/html" id="expressCompanyPirceList">
+        {{each data as com i}}
+        <div class="swiper-slide express-com-{{com.company.id}}" data-id="{{com.company.id}}">
+            <div><img src="{{com.company.logo_url}}"/></div>
+            <p>{{com.company.name}}</p>
+            <div class="express-jiage{{com.company.id}}">￥<span class="bottom">{{com.price>10000?'--':com.price}}</span></div>
+        </div>
+        {{/each}}
+    </script>
 		<script src="../js/mui.min.js"></script>
 	   <script src="../js/mui.picker.min.js"></script>
 	    <script src="../js/jquery-2.1.1.min.js"></script>
 		<script src="../lib/swiper.min.js"></script>
+		<script src="../lib/artTemplate.js"></script>
 		<script src="../js/myStorage.js"></script>
 		<script src="../js/app.js"></script>
 
@@ -337,7 +354,7 @@
 				var express_company_id=$(".yunfei-img-list .active").attr("data-id");
 				var package=$("#wupinSelect .text").text();
 
-				var weight=parseInt($(".sub-value").next().text());
+				var weight=$("#weight").text();
 
 				var type=myStorage.getItem("storageExpressType");
 

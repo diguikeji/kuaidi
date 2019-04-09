@@ -595,6 +595,7 @@ function GetQueryString(name)
 function render(selector, tpl, data, type) {
 	type = arguments[3] || false;
 		// console.log('Render:[D:' + selector + '|M:' + tpl + '|T:' + type + '|D:' + JSON.stringify(data).length)
+	
 	var elem = document.querySelector(selector);
 	var html = template(tpl, data);
 	
