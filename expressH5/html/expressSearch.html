@@ -154,7 +154,7 @@
 
 				},
 				function(data) {
-
+					console.log("订单列表数据");
 					console.log(JSON.stringify(data));
 
 					if(data)
@@ -167,7 +167,7 @@
 							{
 								//console.log(JSON.stringify(data.data[i]));
 								
-								var expressObj=findExpressCompany(data.data[i].express_company_id);
+								//var expressObj=findExpressCompany(data.data[i].express_company_id);
 
 								html=html+'<li data-id="'+data.data[i].id+'"><div class="clearfix top">' +
 										'<div class="left">' +
@@ -185,8 +185,8 @@
 										'<span class="second">'+data.data[i].to_detail+'</span>' +
 										'</div>' +
 										'<div class="bottom">' +
-										'<img src="'+expressObj.logo_url+'"/>' +
-										'<span class="first">'+expressObj.name+'</span>' +
+										'<img src="'+data.data[i].logo_url+'"/>' +
+										'<span class="first">'+data.data[i].name+'</span>' +
 										'<span>'+data.data[i].express_sn+'</span>' +
 										'</div>' +
 										'</li>';
