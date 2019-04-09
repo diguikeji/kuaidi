@@ -73,6 +73,8 @@ $("#payWay .tag-list span").click(function () {
 	console.log($(this).text())
 	if($(this).text() == '到付'){
 		$(".yunfei-bottom .left").hide();
+		$("#priceText").text("0.0");
+		
 	}else{
 		$(".yunfei-bottom .left").show();
 	}
@@ -234,7 +236,7 @@ function countFeiyong() {
         create_type = $("#kuaidiType .tag-list .active").attr("data-type");
     }
     var is_freight_collect = $("#payWaySelect .text").val();
-    is_freight_collect = is_freight_collect == "到付" ? 1 : 0;
+    is_freight_collect = is_freight_collect== "到付" ? 1 : 0;
 
     var insured_value = 0;
 
@@ -481,7 +483,8 @@ function submitData() {
         comment = "";
     }
 
-    var is_freight_collect = $("#payWaySelect .text").val();
+    var is_freight_collect = $("#payWaySelect .text").text();
+    
     is_freight_collect = is_freight_collect == "到付" ? 1 : 0;
 
     var is_print = $("#is_print").hasClass("mui-active");
@@ -560,7 +563,8 @@ function submitData() {
                 })
         }
         else {
-        	if($("#priceText").text().substr(1)>0)
+        	
+        	if($("#priceText").text().substr(1)>0&&is_freight_collect==0)
         	{
         		payType="express";
             	payModal($("#priceText").text().substr(1));
