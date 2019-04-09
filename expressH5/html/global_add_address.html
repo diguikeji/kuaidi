@@ -56,7 +56,7 @@
     .button {
       border-radius: 3px;
       width: 90%;
-      margin: 0.5rem 5%;
+      margin: 0.15rem 5% 0rem;
       box-sizing: border-box;
       background-color: #107EFF;
       color: #FFFFFF;
@@ -175,7 +175,7 @@
 				</span>
 				<div class="value_item">
 					<span>手机/固话二选一</span>
-					<input type="text" placeholder="Two fill in a fixed/mobile phone" class="phone">
+					<input type="tel" placeholder="Two fill in a fixed/mobile phone" class="phone">
 				</div>
 				
 		  </div>
@@ -263,7 +263,7 @@
     </div> -->
 
     <button type="button" class="mui-btn mui-btn-primary button" onclick="saveAddress();">保存</button>
-    <!-- <button type="button" class="mui-btn mui-btn-primary button" onclick="delAddress();">删除</button> -->
+    <button type="button" class="mui-btn mui-btn-primary button" onclick="delAddress();">删除</button>
 
   </div>
 
@@ -299,22 +299,41 @@
         if (addressItem.detail) {
           $(".detail").val(addressItem.detail);
         }
-
-        if (addressItem.is_default == 1) {
-          is_default = 1;
-          $(".mui-switch").addClass("mui-active");
-        } else {
-          $(".mui-switch").removeClass("mui-active");
-        }
+				
+				if(addressItem.phone){
+					$(".phone").val(addressItem.phone);
+				}
+				
+				if(addressItem.company_name){
+					$(".company").val(addressItem.company_name);
+				}
+				
+				console.log(addressItem.province);
+				
+				if(addressItem.province){
+					$(".country").html(addressItem.province);
+					$(".country").css("color", "#000000");
+				}
+				
+				console.log($(".country").html());
+				
+				if(addressItem.city){
+					$(".city").val(addressItem.city);
+				}
+				
+				if(addressItem.postcode){
+					$(".postcode").val(addressItem.postcode);
+				}
+				
 				
 
-        province = addressItem.province;
-        province_id = addressItem.province_id;
-        city = addressItem.city;
-        city_id = addressItem.city_id;
-        region = addressItem.area;
-        area_id = addressItem.area_id;
-        $(".content").html(addressItem.province + addressItem.city + addressItem.area);
+//         if (addressItem.is_default == 1) {
+//           is_default = 1;
+//           $(".mui-switch").addClass("mui-active");
+//         } else {
+//           $(".mui-switch").removeClass("mui-active");
+//         }
+				
 
       }
 
@@ -413,8 +432,10 @@
 			phone: $(".phone").val(),
 			postcode: $(".postcode").val(),
 			company_name: $(".company").val(),
-			country: $(".country").html(),
-      is_international_address:1
+			province: $(".country").html(),
+      is_international_address:1,
+			type: addAddressType,
+			is_default:0
     };
     var url, method;
     if (isEdit) {

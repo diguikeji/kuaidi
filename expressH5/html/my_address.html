@@ -330,7 +330,7 @@
 													'</span>'+
 													'<span class="address">'+item.province+item.city+item.area+item.detail+'</span>'+
 												'</div>'+
-												'<img class="edit-img" src="../images/address/edit_address_icon.png" >'+
+												'<img class="edit-img" src="../images/address/edit_address_icon.png" data-index="'+i+'">'+
 											'</div></li>';
 									}
 									current ++;
@@ -348,14 +348,22 @@
 						},
 						function(err) {
 							mui.toast(err);
-// 							isEnd=1;
-// 						    mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 						})
 		                
 		        }
-		
-			mui(".mui-table-view-condensed").on('tap', 'li ', function() {
+				
 			
+			function stopPropagation(e) {  
+				e = e || window.event;  
+				if(e.stopPropagation) { //W3C阻止冒泡方法  
+					e.stopPropagation();  
+				} else {  
+					e.cancelBubble = true; //IE阻止冒泡方法  
+				}  
+			}	
+		
+			mui(".mui-table-view-condensed").on('tap', 'li ', function(ev) {
+				stopPropagation(ev);
 			    var index = $(this).data("index");
 			    $(this).addClass("clicked");
 			    var item = findList[index];
@@ -378,23 +386,70 @@
 					
 				}else{
 			
-			       myStorage.setItem("addressItem", item);
+// 			       myStorage.setItem("addressItem", item);
+// 					Global.openWindow({
+// 					url: 'add_address.html',
+// 					id: 'add_address.html',
+// 					waiting: {
+// 					    autoShow: false
+// 					},
+// 					extras: {
+// 						isEdit: true,
+// 						address_id: item.id
+// 					}
+// 					})
+			
+			    }
+			    
+			});
+
+			
+			mui(".mui-table-view-condensed").on('tap', 'img', function(ev) {
+				stopPropagation(ev);
+			    var index = $(this).data("index");
+				console.log(JSON.stringify(item));
+			    var item = findList[index];
+				
+				
+				console.log('JSON.stringify(item)');
+				console.log(JSON.stringify(item));
+				console.log(JSON.stringify(item));
+				console.log(JSON.stringify(item));
+				
+				if(item.is_international_address == 1){
+					//国际快递
+					myStorage.setItem("addressItem", item);
 					Global.openWindow({
-					url: 'add_address.html',
-					id: 'add_address.html',
+					url: 'global_add_address.html',
+					id: 'aglobal_add_address.html',
 					waiting: {
-					    autoShow: false
+						autoShow: false
 					},
 					extras: {
 						isEdit: true,
 						address_id: item.id
 					}
 					})
+				}else{
+					myStorage.setItem("addressItem", item);
+					Global.openWindow({
+					url: 'add_address.html',
+					id: 'add_address.html',
+					waiting: {
+						autoShow: false
+					},
+					extras: {
+						isEdit: true,
+						address_id: item.id
+					}
+					})
+				}
 			
-			    }
+				
+			    
 			    
 			});
-
+			
     </script>
 </body>
 

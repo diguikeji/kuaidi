@@ -153,7 +153,7 @@
 		<div class="row item_wrap">
 		  <div class="row_between item">
 		    <span class="item_span">固定电话</span>
-		    <input type="text" maxlength="11" placeholder="请输入固定电话号码" class="tel_num">
+		    <input type="text" placeholder="请输入固定电话号码" class="phone">
 		  </div>
 		</div>
 
@@ -237,6 +237,10 @@
         } else {
           $(".mui-switch").removeClass("mui-active");
         }
+				
+				if(addressItem.phone){
+					$(".phone").val(addressItem.phone);
+				}
 				
 
         province = addressItem.province;
@@ -390,7 +394,7 @@
       detail: $(".detail").val(),
       mobile: $(".mobile").val(),
       name: $(".name").val(),
-			phone: $(".tel_num").val(),
+			phone: $(".phone").val(),
       is_default: is_default,
       type: addAddressType
     };
