@@ -350,6 +350,16 @@
                     else {
                         $("#is_freight_collect").text("寄付");
                     }
+					
+					if((data.is_freight_collect != 1) && (data.type == 1)){
+						$(".blue-bg").show();
+					}else{
+						$(".blue-bg").hide();
+					}
+					
+					if(data.type == 2){
+						$(".blue-bg").hide();
+					}
 
                     $("#comment").text(data.comment);
                     if (data.create_type == 1) {

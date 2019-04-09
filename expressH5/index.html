@@ -468,6 +468,7 @@
 
         function openWindowExpress(id) {
             if (id == 0) {
+				myStorage.setItem("storageExpressType", "1");
                 Global.openWindow({
                     url: 'html/personExpress.html?type=1',
                     id: 'personExpress.html',
@@ -479,6 +480,7 @@
                     }
                 })
             } else if (id == 1) {
+				myStorage.setItem("storageExpressType", "2");
                 Global.openWindow({
                     url: 'html/personExpress.html?type=2',
                     id: 'personExpress.html',

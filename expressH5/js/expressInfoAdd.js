@@ -490,6 +490,8 @@ function submitData() {
     var is_print = $("#is_print").hasClass("mui-active");
 
     var type = myStorage.getItem("storageExpressType");
+	
+	
     var create_type = myStorage.getItem("storageExpressCreateType");
     var insured_value = 0;
 
