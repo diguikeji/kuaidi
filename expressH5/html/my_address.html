@@ -187,6 +187,7 @@
 			}
 		});
 		
+		var noToast = 0;
 		if (mui.os.plus) {
 			mui.plusReady(function() {
 // 				setTimeout(function () {
@@ -201,11 +202,17 @@
 				    console.log("收到事件" + event.detail.search);
 				    pulldownRefresh();
 				}, false);
+				
+				noToast = GetQueryString("noToast");
+				console.log('noToast');
+				console.log(noToast);
 		
 			});
 		} else {
 			mui.ready(function() {
-				
+				noToast = GetQueryString("noToast");
+				console.log('noToast');
+				console.log(noToast);
 				// mui.focus(document.getElementById('searchInput'));
 				// $('#searchInput').focus();
 				// $('#input').blur();
@@ -371,19 +378,21 @@
 			    $(this).addClass("clicked");
 			    var item = findList[index];
 				console.log(JSON.stringify(item));
-				
-				if (myStorage.getItem("storageExpressCreateType") != 2){
-					//不是国际快递
-					if(item.is_international_address == 1){
-						mui.toast("请选择国内地址");
-						return;
-					}
-				}else{
-					if(item.is_international_address != 1){
-						mui.toast("请选择国际地址");
-						return;
+				if(noToast != 1){
+					if (myStorage.getItem("storageExpressCreateType") != 2){
+						//不是国际快递
+						if(item.is_international_address == 1){
+							mui.toast("请选择国内地址");
+							return;
+						}
+					}else{
+						if(item.is_international_address != 1){
+							mui.toast("请选择国际地址");
+							return;
+						}
 					}
 				}
+				
 			
 				
 			    if(myStorage.getItem("storageSelectAddressValue")>0)
