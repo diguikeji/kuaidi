@@ -189,12 +189,13 @@
 		
 		if (mui.os.plus) {
 			mui.plusReady(function() {
-				setTimeout(function () {
-				    mui.focus(document.getElementById('searchInput'));
-				    $('#searchInput').focus()
-				}, 150);
+// 				setTimeout(function () {
+// 				    mui.focus(document.getElementById('searchInput'));
+// 				    $('#searchInput').focus()
+// 				}, 150);
 		
 				getMsglist();
+				// $('#input').blur();
 				
 				window.addEventListener('searchType', function(event) {
 				    console.log("收到事件" + event.detail.search);
@@ -205,8 +206,9 @@
 		} else {
 			mui.ready(function() {
 				
-				mui.focus(document.getElementById('searchInput'));
-				$('#searchInput').focus();
+				// mui.focus(document.getElementById('searchInput'));
+				// $('#searchInput').focus();
+				// $('#input').blur();
 				getMsglist();
 				
 				window.addEventListener('searchType', function(event) {
@@ -330,7 +332,7 @@
 													'</span>'+
 													'<span class="address">'+item.province+item.city+item.area+item.detail+'</span>'+
 												'</div>'+
-												'<img class="edit-img" src="../images/address/edit_address_icon.png" >'+
+												'<img class="edit-img" src="../images/address/edit_address_icon.png" data-index="'+i+'">'+
 											'</div></li>';
 									}
 									current ++;
@@ -348,18 +350,40 @@
 						},
 						function(err) {
 							mui.toast(err);
-// 							isEnd=1;
-// 						    mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 						})
 		                
 		        }
-		
-			mui(".mui-table-view-condensed").on('tap', 'li ', function() {
+				
 			
+			function stopPropagation(e) {  
+				e = e || window.event;  
+				if(e.stopPropagation) { //W3C阻止冒泡方法  
+					e.stopPropagation();  
+				} else {  
+					e.cancelBubble = true; //IE阻止冒泡方法  
+				}  
+			}	
+		
+			mui(".mui-table-view-condensed").on('tap', 'li ', function(ev) {
+				$('#input').blur();
+				stopPropagation(ev);
 			    var index = $(this).data("index");
 			    $(this).addClass("clicked");
 			    var item = findList[index];
 				console.log(JSON.stringify(item));
+				
+				if (myStorage.getItem("storageExpressCreateType") != 2){
+					//不是国际快递
+					if(item.is_international_address == 1){
+						mui.toast("请选择国内地址");
+						return;
+					}
+				}else{
+					if(item.is_international_address != 1){
+						mui.toast("请选择国际地址");
+						return;
+					}
+				}
 			
 				
 			    if(myStorage.getItem("storageSelectAddressValue")>0)
@@ -378,23 +402,71 @@
 					
 				}else{
 			
-			       myStorage.setItem("addressItem", item);
+// 			       myStorage.setItem("addressItem", item);
+// 					Global.openWindow({
+// 					url: 'add_address.html',
+// 					id: 'add_address.html',
+// 					waiting: {
+// 					    autoShow: false
+// 					},
+// 					extras: {
+// 						isEdit: true,
+// 						address_id: item.id
+// 					}
+// 					})
+			
+			    }
+			    
+			});
+
+			
+			mui(".mui-table-view-condensed").on('tap', 'img', function(ev) {
+				$('#input').blur();
+				stopPropagation(ev);
+			    var index = $(this).data("index");
+				console.log(JSON.stringify(item));
+			    var item = findList[index];
+				
+				
+				console.log('JSON.stringify(item)');
+				console.log(JSON.stringify(item));
+				console.log(JSON.stringify(item));
+				console.log(JSON.stringify(item));
+				
+				if(item.is_international_address == 1){
+					//国际快递
+					myStorage.setItem("addressItem", item);
 					Global.openWindow({
-					url: 'add_address.html',
-					id: 'add_address.html',
+					url: 'global_add_address.html',
+					id: 'aglobal_add_address.html',
 					waiting: {
-					    autoShow: false
+						autoShow: false
 					},
 					extras: {
 						isEdit: true,
 						address_id: item.id
 					}
 					})
+				}else{
+					myStorage.setItem("addressItem", item);
+					Global.openWindow({
+					url: 'add_address.html',
+					id: 'add_address.html',
+					waiting: {
+						autoShow: false
+					},
+					extras: {
+						isEdit: true,
+						address_id: item.id
+					}
+					})
+				}
 			
-			    }
+				
+			    
 			    
 			});
-
+			
     </script>
 </body>
 

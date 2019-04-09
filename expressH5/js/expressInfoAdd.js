@@ -1,8 +1,4 @@
-//企业快递增加月结字段
-if(myStorage.getItem("storageExpressType")==2)
-{
-	$("#qiyeText").text("月结");
-}
+
 
 $(".address-tab .address-col").click(function () {
     $(".address-tab .address-col").removeClass("active");
@@ -22,6 +18,12 @@ var id;
 var payType;
 
 mui.plusReady(function () {
+	//企业快递增加月结字段
+	if(myStorage.getItem("storageExpressType")==2)
+	{
+		$("#qiyeText").text("月结");
+	}
+	
     commonEvent();
     httpRequest();
 
