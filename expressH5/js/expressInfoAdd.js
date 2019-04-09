@@ -107,7 +107,16 @@ if ($("#baojiaSwitch").length > 0) {
             $(".baofei").text("0");
             if($("#priceText").attr("data-yufei"))
             {
-            	$("#priceText").text("￥"+$("#priceText").attr("data-yufei"));
+            	
+            	if($("#priceText").attr("data-yufei")>=99999)
+		    	{
+		    		$("#priceText").text("--");
+		    	}
+		    	else{
+		    		
+		    		$("#priceText").text("￥"+$("#priceText").attr("data-yufei"));
+		    		
+		    	}
 				checkYunFei();
             }
         }
@@ -163,8 +172,17 @@ function initExpressList() {
     
     if(yunfei)
     {
+    	if(yunfei>=99999)
+    	{
+    		$("#priceText").text("--");
+    	}
+    	else{
+    		
+    		$("#priceText").text("￥"+yunfei);
+    		
+    	}
     	$("#priceText").attr("data-yufei",yunfei);
-    	$("#priceText").text("￥"+yunfei);
+    	
 		checkYunFei();
     }
     
@@ -182,7 +200,16 @@ function initExpressList() {
             	if(price)
             	{
             		$("#priceText").attr("data-yufei",price);
-                	$("#priceText").text("￥"+price).removeClass("small");
+            		
+            		if(price>=99999)
+			    	{
+			    		$("#priceText").text("--");
+			    	}
+			    	else{
+			    		$("#priceText").text("￥"+price).removeClass("small");
+			    	}
+            		
+                	
 					checkYunFei();
             	}
             	
@@ -298,7 +325,13 @@ function baojiaHttp() {
             {
             	yunfei=parseFloat(yunfei)+data.insure_price;
             }
-    		$("#priceText").text("￥"+yunfei);
+            if(yunfei>=99999)
+	    	{
+	    		$("#priceText").text("--");
+	    	}
+	    	else{
+	    		$("#priceText").text("￥"+yunfei);
+	    	}
             $(".baofei").text(data.insure_price);
 			checkYunFei();
         },

@@ -61,6 +61,7 @@ function onmarked(type, result, file){
     result = result.replace(/\n/g, '');
     console.log(result);
     wo.evalJS("scaned('"+ type +"','"+ result +"','"+ file +"');");
+    scan.close();
     mui.back();
 }
 // 从相册中选择二维码图片 

@@ -423,105 +423,149 @@
         "adid" : "125999110409"
     },
     "dependencies" : {
-        "pages" : {
-            "index.html" : {
-                "resources" : [
-                    "js/mui.min.js",
-                    "css/mui.min.css",
-                    "html/tab-webview-subpage-about.html",
-                    "fonts/mui.ttf",
-                    "fonts/iconfont.ttf",
-                    "html/tab-webview-subpage-chat.html",
-                    "js/util.js",
-                    "html/service.html"
-                ],
-                "refer" : [
-                    "html/tab-webview-subpage-contact.html",
-                    "html/new-webview.html",
-                    "html/my.html",
-                    "html/live.html",
-                    "html/fuli.html",
-                    "html/express.html",
-                    "html/complain.html",
-                    "html/login.html"
-                ],
-                "priority" : 0
-            },
-            "launch.html" : {
-                "resources" : [
-                    "js/mui.min.js",
-                    "css/mui.min.css",
-                    "html/tab-webview-subpage-about.html"
-                ],
-                "refer" : [
-                    "html/tab-webview-subpage-setting.html",
-                    "html/tab-webview-subpage-chat.html",
-                    "html/tab-webview-subpage-contact.html"
-                ],
-                "priority" : 0
-            },
-            "html/tab-webview-subpage-setting.html" : {
-                "resources" : [ "fonts/mui.ttf", "css/mui.min.css", "js/mui.min.js" ],
-                "refer" : [],
-                "priority" : 0
-            },
-            "html/tab-webview-subpage-about.html" : {
-                "resources" : [ "css/mui.min.css", "js/mui.min.js", "js/util.js" ],
-                "refer" : [],
-                "priority" : 0
-            },
-            "html/tab-webview-subpage-chat.html" : {
-                "resources" : [ "fonts/mui.ttf", "js/mui.min.js", "css/mui.min.css" ],
-                "refer" : [],
-                "priority" : 0
-            },
-            "html/tab-webview-subpage-contact.html" : {
-                "resources" : [ "images/60x60.gif", "js/mui.min.js", "css/mui.min.css" ],
-                "refer" : [],
-                "priority" : 0
-            },
-            "html/new-webview.html" : {
-                "resources" : [ "css/mui.min.css", "js/mui.min.js", "fonts/mui.ttf" ],
-                "refer" : [],
-                "priority" : 0
-            },
-            "html/mallList.html" : {
-                "resources" : [],
-                "refer" : [ "html/mallPage.html" ],
-                "priority" : 0
-            },
-            "html/live.html" : {
-                "resources" : [],
-                "refer" : [ "html/mallList.html" ],
-                "priority" : 0
-            },
-            "html/my.html" : {
-                "resources" : [],
-                "refer" : [ "html/my_address.html", "html/signup.html", "html/complain.html" ],
-                "priority" : 0
-            },
-            "html/my_address.html" : {
-                "resources" : [ "html/my_address_sub.html" ],
-                "refer" : [],
-                "priority" : 0
-            },
-            "html/service.html" : {
-                "resources" : [],
-                "refer" : [ "html/login.html" ],
-                "priority" : 0
-            },
-            "html/express.html" : {
-                "resources" : [],
-                "refer" : [
-                    "html/expressSearch.html",
-                    "html/test.html",
-                    "html/expressDetail.html"
-                ],
-                "priority" : 0
-            }
-        },
-        "idle" : {
-            "resources" : [ "js/mui.js", "css/mui.css" ]
-        }
-    }
+		"pages": {
+			"index.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"html/tab-webview-subpage-about.html",
+					"fonts/mui.ttf",
+					"fonts/iconfont.ttf",
+					"html/tab-webview-subpage-chat.html",
+					"js/util.js",
+					"html/service.html"
+				],
+				"refer": [
+					"html/tab-webview-subpage-contact.html",
+					"html/new-webview.html",
+					"html/my.html",
+					"html/live.html",
+					"html/fuli.html",
+					"html/express.html",
+					"html/complain.html",
+					"html/login.html"
+				],
+				"priority": 0
+			},
+			"launch.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"html/tab-webview-subpage-about.html"
+				],
+				"refer": [
+					"html/tab-webview-subpage-setting.html",
+					"html/tab-webview-subpage-chat.html",
+					"html/tab-webview-subpage-contact.html"
+				],
+				"priority": 0
+			},
+			"html/tab-webview-subpage-setting.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/tab-webview-subpage-about.html": {
+				"resources": [
+					"css/mui.min.css",
+					"js/mui.min.js",
+					"js/util.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/tab-webview-subpage-chat.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/tab-webview-subpage-contact.html": {
+				"resources": [
+					"images/60x60.gif",
+					"js/mui.min.js",
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/new-webview.html": {
+				"resources": [
+					"css/mui.min.css",
+					"js/mui.min.js",
+					"fonts/mui.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/mallList.html": {
+				"resources": [],
+				"refer": [
+					"html/mallPage.html"
+				],
+				"priority": 0
+			},
+			"html/live.html": {
+				"resources": [],
+				"refer": [
+					"html/mallList.html",
+					"html/login.html"
+				],
+				"priority": 0
+			},
+			"html/my.html": {
+				"resources": [],
+				"refer": [
+					"html/my_address.html",
+					"html/signup.html",
+					"html/complain.html"
+				],
+				"priority": 0
+			},
+			"html/my_address.html": {
+				"resources": [
+					"html/my_address_sub.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/service.html": {
+				"resources": [],
+				"refer": [
+					"html/login.html",
+					"html/expressSearch.html"
+				],
+				"priority": 0
+			},
+			"html/express.html": {
+				"resources": [],
+				"refer": [
+					"html/expressSearch.html",
+					"html/test.html",
+					"html/expressDetail.html"
+				],
+				"priority": 0
+			},
+			"html/expressSearch.html": {
+				"resources": [],
+				"refer": [
+					"html/barcode_scan.html"
+				],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"js/mui.js",
+				"css/mui.css"
+			]
+		}
+	}
 }
