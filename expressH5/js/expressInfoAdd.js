@@ -146,7 +146,7 @@ var expressPriceList = [];
 
 function httpRequest() {
     Global.commonAjax({
-        url: "express/companies?type=" + myStorage.getItem("storageExpressCreateType")+"&create_type="+myStorage.getItem("storageExpressCreateType"),
+        url: "express/companies?type=" + myStorage.getItem("storageExpressType")+"&create_type="+myStorage.getItem("storageExpressCreateType"),
     }, function (data) {
     	console.log("获取快递公司" + JSON.stringify(data));
         if (data) {

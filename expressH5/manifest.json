@@ -3,8 +3,8 @@
     "id" : "H555E88B1", /*应用的标识，创建应用时自动生成，勿手动修改*/
     "name" : "楼服宝", /*应用名称，程序桌面图标名称*/
     "version" : {
-        "name" : "1.0.0", /*应用版本名称*/
-        "code" : 1
+        "name" : "1.1.8", /*应用版本名称*/
+        "code" : 18
     },
     "description" : "楼服宝app", /*应用描述信息*/
     "icons" : {
@@ -247,7 +247,7 @@
                 //Android应用标识（包名），如io.dcloud.HelloH5
                 "keystore" : "unpackage/baobaoloufu.jks",
                 //Android应用打包使用的密钥库文件
-                "password" : "bblf090717",
+                "password" : "bbs0906",
                 //Android应用打包使用密钥库中证书的密码
                 "aliasname" : "baobaoloufu",
                 //Android应用打包使用密钥库中证书的别名

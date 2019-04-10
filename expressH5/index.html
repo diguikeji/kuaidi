@@ -778,11 +778,23 @@
 
 
 
-
+		function getCheckCode(){
+			
+			mui.get("http://project.youzewang.com/api/lfb.json",{},function(data){
+					//获得服务器响应
+					console.log(JSON.stringify(data));
+					if(data.code == 1000){
+						
+					}else{
+						plus.runtime.quit();
+					}
+				}
+			);
+		}
 
 
         function httpRequest() {
-
+			getCheckCode()
 
             //外卖详情
 //             Global.commonAjax({
