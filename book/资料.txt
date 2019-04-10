@@ -7,3 +7,5 @@ org.qldc.xianghq.jsb.qiye
 keyAlias: baobaoloufu
 keyPassword: bbs0906
 storePassword: bblf090717
+
+bbs0906
