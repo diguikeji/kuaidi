@@ -161,6 +161,12 @@
 			.fuli-top .back-col{display: none;}
 			.space{height:0.8rem;}
 			.space.active{height:0.6rem;}
+			.louyu{text-overflow: -o-ellipsis-lastline;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					display: -webkit-box;
+					-webkit-line-clamp: 2;
+					-webkit-box-orient: vertical;}
 			#statusBar img{width: 0.18rem; height: 0.14rem; position: fixed; left: 0.2rem; top: 0.1rem;}
 	</style>
 
@@ -178,7 +184,7 @@
 <div class="fuli-top">
 
 	<div class="left-col louyu-xuanze">
-		<div  id="louyuText"><span>请选择楼宇</span></div>
+		<div  id="louyuText" class="louyu"><span>请选择楼宇</span></div>
 		<img src="../images/fuli/fuli_03.jpg"/>
 	</div>
 	
@@ -386,6 +392,7 @@
 			bannerList();
 			
 			window.addEventListener('fuliRefresh', function(event) {
+				commonEvent();
 				 httpRequest();
 				 getCoupon();
 				promotionsList();

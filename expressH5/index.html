@@ -682,7 +682,7 @@
                 var clientX = e.clientX;
                 if (clientX > 0 && clientX <= parseInt(pageW * 0.2)) {
                     currIndex = 0;
-
+					commonEvent();
                 } else if (clientX > parseInt(pageW * 0.2) && clientX <= parseInt(pageW * 0.4)) {
                     currIndex = 1;
 					var h = plus.webview.getWebviewById("html/service.html");

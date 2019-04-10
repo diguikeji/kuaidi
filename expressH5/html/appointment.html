@@ -107,7 +107,7 @@
 		    <!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
 			<img src="../images/back.png" class="mui-action-back">
 			
-		    <h1 class="mui-title">上海歌斐中心</h1>
+		    <h1 class="mui-title" id="louyu"> 上海歌斐中心</h1>
 		</header>
 		
 		<div class="mui-content">
@@ -160,6 +160,16 @@
 	<script src="../js/app.js"></script>
 	<script src="../js/myStorage.js"></script>
 	<script type="text/javascript">
+		
+		mui.init();
+		mui.plusReady(function () {
+		
+		    var louyuObj=JSON.parse(myStorage.getItem("louyuName"));
+		    console.log(louyuObj.name);
+		    $("#louyu").text(louyuObj.name);
+		
+		});
+		
 		var complainPicker = new mui.PopPicker();
 		complainPicker.setData([{
 			value: '1',
