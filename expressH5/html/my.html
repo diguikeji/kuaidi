@@ -70,7 +70,7 @@
 			</div>
 			<p>账户余额</p>
 
-			<div class="btn" id="tixian">
+			<div class="btn hideClass" id="tixian">
 				<img src="../images/wode/tixian-btn.png"/>
 			</div>
 
@@ -185,7 +185,7 @@
 			console.log(JSON.stringify(data));
 			myStorage.setItem("user", data);
 			$(".money_num").html(data.total_balance);
-			$(".name").html(data.username);
+			$(".name").html(data.realname);
 			if(data.expresses_count > 0){
 				$(".expresses_count").html(data.expresses_count);
 				$(".expresses_count").show();

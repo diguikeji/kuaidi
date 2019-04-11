@@ -35,7 +35,10 @@
                 <div class="middle">
                     <div class="clearfix">
                         <span class="left expressName"></span>
-                        <span class="right"><span class="yuandian"></span> 运输中</span>
+                        <span class="right">
+                        	<span class="yuandian"></span>
+                        	<span class="status_text">运输中</span> 
+                        </span>
                     </div>
                     <div class="danhao">单号:<span class="sn"></span></div>
                 </div>
@@ -85,7 +88,10 @@
                             </div>
                         </div>
                         <div class="middle">
-                            <span class="first"><span></span>未签收</span>
+                            <span class="first">
+                            	<span class="yuandian"></span>
+                            	<span class="status_text">未签收</span>
+                            </span>
                             <span class="second" id="second_address"></span>
                         </div>
                         <div class="bottom">
@@ -342,6 +348,10 @@
                     $(".expressLogo").attr("src", expressObj.logo_url);
                     $(".expressName").text(expressObj.name);
 
+					$(".status_text").text(data.status_text.text);
+					$(".status_text").css("color",data.status_text.color);
+					$(".yuandian").css("background", data.status_text.color);
+					
                     $(".sn").text(data.sn);
                     $("#package").text(data.package);
                     $("#weight").text(data.weight);

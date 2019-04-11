@@ -327,7 +327,7 @@
 							<div class="content_down">
 								<span class="first_txt">共 <span class="num">{{item.goods_num}}</span> 件</span>
 								<span class="sencod_txt">应付金额:
-									<span class="money">￥</span><span class="money_num">{{item.goods_pay_price}}</span>
+									<span class="money">￥</span><span class="money_num">{{item.payAllMoney}}</span>
 									<!-- <span class="num_float">.00</span> -->
 								</span>
 							</div>
@@ -344,7 +344,7 @@
 							<span class="warn_tag del_order">&nbsp;&nbsp;删除&nbsp;&nbsp;</span>	
 						{{else if item.order_state == 10}}
 							<span class="normal_tag cancle_order">取消订单</span>
-							<span class="warn_tag pay_order" data-id="{{item.order_id}}" data-price="{{item.goods_pay_price}}">&nbsp;&nbsp;付款&nbsp;&nbsp;</span>
+							<span class="warn_tag pay_order" data-id="{{item.order_id}}" data-price="{{item.payAllMoney}}">&nbsp;&nbsp;付款&nbsp;&nbsp;</span>
 						{{else if item.order_state == 30}}
 							<!-- <span class="warn_tag cui_order">&nbsp;催物流&nbsp;</span> -->
 							<!-- <span class="normal_tag look_order">查看物流</span>
@@ -480,10 +480,17 @@
 							data.map(function(item){
 								item.order_goods.map(function(ite){
 									var objItem = {};
+									objItem.payAllMoney = parseFloat(Number(parseFloat(ite.goods_num)) * Number(parseFloat(ite.goods_price))) .toFixed(2);
+									
 									Object.assign(objItem, item, ite);
 									findList.push(objItem);
 								});
 							});
+							
+							
+// 							findList.map(function(item){
+// 								item.payAllMoney = parseFloat(Number(parseFloat(item.goods_num)) * Number(parseFloat(item.goods_price))) .toFixed(2);
+// 							})
 							console.log(JSON.stringify(findList));
 							console.log(JSON.stringify(findList[0]));
 							render('.list_wrap', 'orderList', { data: findList });

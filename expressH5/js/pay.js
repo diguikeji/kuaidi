@@ -210,7 +210,7 @@ function pay(payWay) {
     }, function(err){
         console.log("支付错误");
         console.log(err);
-
+		mui.toast(err);
     });
 
 

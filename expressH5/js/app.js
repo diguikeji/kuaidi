@@ -372,8 +372,22 @@ function openWindowPage(url){
 
 //加减法计算
 mui("body").on('tap','.add-value',function(event){
-
+	
     event.stopPropagation();
+	
+	if((window.location.href.indexOf("mallPage.html") != -1) || (window.location.href.indexOf("shopping_card.html") != -1))
+	{
+		var value=parseInt($(this).prev().text());
+		value++;
+		$(this).prev().text(value);
+
+		if(window.location.href.indexOf("expressInfoAdd")>-1)
+		{
+			countFeiyong();
+		}
+	    return;
+	}
+	
     var value=parseFloat($(this).prev().text()).toFixed(1);
 	
     value = Number(value) + 0.5;
@@ -388,9 +402,25 @@ mui("body").on('tap','.add-value',function(event){
 
 });
 mui("body").on('tap','.sub-value',function(event){
-
-
     event.stopPropagation();
+	
+	if((window.location.href.indexOf("mallPage.html") != -1) || (window.location.href.indexOf("shopping_card.html") != -1))
+	{
+		var value=parseInt($(this).next().text());
+		if(value<=1)
+		{
+			return;
+		}
+		value--;
+		$(this).next().text(value);
+		if(window.location.href.indexOf("expressInfoAdd")>-1)
+		{
+			countFeiyong();
+		}
+		return;
+	}
+	
+	
     var value=parseFloat($(this).next().text()).toFixed(1);
     if(value<=0.5)
     {

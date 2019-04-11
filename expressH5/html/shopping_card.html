@@ -433,7 +433,21 @@
 		        url: "shop/member/getAddressList",
 				method: "POST"
 		    }, function (data) {
+				console.log("data");
+				console.log(data);
+				console.log(data);
+				console.log(data);
+				
 				$(".address_modal").show();
+				
+				if(!data){
+					return;
+				}
+				
+				if(data.length < 0){
+					return;
+				}
+				
 				addressList = data;
 				render('#address_wrap', 'addressList', { data: data });
 				
@@ -443,6 +457,7 @@
 // 				$(".edit-img").eq(selectAddressIndex).show();
 				
 				address_id = addressList[selectAddressIndex].address_id;
+				getCardList();
 				
 		    }, function (err) {
 				mui.toast(err);
@@ -514,7 +529,7 @@
 				id = data[0];
 				console.log(id);
 				getAddressList();
-				getCardList();
+				
 				
 		    }, function (err) {
 				mui.toast(err);
@@ -562,11 +577,25 @@
 		//goToPay
 		mui(".address_modal").on('tap', '#goToPay', function(){
 			$(".address_modal").hide();
-			payType="shop";
 			
-			payModal($("#allMoneyCount").text());
+			confirmOrder();
 			
 		});
+		
+		function confirmOrder(){
+			Global.commonAjax({
+			    url: "shop/order/confirmOrder",
+				method: "POST",
+				data: {order_id: id, address_id: address_id}
+			}, function (data) {
+				
+				payType="shop";
+				payModal($("#allMoneyCount").text());
+				
+			}, function (err) {
+				mui.toast(err);
+			})
+		}
 		
 		
 		

@@ -26,7 +26,7 @@
 .express-list .top p{margin-bottom:0;padding-top:0.03rem;font-size:0.12rem;}
 .express-list .middle{padding:0.1rem 0;}
 .express-list .middle .first{color:#F39800;margin-right:0.02rem;padding:0.1rem 0;}
-.express-list .middle .first span{display: inline-block;width:3px;height:3px;border-radius: 50%;background: #F39800;display: inline-block;vertical-align: middle;margin-right:0.03rem;}
+.express-list .middle .first .yuandian{display: inline-block;width:3px;height:3px;border-radius: 50%;background: #F39800;display: inline-block;vertical-align: middle;margin-right:0.03rem;}
 .express-list .bottom{border-top:1px solid #e3e3e3;padding:0.1rem 0;}
 .express-list .bottom img{width:0.16rem;display: inline-block;vertical-align: middle;margin-right:2px;position: relative;top:0;}
 .express-list .bottom span{display: inline-block;vertical-align: middle;}
@@ -126,7 +126,7 @@
 .yunfei-top-col .middle{padding-top:0.13rem;border-bottom:1px solid #e3e3e3;position: relative;padding-left:0.75rem;padding-bottom:0.13rem;}
 .yunfei-top-col .middle .left{color:#666666;font-size:0.13rem;}
 .yunfei-top-col .middle .right{color:#107EFF;font-size:0.14rem;float: right;margin-right:0.15rem;}
-.yunfei-top-col .middle .right span{width:6px;height:6px;background: #107EFF;border-radius: 50%;display: inline-block;vertical-align: middle;}
+.yunfei-top-col .middle .right .yuandian{width:6px;height:6px;background: #107EFF;border-radius: 50%;display: inline-block;vertical-align: middle;}
 .yunfei-top-col .middle .danhao{font-size:0.16rem;padding:0.05rem 0;width:90%;box-sizing: border-box;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 
 .yunfei-top-detail .bottom .step-list{padding:0 0.38rem;position: relative;margin-top:0.42rem;}
