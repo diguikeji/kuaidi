@@ -130,10 +130,10 @@
 			
 
 			<div class="louyu-list mui-clearfix">
-				<img onclick="openWindowPage('appointment.html')" src="../images/louyu/louyu_06.jpg"/>
-				<img onclick="openWindowPage('appointment.html')" src="../images/louyu/louyu_07.jpg"/>
-				<img onclick="openWindowPage('appointment.html')" src="../images/louyu/louyu_10.jpg"/>
-				<img onclick="openWindowPage('appointment.html')" src="../images/louyu/louyu_11.jpg"/>
+				<img  src="../images/louyu/louyu_06.jpg"/>
+				<img  src="../images/louyu/louyu_07.jpg"/>
+				<img  src="../images/louyu/louyu_10.jpg"/>
+				<img  src="../images/louyu/louyu_11.jpg"/>
 			</div>
 
 
@@ -156,6 +156,11 @@
 		    console.log(louyuObj.name);
 		    $("#louyu").text(louyuObj.name);
 		
+		});
+		
+		mui(".louyu-list").on('tap','img',function(){
+			mui.toast("敬请期待");
+			// appointment.html
 		});
 		
 		var complainPicker = new mui.PopPicker();

@@ -274,7 +274,7 @@
 
             <div class="main-col">
                 <div class="ad-col" onclick="openWindow(2)">
-                    <img src="images/home_bottom.jpg" style="height: 2rem;"/>
+                    <img src="images/home_bottom.jpg" style="height: 2rem;" class="home_bottom_img"/>
                 </div>
             </div>
 
@@ -492,6 +492,8 @@
                     }
                 })
             } else if (id == 2) {
+				mui.toast("敬请期待");
+				return;
                 Global.openWindow({
                     url: 'html/fuli.html?fromHome='+'home',
                     id: 'fuli.html',
@@ -682,24 +684,29 @@
                 var clientX = e.clientX;
                 if (clientX > 0 && clientX <= parseInt(pageW * 0.2)) {
                     currIndex = 0;
+					$(".home_bottom_img").show();
 					commonEvent();
                 } else if (clientX > parseInt(pageW * 0.2) && clientX <= parseInt(pageW * 0.4)) {
                     currIndex = 1;
+					$(".home_bottom_img").hide();
 					var h = plus.webview.getWebviewById("html/service.html");
 					mui.fire(h, 'serviceRefresh', {});
                 }
                 else if (clientX > parseInt(pageW * 0.4) && clientX <= parseInt(pageW * 0.6)) {
                     currIndex = 2;
+					$(".home_bottom_img").hide();
 					var h = plus.webview.getWebviewById("html/live.html");
 					mui.fire(h, 'liveRefresh', {});
                 }
                 else if (clientX > parseInt(pageW * 0.6) && clientX <= parseInt(pageW * 0.8)) {
                     currIndex = 3;
+					$(".home_bottom_img").hide();
 					var h = plus.webview.getWebviewById("html/fuli.html");
 					mui.fire(h, 'fuliRefresh', {});
                 }
                 else {
                     //刷新我的页面
+					$(".home_bottom_img").hide();
                     var h = plus.webview.getWebviewById("html/my.html");
                     mui.fire(h, 'loginRefresh', { loginRefresh: "loginRefresh" });
                     currIndex = 4;
