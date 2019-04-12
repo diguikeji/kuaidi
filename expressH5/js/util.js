@@ -1,4 +1,13 @@
 var util = {
+// 	options: {
+// 		tab: ['images/tab/1.jpg','images/tab/2.jpg','images/tab/3.jpg','images/tab/4.jpg','images/tab/5.jpg'],
+// 		tabActive:['images/tab/1-1.jpg','images/tab/2-1.jpg','images/tab/3-1.jpg','images/tab/4-1.jpg','images/tab/5-1.jpg'],
+// 		ACTIVE_COLOR: "#000",
+// 		NORMAL_COLOR: "#000",
+// 		subpages: ["html/service.html", "html/live.html","html/fuli.html","html/my.html"]
+// 	},
+	
+	
 	options: {
 		tab: ['images/tab/1.jpg','images/tab/2.jpg','images/tab/3.jpg','images/tab/4.jpg','images/tab/5.jpg'],
 		tabActive:['images/tab/1-1.jpg','images/tab/2-1.jpg','images/tab/3-1.jpg','images/tab/4-1.jpg','images/tab/5-1.jpg'],

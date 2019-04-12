@@ -200,10 +200,10 @@
     //企业饮水服务
     mui("#list").on('tap', '.row_between-col ', function () {
 
-        var type = $(this).data("index") + 1;
-		
+        var type = $(this).data("index");
+		myStorage.setItem("serviceTitle", serviceList[type].title);
 		Global.openWindow({
-			url: 'mall_goods_list.html?gc_id='+serviceList[type-1].gc_id+"&type="+type,
+			url: 'mall_goods_list.html?gc_id='+serviceList[type].gc_id+"&type="+(type+1),
 			id: 'mall_goods_list.html',
 			waiting: {
 				autoShow: false

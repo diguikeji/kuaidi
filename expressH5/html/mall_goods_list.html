@@ -192,7 +192,7 @@
 	<script src="../lib/artTemplate.js"></script>
     <script type="text/javascript">
 		var h5pullDown = true;
-		var gc_id, type = 0;
+		var gc_id, type = 0, title;
 		mui.init({
 			pullRefresh: {
 				container: '#pullrefresh',
@@ -212,7 +212,12 @@
 			gc_id = GetQueryString("gc_id");
 			type = GetQueryString("type");
 			if(type>0){
-				$(".mui-title").html(typeList[type-1]);
+				$(".mui-title").html(title);
+			}
+			
+			var title = myStorage.getItem("serviceTitle");
+			if(title){
+				$(".mui-title").html(title);
 			}
 			
 			$(".empty_text").hide();

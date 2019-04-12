@@ -195,6 +195,11 @@
             color: #000;
             padding-left: 0.1rem;
         }
+		
+		#company_services{display: flex; flex-direction: row; align-items: center; flex-flow: wrap;}
+		 #company_services div{ height: 0.55rem; display: flex;flex-direction: row; box-shadow: 0px 0px 10px 0px #EAEAEA;
+					align-items: center;padding-left:0.15rem; font-size: 0.12rem; color: #000000;} 
+		#company_services div img{width: 0.3rem; }
     </style>
 
 
@@ -261,7 +266,22 @@
                 <img class="left" src="../images/service/fuwu_19.jpg" onclick="goToServiceOrder();" />
 
                 <div class="right clearfix" id="company_services">
-                    <div onclick="goToServiceOrder(1);">
+					
+					<!-- <div>
+					    <img src="../images/service/fuwu_21.jpg">
+						<span>服务服务</span>
+					</div>
+					
+					<div>
+					    <img src="../images/service/fuwu_21.jpg">
+						<span>服务服务</span>
+					</div>
+					
+					<div>
+					    <img src="../images/service/fuwu_21.jpg">
+						<span>服务服务</span>
+					</div> -->
+                    <!-- <div onclick="goToServiceOrder(1);">
                         <img src="../images/service/fuwu_21.jpg">
                     </div>
                     <div onclick="goToServiceOrder(2);">
@@ -272,7 +292,7 @@
                     </div>
                     <div onclick="goToServiceOrder(4);">
                         <img src="../images/service/fuwu_26.jpg">
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -288,8 +308,9 @@
 
     <script type="text/html" id="serviceList">
         {{each data as datum j}}
-            <div>
-                <img src="{{datum.icon}}">
+            <div data-index={{j}}>
+                <img src="{{datum.thumb}}">
+				<span>{{datum.title}}</span>
             </div>
         {{/each}}
     </script>
@@ -322,7 +343,7 @@
                 url: "service/types"
             }, function (data) {
 				serviceList = data;
-                // render('#company_services', 'serviceList', { data: data });
+                render('#company_services', 'serviceList', { data: data });
             }, function (err) {
                 console.log("服务类型失败");
             });
@@ -456,35 +477,34 @@
                 }
             })
         }
+		
+		
+		
+		//企业饮水服务
+		    mui("#company_services").on('tap', 'div', function () {
+		
+		        var type = $(this).data("index");
+				
+				myStorage.setItem("serviceTitle", serviceList[type].title);
+				Global.openWindow({
+					url: 'mall_goods_list.html?gc_id='+serviceList[type].gc_id+"&type="+(type+1),
+					id: 'mall_goods_list.html',
+					waiting: {
+						autoShow: false
+					}
+				})
+				return;
+		
+		    })
 
         //企业服务
-        function goToServiceOrder(type) {
-// 			var id = 0;
-// 			
-// 			switch (type) {
-// 			    case 1:
-// 			        name = '饮水服务';
-// 			        break;
-// 			    case 2:
-// 			        name = '保洁服务';
-// 			        break;
-// 			    case 3:
-// 			        name = '商务场地';
-// 			        break;
-// 			    case 4:
-// 			        name = '绿植服务';
-// 			        break;
-// 			
-// 			    default:
-// 			        break;
-// 			}
-			
+        function goToServiceOrder() {
 			Global.openWindow({
-				url: 'mall_goods_list.html?gc_id='+serviceList[type-1].gc_id+"&type="+type,
-				id: 'mall_goods_list.html',
-				waiting: {
-					autoShow: false
-				}
+			    url: 'company_service.html',
+			    id: 'company_service.html',
+			    waiting: {
+			        autoShow: false
+			    }
 			})
 			return;
 			

@@ -84,14 +84,10 @@
 				</ul>
 
 
-				<div class="top-title">猜你喜欢</div>
+				<!-- <div class="top-title">猜你喜欢</div>
 
 				<ul class="clearfix" id="likeList">
-					<!-- <li>
-						<img src="../images/mallList/1 (1).png">
-						<p>相机</p>
-					</li> -->
-				</ul>
+				</ul> -->
 
 			</div>
 		</div>
@@ -99,7 +95,7 @@
 	
 	<script type="text/html" id="list">
 	    {{each data as datum}}
-	        <li data-id="{{datum.gc_id}}">
+	        <li data-id="{{datum.gc_id}}" data-title="{{datum.gc_name}}">
 	        	<img src="{{datum.goodscn_pic?datum.goodscn_pic:'../images/mallList/mallList_09.png'}}">
 	        	<p>{{datum.gc_name}}</p>
 	        </li>
@@ -127,7 +123,7 @@
 					mallRecommend();
 					mallTypes(0);
 			});
-			
+			var dataList = [];
 			//商品推荐
 			function mallRecommend() {
 			    Global.commonAjax({
@@ -136,8 +132,8 @@
 			    }, function (data) {
 					console.log(JSON.stringify(data)); 
 					render('#recommandList', 'list', { data: data.recommend});
-					render('#likeList', 'list', { data: data.like });
-					
+					// render('#likeList', 'list', { data: data.like });
+					dataList = data.recommend;
 			    }, function (err) {
 					mui.toast(err);
 			    })
@@ -157,6 +153,7 @@
 						}else{
 							render('#recommandList', 'list', { data: data });
 						}
+						dataList = data;
 					
 			    }, function (err) {
 					mui.toast(err);
@@ -177,10 +174,10 @@
 				var index = $(this).data("index");
 				if(index == 0){
 					mallRecommend();
-					$("#likeList").show();
+					// $("#likeList").show();
 				}else{
 					mallTypes(index);
-					$("#likeList").hide();
+					// $("#likeList").hide();
 				}
 				
 			});
@@ -188,7 +185,8 @@
 			//商品 详情 
 			mui("#recommandList").on('tap','li',function(){
 				var id = $(this).data("id");
-				
+				var title = $(this).data("title");
+				myStorage.setItem("serviceTitle", title);
 				Global.openWindow({
 					url: 'mall_goods_list.html?gc_id='+id,
 					id: 'mall_goods_list.html',
