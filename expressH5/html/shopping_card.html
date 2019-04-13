@@ -455,8 +455,10 @@
 				// selectAddressIndex edit-img
 // 				$(".edit-img").hide();
 // 				$(".edit-img").eq(selectAddressIndex).show();
+				if(addressList && addressList.length>0){
+					address_id = addressList[selectAddressIndex].address_id;
+				}
 				
-				address_id = addressList[selectAddressIndex].address_id;
 				getCardList();
 				
 		    }, function (err) {

@@ -400,7 +400,15 @@
 
         function openExpressPage(str) {
             if (str == 0) {
-
+				//企业快递
+				var user=myStorage.getItem("user");
+				console.log(JSON.stringify(user));
+				if(user.companies.length==0)
+				{
+					bindQiye();
+					return;
+				}
+				
                 Global.openWindow({
                     url: 'personExpress.html',
                     id: 'personExpress.html',

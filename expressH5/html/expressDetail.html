@@ -333,7 +333,7 @@
                 url: "express/orders/" + id
             },
                 function (data) {
-                    console.log("订单数据详情");
+                    console.log("订单数据详情:"+data.pay_status);
                     console.log(JSON.stringify(data));
 
                     if (data.status == 1) {
@@ -350,7 +350,7 @@
 					$(".status_text").css("color",data.status_text.color);
 					$(".yuandian").css("background", data.status_text.color);
 					
-                    $(".sn").text(data.sn);
+                    $(".sn").text(data.express_sn?data.express_sn:'');
                     $("#package").text(data.package);
                     $("#weight").text(data.weight);
                     if (data.is_freight_collect == 1) {
@@ -361,7 +361,14 @@
                     }
 					
 					if((data.is_freight_collect != 1) && (data.type == 1)){
-						$(".blue-bg").show();
+						//支付按钮
+						if(data.pay_status == 1){
+							//已经支付的
+							$(".blue-bg").hide();
+						}else{
+							$(".blue-bg").show();
+						}
+						
 					}else{
 						$(".blue-bg").hide();
 					}

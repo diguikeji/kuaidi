@@ -103,28 +103,10 @@
 
             </div>
 
-            <!-- <div class="banner-col">
-
-                <div class="swiper-container swiper-banner">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="images/firstPageLive/home_02.jpg">
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="images/firstPageLive/home_02.jpg">
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="images/firstPageLive/home_02.jpg">
-                        </div>
-                    </div>
-
-
-                    <div class="swiper-pagination"></div>
-                </div>
-            </div> -->
+           <div id="slider" class="mui-slider" >
 			
-			<div id="slider" class="mui-slider" >
 			</div>
+			
 
 
             <div class="fenlei-col" id="slider2">
@@ -480,6 +462,14 @@
                     }
                 })
             } else if (id == 1) {
+				//企业快递
+				var user=myStorage.getItem("user");
+				console.log(JSON.stringify(user));
+				if(user.companies.length==0)
+				{
+					bindQiye();
+					return;
+				}
 				myStorage.setItem("storageExpressType", "2");
                 Global.openWindow({
                     url: 'html/personExpress.html?type=2',
@@ -752,6 +742,12 @@
 			},
 			function (data) {
 				setLunBoHtml(data);
+				
+// 				var gallery = mui('.mui-slider');
+// 				gallery.slider({
+// 					  interval: 1000 
+// 				});
+				
 			},
 			function (err) {
 				console.log("外卖详情" + JSON.stringify(err));
@@ -773,7 +769,7 @@
 					dotHtml += '<div class="mui-indicator"></div>';		
 				}			
 				html += '<div class="mui-slider-item mui-slider-item-duplicate">'+
-								'<img src="'+list[0]+'">'+
+								'<img src="'+list[0].img_url+'">'+
 							'</div></div>';			
 				dotHtml += '</div>';		
 				

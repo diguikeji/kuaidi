@@ -142,7 +142,7 @@
 				window.addEventListener('liveRefresh', function(event) {
 					console.log("loginRefresh----");
 					commonEvent();
-				    getList(); 
+				    // getList(); 
 				}, false);
 				
 			}); 
@@ -178,11 +178,7 @@
 						html += '<div class="mui-slider-item">'+
 										'<img src="'+list[i]+'">'+
 								'</div>';
-						if(i == 0){
-							dotHtml += '<div class="mui-indicator active"></div>';	
-						}else{
-							dotHtml += '<div class="mui-indicator"></div>';	
-						}
+						dotHtml += '<div class="mui-indicator"></div>';	
 							
 					}			
 					html += '<div class="mui-slider-item mui-slider-item-duplicate">'+

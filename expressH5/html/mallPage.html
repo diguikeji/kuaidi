@@ -33,13 +33,16 @@
 			.mui-scroll{  
 				width: auto;  
 			} 
+			.shopItem{height: 2rem;}
 			.shopItem li{
 				width: 1.18rem;
 				padding-left: 0.15rem;
 				box-sizing: border-box;
 				display: flex;
 				flex-direction: column;
-				justify-content: space-around;
+				justify-content: space-between;
+				position: relative;
+				height: 100%;
 			}
 			.shopItem img{
 				width: 1.03rem;
@@ -48,9 +51,9 @@
 				width:0.8rem;font-size:0.13rem;
 				word-wrap: break-word;word-break: break-all; display: flex;
 				flex-wrap: wrap; height: 0.5rem;
-				white-space:normal;
+				white-space:normal; margin-bottom: 0.2rem;
 			}
-			.shopItem li p{color:#FF5269;font-size:0.16rem;text-align: left;}
+			.shopItem li p{color:#FF5269;font-size:0.16rem;text-align: left; position: absolute;bottom: 0.1rem;}
 			.shopItem li p span{font-size:0.12rem;}
 			
 			.guige_price_wrap{position: absolute; left: 1.4rem; top: 0.52rem; color: #FF5269;}
