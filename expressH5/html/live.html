@@ -142,7 +142,7 @@
 				window.addEventListener('liveRefresh', function(event) {
 					console.log("loginRefresh----");
 					commonEvent();
-				    // getList(); 
+				    getList(1); 
 				}, false);
 				
 			}); 
@@ -150,7 +150,7 @@
 			var gc_id = 0;
 			var navList = [];
 			//首页头部
-			function getList() {
+			function getList(flag) {
 			    Global.commonAjax({
 			        url: "shop/shops/lifeShop?shopid=1"
 			    }, function (data) {
@@ -161,8 +161,10 @@
 					navList = data.nav;
 					render('#nav_wrap', 'navList', { data: navList});
 					
-					$("#slider").empty();
-					setLunBoHtml(data.store_slide);
+					//不能重复设置,不然无效
+						$("#slider").empty();
+						setLunBoHtml(data.store_slide);
+					
 			    }, function (err) {
 					mui.toast(err);
 			    })
