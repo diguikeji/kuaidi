@@ -82,7 +82,7 @@
 	</div>
 </div>
 
-<div class="empty_text hideClass">
+<div class="empty_text">
 	数据为空
 </div>
 
@@ -148,6 +148,8 @@
 	}
 
 	function getData(pageIndex){
+		$(".empty_text").hide();
+		
 		Global.commonAjax({
 					url: "notifications?page="+pageIndex
 

@@ -98,7 +98,7 @@
                     <img src="images/firstPageLive/icon2.png" />
                 </span>
 
-                <span class="right-img hideClass" onclick="openTopPage()"><img src="images/firstPageLive/live_03.png" /><span
+                <span class="right-img" onclick="openTopPage()"><img src="images/firstPageLive/live_03.png" /><span
                         class="dian"></span></span>
 
             </div>
@@ -622,19 +622,54 @@
         mui.init({
             swipeBack: true //启用右滑关闭功能
         });
+		
+		//创建本地消息
+        function createLocalPushMsg(str, jsonData) {
+            switch(plus.os.name) {  
+				case "Android":  
+					jsonData = jsonData;  
+					break;  
+				case "iOS":  
+					jsonData = jsonData.eid;  
+					break;  
+			}  
+			plus.push.createMessage(str, jsonData, options); 
+        }
+		
+		function notificationMessage(msg){
+			var jsonData = '';
+			var content = '消息提醒';//你要展示的提示
+			switch(plus.os.name) {  
+				case "Android":  
+					jsonData = eval("(" + msg.payload + ")");  
+					break;  
+				case "iOS":  
+					jsonData = msg.payload;  
+					break;  
+			};
+			createLocalPushMsg(msg, content);
+		}
 
         mui.plusReady(function () {
-            // 					var info = plus.push.getClientInfo();
-            // 					console.log(info.clientid);
-            // 					Global.registerGePush(info.clientid);
-            // 					//监听个推	
-            // 					plus.push.addEventListener("receive", function (msg) {
-            // 						mui.toast(msg);
-            // 					})
-            // 					//个推点击
-            // 					plus.push.addEventListener("click", function (msg) {  
-            // 						mui.alert(msg);
-            // 					})
+			var info = plus.push.getClientInfo();
+			console.log(info.clientid);
+			Global.registerGePush(info.clientid);
+			//监听个推	
+			plus.push.addEventListener("receive", function (msg) {
+				if (plus.os.name == "iOS") {
+					if(msg.payload){
+						notificationMessage(msg);
+					}
+				}else{
+					// mui.alert(JSON.stringify(msg));
+					notificationMessage(msg);
+				}
+			})
+			//个推点击
+			plus.push.addEventListener("click", function (msg) {  
+				// mui.alert(msg);
+				openTopPage();
+			})
             //注册个推
 
             httpRequest();
