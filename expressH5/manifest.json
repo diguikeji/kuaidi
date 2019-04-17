@@ -287,41 +287,41 @@
                     "appstore" : "unpackage/res/icons/1024x1024.png",
                     //应用图标，分辨率：1024x1024，用于提交AppStore的程序图标
                     "iphone" : {
-                        "app@2x" : "unpackage/res/icons/120x120.png",
+                        "app@2x" : "unpackage/res/120*120.png",
                         //iOS7-11程序图标（iPhone4S/5/6/7/8）, 分辨率:120x120
-                        "app@3x" : "unpackage/res/icons/180x180.png",
+                        "app@3x" : "unpackage/res/180*180.png",
                         //iOS7-11程序图标（iPhone6plus/7plus/8plus/X），分辨率:180x180
-                        "spotlight@2x" : "unpackage/res/icons/80x80.png",
+                        "spotlight@2x" : "unpackage/res/80*80.png",
                         //iOS7-11 Spotlight搜索图标（iPhone5/6/7/8），分辨率:80x80
-                        "spotlight@3x" : "unpackage/res/icons/120x120.png",
+                        "spotlight@3x" : "unpackage/res/120*120.png",
                         //iOS7-11 Spotlight搜索图标（iPhone6plus/7plus/8plus/X），分辨率:120x120
-                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        "settings@2x" : "unpackage/res/58*58.png",
                         //iOS5-11 Settings设置图标（iPhone5/6/7/8），分辨率:58x58
-                        "settings@3x" : "unpackage/res/icons/87x87.png",
+                        "settings@3x" : "unpackage/res/87*87.png",
                         //iOS5-11 Settings设置图标（iPhone6plus/7plus/8plus/X），分辨率:87x87
-                        "notification@2x" : "unpackage/res/icons/40x40.png",
+                        "notification@2x" : "unpackage/res/40-40.png",
                         //iOS7-11 通知栏图标（iPhone5/6/7/8），分辨率:40x40
-                        "notification@3x" : "unpackage/res/icons/60x60.png"
+                        "notification@3x" : "unpackage/res/60-60.png"
                     },
                     //iOS7-11 通知栏图标（iPhone6plus/7plus/8plus/X），分辨率:60x60
                     "ipad" : {
-                        "app" : "unpackage/res/icons/76x76.png",
+                        "app" : "",
                         //iOS7-11程序图标，分辨率：76x76
-                        "app@2x" : "unpackage/res/icons/152x152.png",
+                        "app@2x" : "",
                         //iOS7-11程序图标（高分屏），分辨率：152x152
-                        "proapp@2x" : "unpackage/res/icons/167x167.png",
+                        "proapp@2x" : "",
                         //iOS9-11程序图标（iPad Pro），分辨率：167x167
-                        "spotlight" : "unpackage/res/icons/40x40.png",
+                        "spotlight" : "",
                         //iOS7-11 Spotlight搜索图标，分辨率：40x40
-                        "spotlight@2x" : "unpackage/res/icons/80x80.png",
+                        "spotlight@2x" : "unpackage/res/80*80.png",
                         //iOS7-11 Spotlight搜索图标（高分屏），分辨率：80x80
-                        "settings" : "unpackage/res/icons/29x29.png",
+                        "settings" : "",
                         //iOS5-11 设置图标，分辨率：29x29
-                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        "settings@2x" : "",
                         //iOS5-11 设置图标（高分屏），分辨率：58x58
-                        "notification" : "unpackage/res/icons/20x20.png",
+                        "notification" : "",
                         //iOS7-11 通知栏图标，分辨率：20x20
-                        "notification@2x" : "unpackage/res/icons/40x40.png"
+                        "notification@2x" : ""
                     }
                 },
                 //iOS5-11 通知栏图标（高分屏），分辨率：40x40
@@ -407,7 +407,6 @@
                         "scheme" : ""
                     },
                     "weixin" : {
-                        "description" : "微信支付",
                         "appid" : "wxe8ac481b75871f3d"
                     }
                 },
