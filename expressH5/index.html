@@ -87,7 +87,7 @@
 
 <body>
 
-    <div class="mui-content">
+    <div class="mui-content" style="visibility: hidden;">
 
         <div class="home-top" id="homeTop">
 
@@ -651,6 +651,20 @@
 		}
 
         mui.plusReady(function () {
+			// $(".mui-content").hide();
+			$(".mui-content").css('visibility','hidden');
+			mui.openWindow({
+					url: 'html/guide.html',
+					id: 'guide.html',
+					waiting: {
+						autoShow: false
+					}
+				})
+			
+			window.addEventListener('loginChangeTab',function(e){
+				$(".mui-content").css('visibility','visible');
+			});
+			
 			var info = plus.push.getClientInfo();
 			console.log(info.clientid);
 			Global.registerGePush(info.clientid);
@@ -671,6 +685,7 @@
 				openTopPage();
 			})
             //注册个推
+				
 
             httpRequest();
             commonEvent();
