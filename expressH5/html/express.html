@@ -189,9 +189,8 @@
                 url: "express/orders?type=" + type + "&page=" + page
             },
                 function (data) {
-
                     console.log("订单列表");
-                    console.log(data);
+                    
                     console.log(JSON.stringify(data.data));
 
                     if (data) {
@@ -228,8 +227,8 @@
 //                              }
 // 
 //                              $("#expressList" + type).append(html);
-							
-                            render('#expressList'+type, 'orderList', {data: data}, true) 
+							console.log(JSON.stringify(data));
+                            render('#expressList'+type, 'orderList', {data: data}) 
 
                             if ($(".middle-tab-col .active").attr("data-type") == 1) {
                                 page1++;
