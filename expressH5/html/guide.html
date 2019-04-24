@@ -22,11 +22,13 @@
 		
 	</head>
 	<body>
-		<img src="../images/firstPageLive/homeBottom_07.jpg" class="full_img">
+		<img src="../images/splash_screen.jpg" class="full_img" id="img_id">
 		
 		<span id="close">跳过</span>
 		
 		<script src="../js/mui.min.js"></script>
+		<script src="../js/jquery-2.1.1.min.js"></script>
+		<script src="../js/app.js"></script>
 		<script>
 			mui.init();
 			mui.plusReady(function() {
@@ -36,9 +38,6 @@
 			});
 			
 			document.getElementById("close").addEventListener('tap', function(event) {
-				//plus.storage.setItem("lauchFlag", "true");
-				
-				// sendRefresh();
 				var options = {
 				    styles:{
 				    	popGesture: "none",
@@ -47,7 +46,6 @@
 						            }
 				    }
 				};
-				
 				var h = plus.webview.getWebviewById(plus.runtime.appid);
 				console.log(JSON.stringify(h))
 				mui.fire(h,'loginChangeTab',{});
@@ -56,6 +54,38 @@
 				plus.webview.currentWebview().close();
 			}, false);
 			
+			document.getElementById("img_id").addEventListener('tap', function(event) {
+				
+				Global.openWindow({
+                    url: 'guide_web_view.html',
+                    id: 'guide_web_view.html',
+                    waiting: {
+                        autoShow: false
+                    }
+                })
+				
+				var h = plus.webview.getWebviewById(plus.runtime.appid);
+				console.log(JSON.stringify(h))
+				mui.fire(h,'loginChangeTab',{});
+				plus.navigator.setFullscreen(false);
+				
+				setTimeout(function(){
+					plus.webview.currentWebview().close();
+				}, 500);
+				// plus.webview.currentWebview().close();
+				
+			}, false);
+			
+			//Android 物理返回
+			var old_back = mui.back;
+			mui.back = function(){
+				var h = plus.webview.getWebviewById(plus.runtime.appid);
+				console.log(JSON.stringify(h))
+				mui.fire(h,'loginChangeTab',{});
+				
+				plus.navigator.setFullscreen(false);
+				plus.webview.currentWebview().close();
+			}
 			
 		</script>
 	</body>

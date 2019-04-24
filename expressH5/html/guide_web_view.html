@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/mui.picker.min.css" />
+		<!-- <link rel="stylesheet" href="../css/app.css"> -->
+        <style type="text/css">
+        	.header-right{position: absolute;right:0;top:0;padding:0 10px;}
+        	.header-right img{width:28px; margin-top: 4px;}
+			
+			.modal-mask {
+			    width: 100%;
+			    height: 100%;
+			    position: fixed;
+			    top: 0;
+			    left: 0;
+			    background: rgba(0, 0, 0, 0.6);
+			    overflow: hidden;
+			    z-index: 10;
+			    color: #fff;
+			    justify-content: center;
+			    align-items: center;
+			}
+			
+			.modal-dialog {
+			    width: 100%;
+			    height: 2rem;
+				bottom: 0rem;
+			    position: absolute;
+				z-index: 1000;
+			}
+			
+			.close_style {
+			    position: absolute;
+			    top: 20px;
+			    right: 20px;
+			    width: 0.3rem;
+			    height: 0.3rem;
+			    z-index: 100000;
+				padding: 0.05rem;
+			}
+					
+			.modal-content {
+			    font-size: 12px;
+			    position: relative;
+			    z-index: 10000;
+			    font-size: 12px;
+			    color: #333333;
+			    padding: 0px;
+				height: 2rem;
+				background-color: #FFFFFF;
+			}
+			
+			.invite_bottom_content {
+			    justify-content: space-around;
+			    align-items: center;
+			    position: absolute;
+			    bottom: 20px;
+			    left: 0px;
+			    width: 100%;
+			}
+			
+			.invite_bottom_content img {
+			    width: 0.7rem;
+			    height: 0.7rem;
+			}
+			
+			.invite_bottom_content span {
+			    font-size: 12px;
+			}
+			
+        </style>
+    </head>
+	
+	<header class="mui-bar mui-bar-nav" style="position: relative;">
+	    <a class=" mui-icon mui-action-back mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title"></h1>
+	</header>
+
+    <body>
+        <div id="div1"></div>
+		
+        <script src="../js/mui.min.js"></script>
+        <script src="../js/mui.picker.min.js"></script>
+        <script src="../js/jquery-2.1.1.min.js"></script>
+        <script src="../js/app.js"></script>
+        <script src="../js/myStorage.js"></script>
+        <script type="text/javascript">
+            mui.init();
+			mui.plusReady(function() {
+				$(".inviteModal").hide();
+				var self = plus.webview.currentWebview();
+				var baiduWV = plus.webview.create("http://t.cn/EaXy1uZ",
+					"baidu", {
+					top: "45px",
+					bottom: 0
+				});
+				self.append(baiduWV);
+
+			});
+			
+			
+			//Android 物理返回
+			
+            			
+        </script>
+    </body>
+
+</html>
