@@ -50,10 +50,10 @@
 			.shopItem li div{
 				width:0.8rem;font-size:0.13rem;
 				word-wrap: break-word;word-break: break-all; display: flex;
-				flex-wrap: wrap; height: 0.5rem;
-				white-space:normal; margin-bottom: 0.2rem;
+				flex-wrap: wrap; 
+				white-space:normal; 
 			}
-			.shopItem li p{color:#FF5269;font-size:0.16rem;text-align: left; position: absolute;bottom: 0.1rem;}
+			.shopItem li p{color:#FF5269;font-size:0.16rem;text-align: left;position: relative;top:-0.18rem;padding-left:0.05rem;}
 			.shopItem li p span{font-size:0.12rem;}
 			
 			.guige_price_wrap{position: absolute; left: 1.4rem; top: 0.52rem; color: #FF5269;}
@@ -111,7 +111,7 @@
 
 			<div class="left">店铺推荐</div>
 
-			<div class="right">更多<span class="mui-icon mui-icon-arrowright"></span></div>
+			<div class="right" onclick="openWindowPage('mallList.html');">更多<span class="mui-icon mui-icon-arrowright"></span></div>
 
 		</div>
 		
@@ -232,6 +232,7 @@
 		<script src="../lib/artTemplate.js"></script>
 		<script src="../js/app.js"></script>
 		<script>
+			
 			var goodsId, store_id, type = 0;
 			mui.init();
 			mui.plusReady(function() {

@@ -99,7 +99,7 @@
                 </span>
 
                 <span class="right-img" onclick="openTopPage()"><img src="images/firstPageLive/live_03.png" /><span
-                        class="dian"></span></span>
+                        class="dian" style="display: none;"></span></span>
 
             </div>
 
@@ -551,6 +551,32 @@
 
 
         }
+	
+		function message()
+		{
+			Global.commonAjax({
+					url: "notifications?page=1"
+
+				},
+				function(data) {
+
+					console.log(JSON.stringify(data));
+
+					if(data)
+					{
+						if(data.data.total>0)
+						{
+							$(".dian").show();
+						}
+					}
+				},
+				function(err)
+				{
+
+					console.log(err);
+				});
+		}
+
 
         function openTopPage() {
 
@@ -690,6 +716,7 @@
             httpRequest();
             commonEvent();
 			getHomeLunBo();
+			message();
 
             plus.navigator.setStatusBarBackground('transparent');
 

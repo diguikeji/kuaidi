@@ -31,9 +31,11 @@
 			#mall img{width:20px;margin-top:13px;}
 			#mall p{font-size:11px;line-height: normal;}
 
-			.list-col{padding:0 8px;box-sizing: border-box;}
-			.img-list{width:100%;list-style: none;padding:0 0;box-sizing: border-box;margin:0.08rem 0 0 0;position: relative;}
-			.img-list .grid-item { width: 50%;padding:8px 8px;box-sizing: border-box;margin-bottom:0.16rem;float:left;box-sizing: border-box;}
+			.list-col{padding:0 0.15rem;box-sizing: border-box;}
+			
+			.img-list{width:100%;list-style: none;padding:0 0;box-sizing: border-box;margin:0.08rem 0 0 0;position: relative;-webkit-column-count:2;
+			column-gap:0.15rem;}
+			.img-list .grid-item {box-sizing: border-box;box-sizing: border-box;padding-bottom:0.15rem;break-inside: avoid;}
 			.img-list .grid-item .grid-item-col{background: #fff;}
 			.img-list .grid-item .img{width:100%;}
 			.img-list .grid-item .bottom-text img{width:0.12rem;position: relative;top:0.02rem;margin-right:0.02rem;}
@@ -127,12 +129,13 @@
 	</script>
 	
 
-		<script src="../js/mui.min.js"></script>
-	    <script src="../js/jquery-2.1.1.min.js"></script>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/jquery-2.1.1.min.js"></script>
 	<script src="../js/myStorage.js"></script>
 	<script src="../lib/artTemplate.js"></script>
 	<script src="../js/app.js"></script>
 		<script>
+			
 			mui.init();
 			mui.plusReady(function() {
 
@@ -203,6 +206,7 @@
 			var articleList = [];
 			//文章列表
 			function getArticleList() {
+				
 			    Global.commonAjax({
 			        url: "shop/shops/artile?shopid=1&per=20&page=1&gc_id="+gc_id
 			    }, function (data) {
@@ -234,7 +238,12 @@
 				gc_id = navList[$(this).index()].gc_id;
 				$("#grid").empty();
 				
+				
 				getArticleList();
+				
+				
+				
+				
 			})
 			
 			//列表点击

@@ -190,6 +190,7 @@ function initExpressList() {
     
 
     $(".yunfei-img-list .swiper-slide").click(function () {
+    	countFeiyong();
         $(".yunfei-img-list .swiper-slide").removeClass("active");
         $(this).addClass("active");
         // if (is_freight_collect == 1) {

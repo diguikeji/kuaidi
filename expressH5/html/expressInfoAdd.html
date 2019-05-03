@@ -210,7 +210,7 @@
                 <div>
                     <span class="left">保价金额</span>
                     <span class="middle">
-                        <input type="number" id="baojiaColInput" placeholder="请输入保价金额" />
+                        <input type="number" id="baojiaColInput" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')" placeholder="请输入保价金额" />
                     </span>
                     <span class="right">
                         <span>保费:<span class="baofei">0</span>元</span>
