@@ -1,594 +1,546 @@
 {
-	"@platforms": [
-		"android",
-		"iPhone",
-		"iPad"
-	],
-	"id": "H555E88B1", /*应用的标识，创建应用时自动生成，勿手动修改*/
-	"name": "楼服宝", /*应用名称，程序桌面图标名称*/
-	"version": {
-		"name": "1.1.8", /*应用版本名称*/
-		"code": 18
-	},
-	"description": "楼服宝app", /*应用描述信息*/
-	"icons": {
-		"72": "icon.png"
-	},
-	"launch_path": "index.html", /*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
-	"developer": {
-		"name": "", /*开发者名称*/
-		"email": "", /*开发者邮箱地址*/
-		"url": ""
-	},
-	"permissions": {
-		// 使用到的模块
-		"Accelerometer": {
-			"description": "加速度传感器"
-		},
-		"Audio": {
-			"description": "音频录制与播放"
-		},
-		"Cache": {
-			"description": "缓存管理"
-		},
-		"Camera": {
-			"description": "摄像头"
-		},
-		"Console": {
-			"description": "调试输出日志"
-		},
-		"Contacts": {
-			"description": "系统通讯录"
-		},
-		"Device": {
-			"description": "设备信息"
-		},
-		"Downloader": {
-			"description": "文件下载"
-		},
-		"Events": {
-			"description": "扩展事件"
-		},
-		"File": {
-			"description": "本地文件系统"
-		},
-		"Gallery": {
-			"description": "系统相册"
-		},
-		"Geolocation": {
-			"description": "位置信息"
-		},
-		"Invocation": {
-			"description": "Native.js能力"
-		},
-		"Messaging": {
-			"description": "消息通讯"
-		},
-		"Orientation": {
-			"description": "方向传感器"
-		},
-		"Proximity": {
-			"description": "距离传感器"
-		},
-		"Storage": {
-			"description": "本地数据存储"
-		},
-		"Webview": {
-			"description": "窗口管理"
-		},
-		"NativeObj": {
-			"description": "原生控件"
-		},
-		"NativeUI": {
-			"description": "原生UI控件"
-		},
-		"Navigator": {
-			"description": "浏览器信息"
-		},
-		"Uploader": {
-			"description": "文件上传"
-		},
-		"Runtime": {
-			"description": "运行环境"
-		},
-		"XMLHttpRequest": {
-			"description": "跨域网络请求"
-		},
-		"Zip": {
-			"description": "压缩与解压"
-		},
-		"Barcode": {
-			"description": "二维码扫描"
-		},
-		"OAuth": {
-			"description": "登录授权"
-		},
-		"Speech": {
-			"description": "语音识别"
-		},
-		"VideoPlayer": {
-			"description": "视频播放"
-		},
-		"LivePusher": {
-			"description": "直播推流"
-		},
-		"Payment": {},
-		"Share": {},
-		"Push": {}
-	},
-	"plus": {
-		"statusbar": {
-			"immersed": "supportedDevice",
-			"style": "dark"
-		},
-		"launchwebview": {
-			"bottom": "0px",
-			"background": "#fff",
-			"subNViews": [
-				{
-					"id": "tabBarColView",
-					"styles": {
-						"bottom": "0px",
-						"left": "0",
-						"height": "50px",
-						"width": "100%",
-						"backgroundColor": "#fff"
-					},
-					"tags": [
-						{
-							"tag": "img",
-							"id": "indexIcon1",
-							"src": "_www/images/tab/1-1.jpg",
-							"position": {
-								"top": "0",
-								"left": "0",
-								"width": "20%",
-								"height": "51px"
-							}
-						}, {
-							"tag": "img",
-							"id": "indexIcon2",
-							"src": "_www/images/tab/2.jpg",
-							"position": {
-								"top": "0",
-								"left": "20%",
-								"width": "20%",
-								"height": "51px"
-							}
-						}, {
-							"tag": "img",
-							"id": "indexIcon3",
-							"src": "_www/images/tab/3.jpg",
-							"position": {
-								"top": "0",
-								"left": "40%",
-								"width": "20%",
-								"height": "51px"
-							}
-						}, {
-							"tag": "img",
-							"id": "indexIcon4",
-							"src": "_www/images/tab/4.jpg",
-							"position": {
-								"top": "0",
-								"left": "60%",
-								"width": "20%",
-								"height": "51px"
-							}
-						}, {
-							"tag": "img",
-							"id": "indexIcon5",
-							"src": "_www/images/tab/5.jpg",
-							"position": {
-								"top": "0",
-								"left": "80%",
-								"width": "20%",
-								"height": "51px"
-							}
-						}
-					]
-				}
-			]
-		},
-		"splashscreen": {
-			"autoclose": true, /*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
-			"waiting": true
-		},
-		"popGesture": "close", /*设置应用默认侧滑返回关闭Webview窗口，"none"为无侧滑返回功能，"hide"为侧滑隐藏Webview窗口。参考http://ask.dcloud.net.cn/article/102*/
-		"runmode": "normal", /*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
-		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==", /*可选，保留给应用签名，暂不使用*/
-		"distribute": {
-			// 云端打包配置
-			"apple": {
-				"appid": "",
-				//iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5
-				"mobileprovision": "",
-				//iOS应用打包配置文件
-				"password": "",
-				//iOS应用打包个人证书导入密码
-				"p12": "",
-				//iOS应用打包个人证书，打包配置文件关联的个人证书
-				"devices": "iphone",
-				//iOS应用支持的设备类型，可取值iphone/ipad/universal
-				"urlschemewhitelist": [
-					//iOS9调用第三方应用urlscheme白名单
-					"baidumap",
-					"iosamap"
-				],
-				"shortcuts": [
-					//3D Touch快捷菜单项
-					{
-						"type": "share",
-						"title": "分 享",
-						"subtitle": "分享到微信、微博、QQ",
-						"icontype": "UIApplicationShortcutIconTypeShare"
-					}, {
-						"type": "about",
-						"title": "关 于",
-						"subtitle": "www.dcloud.io",
-						"iconfile": "sa.png",
-						"userinfo": {
-							"key3": "value3"
-						}
-					}
-				],
-				"frameworks": [],
-				//调用Native.js调用原生Objective-c API需要引用的FrameWork，如需调用GameCenter，则添加"GameKit.framework"
-				"plistcmds": [
-					//自定义修改plist文件命令：修改使用权限的描述信息
-					"Set :NSCameraUsageDescription 拍照/摄像/扫描二维码",
-					"Set :NSMicrophoneUsageDescription 录制音频文件/语音识别",
-					"Set :NSPhotoLibraryUsageDescription 选择/保存图片",
-					"Set :NSLocationWhenInUseUsageDescription 获取位置信息"
-				]
-			},
-			"google": {
-				"packagename": "com.baobaoloufu.android",
-				//Android应用标识（包名），如io.dcloud.HelloH5
-				"keystore": "unpackage/baobaoloufu.jks",
-				//Android应用打包使用的密钥库文件
-				"password": "bbs0906",
-				//Android应用打包使用密钥库中证书的密码
-				"aliasname": "baobaoloufu",
-				//Android应用打包使用密钥库中证书的别名
-				"permissions": [
-					"<uses-feature android:name=\"android.hardware.camera\"/>",
-					"<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
-					"<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
-					"<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
-					"<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
-					"<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
-					"<uses-permission android:name=\"android.permission.CAMERA\"/>",
-					"<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
-					"<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
-					"<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
-					"<uses-permission android:name=\"android.permission.GET_TASKS\"/>",
-					"<uses-permission android:name=\"android.permission.GET_TOP_ACTIVITY_INFO\"/>",
-					"<uses-permission android:name=\"android.permission.INTERNET\"/>",
-					"<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
-					"<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
-					"<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
-					"<uses-permission android:name=\"android.permission.READ_SMS\"/>",
-					"<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>",
-					"<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
-					"<uses-permission android:name=\"android.permission.SEND_SMS\"/>",
-					"<uses-permission android:name=\"android.permission.SYSTEM_ALERT_WINDOW\"/>",
-					"<uses-permission android:name=\"android.permission.VIBRATE\"/>",
-					"<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
-					"<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
-					"<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
-					"<uses-permission android:name=\"android.permission.WRITE_SMS\"/>"
-				]
-			},
-			"orientation": [
-				"portrait-primary"
-			],
-			"icons": {
-				"ios": {
-					"appstore": "unpackage/res/icons/1024x1024.png",
-					//应用图标，分辨率：1024x1024，用于提交AppStore的程序图标
-					"iphone": {
-						"app@2x": "unpackage/res/120*120.png",
-						//iOS7-11程序图标（iPhone4S/5/6/7/8）, 分辨率:120x120
-						"app@3x": "unpackage/res/180*180.png",
-						//iOS7-11程序图标（iPhone6plus/7plus/8plus/X），分辨率:180x180
-						"spotlight@2x": "unpackage/res/80*80.png",
-						//iOS7-11 Spotlight搜索图标（iPhone5/6/7/8），分辨率:80x80
-						"spotlight@3x": "unpackage/res/120*120.png",
-						//iOS7-11 Spotlight搜索图标（iPhone6plus/7plus/8plus/X），分辨率:120x120
-						"settings@2x": "unpackage/res/58*58.png",
-						//iOS5-11 Settings设置图标（iPhone5/6/7/8），分辨率:58x58
-						"settings@3x": "unpackage/res/87*87.png",
-						//iOS5-11 Settings设置图标（iPhone6plus/7plus/8plus/X），分辨率:87x87
-						"notification@2x": "unpackage/res/40-40.png",
-						//iOS7-11 通知栏图标（iPhone5/6/7/8），分辨率:40x40
-						"notification@3x": "unpackage/res/60-60.png"
-					},
-					//iOS7-11 通知栏图标（iPhone6plus/7plus/8plus/X），分辨率:60x60
-					"ipad": {
-						"app": "",
-						//iOS7-11程序图标，分辨率：76x76
-						"app@2x": "",
-						//iOS7-11程序图标（高分屏），分辨率：152x152
-						"proapp@2x": "",
-						//iOS9-11程序图标（iPad Pro），分辨率：167x167
-						"spotlight": "",
-						//iOS7-11 Spotlight搜索图标，分辨率：40x40
-						"spotlight@2x": "unpackage/res/80*80.png",
-						//iOS7-11 Spotlight搜索图标（高分屏），分辨率：80x80
-						"settings": "",
-						//iOS5-11 设置图标，分辨率：29x29
-						"settings@2x": "",
-						//iOS5-11 设置图标（高分屏），分辨率：58x58
-						"notification": "",
-						//iOS7-11 通知栏图标，分辨率：20x20
-						"notification@2x": ""
-					}
-				},
-				//iOS5-11 通知栏图标（高分屏），分辨率：40x40
-				"android": {
-					"mdpi": "unpackage/res/icons/48x48.png",
-					//普通屏程序图标，分辨率：48x48
-					"ldpi": "unpackage/res/icons/48x48.png",
-					//大屏程序图标，分辨率：48x48
-					"hdpi": "unpackage/res/icons/72x72.png",
-					//高分屏程序图标，分辨率：72x72
-					"xhdpi": "unpackage/res/icons/96x96.png",
-					//720P高分屏程序图标，分辨率：96x96
-					"xxhdpi": "unpackage/res/icons/144x144.png",
-					"xxxhdpi": "unpackage/res/icons/192x192.png"
-				}
-			},
-			//1080P 高分屏程序图标，分辨率：144x144
-			"splashscreen": {
-				"ios": {
-					"iphone": {
-						"default": "",
-						//iPhone3启动图片选，分辨率：320x480
-						"retina35": "",
-						//3.5英寸设备(iPhone4)启动图片，分辨率：640x960
-						"retina40": "",
-						//4.0 英寸设备(iPhone5/iPhone5s)启动图片，分辨率：640x1136
-						"retina47": "",
-						//4.7 英寸设备(iPhone6)启动图片，分辨率：750x1334
-						"retina55": "",
-						//5.5 英寸设备(iPhone6 Plus)启动图片，分辨率：1242x2208
-						"retina55l": "",
-						//5.5 英寸设备(iPhone6 Plus)横屏启动图片，分辨率：2208x1242
-						"iphonex": "",
-						//iPhoneX启动图片，分辨率：1125x2436
-						"iphonexl": ""
-					},
-					//iPhoneX横屏启动图片，分辨率：2436x1125
-					"ipad": {
-						"portrait": "",
-						//iPad竖屏启动图片，分辨率：768x1004
-						"portrait-retina": "",
-						//iPad高分屏竖屏图片，分辨率：1536x2008
-						"landscape": "",
-						//iPad横屏启动图片，分辨率：1024x748
-						"landscape-retina": "",
-						//iPad高分屏横屏启动图片，分辨率：2048x1496
-						"portrait7": "",
-						//iPad iOS7竖屏启动图片，分辨率：768x1024
-						"portrait-retina7": "",
-						//iPad iOS7高分屏竖屏图片，分辨率：1536x2048
-						"landscape7": "",
-						//iPad iOS7横屏启动图片，分辨率：1024x768
-						"landscape-retina7": ""
-					}
-				},
-				//iPad iOS7高分屏横屏启动图片，分辨率：2048x1536
-				"android": {
-					"mdpi": "",
-					//普通屏启动图片，分辨率：240x282
-					"ldpi": "",
-					//大屏启动图片，分辨率：320x442
-					"hdpi": "",
-					//高分屏启动图片，分辨率：480x762
-					"xhdpi": "",
-					//720P高分屏启动图片，分辨率：720x1242
-					"xxhdpi": ""
-				}
-			},
-			//1080P高分屏启动图片，分辨率：1080x1882
-			"plugins": {
-				"statics": {},
-				"maps": {},
-				"share": {
-					"weixin": {
-						"appid": "wxe8ac481b75871f3d",
-						"appsecret": "f72c5a802671e43087b93698298ab0af"
-					}
-				},
-				//配置应用使用分享功能，参考http://ask.dcloud.net.cn/article/27
-				"payment": {
-					"alipay": {
-						"description": "阿里支付",
-						"scheme": ""
-					},
-					"weixin": {
-						"appid": "wxe8ac481b75871f3d"
-					}
-				},
-				//配置应用使用支付功能，参考http://ask.dcloud.net.cn/article/71
-				"oauth": {
-					//配置应用使用登录功能，参考http://ask.dcloud.net.cn/article/192
-					"weixin": {
-						//微信登录SDK配置
-						"appid": "wxe8ac481b75871f3d",
-						//微信开放平台申请应用的AppID值
-						"appsecret": "f72c5a802671e43087b93698298ab0af",
-						//微信开放平台申请应用的AppSecret值
-						"description": "微信登录"
-					},
-					"qq": {
-						"appid": ""
-					},
-					"sina": {
-						"appkey": "",
-						"appsecret": "",
-						"redirect_uri": ""
-					}
-				},
-				"speech": {
-					"ifly": {}
-				},
-				"push": {
-					"igexin": {
-						"appid": "KvNIs2LBnR6Sd26Pk5YiK6",
-						"appkey": "BhWPBGvIi0AdTqyUwqU92",
-						"appsecret": "yQE2jkjSy08Q59ii3cVOx6"
-					}
-				}
-			}
-		},
-		"adid": "125999110409"
-	},
-	"dependencies": {
-		"pages": {
-			"index.html": {
-				"resources": [
-					"js/mui.min.js",
-					"css/mui.min.css",
-					"html/tab-webview-subpage-about.html",
-					"fonts/mui.ttf",
-					"fonts/iconfont.ttf",
-					"html/tab-webview-subpage-chat.html",
-					"js/util.js",
-					"html/service.html"
-				],
-				"refer": [
-					"html/tab-webview-subpage-contact.html",
-					"html/new-webview.html",
-					"html/my.html",
-					"html/live.html",
-					"html/fuli.html",
-					"html/express.html",
-					"html/complain.html",
-					"html/login.html"
-				],
-				"priority": 0
-			},
-			"launch.html": {
-				"resources": [
-					"js/mui.min.js",
-					"css/mui.min.css",
-					"html/tab-webview-subpage-about.html"
-				],
-				"refer": [
-					"html/tab-webview-subpage-setting.html",
-					"html/tab-webview-subpage-chat.html",
-					"html/tab-webview-subpage-contact.html"
-				],
-				"priority": 0
-			},
-			"html/tab-webview-subpage-setting.html": {
-				"resources": [
-					"fonts/mui.ttf",
-					"css/mui.min.css",
-					"js/mui.min.js"
-				],
-				"refer": [],
-				"priority": 0
-			},
-			"html/tab-webview-subpage-about.html": {
-				"resources": [
-					"css/mui.min.css",
-					"js/mui.min.js",
-					"js/util.js"
-				],
-				"refer": [],
-				"priority": 0
-			},
-			"html/tab-webview-subpage-chat.html": {
-				"resources": [
-					"fonts/mui.ttf",
-					"js/mui.min.js",
-					"css/mui.min.css"
-				],
-				"refer": [],
-				"priority": 0
-			},
-			"html/tab-webview-subpage-contact.html": {
-				"resources": [
-					"images/60x60.gif",
-					"js/mui.min.js",
-					"css/mui.min.css"
-				],
-				"refer": [],
-				"priority": 0
-			},
-			"html/new-webview.html": {
-				"resources": [
-					"css/mui.min.css",
-					"js/mui.min.js",
-					"fonts/mui.ttf"
-				],
-				"refer": [],
-				"priority": 0
-			},
-			"html/mallList.html": {
-				"resources": [],
-				"refer": [
-					"html/mallPage.html"
-				],
-				"priority": 0
-			},
-			"html/live.html": {
-				"resources": [],
-				"refer": [
-					"html/mallList.html",
-					"html/login.html"
-				],
-				"priority": 0
-			},
-			"html/my.html": {
-				"resources": [],
-				"refer": [
-					"html/my_address.html",
-					"html/signup.html",
-					"html/complain.html"
-				],
-				"priority": 0
-			},
-			"html/my_address.html": {
-				"resources": [
-					"html/my_address_sub.html"
-				],
-				"refer": [],
-				"priority": 0
-			},
-			"html/service.html": {
-				"resources": [],
-				"refer": [
-					"html/login.html",
-					"html/expressSearch.html"
-				],
-				"priority": 0
-			},
-			"html/express.html": {
-				"resources": [],
-				"refer": [
-					"html/expressSearch.html",
-					"html/test.html",
-					"html/expressDetail.html"
-				],
-				"priority": 0
-			},
-			"html/expressSearch.html": {
-				"resources": [],
-				"refer": [
-					"html/barcode_scan.html"
-				],
-				"priority": 0
-			}
-		},
-		"idle": {
-			"resources": [
-				"js/mui.js",
-				"css/mui.css"
-			]
-		}
-	}
+    "@platforms" : [ "android", "iPhone", "iPad" ],
+    "id" : "H555E88B1", /*应用的标识，创建应用时自动生成，勿手动修改*/
+    "name" : "楼服宝", /*应用名称，程序桌面图标名称*/
+    "version" : {
+        "name" : "1.1.8", /*应用版本名称*/
+        "code" : 18
+    },
+    "description" : "楼服宝app", /*应用描述信息*/
+    "icons" : {
+        "72" : "icon.png"
+    },
+    "launch_path" : "index.html", /*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+    "developer" : {
+        "name" : "", /*开发者名称*/
+        "email" : "", /*开发者邮箱地址*/
+        "url" : ""
+    },
+    "permissions" : {
+        // 使用到的模块
+        "Accelerometer" : {
+            "description" : "加速度传感器"
+        },
+        "Audio" : {
+            "description" : "音频录制与播放"
+        },
+        "Cache" : {
+            "description" : "缓存管理"
+        },
+        "Camera" : {
+            "description" : "摄像头"
+        },
+        "Console" : {
+            "description" : "调试输出日志"
+        },
+        "Contacts" : {
+            "description" : "系统通讯录"
+        },
+        "Device" : {
+            "description" : "设备信息"
+        },
+        "Downloader" : {
+            "description" : "文件下载"
+        },
+        "Events" : {
+            "description" : "扩展事件"
+        },
+        "File" : {
+            "description" : "本地文件系统"
+        },
+        "Gallery" : {
+            "description" : "系统相册"
+        },
+        "Geolocation" : {
+            "description" : "位置信息"
+        },
+        "Invocation" : {
+            "description" : "Native.js能力"
+        },
+        "Messaging" : {
+            "description" : "消息通讯"
+        },
+        "Orientation" : {
+            "description" : "方向传感器"
+        },
+        "Proximity" : {
+            "description" : "距离传感器"
+        },
+        "Storage" : {
+            "description" : "本地数据存储"
+        },
+        "Webview" : {
+            "description" : "窗口管理"
+        },
+        "NativeObj" : {
+            "description" : "原生控件"
+        },
+        "NativeUI" : {
+            "description" : "原生UI控件"
+        },
+        "Navigator" : {
+            "description" : "浏览器信息"
+        },
+        "Uploader" : {
+            "description" : "文件上传"
+        },
+        "Runtime" : {
+            "description" : "运行环境"
+        },
+        "XMLHttpRequest" : {
+            "description" : "跨域网络请求"
+        },
+        "Zip" : {
+            "description" : "压缩与解压"
+        },
+        "Barcode" : {
+            "description" : "二维码扫描"
+        },
+        "OAuth" : {
+            "description" : "登录授权"
+        },
+        "Speech" : {
+            "description" : "语音识别"
+        },
+        "VideoPlayer" : {
+            "description" : "视频播放"
+        },
+        "LivePusher" : {
+            "description" : "直播推流"
+        },
+        "Payment" : {},
+        "Share" : {},
+        "Push" : {}
+    },
+    "plus" : {
+        "statusbar" : {
+            "immersed" : "supportedDevice",
+            "style" : "dark"
+        },
+        "launchwebview" : {
+            "bottom" : "0px",
+            "background" : "#fff",
+            "subNViews" : [
+                {
+                    "id" : "tabBarColView",
+                    "styles" : {
+                        "bottom" : "0px",
+                        "left" : "0",
+                        "height" : "50px",
+                        "width" : "100%",
+                        "backgroundColor" : "#fff"
+                    },
+                    "tags" : [
+                        {
+                            "tag" : "img",
+                            "id" : "indexIcon1",
+                            "src" : "_www/images/tab/1-1.jpg",
+                            "position" : {
+                                "top" : "0",
+                                "left" : "0",
+                                "width" : "20%",
+                                "height" : "51px"
+                            }
+                        },
+                        {
+                            "tag" : "img",
+                            "id" : "indexIcon2",
+                            "src" : "_www/images/tab/2.jpg",
+                            "position" : {
+                                "top" : "0",
+                                "left" : "20%",
+                                "width" : "20%",
+                                "height" : "51px"
+                            }
+                        },
+                        {
+                            "tag" : "img",
+                            "id" : "indexIcon3",
+                            "src" : "_www/images/tab/3.jpg",
+                            "position" : {
+                                "top" : "0",
+                                "left" : "40%",
+                                "width" : "20%",
+                                "height" : "51px"
+                            }
+                        },
+                        {
+                            "tag" : "img",
+                            "id" : "indexIcon4",
+                            "src" : "_www/images/tab/4.jpg",
+                            "position" : {
+                                "top" : "0",
+                                "left" : "60%",
+                                "width" : "20%",
+                                "height" : "51px"
+                            }
+                        },
+                        {
+                            "tag" : "img",
+                            "id" : "indexIcon5",
+                            "src" : "_www/images/tab/5.jpg",
+                            "position" : {
+                                "top" : "0",
+                                "left" : "80%",
+                                "width" : "20%",
+                                "height" : "51px"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "splashscreen" : {
+            "autoclose" : true, /*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
+            "waiting" : true
+        },
+        "popGesture" : "close", /*设置应用默认侧滑返回关闭Webview窗口，"none"为无侧滑返回功能，"hide"为侧滑隐藏Webview窗口。参考http://ask.dcloud.net.cn/article/102*/
+        "runmode" : "normal", /*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
+        "signature" : "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==", /*可选，保留给应用签名，暂不使用*/
+        "distribute" : {
+            // 云端打包配置
+            "apple" : {
+                "appid" : "",
+                //iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5
+                "mobileprovision" : "",
+                //iOS应用打包配置文件
+                "password" : "",
+                //iOS应用打包个人证书导入密码
+                "p12" : "",
+                //iOS应用打包个人证书，打包配置文件关联的个人证书
+                "devices" : "iphone",
+                //iOS应用支持的设备类型，可取值iphone/ipad/universal
+                "urlschemewhitelist" : [
+                    //iOS9调用第三方应用urlscheme白名单
+                    "baidumap",
+                    "iosamap"
+                ],
+                "shortcuts" : [
+                    //3D Touch快捷菜单项
+                    {
+                        "type" : "share",
+                        "title" : "分 享",
+                        "subtitle" : "分享到微信、微博、QQ",
+                        "icontype" : "UIApplicationShortcutIconTypeShare"
+                    },
+                    {
+                        "type" : "about",
+                        "title" : "关 于",
+                        "subtitle" : "www.dcloud.io",
+                        "iconfile" : "sa.png",
+                        "userinfo" : {
+                            "key3" : "value3"
+                        }
+                    }
+                ],
+                "frameworks" : [],
+                //调用Native.js调用原生Objective-c API需要引用的FrameWork，如需调用GameCenter，则添加"GameKit.framework"
+                "plistcmds" : [
+                    //自定义修改plist文件命令：修改使用权限的描述信息
+                    "Set :NSCameraUsageDescription 拍照/摄像/扫描二维码",
+                    "Set :NSMicrophoneUsageDescription 录制音频文件/语音识别",
+                    "Set :NSPhotoLibraryUsageDescription 选择/保存图片",
+                    "Set :NSLocationWhenInUseUsageDescription 获取位置信息"
+                ]
+            },
+            "google" : {
+                "packagename" : "com.baobaoloufu.android",
+                //Android应用标识（包名），如io.dcloud.HelloH5
+                "keystore" : "unpackage/baobaoloufu.jks",
+                //Android应用打包使用的密钥库文件
+                "password" : "bbs0906",
+                //Android应用打包使用密钥库中证书的密码
+                "aliasname" : "baobaoloufu",
+                //Android应用打包使用密钥库中证书的别名
+                "permissions" : [
+                    "<uses-feature android:name=\"android.hardware.camera\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+                    "<uses-permission android:name=\"android.permission.CAMERA\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+                    "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
+                    "<uses-permission android:name=\"android.permission.GET_TASKS\"/>",
+                    "<uses-permission android:name=\"android.permission.GET_TOP_ACTIVITY_INFO\"/>",
+                    "<uses-permission android:name=\"android.permission.INTERNET\"/>",
+                    "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_SMS\"/>",
+                    "<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>",
+                    "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
+                    "<uses-permission android:name=\"android.permission.SEND_SMS\"/>",
+                    "<uses-permission android:name=\"android.permission.SYSTEM_ALERT_WINDOW\"/>",
+                    "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_SMS\"/>"
+                ]
+            },
+            "orientation" : [ "portrait-primary" ],
+            "icons" : {
+                "ios" : {
+                    "appstore" : "unpackage/res/icons/1024x1024.png",
+                    //应用图标，分辨率：1024x1024，用于提交AppStore的程序图标
+                    "iphone" : {
+                        "app@2x" : "unpackage/res/icons/120x120.png",
+                        //iOS7-11程序图标（iPhone4S/5/6/7/8）, 分辨率:120x120
+                        "app@3x" : "unpackage/res/icons/180x180.png",
+                        //iOS7-11程序图标（iPhone6plus/7plus/8plus/X），分辨率:180x180
+                        "spotlight@2x" : "unpackage/res/icons/80x80.png",
+                        //iOS7-11 Spotlight搜索图标（iPhone5/6/7/8），分辨率:80x80
+                        "spotlight@3x" : "unpackage/res/icons/120x120.png",
+                        //iOS7-11 Spotlight搜索图标（iPhone6plus/7plus/8plus/X），分辨率:120x120
+                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        //iOS5-11 Settings设置图标（iPhone5/6/7/8），分辨率:58x58
+                        "settings@3x" : "unpackage/res/icons/87x87.png",
+                        //iOS5-11 Settings设置图标（iPhone6plus/7plus/8plus/X），分辨率:87x87
+                        "notification@2x" : "unpackage/res/40-40.png",
+                        //iOS7-11 通知栏图标（iPhone5/6/7/8），分辨率:40x40
+                        "notification@3x" : "unpackage/res/60-60.png"
+                    },
+                    //iOS7-11 通知栏图标（iPhone6plus/7plus/8plus/X），分辨率:60x60
+                    "ipad" : {
+                        "app" : "",
+                        //iOS7-11程序图标，分辨率：76x76
+                        "app@2x" : "",
+                        //iOS7-11程序图标（高分屏），分辨率：152x152
+                        "proapp@2x" : "",
+                        //iOS9-11程序图标（iPad Pro），分辨率：167x167
+                        "spotlight" : "",
+                        //iOS7-11 Spotlight搜索图标，分辨率：40x40
+                        "spotlight@2x" : "unpackage/res/80*80.png",
+                        //iOS7-11 Spotlight搜索图标（高分屏），分辨率：80x80
+                        "settings" : "",
+                        //iOS5-11 设置图标，分辨率：29x29
+                        "settings@2x" : "",
+                        //iOS5-11 设置图标（高分屏），分辨率：58x58
+                        "notification" : "",
+                        //iOS7-11 通知栏图标，分辨率：20x20
+                        "notification@2x" : ""
+                    }
+                },
+                //iOS5-11 通知栏图标（高分屏），分辨率：40x40
+                "android" : {
+                    "mdpi" : "unpackage/res/icons/48x48.png",
+                    //普通屏程序图标，分辨率：48x48
+                    "ldpi" : "unpackage/res/icons/48x48.png",
+                    //大屏程序图标，分辨率：48x48
+                    "hdpi" : "unpackage/res/icons/72x72.png",
+                    //高分屏程序图标，分辨率：72x72
+                    "xhdpi" : "unpackage/res/icons/96x96.png",
+                    //720P高分屏程序图标，分辨率：96x96
+                    "xxhdpi" : "unpackage/res/icons/144x144.png",
+                    "xxxhdpi" : "unpackage/res/icons/192x192.png"
+                }
+            },
+            //1080P 高分屏程序图标，分辨率：144x144
+            "splashscreen" : {
+                "ios" : {
+                    "iphone" : {
+                        "default" : "",
+                        //iPhone3启动图片选，分辨率：320x480
+                        "retina35" : "",
+                        //3.5英寸设备(iPhone4)启动图片，分辨率：640x960
+                        "retina40" : "",
+                        //4.0 英寸设备(iPhone5/iPhone5s)启动图片，分辨率：640x1136
+                        "retina47" : "",
+                        //4.7 英寸设备(iPhone6)启动图片，分辨率：750x1334
+                        "retina55" : "",
+                        //5.5 英寸设备(iPhone6 Plus)启动图片，分辨率：1242x2208
+                        "retina55l" : "",
+                        //5.5 英寸设备(iPhone6 Plus)横屏启动图片，分辨率：2208x1242
+                        "iphonex" : "",
+                        //iPhoneX启动图片，分辨率：1125x2436
+                        "iphonexl" : ""
+                    },
+                    //iPhoneX横屏启动图片，分辨率：2436x1125
+                    "ipad" : {
+                        "portrait" : "",
+                        //iPad竖屏启动图片，分辨率：768x1004
+                        "portrait-retina" : "",
+                        //iPad高分屏竖屏图片，分辨率：1536x2008
+                        "landscape" : "",
+                        //iPad横屏启动图片，分辨率：1024x748
+                        "landscape-retina" : "",
+                        //iPad高分屏横屏启动图片，分辨率：2048x1496
+                        "portrait7" : "",
+                        //iPad iOS7竖屏启动图片，分辨率：768x1024
+                        "portrait-retina7" : "",
+                        //iPad iOS7高分屏竖屏图片，分辨率：1536x2048
+                        "landscape7" : "",
+                        //iPad iOS7横屏启动图片，分辨率：1024x768
+                        "landscape-retina7" : ""
+                    }
+                },
+                //iPad iOS7高分屏横屏启动图片，分辨率：2048x1536
+                "android" : {
+                    "mdpi" : "",
+                    //普通屏启动图片，分辨率：240x282
+                    "ldpi" : "",
+                    //大屏启动图片，分辨率：320x442
+                    "hdpi" : "",
+                    //高分屏启动图片，分辨率：480x762
+                    "xhdpi" : "",
+                    //720P高分屏启动图片，分辨率：720x1242
+                    "xxhdpi" : ""
+                }
+            },
+            //1080P高分屏启动图片，分辨率：1080x1882
+            "plugins" : {
+                "statics" : {},
+                "maps" : {},
+                "share" : {
+                    "weixin" : {
+                        "appid" : "wxe8ac481b75871f3d",
+                        "appsecret" : "f72c5a802671e43087b93698298ab0af"
+                    }
+                },
+                //配置应用使用分享功能，参考http://ask.dcloud.net.cn/article/27
+                "payment" : {
+                    "alipay" : {
+                        "description" : "阿里支付",
+                        "scheme" : ""
+                    },
+                    "weixin" : {
+                        "appid" : "wxe8ac481b75871f3d"
+                    }
+                },
+                //配置应用使用支付功能，参考http://ask.dcloud.net.cn/article/71
+                "oauth" : {
+                    //配置应用使用登录功能，参考http://ask.dcloud.net.cn/article/192
+                    "weixin" : {
+                        //微信登录SDK配置
+                        "appid" : "wxe8ac481b75871f3d",
+                        //微信开放平台申请应用的AppID值
+                        "appsecret" : "f72c5a802671e43087b93698298ab0af",
+                        //微信开放平台申请应用的AppSecret值
+                        "description" : "微信登录"
+                    }
+                },
+                "speech" : {
+                    "ifly" : {}
+                },
+                "push" : {
+                    "igexin" : {
+                        "appid" : "KvNIs2LBnR6Sd26Pk5YiK6",
+                        "appkey" : "BhWPBGvIi0AdTqyUwqU92",
+                        "appsecret" : "yQE2jkjSy08Q59ii3cVOx6"
+                    }
+                }
+            }
+        },
+        "adid" : "125999110409"
+    },
+    "dependencies" : {
+        "pages" : {
+            "index.html" : {
+                "resources" : [
+                    "js/mui.min.js",
+                    "css/mui.min.css",
+                    "html/tab-webview-subpage-about.html",
+                    "fonts/mui.ttf",
+                    "fonts/iconfont.ttf",
+                    "html/tab-webview-subpage-chat.html",
+                    "js/util.js",
+                    "html/service.html"
+                ],
+                "refer" : [
+                    "html/tab-webview-subpage-contact.html",
+                    "html/new-webview.html",
+                    "html/my.html",
+                    "html/live.html",
+                    "html/fuli.html",
+                    "html/express.html",
+                    "html/complain.html",
+                    "html/login.html"
+                ],
+                "priority" : 0
+            },
+            "launch.html" : {
+                "resources" : [
+                    "js/mui.min.js",
+                    "css/mui.min.css",
+                    "html/tab-webview-subpage-about.html"
+                ],
+                "refer" : [
+                    "html/tab-webview-subpage-setting.html",
+                    "html/tab-webview-subpage-chat.html",
+                    "html/tab-webview-subpage-contact.html"
+                ],
+                "priority" : 0
+            },
+            "html/tab-webview-subpage-setting.html" : {
+                "resources" : [ "fonts/mui.ttf", "css/mui.min.css", "js/mui.min.js" ],
+                "refer" : [],
+                "priority" : 0
+            },
+            "html/tab-webview-subpage-about.html" : {
+                "resources" : [ "css/mui.min.css", "js/mui.min.js", "js/util.js" ],
+                "refer" : [],
+                "priority" : 0
+            },
+            "html/tab-webview-subpage-chat.html" : {
+                "resources" : [ "fonts/mui.ttf", "js/mui.min.js", "css/mui.min.css" ],
+                "refer" : [],
+                "priority" : 0
+            },
+            "html/tab-webview-subpage-contact.html" : {
+                "resources" : [ "images/60x60.gif", "js/mui.min.js", "css/mui.min.css" ],
+                "refer" : [],
+                "priority" : 0
+            },
+            "html/new-webview.html" : {
+                "resources" : [ "css/mui.min.css", "js/mui.min.js", "fonts/mui.ttf" ],
+                "refer" : [],
+                "priority" : 0
+            },
+            "html/mallList.html" : {
+                "resources" : [],
+                "refer" : [ "html/mallPage.html" ],
+                "priority" : 0
+            },
+            "html/live.html" : {
+                "resources" : [],
+                "refer" : [ "html/mallList.html", "html/login.html" ],
+                "priority" : 0
+            },
+            "html/my.html" : {
+                "resources" : [],
+                "refer" : [ "html/my_address.html", "html/signup.html", "html/complain.html" ],
+                "priority" : 0
+            },
+            "html/my_address.html" : {
+                "resources" : [ "html/my_address_sub.html" ],
+                "refer" : [],
+                "priority" : 0
+            },
+            "html/service.html" : {
+                "resources" : [],
+                "refer" : [ "html/login.html", "html/expressSearch.html" ],
+                "priority" : 0
+            },
+            "html/express.html" : {
+                "resources" : [],
+                "refer" : [
+                    "html/expressSearch.html",
+                    "html/test.html",
+                    "html/expressDetail.html"
+                ],
+                "priority" : 0
+            },
+            "html/expressSearch.html" : {
+                "resources" : [],
+                "refer" : [ "html/barcode_scan.html" ],
+                "priority" : 0
+            }
+        },
+        "idle" : {
+            "resources" : [ "js/mui.js", "css/mui.css" ]
+        }
+    }
 }
