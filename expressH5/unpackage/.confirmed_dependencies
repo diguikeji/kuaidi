@@ -1,73 +1,73 @@
 {
-	"index.html": {
-		"refer": [
-			"template.html",
-			"mine/login.html",
-			"html/my.html",
-			"html/live.html",
-			"html/fuli.html",
-			"html/express.html",
-			"html/service.html",
-			"html/complain.html",
-			"html/login.html"
-		],
-		"resources": [
-			"html/service.html"
-		]
-	},
-	"template.html": {
-		"refer": [
-			"template-main-third.html",
-			"template-main-second.html",
-			"template-main-first.html"
-		],
-		"resources": []
-	},
-	"html/mallList.html": {
-		"refer": [
-			"html/mallPage.html"
-		],
-		"resources": []
-	},
-	"html/live.html": {
-		"refer": [
-			"html/mallList.html",
-			"html/login.html"
-		],
-		"resources": []
-	},
-	"html/my.html": {
-		"refer": [
-			"html/my_address.html",
-			"html/signup.html",
-			"html/complain.html"
-		],
-		"resources": []
-	},
-	"html/my_address.html": {
-		"resources": [
-			"html/my_address_sub.html"
-		],
-		"refer": [
-			"html/my_address_sub.html"
-		]
-	},
-	"html/service.html": {
-		"refer": [
-			"html/login.html",
-			"html/expressSearch.html"
-		]
-	},
-	"html/express.html": {
-		"refer": [
-			"html/expressSearch.html",
-			"html/test.html",
-			"html/expressDetail.html"
-		]
-	},
-	"html/expressSearch.html": {
-		"refer": [
-			"html/barcode_scan.html"
-		]
-	}
+  "index.html": {
+    "refer": [
+      "template.html",
+      "mine/login.html",
+      "html/my.html",
+      "html/live.html",
+      "html/fuli.html",
+      "html/express.html",
+      "html/service.html",
+      "html/complain.html",
+      "html/login.html"
+    ],
+    "resources": [
+      "html/service.html"
+    ]
+  },
+  "template.html": {
+    "refer": [
+      "template-main-third.html",
+      "template-main-second.html",
+      "template-main-first.html"
+    ],
+    "resources": []
+  },
+  "html/mallList.html": {
+    "refer": [
+      "html/mallPage.html"
+    ],
+    "resources": []
+  },
+  "html/live.html": {
+    "refer": [
+      "html/mallList.html",
+      "html/login.html"
+    ],
+    "resources": []
+  },
+  "html/my.html": {
+    "refer": [
+      "html/my_address.html",
+      "html/signup.html",
+      "html/complain.html"
+    ],
+    "resources": []
+  },
+  "html/my_address.html": {
+    "resources": [
+      "html/my_address_sub.html"
+    ],
+    "refer": [
+      "html/my_address_sub.html"
+    ]
+  },
+  "html/service.html": {
+    "refer": [
+      "html/login.html",
+      "html/expressSearch.html"
+    ]
+  },
+  "html/express.html": {
+    "refer": [
+      "html/expressSearch.html",
+      "html/test.html",
+      "html/expressDetail.html"
+    ]
+  },
+  "html/expressSearch.html": {
+    "refer": [
+      "html/barcode_scan.html"
+    ]
+  }
 }

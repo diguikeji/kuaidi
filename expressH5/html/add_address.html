@@ -158,7 +158,16 @@
 		</div>
 
     <div class="head_wrap">
-      <span>收货地址</span>
+      <span id="addressText"></span>
+    </div>
+
+	<div class="row item_wrap" id="addressType" onclick="showAddress();">
+      <div class="row_between item">
+        <span>地址类型</span>
+        <span class="content">请选择</span>
+        
+        <span class="arraw"></span>
+      </div>
     </div>
 
     <div class="row item_wrap" onclick="showReason();">
@@ -271,6 +280,26 @@
 
     getProvince();
   });
+  
+  var addressTypePicker = new mui.PopPicker();
+  
+  addressTypePicker.setData([{
+						value: '1',
+						text: '寄件地址'
+					}, {
+						value: '2',
+						text: '收件地址'
+					}]);
+  
+  function showAddress() {
+    addressTypePicker.show(function (item) {
+      
+      $("#addressType .content").text(item[0].text);
+      addAddressType=item[0].value;
+      
+    })
+  }
+  
   var is_default = 0;
   var complainPicker = new mui.PopPicker();
   var cityPicker = new mui.PopPicker();
@@ -375,18 +404,27 @@
     });
   }
 
+	var addAddressType=1;
+	
+	var typeValue = myStorage.getItem("storageSelectAddressValue");
+    
+   if (typeValue == 2) {
+      addAddressType = 2;
+      $("#addressText").text("收件地址");
+      $("#addressType").hide();
+    }
+   else if(typeValue==1)
+   {
+   	  addAddressType = 1;
+   	  $("#addressText").text("寄件地址");
+   	  $("#addressType").hide();
+   }
+	
   function saveAddress() {
 
-    var addAddressType = 1;
-
-    var typeValue = myStorage.getItem("storageSelectAddressValue");
-    if (typeValue == 2) {
-      addAddressType = 2;
-    }
 
     console.log("addAddressType:" + addAddressType);
 		
-
     var params = {
       province_id: province_id,
       city_id: city_id,
