@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>个人信息</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="https://cdn.bootcss.com/mui/3.7.1/css/mui.min.css" rel="stylesheet" />
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+            background: #F4F4F4;
+        }
+        
+        .next {
+		    width: 80%;
+		    height: 40px;
+		    text-align: center;
+		    font-size: 20px;
+		    margin: 80px 10% 50px;
+		    border-radius: 30px;
+		    background: #FF5445;
+		    color: #ffffff;
+		    box-shadow: 0px 2px 5px #888888;
+		    position: relative;
+		}
+			
+    </style>
+</head>
+
+<body>
+    <header class="mui-bar mui-bar-nav">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+        
+        <h1 class="mui-title">支付成功</h1>
+    </header>
+
+    <div class="mui-content" style="background: #F4F4F4;">
+		
+    		<a class="mui-btn mui-btn-link next " onclick="pay();">跳转APP
+    		</a>
+    		
+    </div>
+
+    <script src="https://cdn.bootcss.com/mui/3.7.1/js/mui.min.js"></script>
+    
+    <script type="text/javascript">
+        mui.init();
+		mui.plusReady(function() {
+    	});
+    		
+        function pay(){
+        	mui.openWindow({
+	  			url: '_www/html/my.html',
+	  			id: 'my.html',
+			    waiting:{
+			      autoShow:false
+			    }
+	  		});
+        }
+        
+       
+        
+    </script>
+</body>
+
+</html>

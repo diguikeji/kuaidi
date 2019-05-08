@@ -123,11 +123,18 @@
 			mui.plusReady(function() {
 				$(".inviteModal").hide();
 				var self = plus.webview.currentWebview();
-				var baiduWV = plus.webview.create("http://kd.loufubao.com/dajin/#/?token="+myStorage.getItem("token")+"&inapp=true",
+				// var baiduWV = plus.webview.create("http://kd.loufubao.com/dajin/#/?token="+myStorage.getItem("token")+"&inapp=true",
+				// 	"baidu", {
+				// 	top: "45px",
+				// 	bottom: 0
+				// });
+				
+				var baiduWV = plus.webview.create("http://kd.loufubao.com/api/test/unionpay",
 					"baidu", {
 					top: "45px",
 					bottom: 0
 				});
+				
 				self.append(baiduWV);
 				
 				
