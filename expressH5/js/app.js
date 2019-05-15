@@ -1,26 +1,8 @@
 var Global = {};
-var isOpenLogin = false;
+
 (function() {
 
     Global = {
-    	
-    	openWindow:function($obj)
-    	{
-			
-    		var options = {
-						styles:{
-							popGesture: "close"
-						},
-						extras:$obj.extras
-					};
-    		
-    		options.styles.statusbar = {
-							background: "#fff"
-						};
-    		
-    		mui.openWindow($obj.url, $obj.id,options);
-    		
-    	},
         showLoading: function() {
             if ($("#ShowLoading").length == 0) {
                 $("body").append("<div id='ShowLoading' style='width:100%;height:100%;background:rgba(0,0,0,0.5);display:table;position: fixed;left:0;top:0;z-index:1000000;'><div style='width:100%;text-align:center;vertical-align:middle;display: table-cell;'><img src='../images/loading.gif' style='width: 98px; height: 44px;'/></div></div>");
@@ -104,537 +86,388 @@ var isOpenLogin = false;
             console.log($('.global-modal').length)
             return !isClose;
         },
-        refreshUser:function()
-        {
-				Global.commonAjax({
-					url: 'profile'
-				}, function(data){
-					console.log("用户数据");
-					console.log(JSON.stringify(data));
-					myStorage.setItem("user", data);
-					$("#qiye").text(data.company_id);
-					
-				}, function(err){
-					
-				});
-       },
-	   
-	   registerGePush: function(id){
-			Global.commonAjax({
-				url: 'clientid',
-				method: 'PUT',
-				data: {
-					client_id: id
-				}
-			}, function(data){
-				console.log(JSON.stringify(data));
-			}, function(err){
-				
-			});
-	   },
         //网络请求
-        commonAjax: function(params,callback, errorback) {
-           var baseUrl = "http://kd.loufubao.com/api/" ;
-		   if(params.url.indexOf("shop") != -1&&params.url.indexOf("shop/orders")== -1){
-		   	
-			   //包含
-			   baseUrl = "http://kd.loufubao.com/shopapi/index.php/api/";
-		   }
+        commonAjax: function(params, callback, errorback) {
+           var baseUrl = "http://app.dev.xianghq.cn/api/";
+            // var baseUrl = "https://app.xhq520.com/api/"; 
+            //   var baseUrl = "http://192.168.1.26:8081/api/";
+            //应用版本号
+            var appVersion = plus.runtime.version;
+            //          //设备唯一标识
+            var deviceId = plus.device.uuid;
+            //          //系统的版本信息
+            var osVersion = plus.os.version;
+            //
+            var appType = plus.os.name;
+            var appName = "xhq";
 
             //默认 get请求
             if (!params.method) {
                 params.method = "GET";
             } else {
-                params.method = params.method;
+                params.method = "POST";
             }
-			
-			//没有网络
-			console.log(JSON.stringify(params));
+
             if (plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE) {
                 Global.errorNet();
                 return;
             }
-			
-			console.log(baseUrl + params.url);
-			
-			var waiting;
+
             mui.ajax(baseUrl + params.url, {
                 dataType: "json",
                 type: params.method,
                 data: params.data,
                 timeout: 10000,
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
+                    'Content-Type': 'application/json'
                 },
                 beforeSend: function(xhr) {
-                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    xhr.setRequestHeader("Accept", "application/x-www-form-urlencoded");
-                    var token = myStorage.getItem("token");
-                    
+                    xhr.setRequestHeader("deviceId", deviceId);
+                    xhr.setRequestHeader("osVersion", osVersion);
+                    xhr.setRequestHeader("appVersion", appVersion);
+                    xhr.setRequestHeader("appType", appType);
+                    xhr.setRequestHeader("appName", appName);
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                    var token = myStorage.getItem("userToken");
                     if (token) {
-						console.log(token);
                         xhr.setRequestHeader("Authorization", "Bearer " + token);
                     };
 
-                    //Global.showLoading();
-                    waiting = plus.nativeUI.showWaiting("加载中...");
+                    if (params.url.indexOf("isShowPic=true") != -1) {
+                        console.log("显示图片");
+                    } else {
+                        Global.showLoading();
+                    }
+
 
                 },
                 success: function(data) {
-                	console.log("成功数据");
-                	console.log(JSON.stringify(data));
-					if (data.success || (data.result == 1)) {
-						console.log(JSON.stringify(data));
-                        callback(data.data);
-                    } else{
-						errorback(data.msg ? data.msg : "");
-					}
+                    //console.log(JSON.stringify(data));
+                    if (data.code.indexOf("token") != -1 || params.url.indexOf("logout") != -1) {
+                        //token 过期
+                        if (myStorage) {
+                            myStorage.removeItem("userToken");
+                            myStorage.removeItem("user");
+                            myStorage.removeItem("userInfo");
+                            myStorage.removeItem("wallet");
+                            myStorage.removeItem("headPic");
+                        }
+                        var curr = plus.webview.currentWebview();
+                        var wvs = plus.webview.all();
+                        console.log(data.code);
+                        if (wvs && wvs.length) {
+                            for (var i = 0; i < wvs.length; i++) {
+                                if (wvs[i]) {
+                                    if (wvs[i].getURL() == curr.getURL()) {
+                                        continue;
+                                    }
+                                    plus.webview.close(wvs[i]);
+                                }
+
+                            }
+                            if (params.url.indexOf("logout") != -1) {
+                                mui.toast("请重新登录");
+                            } else {
+                                mui.toast("登录信息已失效，请重新登录");
+                            }
+
+                            plus.webview.open('login.html');
+
+                            curr.close();
+
+                            return;
+                        }
+
+                    } else if (data.code == "pay.ok") {
+                        callback(data.data ? data.data : "");
+                    } else if (data.code == "SUCCESS" || data.code == "OK" ||
+                        data.code == "success" || data.code == "ok") {
+                        callback(data.data ? data.data : "");
+                    }else if(data.code == "ocr.succ.over") {
+                        errorback && errorback(data.msg, data.code);
+                    }else if(data.code == "ocr.back.over"){
+                    		mui.toast(data.msg);
+                    		callback(data.data ? data.data : "");
+                    }else {
+                        errorback && errorback(data.msg);
+                    }
 
                 },
                 error: function(data) {
-                	console.log("失败回调");
-                	console.log(data.msg);
-                	
-					errorback(data.msg ? data.msg : "");
+                    console.log(JSON.stringify(data));
+                    if (!data.response || !data.responseText) {
+                        Global.error500();
+                        return;
+                    }
+                    if (errorback) {
+                        errorback(data.msg);
+                    }
 
                 },
                 complete: function(xhr, status) {
-					waiting.close();
-					console.log("调用完成");
-                    console.log(xhr.status);
-                    console.log(xhr.responseText);
-					
-					if(xhr.status == 401){
-						//重新登录
-						Global.goToLogin();
-						
-					}else if(xhr.status == 200){
-						
-					}
-					else{
-						var res = JSON.parse(xhr.responseText);
-						mui.toast(res.msg);
-					}
+                    if (params.url.indexOf("isShowPic=true") != -1) {
+                        console.log("显示图片");
+                        return;
+                    }
+
+                    // setTimeout(function() {
+                    //     Global.hideLoading();
+                    // }, 500);
+                    Global.hideLoading();
+
+                    if (params.url.indexOf("card") != -1) {
+                        console.log("9999999");
+                        return;
+                    }
+
+                    if (params.url.indexOf("changpay/prepare")) {
+                        //支付短信平台出错
+
+                        return;
+                    }
+
+                    if (status == 'error') {
+                        Global.error404();
+                    } else if (status == 'timeout') {
+                        Global.error500();
+                    } else if (status != 'success') {
+                        Global.errorNet();
+                    }
+
 
                 }
             });
 
 
         },
-		
-		goToLogin: function(){
-			console.log("goToLogin")
-			var path = plus.webview.currentWebview();
-			//获取所有已经打开的webview窗口
-			var wvs = plus.webview.all();
-			for (var i = 0, len = wvs.length; i < len; i++) {
-			    if (wvs[i].getURL().indexOf("login.html") != -1) {
-			        return;
-			    }
-			}
-			console.log("ddddddddddddddd")
 
-            var options = {
-                styles:{
-                	popGesture: "none"
+        imgLoading: function(idName, className) {
+            Global.showLoading();
+
+            idName.onload = function() {
+                $('.' + className).removeClass('hideClass');
+                setTimeout(function() {
+                    Global.hideLoading();
+                }, 500);
+
+            }
+        },
+        closeStepWindow: function() {
+            var curr = plus.webview.currentWebview();
+            //获取所有已经打开的webview窗口
+            var wvs = plus.webview.all();
+            for (var i = 0, len = wvs.length; i < len; i++) {
+                console.log(wvs[i].getURL());
+                if (!wvs[i].getURL()) {
+                    continue;
                 }
-            };
-			if(window.location.href.indexOf("index")>-1){
-				if(!isOpenLogin){
-					isOpenLogin = true;
-					mui.openWindow('html/login.html','login.html',options);
-				}
-                
+                if (wvs[i].getURL().indexOf("index.html") != -1) {
+                    continue;
+                }
 
-			}else{
-				if(!isOpenLogin){
-					isOpenLogin = true;
-					mui.openWindow('login.html','login.html',options);
-				}
-                
-			}
-			
-			setTimeout(function(){
-				isOpenLogin = false;
-			}, 10000);
-			
-		},
+                   if (wvs[i].getURL().indexOf("http") != -1) {
+                       plus.webview.close(wvs[i]);
+                       continue;
+                   }
+                if (wvs[i].getURL().indexOf("personInfo.html") != -1) {
+                    plus.webview.close(wvs[i]);
+                    continue;
+                }
+                if (wvs[i].getURL().indexOf("credit.html") != -1) {
+                    plus.webview.close(wvs[i]);
+                    continue;
+                }
+                if (wvs[i].getURL().indexOf("identificateFirst.html") != -1) {
+                    plus.webview.close(wvs[i]);
+                    continue;
+                }
+                if (wvs[i].getURL().indexOf("pay_style.html") != -1) {
+                    plus.webview.close(wvs[i]);
+                    continue;
+                }
 
-		getCanvasBase64: function(img) {
-		    var image = new Image();
-		    //至关重要
-		    image.crossOrigin = '';
-		    image.src = img;
-		    //至关重要
-		    var deferred = $.Deferred();
-		    if (img) {
-		        image.onload = function() {
-		            deferred.resolve(Global.compress(image)); //将base64传给done上传处理
-		        }
-		        return deferred.promise(); //问题要让onload完成后再return sessionStorage['imgTest']
-		    }
-		},
-		
-		
-		compress: function(img) {
-		    //    用于压缩图片的canvas
-		    var canvas = document.createElement("canvas");
-		    var ctx = canvas.getContext('2d');
-		    //    瓦片canvas
-		    var tCanvas = document.createElement("canvas");
-		    var tctx = tCanvas.getContext("2d");
-		
-		    var initSize = img.src.length;
-		    var width = img.width;
-		    var height = img.height;
-		
-		    //如果图片大于四百万像素，计算压缩比并将大小压至400万以下
-		    var ratio;
-		    if ((ratio = width * height / 4000000) > 1) {
-		        ratio = Math.sqrt(ratio);
-		        width /= ratio;
-		        height /= ratio;
-		    } else {
-		        ratio = 1;
-		    }
-		
-		    canvas.width = width;
-		    canvas.height = height;
-		
-		    //        铺底色
-		    ctx.fillStyle = "#fff";
-		    ctx.fillRect(0, 0, canvas.width, canvas.height);
-		
-		    //如果图片像素大于100万则使用瓦片绘制
-		    var count;
-		    if ((count = width * height / 1000000) > 1) {
-		        count = ~~(Math.sqrt(count) + 1); //计算要分成多少块瓦片
-		
-		        //            计算每块瓦片的宽和高
-		        var nw = ~~(width / count);
-		        var nh = ~~(height / count);
-		
-		        tCanvas.width = nw;
-		        tCanvas.height = nh;
-		
-		        for (var i = 0; i < count; i++) {
-		            for (var j = 0; j < count; j++) {
-		                tctx.drawImage(img, i * nw * ratio, j * nh * ratio, nw * ratio, nh * ratio, 0, 0, nw, nh);
-		
-		                ctx.drawImage(tCanvas, i * nw, j * nh, nw, nh);
-		            }
-		        }
-		    } else {
-		        ctx.drawImage(img, 0, 0, width, height);
-		    }
-		
-		    //进行最小压缩
-		    var ndata = canvas.toDataURL("image/jpeg", 0.5);
-		
-		    console.log("压缩前：" + initSize);
-		    console.log("压缩后：" + ndata.length);
-		    console.log("压缩率：" + ~~(100 * (initSize - ndata.length) / initSize) + "%");
-		
-		    tCanvas.width = tCanvas.height = canvas.width = canvas.height = 0;
-		
-		    return ndata;
-		}
-    
-   
-	
-	}
+                if (wvs[i].getURL().indexOf("pay_action.html") != -1) {
+                    plus.webview.close(wvs[i]);
+                    continue;
+                }
+
+                if (wvs[i].getURL().indexOf("webview.html") != -1) {
+                    plus.webview.close(wvs[i]);
+                    continue;
+                }
+
+                if (wvs[i].getURL().indexOf("webviewDetail.html") != -1) {
+                    plus.webview.close(wvs[i]);
+                    continue;
+                }
+
+                if (wvs[i].getURL().indexOf("credit_result.html") != -1) {
+                    plus.webview.close(wvs[i]);
+                    continue;
+                }
+                
+                if (wvs[i].getURL().indexOf("credit_rating_second.html") != -1) {
+                    plus.webview.close(wvs[i]);
+                    continue;
+                }
+                
+                if (wvs[i].getURL().indexOf("recommend.html") != -1) {
+                    plus.webview.close(wvs[i]);
+                    continue;
+                }
+            }
+            //curr.close();
+        },
+
+        openKouzi: function() {
+            var h = plus.webview.getWebviewById("home.html");
+            mui.fire(h, 'openKouzi');
+        },
+
+
+        GetQueryString: function(url, name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = url.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return null;
+        },
+        //width、height调用时传入具体像素值，控制大小 ,不传则默认图像大小
+        getBase64Image: function(img, width, height) {
+            var canvas = document.createElement("canvas");
+            canvas.width = width ? width : img.width;
+            canvas.height = height ? height : img.height;
+            mui.toast("canvas.width" + canvas.width + "---canvas.height:--" + canvas.height)
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            var dataURL = canvas.toDataURL();
+            return dataURL;
+        },
+
+        getCanvasBase64: function(img) {
+            var image = new Image();
+            //至关重要
+            image.crossOrigin = '';
+            image.src = img;
+            //至关重要
+            var deferred = $.Deferred();
+            if (img) {
+                image.onload = function() {
+                    deferred.resolve(Global.compress(image)); //将base64传给done上传处理
+                }
+                return deferred.promise(); //问题要让onload完成后再return sessionStorage['imgTest']
+            }
+        },
+
+
+        compress: function(img) {
+            //    用于压缩图片的canvas
+            var canvas = document.createElement("canvas");
+            var ctx = canvas.getContext('2d');
+            //    瓦片canvas
+            var tCanvas = document.createElement("canvas");
+            var tctx = tCanvas.getContext("2d");
+
+            var initSize = img.src.length;
+            var width = img.width;
+            var height = img.height;
+
+            //如果图片大于四百万像素，计算压缩比并将大小压至400万以下
+            var ratio;
+            if ((ratio = width * height / 4000000) > 1) {
+                ratio = Math.sqrt(ratio);
+                width /= ratio;
+                height /= ratio;
+            } else {
+                ratio = 1;
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+
+            //        铺底色
+            ctx.fillStyle = "#fff";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            //如果图片像素大于100万则使用瓦片绘制
+            var count;
+            if ((count = width * height / 1000000) > 1) {
+                count = ~~(Math.sqrt(count) + 1); //计算要分成多少块瓦片
+
+                //            计算每块瓦片的宽和高
+                var nw = ~~(width / count);
+                var nh = ~~(height / count);
+
+                tCanvas.width = nw;
+                tCanvas.height = nh;
+
+                for (var i = 0; i < count; i++) {
+                    for (var j = 0; j < count; j++) {
+                        tctx.drawImage(img, i * nw * ratio, j * nh * ratio, nw * ratio, nh * ratio, 0, 0, nw, nh);
+
+                        ctx.drawImage(tCanvas, i * nw, j * nh, nw, nh);
+                    }
+                }
+            } else {
+                ctx.drawImage(img, 0, 0, width, height);
+            }
+
+            //进行最小压缩
+            var ndata = canvas.toDataURL("image/jpeg", 0.5);
+
+            console.log("压缩前：" + initSize);
+            console.log("压缩后：" + ndata.length);
+            console.log("压缩率：" + ~~(100 * (initSize - ndata.length) / initSize) + "%");
+
+            tCanvas.width = tCanvas.height = canvas.width = canvas.height = 0;
+
+            return ndata;
+        }
+
+    }
+
+    $(".mui-content").on("click", ".go-home", function() {
+        console.log("跳转");
+        mui.openWindow({
+            url: 'home.html',
+            id: 'home.html.html',
+            waiting: {
+                autoShow: false
+            }
+        })
+
+    });
+
+    //智能客服
+    //  $(".mui-bar-nav").on("click", "img", function() {
+    //      qimoChatClick();
+    //  })
+
+    //家里
+    //    $("body").append("<div style='width:50px;height:50px;background:#000;position:absolute;right:0;bottom:50px;z-index:1000;' onclick='window.location.reload();'>reload</div><script src='http://192.168.3.31:1337/vorlon.js'></script>");
+
+    //公司
+    //   $("body").append("<div style='width:50px;height:50px;background:#000;position:absolute;right:0;bottom:50px;z-index:1000;' onclick='window.location.reload();'>reload</div><script src='http://10.8.66.213:1337/vorlon.js'></script>");
+    //$("body").append("<div style='width:50px;height:50px;background:#000;position:absolute;right:0;bottom:50px;z-index:1000;' onclick='window.location.reload();'>reload</div><script src='http://192.168.23.109:1337/vorlon.js'></script>");
+
+    //公司
+    //  $("body").append("<div style='width:50px;height:50px;background:#000;position:absolute;right:0;bottom:50px;z-index:1000;' onclick='window.location.reload();'>reload</div><script src='http://10.8.66.150:1337/vorlon.js'></script>");
+
+
+
 }());
 
+$(".mui-bar-nav img").click(function() {
+    $(".qimo_chatpup").css("display", "block");
+    $(".qimo_chatpup").css("z-index", "100");
+    qimoChatClick();
+})
 
-//数据配置文件
-var Config={};
-Config.wmStatus=["已经送出","派件中","已经送达楼服宝","已经送达用户","已经送达前台"];
-
-
-
-function openWindowPage(url){
-    
-    var options = {
-						styles:{
-							popGesture: "close"
-						},
-						extras:{}
-					};
-    		
-    		options.styles.statusbar = {
-							background: "#fff"
-						};
-    		
-    		mui.openWindow(url, url,options);
-    
-    
-}
-
-//加减法计算
-mui("body").on('tap','.add-value',function(event){
-	
-    event.stopPropagation();
-	
-	if((window.location.href.indexOf("mallPage.html") != -1) || (window.location.href.indexOf("shopping_card.html") != -1))
-	{
-		var value=parseInt($(this).prev().text());
-		value++;
-		$(this).prev().text(value);
-
-		if(window.location.href.indexOf("expressInfoAdd")>-1)
-		{
-			countFeiyong();
-		}
-	    return;
-	}
-	
-    var value=parseFloat($(this).prev().text()).toFixed(1);
-	
-    value = Number(value) + 0.5;
-	value = parseFloat(value).toFixed(1);
-    $(this).prev().text(value); 
-
-    if(window.location.href.indexOf("expressInfoAdd")>-1)
-    {
-        countFeiyong();
-    }
-
-
-});
-mui("body").on('tap','.sub-value',function(event){
-    event.stopPropagation();
-	
-	if((window.location.href.indexOf("mallPage.html") != -1) || (window.location.href.indexOf("shopping_card.html") != -1))
-	{
-		var value=parseInt($(this).next().text());
-		if(value<=1)
-		{
-			return;
-		}
-		value--;
-		$(this).next().text(value);
-		if(window.location.href.indexOf("expressInfoAdd")>-1)
-		{
-			countFeiyong();
-		}
-		return;
-	}
-	
-	
-    var value=parseFloat($(this).next().text()).toFixed(1);
-    if(value<=0.5)
-    {
-        return;
-    }
-    value = Number(value) - 0.5;
-	value = parseFloat(value).toFixed(1);
-    $(this).next().text(value);
-    if(window.location.href.indexOf("expressInfoAdd")>-1)
-    {
-        countFeiyong();
-    }
-
-});
-
-mui('body').on('tap','a',function(){
-	//window.top.location.href=this.href;
-});
-
-    var u = navigator.userAgent, app = navigator.appVersion;
-    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
-    var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-
-
-
-//公共ready后的事件
-function commonEvent()
-{
-    if($("#louyuText").length>0)
-    {
-    	updateLouyuName();
-        window.addEventListener('updateLouyuName', function(event) {
-            console.log("updateLouyuName");
-            updateLouyuName();
-        }, false);
-    }
-
-}
-
-function updateLouyuName()
-{
-	if(myStorage && myStorage.getItem("louyuName"))
-	{
-		var louyuObj=JSON.parse(myStorage.getItem("louyuName"));
-	    console.log(louyuObj.name);
-	    $("#louyuText").find("span").text(louyuObj.name);
-	    $("#louyuText").find("span").attr("data-id",louyuObj.id);
-	}
-    
-}
-
-//通过快递公司id找快递公司
-function findExpressCompany(cId)
-{
-	var returnObj={};
-	var expressCompanies=myStorage.getItem("expressCompanies");
-	for(var i=0;i<expressCompanies.length;i++)
-	{
-		if(expressCompanies[i].id==cId)
-		{
-			returnObj=expressCompanies[i];
-			break;
-		}
-	}
-	return returnObj;
-}
-
-//绑定企业
-function  bindQiye()
-{
-    var btnArray = ['确定', '取消'];
-    mui.prompt('企业号请联系公司前台或行政负责人获取，也可以咨询楼服宝工作人员。若要发送个人快递，请移步至个人快递界面。', '请输入企业号', '企业号', btnArray, function(e) {
-        if (e.index == 0) {
-            var inputValue=e.value;
-            //alert(inputValue);
-            
-            	if(inputValue=="")
-            	{
-            		mui.toast("企业号不能为空");
-            		return;
-            	}
-            	//绑定
-				Global.commonAjax({
-	                    url: "user/company",
-	                    method:"POST",
-	                    data:{
-	                    	code:inputValue
-	                    }
-	            },
-				function(data) {
-					console.log("绑定");
-					console.log(JSON.stringify(data));
-					mui.toast("绑定成功");
-					Global.refreshUser();
-					console.log(JSON.stringify(data));
-				},
-				function(err) {
-				    console.log("绑定报错"+JSON.stringify(err));
-				});
-						
-            
-            
-            
-        } else {
-            
+function goToCustom() {
+    mui.openWindow({
+        url: 'custom.html',
+        id: 'custom.html',
+        waiting: {
+            autoShow: false
         }
     })
 }
-
-function  unBindQiye()
-{
-    var btnArray = ['是', '否'];
-    mui.confirm('是否解除绑定企业？', '企业号', btnArray, function(e) {
-        if (e.index == 0) {
-
-            //绑定
-            Global.commonAjax({
-                    url: "user/company",
-                    method:"delete"
-                },
-                function(data) {
-                    console.log("解除绑定");
-                    mui.toast("解除绑定成功");
-                    $("#qiye").text("未设置");
-                    Global.refreshUser();
-                    console.log(JSON.stringify(data));
-                },
-                function(err) {
-                    console.log("解除绑定报错"+JSON.stringify(err));
-                });
-
-        } else {
-
-        }
-    })
-}
-
-
-mui("body").on('tap','.shadow-col',function(event){
-
-    hideBottomModal();
-
-});
-
-
-$(".beizhu-col .right-close").click(function()
-{
-    hideBottomModal();
-});
-
-function  hideBottomModal()
-{
-    $(".beizhu-col").hide();
-    $(".beizhu-col .beizhu-text").hide();
-}
-
-$("#louyuText").click(function()
-{
-    if(window.location.href.indexOf("index.html")>-1)
-    {
-        Global.openWindow({
-            url: 'html/louyuList.html',
-            id: 'louyuList.html',
-            waiting: {
-                autoShow: false
-            }
-        })
-    }
-    else {
-        Global.openWindow({
-            url: 'louyuList.html',
-            id: 'louyuList.html',
-            waiting: {
-                autoShow: false
-            }
-        })
-    }
-
-});
-
-//url传参数
-function GetQueryString(name)
-{
-    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-    var r = window.location.search.substr(1).match(reg);//search,查询？后面的参数，并匹配正则
-    if(r!=null)return  unescape(r[2]); return null;
-}
-
-
-	 //调试
-      //$("body").append("<div style='width:50px;height:50px;background:#000;position:absolute;right:0;bottom:50px;z-index:10000;' onclick='window.location.reload();'>reload</div>");
-	
-	
-	  $(".mui-title").click(function()
-	  {
-	  	//window.location.reload(1);
-	  });
-
-
-
-
-function render(selector, tpl, data, type) {
-	type = arguments[3] || false;
-		// console.log('Render:[D:' + selector + '|M:' + tpl + '|T:' + type + '|D:' + JSON.stringify(data).length)
-	
-	var elem = document.querySelector(selector);
-	var html = template(tpl, data);
-	
-	if(type) {
-		elem.innerHTML += html;
-	} else {
-		elem.innerHTML = html;
-	}
-}
-
-
-
